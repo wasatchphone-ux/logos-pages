@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome Back — Wasatch Combat Sports</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #c8102e;
+    --red-dark: #9e0d24;
+    --gold: #c9a84c;
+    --black: #0d0d0d;
+    --dark: #111;
+    --dark2: #1a1a1a;
+    --dark3: #222;
+    --mid: #333;
+    --muted: #777;
+    --light: #f4f4f2;
+    --white: #fff;
+    --font-display: 'Barlow Condensed', sans-serif;
+    --font-body: 'Barlow', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--black);
+    color: var(--light);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,13,13,0.95);
+    border-bottom: 1px solid rgba(200,16,46,0.3);
+    backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 24px; height: 56px;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 900; font-size: 1.1rem;
+    letter-spacing: 0.05em; color: var(--white);
+    text-transform: uppercase;
+  }
+  .nav-logo span { color: var(--red); }
+  .nav-cta {
+    background: var(--red); color: var(--white);
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 0.85rem; letter-spacing: 0.08em;
+    text-transform: uppercase; text-decoration: none;
+    padding: 8px 18px; border-radius: 2px;
+    transition: background 0.15s;
+  }
+  .nav-cta:hover { background: var(--red-dark); }
+
+  /* STARS */
+  .stars { color: var(--gold); letter-spacing: 2px; font-size: 0.85rem; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 56px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: 
+      radial-gradient(ellipse at 20% 50%, rgba(200,16,46,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.06) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero-content {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 60px 80px 7vw;
+    position: relative; z-index: 1;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 0.78rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--red);
+    margin-bottom: 20px;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 32px; height: 2px; background: var(--red);
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 900; font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 0.95; letter-spacing: -0.01em;
+    text-transform: uppercase; color: var(--white);
+    margin-bottom: 24px;
+  }
+  h1 em { font-style: normal; color: var(--red); }
+  h1 .sub { display: block; font-size: 0.55em; color: var(--gold); font-weight: 700; }
+  .hero-sub {
+    font-size: 1.1rem; color: #bbb; max-width: 480px;
+    margin-bottom: 36px; line-height: 1.65;
+  }
+  .hero-cta-group { display: flex; flex-direction: column; gap: 12px; max-width: 360px; }
+  .btn-primary {
+    display: block; text-align: center;
+    background: var(--red); color: var(--white);
+    font-family: var(--font-display); font-weight: 800;
+    font-size: 1.1rem; letter-spacing: 0.06em;
+    text-transform: uppercase; text-decoration: none;
+    padding: 18px 32px; border-radius: 3px;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); }
+  .btn-secondary {
+    display: block; text-align: center;
+    border: 1px solid var(--mid); color: #bbb;
+    font-family: var(--font-display); font-weight: 600;
+    font-size: 0.9rem; letter-spacing: 0.06em;
+    text-transform: uppercase; text-decoration: none;
+    padding: 14px 32px; border-radius: 3px;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-trust {
+    display: flex; align-items: center; gap: 10px;
+    margin-top: 28px;
+  }
+  .hero-trust .stars { font-size: 0.8rem; }
+  .hero-trust span { font-size: 0.82rem; color: var(--muted); }
+  .hero-image-col {
+    position: relative; overflow: hidden;
+  }
+  .hero-image-col img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    filter: brightness(0.55) saturate(0.9);
+  }
+  .hero-image-col::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, var(--black) 0%, transparent 30%),
+                linear-gradient(to top, var(--black) 0%, transparent 40%);
+  }
+  .hero-price-badge {
+    position: absolute; bottom: 40px; right: 40px; z-index: 2;
+    background: var(--dark); border: 1px solid rgba(201,168,76,0.4);
+    padding: 20px 24px; border-radius: 4px;
+    text-align: center;
+  }
+  .badge-label {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 0.7rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .badge-price {
+    font-family: var(--font-display); font-weight: 900;
+    font-size: 2.4rem; line-height: 1; color: var(--white);
+  }
+  .badge-cycle {
+    font-size: 0.75rem; color: var(--muted); margin-top: 2px;
+  }
+  .badge-compare {
+    font-size: 0.72rem; color: var(--red); margin-top: 6px;
+    font-weight: 600;
+  }
+
+  /* STATS STRIP */
+  .stats-strip {
+    background: var(--dark2);
+    border-top: 1px solid var(--dark3);
+    border-bottom: 1px solid var(--dark3);
+    display: grid; grid-template-columns: repeat(4, 1fr);
+  }
+  .stat-item {
+    padding: 28px 20px; text-align: center;
+    border-right: 1px solid var(--dark3);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: var(--font-display); font-weight: 900;
+    font-size: 2.4rem; color: var(--white); line-height: 1;
+  }
+  .stat-num span { color: var(--red); }
+  .stat-label {
+    font-size: 0.78rem; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-top: 4px;
+  }
+
+  /* SECTIONS */
+  section { padding: 80px 7vw; }
+  .section-eyebrow {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 0.72rem; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--red);
+    margin-bottom: 12px;
+  }
+  h2 {
+    font-family: var(--font-display); font-weight: 900;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    text-transform: uppercase; line-height: 1.05;
+    color: var(--white); margin-bottom: 16px;
+  }
+  h2 em { font-style: normal; color: var(--gold); }
+  .section-lead { font-size: 1.05rem; color: #999; max-width: 600px; margin-bottom: 52px; }
+
+  /* FEATURES GRID */
+  .features-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: var(--dark3);
+  }
+  .feature-card {
+    background: var(--dark); padding: 36px 32px;
+    transition: background 0.2s;
+  }
+  .feature-card:hover { background: var(--dark2); }
+  .feature-icon {
+    font-size: 1.8rem; margin-bottom: 16px; display: block;
+  }
+  .feature-title {
+    font-family: var(--font-display); font-weight: 800;
+    font-size: 1.05rem; text-transform: uppercase;
+    letter-spacing: 0.04em; color: var(--white);
+    margin-bottom: 10px;
+  }
+  .feature-body { font-size: 0.9rem; color: #888; line-height: 1.65; }
+
+  /* PRICING */
+  .pricing-section { background: var(--dark2); }
+  .pricing-layout {
+    display: grid; grid-template-columns: 1fr 480px;
+    gap: 60px; align-items: start;
+  }
+  .pricing-context h2 { margin-bottom: 20px; }
+  .competitor-compare {
+    display: flex; flex-direction: column; gap: 8px;
+    margin: 28px 0;
+  }
+  .compare-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 16px; border-radius: 3px;
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 0.95rem; letter-spacing: 0.03em;
+  }
+  .compare-row.theirs {
+    background: rgba(255,255,255,0.04);
+    color: var(--muted); text-decoration: none;
+  }
+  .compare-row.ours {
+    background: rgba(200,16,46,0.15);
+    border: 1px solid rgba(200,16,46,0.4);
+    color: var(--white);
+  }
+  .compare-row .gym-name { font-size: 0.85rem; }
+  .compare-row .price { font-size: 1.1rem; }
+  .compare-row.ours .price { color: var(--gold); }
+  .compare-note {
+    font-size: 0.8rem; color: var(--muted); margin-top: 4px;
+  }
+  .pricing-card {
+    background: var(--dark);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 4px; overflow: hidden;
+  }
+  .pricing-card-header {
+    background: var(--red); padding: 20px 28px;
+    font-family: var(--font-display); font-weight: 800;
+    font-size: 0.8rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: rgba(255,255,255,0.9);
+  }
+  .pricing-card-body { padding: 32px 28px; }
+  .price-display {
+    display: flex; align-items: baseline; gap: 4px;
+    margin-bottom: 6px;
+  }
+  .price-dollar {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 1.6rem; color: var(--gold); line-height: 1;
+  }
+  .price-amount {
+    font-family: var(--font-display); font-weight: 900;
+    font-size: 4rem; line-height: 1; color: var(--white);
+  }
+  .price-cycle {
+    font-size: 0.85rem; color: var(--muted); margin-bottom: 20px;
+  }
+  .price-cycle strong { color: #ccc; }
+  .price-annual {
+    font-size: 0.78rem; color: var(--muted);
+    padding: 8px 12px; background: rgba(255,255,255,0.04);
+    border-radius: 2px; margin-bottom: 24px;
+    display: inline-block;
+  }
+  .price-annual strong { color: var(--gold); }
+  .includes-list { list-style: none; margin-bottom: 28px; }
+  .includes-list li {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 0; border-bottom: 1px solid var(--dark3);
+    font-size: 0.9rem; color: #bbb;
+  }
+  .includes-list li:last-child { border-bottom: none; }
+  .includes-list li::before {
+    content: '✓'; color: var(--gold); font-weight: 700;
+    font-size: 0.85rem; flex-shrink: 0;
+  }
+  .pricing-cta {
+    display: block; text-align: center;
+    background: var(--red); color: var(--white);
+    font-family: var(--font-display); font-weight: 800;
+    font-size: 1.15rem; letter-spacing: 0.06em;
+    text-transform: uppercase; text-decoration: none;
+    padding: 18px; border-radius: 3px;
+    transition: background 0.15s;
+    margin-bottom: 14px;
+  }
+  .pricing-cta:hover { background: var(--red-dark); }
+  .pricing-footnote {
+    font-size: 0.75rem; color: var(--muted); text-align: center; line-height: 1.5;
+  }
+
+  /* TESTIMONIALS */
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .testimonial {
+    background: var(--dark2); border: 1px solid var(--dark3);
+    padding: 28px; border-radius: 3px;
+  }
+  .testimonial .stars { font-size: 0.78rem; margin-bottom: 14px; display: block; }
+  .testimonial blockquote {
+    font-size: 0.92rem; color: #ccc; line-height: 1.65;
+    margin-bottom: 16px; font-style: italic;
+  }
+  .testimonial-author {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 0.78rem; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--muted);
+  }
+
+  /* FAQ */
+  .faq-section { background: var(--dark2); }
+  .faq-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+    background: var(--dark3);
+  }
+  .faq-item {
+    background: var(--dark); padding: 28px 32px;
+  }
+  .faq-q {
+    font-family: var(--font-display); font-weight: 800;
+    font-size: 1rem; text-transform: uppercase;
+    letter-spacing: 0.03em; color: var(--white);
+    margin-bottom: 10px;
+  }
+  .faq-a { font-size: 0.88rem; color: #888; line-height: 1.7; }
+
+  /* FINAL CTA */
+  .final-cta {
+    text-align: center; background: var(--dark);
+    border-top: 1px solid var(--dark3);
+    padding: 80px 7vw;
+    position: relative; overflow: hidden;
+  }
+  .final-cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(200,16,46,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .final-cta h2 { margin-bottom: 12px; position: relative; }
+  .final-cta p { color: #888; margin-bottom: 36px; position: relative; }
+  .final-cta .btn-primary {
+    display: inline-block; padding: 20px 48px;
+    font-size: 1.2rem; position: relative;
+  }
+  .final-meta {
+    display: flex; align-items: center; justify-content: center;
+    gap: 28px; margin-top: 28px; flex-wrap: wrap;
+  }
+  .final-meta span {
+    font-size: 0.78rem; color: var(--muted);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .final-meta span::before { content: '·'; }
+  .final-meta span:first-child::before { content: ''; }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    border-top: 1px solid var(--dark3);
+    padding: 28px 7vw;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+  }
+  footer p { font-size: 0.78rem; color: var(--muted); }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--gold); }
+
+  /* TIMER */
+  .timer-bar {
+    background: var(--red); padding: 10px 20px; text-align: center;
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 0.85rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(255,255,255,0.95);
+  }
+  .timer-bar #countdown { color: var(--white); font-weight: 900; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-image-col { height: 300px; }
+    .hero-content { padding: 60px 24px 40px; }
+    .hero-price-badge { right: 20px; bottom: 20px; }
+    .stats-strip { grid-template-columns: repeat(2, 1fr); }
+    .stat-item:nth-child(2) { border-right: none; }
+    .features-grid { grid-template-columns: 1fr 1fr; }
+    .pricing-layout { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .faq-grid { grid-template-columns: 1fr; }
+    section { padding: 60px 24px; }
+  }
+  @media (max-width: 600px) {
+    .features-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TIMER BAR -->
+<div class="timer-bar">
+  ⚡ Alumni offer — expires in: <span id="countdown">23:59:59</span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><span>WCS</span> · Wasatch Combat Sports</div>
+  <a href="#offer" class="nav-cta">Claim Offer →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Alumni &amp; Prospect Special</div>
+    <h1>
+      <span class="sub">Your first month at WCS is</span>
+      Free.<em>.</em>
+    </h1>
+    <p class="hero-sub">
+      Muay Thai. Brazilian Jiu-Jitsu. MMA. Everything included.
+      No contracts. No enrollment fee. Just show up — we'll handle the rest.
+    </p>
+    <div class="hero-cta-group">
+      <a href="#offer" class="btn-primary">Claim My Free Month →</a>
+      <a href="tel:8018570611" class="btn-secondary">Call Us: 801-857-0611</a>
+    </div>
+    <div class="hero-trust">
+      <span class="stars">★★★★★</span>
+      <span>329 Google Reviews · #1 in Utah County</span>
+    </div>
+  </div>
+  <div class="hero-image-col">
+    <img src="https://images.unsplash.com/photo-1555597673-b21d5c935865?w=900&auto=format&fit=crop" alt="Training at Wasatch Combat Sports">
+    <div class="hero-price-badge">
+      <div class="badge-label">After Month 1</div>
+      <div class="badge-price">$65</div>
+      <div class="badge-cycle">billed every 2 weeks</div>
+      <div class="badge-compare">Most gyms: $150–$200/mo</div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat-item">
+    <div class="stat-num">11</div>
+    <div class="stat-label">Years in Orem</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">329<span>★</span></div>
+    <div class="stat-label">5-Star Reviews</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">400+</div>
+    <div class="stat-label">Active Members</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">30+</div>
+    <div class="stat-label">Classes / Week</div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section>
+  <div class="section-eyebrow">What You Get</div>
+  <h2>Everything.<br><em>One Membership.</em></h2>
+  <p class="section-lead">Most gyms charge separately for striking and grappling. At WCS you get both — plus a community that keeps you coming back.</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <span class="feature-icon">🥊</span>
+      <div class="feature-title">Muay Thai + BJJ Included</div>
+      <div class="feature-body">Striking and grappling under one membership. A complete martial arts education — not a single-skill program.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">📅</span>
+      <div class="feature-title">30+ Classes Per Week</div>
+      <div class="feature-body">Morning, afternoon, and evening. We fit around your schedule — not the other way around.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🏆</span>
+      <div class="feature-title">Utah County's Most-Reviewed Gym</div>
+      <div class="feature-body">329 five-star Google reviews. 11 years in Orem. Not a franchise — a real community where coaches know your name.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">💪</span>
+      <div class="feature-title">Results You'll Feel Fast</div>
+      <div class="feature-body">Better conditioning, sharper focus, real functional fitness. Most members notice a difference within the first two weeks.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🤝</span>
+      <div class="feature-title">Coaches Who Actually Coach</div>
+      <div class="feature-body">Practitioners, not just instructors. They'll remember where you left off and push you when you need it.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🚫</span>
+      <div class="feature-title">No Long-Term Contracts</div>
+      <div class="feature-body">Month-to-month after your free month. We'd rather earn your business every month than lock you in.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="offer">
+  <div class="pricing-layout">
+    <div class="pricing-context">
+      <div class="section-eyebrow">The Offer</div>
+      <h2>Simple.<br><em>No Catch.</em></h2>
+      <p class="section-lead">Your first month is free. After that, $65 every two weeks — less than a dollar per class if you train consistently.</p>
+
+      <div class="competitor-compare">
+        <div class="compare-row theirs">
+          <span class="gym-name">Typical Utah County Gym</span>
+          <span class="price">$150–$200 / mo</span>
+        </div>
+        <div class="compare-row theirs">
+          <span class="gym-name">Single-Discipline Gym (BJJ or MT only)</span>
+          <span class="price">$120–$160 / mo</span>
+        </div>
+        <div class="compare-row ours">
+          <span class="gym-name">Wasatch Combat Sports — Both Disciplines</span>
+          <span class="price">$65 / 2 weeks</span>
+        </div>
+      </div>
+      <p class="compare-note">$65 every 2 weeks = ~$141/month. Full Muay Thai + BJJ access. No enrollment fee.</p>
+    </div>
+
+    <div class="pricing-card">
+      <div class="pricing-card-header">Alumni &amp; Prospect Offer</div>
+      <div class="pricing-card-body">
+        <div class="price-display">
+          <span class="price-dollar">$</span>
+          <span class="price-amount">65</span>
+        </div>
+        <div class="price-cycle">billed <strong>every 2 weeks</strong> · after your free first month</div>
+        <div class="price-annual">Annually: ~<strong>$1,690</strong> — vs. $1,800–$2,400 at comparable gyms</div>
+        <ul class="includes-list">
+          <li>Unlimited Muay Thai classes</li>
+          <li>Unlimited Brazilian Jiu-Jitsu</li>
+          <li>Open mat access</li>
+          <li>No enrollment fee</li>
+          <li>No long-term contract</li>
+          <li>First month completely free</li>
+        </ul>
+        <a href="YOUR_SHOPIFY_LINK_HERE" class="pricing-cta">Claim My Free Month →</a>
+        <p class="pricing-footnote">Biweekly billing begins after your free 30-day trial. Cancel anytime before day 30 and owe nothing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section>
+  <div class="section-eyebrow">What Members Say</div>
+  <h2>Real People.<br><em>Real Results.</em></h2>
+  <p class="section-lead">329 five-star reviews don't happen by accident.</p>
+  <div class="testimonials-grid">
+    <div class="testimonial">
+      <span class="stars">★★★★★</span>
+      <blockquote>"Best decision I made all year. The coaches are world-class and the community keeps you coming back. I'm in the best shape of my life at 42."</blockquote>
+      <div class="testimonial-author">Mike R. · Member since 2022</div>
+    </div>
+    <div class="testimonial">
+      <span class="stars">★★★★★</span>
+      <blockquote>"I trained here years ago and just came back. It's like I never left. Same coaches, same culture, even better facility. So glad I returned."</blockquote>
+      <div class="testimonial-author">Sarah T. · Returning Alumni</div>
+    </div>
+    <div class="testimonial">
+      <span class="stars">★★★★★</span>
+      <blockquote>"Drove from Provo every day for 6 months before I moved closer. Worth every mile. The instruction quality here is genuinely elite."</blockquote>
+      <div class="testimonial-author">James L. · Member, Provo</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="section-eyebrow">Common Questions</div>
+  <h2>We've Heard<br><em>Them All.</em></h2>
+  <p class="section-lead">No fine print. Here's how it works.</p>
+  <div class="faq-grid">
+    <div class="faq-item">
+      <div class="faq-q">Do I need experience?</div>
+      <div class="faq-a">Zero. Every class has beginners. Our coaches meet you exactly where you are — whether you've never trained or you're coming back after years away.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What's the catch with "first month free"?</div>
+      <div class="faq-a">No catch. Try it for 30 days at no cost. If you love it, biweekly billing of $65 starts automatically after your trial. If not, cancel before day 30 and you owe nothing.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Why biweekly billing instead of monthly?</div>
+      <div class="faq-a">Biweekly billing keeps the per-charge amount lower and aligns with most people's pay cycles. You're never hit with one large monthly charge. $65 every two weeks — straightforward.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What's included in one membership?</div>
+      <div class="faq-a">Muay Thai and Brazilian Jiu-Jitsu — both included, no upsells. Striking and grappling: a complete martial arts education.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Where are you located?</div>
+      <div class="faq-a">972 N 1430 W, Orem UT 84057. Easy access from anywhere in Utah County — Provo, Lehi, Pleasant Grove, American Fork, Lindon, Vineyard, Springville, and beyond.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">I trained here before. Does this apply to me?</div>
+      <div class="faq-a">Yes — this offer is specifically for alumni and prospects. We'll pick up right where you left off. Welcome back.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <h2>Get Back on the Mat.<br><em>First Month's on Us.</em></h2>
+  <p>329 five-star reviews · 11 years in Orem · No contracts · No risk</p>
+  <a href="#offer" class="btn-primary">Claim My Free Month →</a>
+  <div class="final-meta">
+    <span>No enrollment fee</span>
+    <span>No long-term contract</span>
+    <span>Cancel before day 30 — owe nothing</span>
+    <span>$65 biweekly after trial</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Wasatch Combat Sports · 972 N 1430 W, Orem UT 84057 · <a href="tel:8018570611">801-857-0611</a></p>
+  <p>
+    <a href="#">Privacy Policy</a> · 
+    <a href="#">Terms</a> · 
+    <a href="mailto:info@wasatchcombatsports.com">Contact</a> · 
+    <a href="https://wasatchcombatsports.com">wasatchcombatsports.com</a>
+  </p>
+</footer>
+
+<script>
+  // Countdown timer — 24hr from page load
+  (function() {
+    const stored = localStorage.getItem('wcs_offer_expiry');
+    const expiry = stored ? parseInt(stored) : Date.now() + 24 * 60 * 60 * 1000;
+    if (!stored) localStorage.setItem('wcs_offer_expiry', expiry);
+    const el = document.getElementById('countdown');
+    function tick() {
+      const left = Math.max(0, expiry - Date.now());
+      const h = Math.floor(left / 3600000);
+      const m = Math.floor((left % 3600000) / 60000);
+      const s = Math.floor((left % 60000) / 1000);
+      el.textContent = [h, m, s].map(n => String(n).padStart(2, '0')).join(':');
+      if (left > 0) setTimeout(tick, 1000);
+    }
+    tick();
+  })();
+</script>
+
+</body>
+</html>
