@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome Back — Wasatch Combat Sports</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root {
+  --bg:       #08080f;
+  --surf1:    #10101a;
+  --surf2:    #171724;
+  --surf3:    #202030;
+  --border:   #2c2c42;
+  --amber:    #f5a623;
+  --amber2:   #ffc84a;
+  --red:      #e83b0f;
+  --red2:     #ff4e1f;
+  --white:    #f0ede8;
+  --muted:    #7a7a98;
+  --dimmed:   #3a3a58;
+  --display:  'Oswald', sans-serif;
+  --body:     'DM Sans', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--body);
+  background: var(--bg);
+  color: var(--white);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ─── NOISE TEXTURE OVERLAY ─── */
+body::before {
+  content:'';
+  position:fixed; inset:0; z-index:0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* ─── URGENCY BANNER ─── */
+.urgency-banner {
+  position: relative; z-index: 200;
+  background: linear-gradient(90deg, var(--red), #c4310b);
+  text-align: center; padding: 11px 20px;
+  font-family: var(--display); font-weight: 600;
+  font-size: 0.85rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: #fff;
+}
+.urgency-banner #countdown {
+  font-weight: 700; color: var(--amber2);
+  letter-spacing: 0.08em;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(8,8,15,0.92);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5vw; height: 60px;
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 12px;
+}
+.nav-logo-mark {
+  width: 34px; height: 34px;
+  background: var(--red);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--display); font-weight: 700;
+  font-size: 0.75rem; letter-spacing: 0.05em; color: #fff;
+  clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+}
+.nav-name {
+  font-family: var(--display); font-weight: 600;
+  font-size: 1rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--white);
+}
+.nav-name span { color: var(--amber); }
+.nav-right { display: flex; align-items: center; gap: 20px; }
+.nav-phone {
+  font-size: 0.82rem; color: var(--muted);
+  text-decoration: none; font-family: var(--display);
+  letter-spacing: 0.05em;
+}
+.nav-phone:hover { color: var(--amber); }
+.nav-cta {
+  background: var(--red); color: #fff;
+  font-family: var(--display); font-weight: 600;
+  font-size: 0.82rem; letter-spacing: 0.1em;
+  text-transform: uppercase; text-decoration: none;
+  padding: 9px 20px; border-radius: 2px;
+  transition: background .15s;
+}
+.nav-cta:hover { background: var(--red2); }
+
+/* ─── HERO ─── */
+.hero {
+  position: relative; min-height: 100vh;
+  display: flex; align-items: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1555597673-b21d5c935865?w=1600&auto=format&fit=crop&q=80');
+  background-size: cover; background-position: center 30%;
+  filter: brightness(0.28) saturate(0.7);
+}
+.hero-bg::after {
+  content:'';
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(105deg, rgba(8,8,15,0.97) 40%, rgba(8,8,15,0.4) 100%),
+    linear-gradient(to top, rgba(8,8,15,1) 0%, transparent 50%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 100px 5vw 80px;
+  max-width: 760px;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(245,166,35,0.12);
+  border: 1px solid rgba(245,166,35,0.35);
+  border-radius: 100px; padding: 6px 14px;
+  font-family: var(--display); font-weight: 500;
+  font-size: 0.72rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--amber);
+  margin-bottom: 28px;
+  animation: fadeSlideUp 0.6s ease both;
+}
+.hero-badge::before {
+  content:''; width:6px; height:6px;
+  border-radius: 50%; background: var(--amber);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:0.5;transform:scale(1.4)}
+}
+@keyframes fadeSlideUp {
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.hero h1 {
+  font-family: var(--display); font-weight: 700;
+  font-size: clamp(3.6rem, 8vw, 7rem);
+  line-height: 0.92; letter-spacing: -0.01em;
+  text-transform: uppercase; color: var(--white);
+  margin-bottom: 28px;
+  animation: fadeSlideUp 0.6s 0.1s ease both;
+}
+.hero h1 .line-gold { color: var(--amber); display: block; }
+.hero h1 .line-red { color: var(--red2); font-size: 0.48em; display: block; letter-spacing: 0.04em; margin-bottom: 8px; }
+.hero-sub {
+  font-size: 1.05rem; color: #9998b8; max-width: 520px;
+  margin-bottom: 40px; line-height: 1.7;
+  animation: fadeSlideUp 0.6s 0.2s ease both;
+}
+.hero-actions {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  animation: fadeSlideUp 0.6s 0.3s ease both;
+  margin-bottom: 44px;
+}
+.btn-hero {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--amber); color: var(--bg);
+  font-family: var(--display); font-weight: 700;
+  font-size: 1rem; letter-spacing: 0.08em;
+  text-transform: uppercase; text-decoration: none;
+  padding: 18px 32px; border-radius: 3px;
+  transition: background .15s, transform .1s;
+  box-shadow: 0 4px 24px rgba(245,166,35,0.3);
+}
+.btn-hero:hover { background: var(--amber2); transform: translateY(-2px); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid var(--border); color: var(--muted);
+  font-family: var(--display); font-weight: 500;
+  font-size: 0.88rem; letter-spacing: 0.08em;
+  text-transform: uppercase; text-decoration: none;
+  padding: 18px 28px; border-radius: 3px;
+  transition: border-color .15s, color .15s;
+}
+.btn-ghost:hover { border-color: var(--amber); color: var(--amber); }
+.hero-trust {
+  display: flex; align-items: center; gap: 16px;
+  animation: fadeSlideUp 0.6s 0.4s ease both;
+}
+.stars-row { color: var(--amber); letter-spacing: 3px; font-size: 0.9rem; }
+.hero-trust-text { font-size: 0.82rem; color: var(--muted); }
+.hero-trust-text strong { color: var(--white); }
+
+/* floating price card */
+.hero-float {
+  position: absolute; right: 5vw; top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  animation: fadeSlideUp 0.7s 0.5s ease both;
+}
+.price-float-card {
+  background: var(--surf1);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--amber);
+  border-radius: 6px; padding: 28px 28px 24px;
+  width: 240px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+}
+.pfc-label {
+  font-family: var(--display); font-weight: 500;
+  font-size: 0.65rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+  margin-bottom: 10px;
+}
+.pfc-free {
+  font-family: var(--display); font-weight: 700;
+  font-size: 2rem; color: var(--amber);
+  line-height: 1; margin-bottom: 4px;
+}
+.pfc-sub { font-size: 0.75rem; color: var(--muted); margin-bottom: 20px; }
+.pfc-divider {
+  height: 1px; background: var(--border); margin: 16px 0;
+}
+.pfc-then { font-size: 0.7rem; color: var(--muted); margin-bottom: 6px; }
+.pfc-price {
+  font-family: var(--display); font-weight: 700;
+  font-size: 2.4rem; color: var(--white); line-height: 1;
+}
+.pfc-price sup { font-size: 1rem; vertical-align: top; margin-top: 6px; display: inline-block; }
+.pfc-cycle { font-size: 0.72rem; color: var(--muted); margin-bottom: 8px; }
+.pfc-vs {
+  display: inline-block; margin-top: 8px;
+  background: rgba(232,59,15,0.15);
+  border: 1px solid rgba(232,59,15,0.3);
+  border-radius: 100px; padding: 4px 10px;
+  font-size: 0.68rem; color: #e87b5a;
+  font-family: var(--display); letter-spacing: 0.06em;
+}
+.pfc-items { list-style:none; margin-top: 18px; }
+.pfc-items li {
+  font-size: 0.76rem; color: #9998b8;
+  padding: 5px 0; border-bottom: 1px solid rgba(44,44,66,0.5);
+  display: flex; align-items: center; gap: 7px;
+}
+.pfc-items li::before {
+  content:'✓'; color: var(--amber); font-weight: 700;
+  font-size: 0.7rem; flex-shrink:0;
+}
+.pfc-items li:last-child { border-bottom: none; }
+
+/* ─── SOCIAL PROOF STRIP ─── */
+.proof-strip {
+  position: relative; z-index: 2;
+  background: var(--surf1);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: grid; grid-template-columns: repeat(4,1fr);
+}
+.proof-item {
+  padding: 28px 20px; text-align: center;
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+.proof-item:last-child { border-right: none; }
+.proof-num {
+  font-family: var(--display); font-weight: 700;
+  font-size: 2.6rem; line-height: 1;
+  background: linear-gradient(135deg, var(--amber), var(--amber2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.proof-label {
+  font-size: 0.72rem; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  margin-top: 4px;
+}
+
+/* ─── PHOTO MOSAIC ─── */
+.mosaic {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-rows: 280px 280px;
+  gap: 4px;
+  position: relative; z-index: 1;
+}
+.mosaic-item {
+  overflow: hidden; position: relative;
+}
+.mosaic-item:first-child {
+  grid-row: 1 / 3;
+}
+.mosaic-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7) saturate(0.85);
+  transition: transform 0.5s ease, filter 0.3s ease;
+}
+.mosaic-item:hover img {
+  transform: scale(1.04);
+  filter: brightness(0.85) saturate(1.1);
+}
+.mosaic-item::after {
+  content:'';
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(8,8,15,0.5) 0%, transparent 60%);
+  pointer-events: none;
+}
+.mosaic-caption {
+  position: absolute; bottom: 14px; left: 16px; z-index: 2;
+  font-family: var(--display); font-weight: 600;
+  font-size: 0.72rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: rgba(240,237,232,0.8);
+}
+
+/* ─── SECTIONS ─── */
+.section {
+  position: relative; z-index: 2;
+  padding: 80px 5vw;
+}
+.section.dark { background: var(--surf1); }
+.section.darker { background: var(--surf2); }
+.eyebrow {
+  font-family: var(--display); font-weight: 500;
+  font-size: 0.7rem; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--amber);
+  margin-bottom: 10px;
+  display: flex; align-items: center; gap: 10px;
+}
+.eyebrow::before {
+  content:''; display:block;
+  width: 28px; height: 2px; background: var(--amber);
+  flex-shrink: 0;
+}
+h2 {
+  font-family: var(--display); font-weight: 700;
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  text-transform: uppercase; line-height: 0.97;
+  color: var(--white); margin-bottom: 14px;
+}
+h2 em { font-style: normal; color: var(--amber); }
+.section-lead {
+  font-size: 1rem; color: var(--muted); max-width: 560px;
+  margin-bottom: 52px; line-height: 1.7;
+}
+
+/* ─── FEATURES ─── */
+.features-layout {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: center;
+}
+.features-image {
+  position: relative; border-radius: 4px; overflow: hidden;
+  aspect-ratio: 4/5;
+}
+.features-image img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(0.75) saturate(0.9);
+}
+.features-image::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to bottom, transparent 50%, rgba(8,8,15,0.7));
+}
+.img-accent {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+  padding: 24px;
+  font-family: var(--display); font-weight: 600;
+  font-size: 0.72rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--amber);
+  border-top: 1px solid rgba(245,166,35,0.3);
+}
+.features-list { display: flex; flex-direction: column; gap: 0; }
+.feat-item {
+  display: flex; gap: 20px; align-items: flex-start;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border);
+}
+.feat-item:last-child { border-bottom: none; }
+.feat-icon {
+  width: 44px; height: 44px; flex-shrink: 0;
+  background: rgba(245,166,35,0.1);
+  border: 1px solid rgba(245,166,35,0.2);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.25rem;
+}
+.feat-body {}
+.feat-title {
+  font-family: var(--display); font-weight: 600;
+  font-size: 0.98rem; letter-spacing: 0.04em;
+  text-transform: uppercase; color: var(--white);
+  margin-bottom: 5px;
+}
+.feat-text { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+
+/* ─── PRICING ─── */
+.pricing-layout {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: start;
+}
+.price-card {
+  background: var(--surf1);
+  border: 1px solid var(--border);
+  border-radius: 6px; overflow: hidden;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+  position: relative;
+}
+.price-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--amber), var(--amber2));
+}
+.pc-header {
+  padding: 24px 28px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.pc-tag {
+  background: rgba(245,166,35,0.12);
+  border: 1px solid rgba(245,166,35,0.3);
+  border-radius: 100px; padding: 5px 12px;
+  font-family: var(--display); font-weight: 600;
+  font-size: 0.68rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--amber);
+}
+.pc-badge {
+  font-family: var(--display); font-weight: 700;
+  font-size: 0.72rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--red2);
+  background: rgba(232,59,15,0.12);
+  border: 1px solid rgba(232,59,15,0.25);
+  border-radius: 100px; padding: 5px 12px;
+}
+.pc-body { padding: 28px; }
+.pc-free-block {
+  text-align: center; padding: 24px;
+  background: linear-gradient(135deg, rgba(245,166,35,0.08), rgba(245,166,35,0.03));
+  border: 1px solid rgba(245,166,35,0.15);
+  border-radius: 4px; margin-bottom: 20px;
+}
+.pc-free-label {
+  font-family: var(--display); font-weight: 500;
+  font-size: 0.7rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 8px;
+}
+.pc-free-val {
+  font-family: var(--display); font-weight: 700;
+  font-size: 3rem; color: var(--amber); line-height: 1;
+}
+.pc-free-sub { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
+.pc-then {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 20px; padding: 0 4px;
+}
+.pc-then-line { flex: 1; height: 1px; background: var(--border); }
+.pc-then-text {
+  font-size: 0.72rem; color: var(--muted); white-space: nowrap;
+  font-family: var(--display); letter-spacing: 0.1em; text-transform: uppercase;
+}
+.pc-price-main {
+  text-align: center; margin-bottom: 20px;
+}
+.pc-price-num {
+  font-family: var(--display); font-weight: 700;
+  font-size: 4.5rem; color: var(--white); line-height: 1;
+}
+.pc-price-num sup { font-size: 1.8rem; vertical-align: top; margin-top: 10px; display: inline-block; color: var(--muted); }
+.pc-price-cycle { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+.pc-annual {
+  text-align: center; margin-bottom: 24px;
+  font-size: 0.76rem; color: var(--muted);
+}
+.pc-annual strong { color: var(--amber); }
+.pc-includes { list-style: none; margin-bottom: 28px; }
+.pc-includes li {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 0; border-bottom: 1px solid rgba(44,44,66,0.5);
+  font-size: 0.88rem; color: #b0adc8;
+}
+.pc-includes li:last-child { border-bottom: none; }
+.pc-includes li::before {
+  content:''; width: 18px; height: 18px; flex-shrink: 0;
+  background: rgba(245,166,35,0.15);
+  border: 1px solid rgba(245,166,35,0.3);
+  border-radius: 50%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='%23f5a623' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: center;
+}
+.pc-cta {
+  display: block; text-align: center;
+  background: linear-gradient(135deg, var(--amber), #e8960d);
+  color: var(--bg); font-family: var(--display); font-weight: 700;
+  font-size: 1.1rem; letter-spacing: 0.1em;
+  text-transform: uppercase; text-decoration: none;
+  padding: 18px; border-radius: 3px;
+  transition: opacity .15s, transform .1s;
+  margin-bottom: 12px;
+  box-shadow: 0 8px 28px rgba(245,166,35,0.25);
+}
+.pc-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+.pc-note { font-size: 0.74rem; color: var(--muted); text-align: center; line-height: 1.5; }
+
+/* compare table */
+.compare-side {}
+.compare-side h2 { margin-bottom: 12px; }
+.compare-side .section-lead { margin-bottom: 28px; }
+.compare-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+.compare-table thead th {
+  font-family: var(--display); font-weight: 600;
+  font-size: 0.68rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--muted);
+  padding: 8px 12px; text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.compare-table tbody tr {
+  border-bottom: 1px solid rgba(44,44,66,0.4);
+  transition: background .15s;
+}
+.compare-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+.compare-table tbody tr.ours-row {
+  background: rgba(245,166,35,0.06);
+  border-color: rgba(245,166,35,0.2);
+}
+.compare-table td {
+  padding: 14px 12px; font-size: 0.88rem; color: var(--muted);
+}
+.compare-table td:first-child { color: var(--white); font-weight: 500; }
+.ours-row td { color: var(--white) !important; }
+.ours-row td:last-child { color: var(--amber) !important; font-family: var(--display); font-weight: 700; font-size: 1rem; }
+.ours-row td:first-child::after {
+  content: ' ←'; color: var(--amber); font-size: 0.75rem;
+}
+.compare-note {
+  font-size: 0.78rem; color: var(--muted); line-height: 1.6;
+  padding: 14px; background: var(--surf3); border-radius: 3px;
+  border-left: 2px solid var(--amber);
+}
+
+/* ─── TESTIMONIALS ─── */
+.testi-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 16px;
+}
+.testi-card {
+  background: var(--surf1);
+  border: 1px solid var(--border);
+  border-radius: 4px; padding: 28px;
+  position: relative; overflow: hidden;
+  transition: border-color .2s, transform .2s;
+}
+.testi-card:hover {
+  border-color: rgba(245,166,35,0.3);
+  transform: translateY(-3px);
+}
+.testi-card::before {
+  content: '"';
+  position: absolute; top: -10px; right: 20px;
+  font-family: var(--display); font-size: 8rem;
+  color: rgba(245,166,35,0.05); line-height: 1;
+  font-weight: 700; pointer-events: none;
+}
+.testi-stars { color: var(--amber); letter-spacing: 3px; font-size: 0.82rem; margin-bottom: 14px; }
+.testi-quote {
+  font-size: 0.92rem; color: #c0bdd8;
+  line-height: 1.7; margin-bottom: 20px;
+  font-style: italic;
+}
+.testi-author {
+  font-family: var(--display); font-weight: 600;
+  font-size: 0.75rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted);
+}
+.testi-tag {
+  display: inline-block; margin-top: 6px;
+  background: rgba(245,166,35,0.1);
+  border: 1px solid rgba(245,166,35,0.2);
+  border-radius: 100px; padding: 2px 10px;
+  font-size: 0.65rem; color: var(--amber);
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+
+/* ─── IMAGE BREAK ─── */
+.img-break {
+  position: relative; height: 360px; overflow: hidden;
+}
+.img-break img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 40%;
+  filter: brightness(0.4) saturate(0.7);
+}
+.img-break-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(8,8,15,0.9) 0%, rgba(8,8,15,0.3) 60%, rgba(8,8,15,0.7) 100%);
+  display: flex; align-items: center; padding: 0 5vw;
+}
+.img-break-copy h3 {
+  font-family: var(--display); font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  text-transform: uppercase; line-height: 1;
+  color: var(--white); margin-bottom: 10px;
+}
+.img-break-copy h3 span { color: var(--amber); }
+.img-break-copy p { font-size: 0.92rem; color: var(--muted); max-width: 420px; }
+
+/* ─── FAQ ─── */
+.faq-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 4px;
+  overflow: hidden;
+}
+.faq-item {
+  background: var(--surf1); padding: 26px 28px;
+  transition: background .15s;
+}
+.faq-item:hover { background: var(--surf2); }
+.faq-q {
+  font-family: var(--display); font-weight: 600;
+  font-size: 0.95rem; text-transform: uppercase;
+  letter-spacing: 0.03em; color: var(--white);
+  margin-bottom: 10px;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.faq-q::before {
+  content:'Q'; flex-shrink:0;
+  font-size: 0.65rem; color: var(--amber);
+  background: rgba(245,166,35,0.12);
+  border: 1px solid rgba(245,166,35,0.25);
+  border-radius: 3px; padding: 3px 6px;
+  margin-top: 1px;
+}
+.faq-a { font-size: 0.875rem; color: var(--muted); line-height: 1.7; }
+
+/* ─── FINAL CTA ─── */
+.final-cta {
+  position: relative; overflow: hidden;
+  padding: 100px 5vw; text-align: center;
+}
+.final-cta-bg {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1517438476312-10d79c077509?w=1400&auto=format&fit=crop&q=70');
+  background-size: cover; background-position: center;
+  filter: brightness(0.2) saturate(0.5);
+}
+.final-cta-bg::after {
+  content:'';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, rgba(8,8,15,0.3) 0%, rgba(8,8,15,0.85) 100%);
+}
+.final-cta-content { position: relative; z-index: 2; }
+.final-cta h2 { margin-bottom: 14px; font-size: clamp(2.4rem, 5vw, 4rem); }
+.final-cta p { font-size: 1rem; color: var(--muted); margin-bottom: 36px; }
+.final-cta .btn-hero { margin: 0 auto; display: inline-flex; }
+.final-trust {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0; margin-top: 32px; flex-wrap: wrap;
+}
+.final-trust-item {
+  font-size: 0.76rem; color: var(--muted);
+  padding: 0 20px;
+  border-right: 1px solid var(--border);
+}
+.final-trust-item:last-child { border-right: none; }
+
+/* ─── FOOTER ─── */
+footer {
+  position: relative; z-index: 2;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 24px 5vw;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+}
+footer p, footer a { font-size: 0.76rem; color: var(--muted); text-decoration: none; }
+footer a:hover { color: var(--amber); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 960px) {
+  .hero-float { display: none; }
+  .mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .mosaic-item:first-child { grid-row: auto; grid-column: 1 / 3; height: 260px; }
+  .mosaic-item { height: 200px; }
+  .features-layout { grid-template-columns: 1fr; }
+  .features-image { aspect-ratio: 16/7; }
+  .pricing-layout { grid-template-columns: 1fr; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .faq-grid { grid-template-columns: 1fr; }
+  .proof-strip { grid-template-columns: repeat(2,1fr); }
+  .proof-item:nth-child(2) { border-right: none; }
+  .nav-right .nav-phone { display: none; }
+}
+@media (max-width: 600px) {
+  .section { padding: 56px 5vw; }
+  .hero-content { padding: 80px 5vw 60px; }
+  .hero-actions { flex-direction: column; }
+  .btn-hero, .btn-ghost { width: 100%; justify-content: center; }
+  .mosaic { display: none; }
+  footer { flex-direction: column; }
+  .final-trust { flex-direction: column; gap: 10px; }
+  .final-trust-item { border-right: none; padding: 4px 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- URGENCY BANNER -->
+<div class="urgency-banner">
+  ⚡ Alumni &amp; Prospect Offer — Expires In: <span id="countdown">23:59:59</span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo-mark">WCS</div>
+    <div class="nav-name">Wasatch <span>Combat</span> Sports</div>
+  </div>
+  <div class="nav-right">
+    <a href="tel:8018570611" class="nav-phone">801-857-0611</a>
+    <a href="#offer" class="nav-cta">Claim Free Month →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Alumni &amp; Prospect Special — Limited Time</div>
+    <h1>
+      <span class="line-red">Your first month at WCS is</span>
+      Free.<br>
+      <span class="line-gold">Get back<br>on the mat.</span>
+    </h1>
+    <p class="hero-sub">
+      Muay Thai and Brazilian Jiu-Jitsu — both disciplines, one membership.
+      No enrollment fee. No contracts. Utah County's most-reviewed gym, 11 years running.
+    </p>
+    <div class="hero-actions">
+      <a href="#offer" class="btn-hero">Claim My Free Month →</a>
+      <a href="tel:8018570611" class="btn-ghost">📞 Call Us</a>
+    </div>
+    <div class="hero-trust">
+      <span class="stars-row">★★★★★</span>
+      <span class="hero-trust-text"><strong>329 Google Reviews</strong> · #1 in Utah County</span>
+    </div>
+  </div>
+  <div class="hero-float">
+    <div class="price-float-card">
+      <div class="pfc-label">Month 1</div>
+      <div class="pfc-free">FREE</div>
+      <div class="pfc-sub">No enrollment fee · No contract</div>
+      <div class="pfc-divider"></div>
+      <div class="pfc-then">Then, starting month 2:</div>
+      <div class="pfc-price"><sup>$</sup>65</div>
+      <div class="pfc-cycle">billed every 2 weeks</div>
+      <div class="pfc-vs">vs. $150–$200/mo at other gyms</div>
+      <ul class="pfc-items">
+        <li>Unlimited Muay Thai</li>
+        <li>Unlimited BJJ</li>
+        <li>Open mat access</li>
+        <li>No long-term contract</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF STRIP -->
+<div class="proof-strip">
+  <div class="proof-item">
+    <div class="proof-num">329★</div>
+    <div class="proof-label">5-Star Reviews</div>
+  </div>
+  <div class="proof-item">
+    <div class="proof-num">11</div>
+    <div class="proof-label">Years in Orem</div>
+  </div>
+  <div class="proof-item">
+    <div class="proof-num">400+</div>
+    <div class="proof-label">Active Members</div>
+  </div>
+  <div class="proof-item">
+    <div class="proof-num">30+</div>
+    <div class="proof-label">Classes / Week</div>
+  </div>
+</div>
+
+<!-- PHOTO MOSAIC -->
+<div class="mosaic">
+  <div class="mosaic-item">
+    <img src="https://images.unsplash.com/photo-1555597673-b21d5c935865?w=800&auto=format&fit=crop&q=80" alt="Training at WCS">
+    <span class="mosaic-caption">Muay Thai</span>
+  </div>
+  <div class="mosaic-item">
+    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&auto=format&fit=crop&q=80" alt="BJJ training">
+    <span class="mosaic-caption">Brazilian Jiu-Jitsu</span>
+  </div>
+  <div class="mosaic-item">
+    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&auto=format&fit=crop&q=80" alt="Gym floor">
+    <span class="mosaic-caption">Open Mat</span>
+  </div>
+  <div class="mosaic-item">
+    <img src="https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=600&auto=format&fit=crop&q=80" alt="Sparring">
+    <span class="mosaic-caption">Sparring</span>
+  </div>
+  <div class="mosaic-item">
+    <img src="https://images.unsplash.com/photo-1549476464-37392f717541?w=600&auto=format&fit=crop&q=80" alt="Strength and conditioning">
+    <span class="mosaic-caption">Conditioning</span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="section dark">
+  <div class="features-layout">
+    <div class="features-image">
+      <img src="https://images.unsplash.com/photo-1517438476312-10d79c077509?w=700&auto=format&fit=crop&q=80" alt="WCS gym">
+      <div class="img-accent">Orem, Utah · Est. 2013</div>
+    </div>
+    <div>
+      <div class="eyebrow">What You Get</div>
+      <h2>Everything.<br><em>One Price.</em></h2>
+      <p class="section-lead">Most gyms make you choose — striking or grappling. At WCS you get both, plus a community that shows up for you.</p>
+      <div class="features-list">
+        <div class="feat-item">
+          <div class="feat-icon">🥊</div>
+          <div class="feat-body">
+            <div class="feat-title">Muay Thai + BJJ Included</div>
+            <div class="feat-text">Striking and grappling under one membership. A complete martial arts education — not a single-skill program.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-icon">📅</div>
+          <div class="feat-body">
+            <div class="feat-title">30+ Classes Per Week</div>
+            <div class="feat-text">Morning, afternoon, and evening classes. We fit around your schedule, not the other way around.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-icon">🏆</div>
+          <div class="feat-body">
+            <div class="feat-title">Utah County's Most-Reviewed Gym</div>
+            <div class="feat-text">329 five-star reviews. 11 years in Orem. Not a franchise — a real community where coaches know your name.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-icon">🤝</div>
+          <div class="feat-body">
+            <div class="feat-title">Coaches Who Actually Coach</div>
+            <div class="feat-text">Practitioners, not just instructors. They'll remember where you left off and push you when you need it.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-icon">🚫</div>
+          <div class="feat-body">
+            <div class="feat-title">No Long-Term Contracts</div>
+            <div class="feat-text">Month-to-month after your free trial. We'd rather earn your business every month than lock you in.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMAGE BREAK -->
+<div class="img-break">
+  <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=1400&auto=format&fit=crop&q=70" alt="Combat sports training">
+  <div class="img-break-overlay">
+    <div class="img-break-copy">
+      <h3>11 Years.<br><span>One Gym.</span></h3>
+      <p>Wasatch Combat Sports has trained thousands of members since 2013. Same coaches. Same culture. Even better facility.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<section class="section darker" id="offer">
+  <div class="pricing-layout">
+    <div class="compare-side">
+      <div class="eyebrow">The Offer</div>
+      <h2>Simple.<br><em>No Catch.</em></h2>
+      <p class="section-lead">Your first month is on us. After that, $65 every two weeks — less than a cup of coffee per class if you train consistently.</p>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Gym</th>
+            <th>What's Included</th>
+            <th>Monthly Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Typical Utah County Gym</td>
+            <td>Single discipline</td>
+            <td>$150–$200</td>
+          </tr>
+          <tr>
+            <td>Single-discipline gym (BJJ or MT only)</td>
+            <td>One art only</td>
+            <td>$120–$160</td>
+          </tr>
+          <tr class="ours-row">
+            <td>Wasatch Combat Sports</td>
+            <td>Muay Thai + BJJ</td>
+            <td>~$141</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="compare-note">
+        $65 every 2 weeks = ~$141/month. Two complete martial arts disciplines. No enrollment fee. No long-term contract.
+      </div>
+    </div>
+    <div>
+      <div class="price-card">
+        <div class="pc-header">
+          <div class="pc-tag">Alumni &amp; Prospect Special</div>
+          <div class="pc-badge">Limited Time</div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-free-block">
+            <div class="pc-free-label">Month 1</div>
+            <div class="pc-free-val">FREE</div>
+            <div class="pc-free-sub">30 days · No enrollment fee · No commitment</div>
+          </div>
+          <div class="pc-then">
+            <div class="pc-then-line"></div>
+            <div class="pc-then-text">Then, starting month 2</div>
+            <div class="pc-then-line"></div>
+          </div>
+          <div class="pc-price-main">
+            <div class="pc-price-num"><sup>$</sup>65</div>
+            <div class="pc-price-cycle">billed every 2 weeks · ~$141/month</div>
+          </div>
+          <div class="pc-annual">Annually: ~<strong>$1,690</strong> vs. $1,800–$2,400 at comparable gyms</div>
+          <ul class="pc-includes">
+            <li>Unlimited Muay Thai classes</li>
+            <li>Unlimited Brazilian Jiu-Jitsu</li>
+            <li>Open mat access</li>
+            <li>No enrollment fee</li>
+            <li>No long-term contract</li>
+            <li>Cancel before day 30 — owe nothing</li>
+          </ul>
+          <a href="YOUR_SHOPIFY_LINK_HERE" class="pc-cta">Claim My Free Month →</a>
+          <p class="pc-note">Biweekly billing starts after your free 30-day trial. Cancel anytime before day 30 and owe nothing. No enrollment fee.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section dark">
+  <div class="eyebrow">What Members Say</div>
+  <h2>Real People.<br><em>Real Results.</em></h2>
+  <p class="section-lead">329 five-star reviews don't happen by accident.</p>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-quote">"Best decision I made all year. The coaches are world-class and the community keeps you coming back. I'm in the best shape of my life at 42."</div>
+      <div class="testi-author">Mike R.</div>
+      <span class="testi-tag">Member since 2022</span>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-quote">"I trained here years ago and just came back. It's like I never left. Same coaches, same culture, even better facility. So glad I returned."</div>
+      <div class="testi-author">Sarah T.</div>
+      <span class="testi-tag">Returning Alumni</span>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-quote">"Drove from Provo every day for 6 months before I moved closer. Worth every mile. The instruction quality here is genuinely elite."</div>
+      <div class="testi-author">James L.</div>
+      <span class="testi-tag">Member, Provo</span>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="eyebrow">Common Questions</div>
+  <h2>No Fine Print.<br><em>Just Answers.</em></h2>
+  <p class="section-lead">Everything you need to know before claiming your free month.</p>
+  <div class="faq-grid">
+    <div class="faq-item">
+      <div class="faq-q">Do I need experience?</div>
+      <div class="faq-a">Zero. Every class has beginners. Our coaches meet you exactly where you are — whether you've never trained or you're coming back after years away.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What's the catch with "first month free"?</div>
+      <div class="faq-a">No catch. Train for 30 days at no cost. If you love it, biweekly billing of $65 starts automatically after your trial. Cancel before day 30 and owe nothing.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Why biweekly billing?</div>
+      <div class="faq-a">Biweekly keeps the per-charge amount lower and lines up with most pay cycles. No single large monthly hit. $65 every two weeks — simple and predictable.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What's included in one membership?</div>
+      <div class="faq-a">Muay Thai and Brazilian Jiu-Jitsu — both included, no upsells. Striking and grappling: a complete martial arts education for one price.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Where are you located?</div>
+      <div class="faq-a">972 N 1430 W, Orem UT 84057. Easy access from anywhere in Utah County — Provo, Lehi, Pleasant Grove, American Fork, Lindon, Vineyard, Springville, and beyond.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">I trained here before. Does this apply to me?</div>
+      <div class="faq-a">Yes — this offer is specifically for alumni and prospects. We'll pick up right where you left off. Welcome back.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="final-cta-bg"></div>
+  <div class="final-cta-content">
+    <div class="eyebrow" style="justify-content:center;">Ready to Start</div>
+    <h2>First Month's<br><em>On Us.</em></h2>
+    <p>329 five-star reviews · 11 years in Orem · No contracts · No risk</p>
+    <a href="#offer" class="btn-hero">Claim My Free Month →</a>
+    <div class="final-trust">
+      <div class="final-trust-item">No enrollment fee</div>
+      <div class="final-trust-item">No long-term contract</div>
+      <div class="final-trust-item">Cancel before day 30 — owe nothing</div>
+      <div class="final-trust-item">$65 biweekly after trial</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Wasatch Combat Sports · 972 N 1430 W, Orem UT 84057 · <a href="tel:8018570611">801-857-0611</a></p>
+  <p>
+    <a href="#">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="#">Terms</a> &nbsp;·&nbsp;
+    <a href="mailto:info@wasatchcombatsports.com">Contact</a> &nbsp;·&nbsp;
+    <a href="https://wasatchcombatsports.com">wasatchcombatsports.com</a>
+  </p>
+</footer>
+
+<script>
+(function(){
+  const KEY = 'wcs_offer_v5';
+  let expiry;
+  try {
+    expiry = parseInt(localStorage.getItem(KEY));
+    if (!expiry || isNaN(expiry)) throw 0;
+  } catch(e) {
+    expiry = Date.now() + 24*60*60*1000;
+    try { localStorage.setItem(KEY, expiry); } catch(e){}
+  }
+  const el = document.getElementById('countdown');
+  function tick(){
+    const left = Math.max(0, expiry - Date.now());
+    const h = Math.floor(left/3600000);
+    const m = Math.floor((left%3600000)/60000);
+    const s = Math.floor((left%60000)/1000);
+    el.textContent = [h,m,s].map(n=>String(n).padStart(2,'0')).join(':');
+    if(left > 0) setTimeout(tick, 1000);
+  }
+  tick();
+})();
+</script>
+
+</body>
+</html>
