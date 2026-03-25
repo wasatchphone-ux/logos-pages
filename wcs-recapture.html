@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Month Free — Wasatch Combat Sports</title>
+    <meta name="description" content="Claim your first month free at Wasatch Combat Sports in Orem. Utah County's most-reviewed martial arts gym. Muay Thai, BJJ, MMA. No contracts.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0d0d0d;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            background: linear-gradient(160deg, #0d0d0d 0%, #1a1a1a 100%);
+            padding: 50px 24px 60px;
+            text-align: center;
+            border-bottom: 1px solid #222;
+        }
+
+        .social-proof-bar {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 30px;
+            padding: 8px 18px;
+            font-size: 0.82rem;
+            color: #c9a84c;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            margin-bottom: 28px;
+        }
+
+        .stars { color: #c9a84c; letter-spacing: 2px; }
+
+        h1 {
+            font-size: clamp(2rem, 6vw, 3.2rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 18px;
+            color: #fff;
+        }
+
+        h1 span { color: #c9a84c; }
+
+        .subheadline {
+            font-size: 1.15rem;
+            color: #aaa;
+            max-width: 500px;
+            margin: 0 auto 32px;
+        }
+
+        .cta-primary {
+            display: inline-block;
+            background: #c9a84c;
+            color: #0d0d0d;
+            font-size: 1.15rem;
+            font-weight: 800;
+            padding: 18px 44px;
+            border-radius: 6px;
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            transition: background 0.2s;
+            margin-bottom: 14px;
+        }
+
+        .cta-primary:hover { background: #e0bf6a; }
+
+        .cta-sub {
+            font-size: 0.82rem;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* ── URGENCY ── */
+        .urgency-bar {
+            background: #1a0a0a;
+            border: 1px solid #5c1a1a;
+            color: #ff6b6b;
+            text-align: center;
+            padding: 14px 24px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+        }
+
+        .urgency-bar #countdown {
+            font-size: 1.3rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            margin-left: 10px;
+        }
+
+        /* ── PROBLEM ── */
+        .problem {
+            background: #111;
+            padding: 60px 24px;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .problem h2 {
+            font-size: 1.7rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+
+        .problem p {
+            color: #999;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* ── BENEFITS ── */
+        .benefits {
+            background: #0d0d0d;
+            padding: 60px 24px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .benefits h2 {
+            font-size: 1.7rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 36px;
+            color: #fff;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            margin-bottom: 28px;
+            padding: 20px;
+            background: #161616;
+            border: 1px solid #222;
+            border-left: 4px solid #c9a84c;
+            border-radius: 4px;
+        }
+
+        .benefit-icon {
+            font-size: 1.6rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .benefit-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .benefit-desc {
+            font-size: 0.9rem;
+            color: #888;
+            line-height: 1.6;
+        }
+
+        /* ── SOCIAL PROOF ── */
+        .social-proof {
+            background: #111;
+            padding: 60px 24px;
+            text-align: center;
+        }
+
+        .social-proof h2 {
+            font-size: 1.7rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .proof-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin: 32px 0;
+        }
+
+        .stat { text-align: center; }
+
+        .stat-number {
+            font-size: 2.4rem;
+            font-weight: 900;
+            color: #c9a84c;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .testimonial {
+            background: #161616;
+            border: 1px solid #222;
+            border-radius: 6px;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .testimonial-stars { color: #c9a84c; margin-bottom: 10px; }
+        .testimonial-text { font-size: 0.9rem; color: #bbb; line-height: 1.7; margin-bottom: 14px; }
+        .testimonial-name { font-size: 0.82rem; font-weight: 700; color: #c9a84c; }
+
+        /* ── OFFER ── */
+        .offer {
+            background: #0d0d0d;
+            padding: 60px 24px;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .offer h2 {
+            font-size: 1.7rem;
+            font-weight: 800;
+            margin-bottom: 32px;
+        }
+
+        .offer-box {
+            background: #161616;
+            border: 2px solid #c9a84c;
+            border-radius: 8px;
+            padding: 36px 28px;
+            margin-bottom: 28px;
+        }
+
+        .offer-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: #c9a84c;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .offer-price-old {
+            font-size: 1.1rem;
+            color: #555;
+            text-decoration: line-through;
+            margin-bottom: 6px;
+        }
+
+        .offer-price-new {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #c9a84c;
+            margin-bottom: 6px;
+        }
+
+        .offer-price-then {
+            font-size: 0.95rem;
+            color: #888;
+            margin-bottom: 24px;
+        }
+
+        .offer-includes {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 28px;
+        }
+
+        .offer-includes li {
+            padding: 8px 0;
+            border-bottom: 1px solid #222;
+            font-size: 0.95rem;
+            color: #ccc;
+        }
+
+        .offer-includes li:last-child { border-bottom: none; }
+        .offer-includes li::before { content: "✓ "; color: #c9a84c; font-weight: 700; }
+
+        .cta-guarantee {
+            font-size: 0.82rem;
+            color: #555;
+            margin-top: 16px;
+        }
+
+        /* ── FAQ ── */
+        .faq {
+            background: #111;
+            padding: 60px 24px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .faq h2 {
+            font-size: 1.7rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #222;
+            padding: 20px 0;
+        }
+
+        .faq-q {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .faq-a {
+            font-size: 0.92rem;
+            color: #888;
+            line-height: 1.7;
+        }
+
+        /* ── FINAL CTA ── */
+        .final-cta {
+            background: #0d0d0d;
+            padding: 70px 24px;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+
+        .final-cta h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+        }
+
+        .final-cta p {
+            color: #888;
+            margin-bottom: 32px;
+            font-size: 1rem;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: #080808;
+            padding: 24px;
+            text-align: center;
+            font-size: 0.78rem;
+            color: #444;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        footer a { color: #555; text-decoration: none; }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2rem; }
+            .cta-primary { padding: 16px 28px; font-size: 1rem; width: 100%; text-align: center; }
+            .proof-stats { gap: 24px; }
+            .stat-number { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="social-proof-bar">
+        <span class="stars">★★★★★</span>
+        329 Google Reviews · #1 Rated in Utah County
+    </div>
+    <h1>Your First Month at<br><span>Wasatch Combat Sports</span><br>Is On Us.</h1>
+    <p class="subheadline">Muay Thai. Brazilian Jiu-Jitsu. MMA. One gym. One membership. And your first month is completely free — no gimmicks, EFT required.</p>
+    <a href="#offer" class="cta-primary">Claim My Free Month →</a>
+    <p class="cta-sub">No commitment. Cancel anytime after month 1.</p>
+</section>
+
+<!-- URGENCY -->
+<div class="urgency-bar">
+    ⚡ This offer expires in: <span id="countdown">23:59:59</span>
+</div>
+
+<!-- PROBLEM -->
+<section class="problem">
+    <h2>Life gets busy. We get it.</h2>
+    <p>Maybe you trained with us before. Maybe you've been meaning to start. Either way — you know what martial arts does for your confidence, your fitness, and your mental edge. The only thing standing between you and that is getting back on the mat. We're making that easier than ever.</p>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits">
+    <h2>What You Get With Your Membership</h2>
+
+    <div class="benefit-item">
+        <div class="benefit-icon">🥊</div>
+        <div>
+            <div class="benefit-title">Muay Thai + BJJ — Both Included</div>
+            <div class="benefit-desc">Most gyms charge separately for striking and grappling. One WCS membership covers both — 30+ classes per week across Muay Thai, BJJ, and MMA. A complete martial artist from day one.</div>
+        </div>
+    </div>
+
+    <div class="benefit-item">
+        <div class="benefit-icon">📅</div>
+        <div>
+            <div class="benefit-title">30+ Classes Per Week</div>
+            <div class="benefit-desc">Morning, afternoon, and evening. We work around your schedule — not the other way around. 5 days a week, multiple time slots per day.</div>
+        </div>
+    </div>
+
+    <div class="benefit-item">
+        <div class="benefit-icon">🏆</div>
+        <div>
+            <div class="benefit-title">Utah County's Most-Reviewed Gym</div>
+            <div class="benefit-desc">329 five-star Google reviews and 11 years in Orem. Not a franchise. Not a startup. A real community where coaches know your name.</div>
+        </div>
+    </div>
+
+    <div class="benefit-item">
+        <div class="benefit-icon">🤝</div>
+        <div>
+            <div class="benefit-title">Coaches Who Actually Coach</div>
+            <div class="benefit-desc">Our coaches are practitioners, not just instructors. They'll remember where you left off, push you when you need it, and meet you where you are.</div>
+        </div>
+    </div>
+
+    <div class="benefit-item">
+        <div class="benefit-icon">💪</div>
+        <div>
+            <div class="benefit-title">Results You'll Feel in 30 Days</div>
+            <div class="benefit-desc">Better conditioning. Sharper focus. Real functional fitness. Most members tell us they feel different within the first two weeks.</div>
+        </div>
+    </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="social-proof">
+    <h2>11 Years. 400+ Members. One Community.</h2>
+
+    <div class="proof-stats">
+        <div class="stat">
+            <span class="stat-number">329</span>
+            <span class="stat-label">5-Star Reviews</span>
+        </div>
+        <div class="stat">
+            <span class="stat-number">11</span>
+            <span class="stat-label">Years in Orem</span>
+        </div>
+        <div class="stat">
+            <span class="stat-number">400+</span>
+            <span class="stat-label">Active Members</span>
+        </div>
+        <div class="stat">
+            <span class="stat-number">30+</span>
+            <span class="stat-label">Classes / Week</span>
+        </div>
+    </div>
+
+    <div class="testimonials">
+        <div class="testimonial">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"Best decision I made all year. The coaches are world-class and the community keeps you coming back. I'm in the best shape of my life at 42."</p>
+            <div class="testimonial-name">— WCS Member, Orem</div>
+        </div>
+        <div class="testimonial">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"I trained here years ago and just came back. It's like I never left. Same coaches, same culture, even better facility. Glad I came back."</p>
+            <div class="testimonial-name">— Returning Alumni, Provo</div>
+        </div>
+    </div>
+</section>
+
+<!-- OFFER -->
+<section class="offer" id="offer">
+    <h2>The Offer. Simple.</h2>
+
+    <div class="offer-box">
+        <div class="offer-label">Limited Alumni & Prospect Offer</div>
+        <div class="offer-price-old">Regular: $120–$150/month</div>
+        <div class="offer-price-new">Month 1: FREE</div>
+        <div class="offer-price-then">Then $120/month via EFT — cancel anytime</div>
+
+        <ul class="offer-includes">
+            <li>Unlimited Muay Thai classes</li>
+            <li>Unlimited Brazilian Jiu-Jitsu classes</li>
+            <li>Access to open mat sessions</li>
+            <li>No enrollment fee</li>
+            <li>No long-term contract</li>
+            <li>First month completely free</li>
+        </ul>
+
+        <a href="YOUR_SHOPIFY_LINK_HERE" class="cta-primary">Claim My Free Month →</a>
+    </div>
+
+    <p class="cta-guarantee">🔒 Secure checkout via Shopify + Authorize.net. EFT required to hold your spot. Cancel before month 2 and you owe nothing.</p>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+    <h2>Common Questions</h2>
+
+    <div class="faq-item">
+        <div class="faq-q">Do I need any experience?</div>
+        <div class="faq-a">Zero. Every class has beginners. Our coaches are trained to meet you exactly where you are — whether you've never thrown a punch or you trained for years and are coming back.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">What's the catch with "first month free"?</div>
+        <div class="faq-a">No catch. We require EFT to hold your membership slot — that's it. If you love it (and you will), month 2 starts automatically at $120/month. If not, cancel before day 30 and you pay nothing.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">What disciplines are included?</div>
+        <div class="faq-a">Muay Thai and Brazilian Jiu-Jitsu are both included in one membership — no upsells. That's striking and grappling: a complete martial arts education.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">Where are you located?</div>
+        <div class="faq-a">972 N 1430 W, Orem UT 84057. Easy access from anywhere in Utah County — Provo, Lehi, Pleasant Grove, American Fork, Lindon, Vineyard, Springville, and beyond.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">What if I trained here before?</div>
+        <div class="faq-a">Welcome back. This offer is specifically for alumni and prospects who haven't been in recently. We'll pick up right where you left off.</div>
+    </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+    <h2>Get Back on the Mat.<br>First Month's on Us.</h2>
+    <p>329 five-star reviews. 11 years in Orem. No contracts. No risk.</p>
+    <a href="YOUR_SHOPIFY_LINK_HERE" class="cta-primary">Claim My Free Month →</a>
+    <p style="margin-top:16px; font-size:0.82rem; color:#444;">Offer expires when the timer hits zero. EFT required.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>Wasatch Combat Sports · 972 N 1430 W, Orem UT 84057 · <a href="https://wasatchcombatsports.com">wasatchcombatsports.com</a></p>
+    <p style="margin-top:8px;"><a href="#">Privacy Policy</a> · <a href="#">Terms</a> · <a href="mailto:info@wasatchcombatsports.com">Contact</a></p>
+</footer>
+
+<script>
+    // Countdown timer — 24 hours from first visit, stored in localStorage
+    function startCountdown() {
+        const key = 'wcs_offer_expiry';
+        let expiry = localStorage.getItem(key);
+        if (!expiry) {
+            expiry = new Date().getTime() + (24 * 60 * 60 * 1000);
+            localStorage.setItem(key, expiry);
+        }
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = expiry - now;
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById('countdown').innerHTML = 'EXPIRED';
+                return;
+            }
+            const h = Math.floor(distance / (1000 * 60 * 60));
+            const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById('countdown').innerHTML =
+                String(h).padStart(2,'0') + ':' +
+                String(m).padStart(2,'0') + ':' +
+                String(s).padStart(2,'0');
+        }, 1000);
+    }
+    startCountdown();
+</script>
+
+</body>
+</html>
