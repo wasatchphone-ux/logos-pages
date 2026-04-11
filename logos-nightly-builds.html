@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logos — Nightly Build Log</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@300;400;600;700&display=swap');
+
+  :root {
+    --bg: #0d0d0d;
+    --gold: #c9a84c;
+    --gold-dim: #8a6e2f;
+    --green: #39ff6a;
+    --red: #ff4040;
+    --surface: #141414;
+    --border: #1f1f1f;
+    --text: #d4d4d4;
+    --muted: #555;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  /* scanline overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.03) 2px,
+      rgba(0,0,0,0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 28px 40px 24px;
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    position: relative;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), transparent 60%);
+  }
+
+  .logo-mark {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+
+  h1 {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 22px;
+    font-weight: 400;
+    color: #fff;
+    letter-spacing: 0.05em;
+  }
+
+  h1 span {
+    color: var(--gold);
+  }
+
+  .header-meta {
+    margin-left: auto;
+    text-align: right;
+  }
+
+  .live-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    margin-right: 6px;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(57,255,106,0.4); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 5px rgba(57,255,106,0); }
+  }
+
+  .status-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--green);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .timestamp-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .main {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: calc(100vh - 85px);
+  }
+
+  /* Sidebar */
+  .sidebar {
+    border-right: 1px solid var(--border);
+    padding: 28px 24px;
+    position: relative;
+  }
+
+  .sidebar::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--gold-dim), transparent);
+  }
+
+  .sidebar-section {
+    margin-bottom: 32px;
+  }
+
+  .sidebar-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    color: var(--gold);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    opacity: 0.7;
+  }
+
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 8px 0;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .stat-row:last-child { border-bottom: none; }
+
+  .stat-key {
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+
+  .stat-val {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: var(--gold);
+  }
+
+  .tranche-list { display: flex; flex-direction: column; gap: 8px; }
+
+  .tranche-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: border-color 0.2s;
+    cursor: default;
+  }
+
+  .tranche-item:hover { border-color: var(--gold-dim); }
+
+  .t-badge {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--bg);
+    background: var(--gold-dim);
+    padding: 2px 6px;
+    border-radius: 2px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .t-name {
+    font-size: 11px;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .t-status {
+    margin-left: auto;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .t-status.active { color: var(--green); }
+  .t-status.planning { color: #5599ff; }
+
+  /* Main content */
+  .content {
+    padding: 28px 36px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Build cards */
+  .build-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .build-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold-dim);
+    border-radius: 4px;
+    padding: 16px 20px;
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    gap: 20px;
+    align-items: start;
+    animation: slideIn 0.4s ease both;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .build-card:hover {
+    border-left-color: var(--gold);
+    transform: translateX(2px);
+  }
+
+  .build-card:nth-child(1) { animation-delay: 0.05s; }
+  .build-card:nth-child(2) { animation-delay: 0.1s; }
+  .build-card:nth-child(3) { animation-delay: 0.15s; }
+  .build-card:nth-child(4) { animation-delay: 0.2s; }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-8px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .build-date {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .build-date strong {
+    display: block;
+    font-size: 12px;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .build-body {}
+
+  .build-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 5px;
+  }
+
+  .build-path {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    margin-bottom: 8px;
+    word-break: break-all;
+  }
+
+  .build-desc {
+    font-size: 12px;
+    color: var(--text);
+    line-height: 1.6;
+    opacity: 0.8;
+  }
+
+  .build-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 3px 8px;
+    border-radius: 2px;
+    border: 1px solid;
+    white-space: nowrap;
+    align-self: flex-start;
+  }
+
+  .build-tag.complete {
+    color: var(--green);
+    border-color: rgba(57,255,106,0.3);
+    background: rgba(57,255,106,0.05);
+  }
+
+  /* Pipeline diagram */
+  .pipeline {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+  }
+
+  .pipeline-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    opacity: 0.7;
+  }
+
+  .pipeline-flow {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .p-node {
+    background: #1a1a1a;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 10px 14px;
+    text-align: center;
+    min-width: 110px;
+  }
+
+  .p-node-icon {
+    font-size: 18px;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .p-node-name {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+
+  .p-node-sub {
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.3;
+  }
+
+  .p-arrow {
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--gold-dim);
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  /* Command block */
+  .cmd-block {
+    background: #0a0a0a;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold-dim);
+    border-radius: 4px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+  }
+
+  .cmd-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    color: var(--gold-dim);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .cmd-text {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: #b0c8a0;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-text {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .footer-text span { color: var(--gold-dim); }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo-mark">WCS · Logos Agent</div>
+    <h1>Nightly <span>Build Log</span></h1>
+  </div>
+  <div class="header-meta">
+    <div><span class="live-dot"></span><span class="status-label">Pipeline Active</span></div>
+    <div class="timestamp-label" id="ts">—</div>
+  </div>
+</header>
+
+<div class="main">
+
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Pipeline Stats</div>
+      <div class="stat-row">
+        <span class="stat-key">Builds complete</span>
+        <span class="stat-val">4</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-key">Active series</span>
+        <span class="stat-val">Recapture</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-key">Delivery</span>
+        <span class="stat-val">Telegram</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-key">Storage</span>
+        <span class="stat-val">nightly-builds/</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-key">Runtime</span>
+        <span class="stat-val">Claude Code</span>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Active Tranches</div>
+      <div class="tranche-list">
+        <div class="tranche-item">
+          <span class="t-badge">T1</span>
+          <span class="t-name">WCS Gym System</span>
+          <span class="t-status active">Active</span>
+        </div>
+        <div class="tranche-item">
+          <span class="t-badge">T2</span>
+          <span class="t-name">NQ Trading</span>
+          <span class="t-status planning">Plan</span>
+        </div>
+        <div class="tranche-item">
+          <span class="t-badge">T3</span>
+          <span class="t-name">Date Curator</span>
+          <span class="t-status planning">Plan</span>
+        </div>
+        <div class="tranche-item">
+          <span class="t-badge">T4</span>
+          <span class="t-name">Muay Thai Curriculum</span>
+          <span class="t-status planning">Plan</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Access Commands</div>
+      <div style="font-size:11px; color: var(--muted); line-height: 1.7;">
+        Read builds dir → summarize → continue series<br><br>
+        Or: list all builds + descriptions
+      </div>
+    </div>
+  </aside>
+
+  <div class="content">
+
+    <div class="section-header">
+      <div class="section-title">Build History — Recapture Series</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="build-grid">
+
+      <div class="build-card">
+        <div class="build-date">
+          <strong>Apr 10</strong>
+          Part 1
+        </div>
+        <div class="build-body">
+          <div class="build-title">Recapture — Part 1</div>
+          <div class="build-path">projects/nightly-builds/builds/2026-04-10-recapture-part-1/</div>
+          <div class="build-desc">Initial recapture framework and campaign structure.</div>
+        </div>
+        <div class="build-tag complete">Complete</div>
+      </div>
+
+      <div class="build-card">
+        <div class="build-date">
+          <strong>Apr 10</strong>
+          Part 2
+        </div>
+        <div class="build-body">
+          <div class="build-title">Recapture — Part 2</div>
+          <div class="build-path">projects/nightly-builds/builds/2026-04-10-recapture-part-2/</div>
+          <div class="build-desc">Second phase of recapture campaign assets.</div>
+        </div>
+        <div class="build-tag complete">Complete</div>
+      </div>
+
+      <div class="build-card">
+        <div class="build-date">
+          <strong>Apr 10</strong>
+          Part 3
+        </div>
+        <div class="build-body">
+          <div class="build-title">Recapture — Part 3: ZenPlanner Message Templates</div>
+          <div class="build-path">projects/nightly-builds/builds/2026-04-10-recapture-part-3-zenplanner-message-templates/</div>
+          <div class="build-desc">Python tool generating 18 marketing message templates — 3 email + 3 SMS for each of 3 customer segments. Formatted for ZenPlanner's communication system, saved to markdown.</div>
+        </div>
+        <div class="build-tag complete">Complete</div>
+      </div>
+
+      <div class="build-card">
+        <div class="build-date">
+          <strong>Apr 11</strong>
+          Part 4
+        </div>
+        <div class="build-body">
+          <div class="build-title">Recapture — Part 4: Shopify Product Setup Guide</div>
+          <div class="build-path">projects/nightly-builds/builds/2026-04-11-recapture-part-4-shopify-product-setup-guide/</div>
+          <div class="build-desc">Command-line tool generating a comprehensive Shopify product setup guide for membership offers with Authorize.net integration. Detailed markdown with step-by-step instructions.</div>
+        </div>
+        <div class="build-tag complete">Complete</div>
+      </div>
+
+    </div>
+
+    <div class="section-header">
+      <div class="section-title">Pipeline Architecture</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="pipeline" style="margin-bottom:32px;">
+      <div class="pipeline-title">Nightly Build Flow</div>
+      <div class="pipeline-flow">
+        <div class="p-node">
+          <span class="p-node-icon">⏰</span>
+          <div class="p-node-name">Scheduler</div>
+          <div class="p-node-sub">Nightly trigger via Claude Code</div>
+        </div>
+        <div class="p-arrow">→</div>
+        <div class="p-node">
+          <span class="p-node-icon">🧠</span>
+          <div class="p-node-name">Logos Agent</div>
+          <div class="p-node-sub">Reads context, picks next build</div>
+        </div>
+        <div class="p-arrow">→</div>
+        <div class="p-node">
+          <span class="p-node-icon">⚙️</span>
+          <div class="p-node-name">Build Output</div>
+          <div class="p-node-sub">Python tools, markdown guides</div>
+        </div>
+        <div class="p-arrow">→</div>
+        <div class="p-node">
+          <span class="p-node-icon">💾</span>
+          <div class="p-node-name">File Save</div>
+          <div class="p-node-sub">Timestamped builds/ directory</div>
+        </div>
+        <div class="p-arrow">→</div>
+        <div class="p-node">
+          <span class="p-node-icon">📱</span>
+          <div class="p-node-name">Telegram</div>
+          <div class="p-node-sub">Benbot completion report</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <div class="section-title">Logos Access Commands</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="cmd-block">
+      <div class="cmd-label">Read &amp; Continue Series</div>
+      <div class="cmd-text">Read the nightly-builds directory at projects/nightly-builds/builds/ and summarize what has been built so far. Then continue the Recapture series — check what part number we're on and build the next piece.</div>
+    </div>
+
+    <div class="cmd-block">
+      <div class="cmd-label">Status Check Only</div>
+      <div class="cmd-text">List all completed nightly builds and their descriptions from projects/nightly-builds/builds/</div>
+    </div>
+
+    <div class="cmd-block">
+      <div class="cmd-label">Target Specific Build</div>
+      <div class="cmd-text">Open projects/nightly-builds/builds/[folder-name]/ and show me the full output of that build.</div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-text">Logos · <span>Wasatch Combat Sports</span> · T1 — WCS Gym System</div>
+  <div class="footer-text">wasatchcombatsports.com · <span>972 N 1430 W, Orem UT</span></div>
+</footer>
+
+<script>
+  document.getElementById('ts').textContent = new Date().toLocaleString('en-US', {
+    month: 'short', day: 'numeric', year: 'numeric',
+    hour: '2-digit', minute: '2-digit'
+  });
+</script>
+
+</body>
+</html>
