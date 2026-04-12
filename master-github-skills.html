@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOGOS — Master GitHub Skills Thread</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0d0d;
+    --surface: #141414;
+    --surface2: #1a1a1a;
+    --border: #2a2a2a;
+    --gold: #c9a84c;
+    --gold-dim: #8b6914;
+    --white: #e8e4dc;
+    --mid: #666;
+    --green: #4caf72;
+    --blue: #4c8ecf;
+    --orange: #cf8a4c;
+    --red: #cf4c4c;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    min-height: 100vh;
+    padding-bottom: 4rem;
+  }
+
+  /* Header */
+  header {
+    background: var(--surface);
+    border-bottom: 2px solid var(--gold);
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .stats-bar {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.6rem;
+    color: var(--mid);
+    letter-spacing: 0.08em;
+  }
+
+  .stats-bar span { color: var(--gold); }
+
+  .search-wrap {
+    position: relative;
+  }
+
+  #search {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.5rem 1rem;
+    width: 220px;
+    letter-spacing: 0.05em;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  #search:focus { border-color: var(--gold); }
+  #search::placeholder { color: var(--mid); }
+
+  /* Controls */
+  .controls {
+    padding: 1rem 2rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--mid);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(201,168,76,0.08);
+  }
+
+  .btn-action {
+    background: var(--gold);
+    border: none;
+    color: var(--bg);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.35rem 1rem;
+    cursor: pointer;
+    transition: background 0.15s;
+    margin-left: auto;
+  }
+
+  .btn-action:hover { background: #e8cc7a; }
+
+  .btn-reset {
+    background: transparent;
+    border: 1px solid #555;
+    color: var(--mid);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.8rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .btn-reset:hover { border-color: var(--red); color: var(--red); }
+
+  /* Main layout */
+  main {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* Category section */
+  .category {
+    margin-bottom: 2.5rem;
+  }
+
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+  }
+
+  .category-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+  }
+
+  .category-count {
+    font-size: 0.55rem;
+    color: var(--mid);
+    letter-spacing: 0.1em;
+  }
+
+  .category-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .category-toggle {
+    font-size: 0.6rem;
+    color: var(--mid);
+    transition: color 0.15s;
+  }
+
+  .category-header:hover .category-toggle { color: var(--gold); }
+
+  .repo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .repo-grid.collapsed { display: none; }
+
+  /* Repo card */
+  .repo-card {
+    background: var(--surface);
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    transition: background 0.12s;
+    position: relative;
+  }
+
+  .repo-card:hover { background: var(--surface2); }
+  .repo-card.hidden { display: none; }
+  .repo-card.checked { background: rgba(76, 175, 114, 0.06); }
+
+  /* Custom checkbox */
+  .check-col {
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+
+  .custom-check {
+    display: none;
+  }
+
+  .check-box {
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--border);
+    display: block;
+    cursor: pointer;
+    transition: all 0.12s;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .custom-check:checked + .check-box {
+    background: var(--green);
+    border-color: var(--green);
+  }
+
+  .custom-check:checked + .check-box::after {
+    content: '✓';
+    position: absolute;
+    top: -2px;
+    left: 1px;
+    font-size: 10px;
+    color: var(--bg);
+    font-weight: 700;
+  }
+
+  .repo-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .repo-name {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.12s;
+  }
+
+  .repo-name:hover { color: #e8cc7a; }
+
+  .repo-desc {
+    font-size: 0.58rem;
+    color: var(--mid);
+    line-height: 1.6;
+    margin-top: 0.25rem;
+    letter-spacing: 0.03em;
+  }
+
+  .repo-meta {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    font-size: 0.48rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.4rem;
+    border: 1px solid var(--border);
+    color: var(--mid);
+  }
+
+  .tag.priority { border-color: var(--gold-dim); color: var(--gold); }
+  .tag.memory { border-color: #4c8e4c; color: var(--green); }
+  .tag.trending { border-color: #8e4c4c; color: var(--orange); }
+  .tag.fetched { border-color: #4c6e8e; color: var(--blue); }
+
+  .status-dot {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--border);
+  }
+
+  .repo-card.checked .status-dot { background: var(--green); }
+
+  /* Progress bar */
+  .progress-wrap {
+    padding: 1rem 2rem 0;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    color: var(--mid);
+    margin-bottom: 0.4rem;
+  }
+
+  .progress-label span { color: var(--gold); }
+
+  .progress-bar {
+    height: 3px;
+    background: var(--border);
+    position: relative;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--gold);
+    transition: width 0.3s ease;
+    width: 0%;
+  }
+
+  /* Empty state */
+  .empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: var(--mid);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    display: none;
+  }
+
+  /* Footer */
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0; right: 0;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 0.6rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
+    color: var(--mid);
+  }
+
+  footer span { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">LOGOS // GitHub Skills</div>
+  <div class="header-right">
+    <div class="stats-bar">
+      <div>Total: <span id="total-count">0</span></div>
+      <div>Done: <span id="done-count">0</span></div>
+      <div>Remaining: <span id="remaining-count">0</span></div>
+    </div>
+    <div class="search-wrap">
+      <input type="text" id="search" placeholder="Search repos..." autocomplete="off">
+    </div>
+  </div>
+</header>
+
+<div class="progress-wrap">
+  <div class="progress-label">
+    <span>MASTER BUILD PROGRESS</span>
+    <span id="progress-pct">0%</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+</div>
+
+<div class="controls">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="unchecked">Remaining</button>
+  <button class="filter-btn" data-filter="checked">Completed</button>
+  <button class="filter-btn" data-filter="priority">Priority</button>
+  <button class="filter-btn" data-filter="memory">In Memory</button>
+  <button class="filter-btn" data-filter="trending">Trending</button>
+  <button class="btn-action" onclick="exportChecked()">Export Checked</button>
+  <button class="btn-reset" onclick="resetAll()">Reset All</button>
+</div>
+
+<main id="main-content">
+
+  <!-- CLAUDE CODE / AI AGENT SKILLS -->
+  <div class="category" data-category="claude">
+    <div class="category-header" onclick="toggleCategory(this)">
+      <span class="category-label">Claude Code / AI Agent Skills</span>
+      <span class="category-count" id="count-claude"></span>
+      <div class="category-line"></div>
+      <span class="category-toggle">▼</span>
+    </div>
+    <div class="repo-grid" id="grid-claude">
+
+      <div class="repo-card" data-tags="priority fetched">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r1" onchange="updateStats()">
+          <label class="check-box" for="r1"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/forrestchang/andrej-karpathy-skills" target="_blank">forrestchang/andrej-karpathy-skills</a>
+          <div class="repo-desc">Karpathy-derived Claude Code guidelines: Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution. CLAUDE.md for your project root.</div>
+          <div class="repo-meta"><span class="tag priority">Priority</span><span class="tag fetched">Fetched</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="fetched">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r2" onchange="updateStats()">
+          <label class="check-box" for="r2"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/thedotmack/claude-mem" target="_blank">thedotmack/claude-mem</a>
+          <div class="repo-desc">Persistent memory across Claude sessions. Auto-captures, compresses, and injects codebase context so you stop re-teaching Claude your project.</div>
+          <div class="repo-meta"><span class="tag priority">Priority</span><span class="tag fetched">Fetched</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="fetched">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r3" onchange="updateStats()">
+          <label class="check-box" for="r3"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/hesreallyhim/awesome-claude-code" target="_blank">hesreallyhim/awesome-claude-code</a>
+          <div class="repo-desc">Community bible — curated list of skills, hooks, slash commands, orchestrators, and tools for Claude Code. Primary reference index.</div>
+          <div class="repo-meta"><span class="tag priority">Priority</span><span class="tag fetched">Fetched</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="fetched priority">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r4" onchange="updateStats()">
+          <label class="check-box" for="r4"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/obra/superpowers" target="_blank">obra/superpowers</a>
+          <div class="repo-desc">Forces structured thinking before writing code: brainstorm → plan → isolated branches → review → TDD. Makes AI coding safer and more deliberate.</div>
+          <div class="repo-meta"><span class="tag priority">Priority</span><span class="tag fetched">Fetched</span><span class="tag trending">Trending</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="fetched">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r5" onchange="updateStats()">
+          <label class="check-box" for="r5"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/affaan-m/everything-claude-code" target="_blank">affaan-m/everything-claude-code</a>
+          <div class="repo-desc">Skills, instincts, security scanning, multi-language coverage — full agent harness with performance optimization for Claude Code.</div>
+          <div class="repo-meta"><span class="tag fetched">Fetched</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="fetched">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r6" onchange="updateStats()">
+          <label class="check-box" for="r6"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/FlorianBruniaux/claude-code-ultimate-guide" target="_blank">FlorianBruniaux/claude-code-ultimate-guide</a>
+          <div class="repo-desc">Comprehensive docs, production-ready templates, quizzes, and agentic workflow guides from beginner to power user.</div>
+          <div class="repo-meta"><span class="tag fetched">Fetched</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="fetched priority">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r7" onchange="updateStats()">
+          <label class="check-box" for="r7"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/addyosmani/agent-skills" target="_blank">addyosmani/agent-skills</a>
+          <div class="repo-desc">Production-grade SKILL.md files by Addy Osmani (Google Chrome). Full dev lifecycle: spec → plan → build → test → review → ship. Slash commands for Claude Code.</div>
+          <div class="repo-meta"><span class="tag priority">Priority</span><span class="tag fetched">Fetched</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="fetched">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r8" onchange="updateStats()">
+          <label class="check-box" for="r8"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/VRSEN/agency-swarm" target="_blank">VRSEN/agency-swarm</a>
+          <div class="repo-desc">Multi-agent orchestration framework. Define agent roles (CEO, Dev, etc.) with directional communication flows. Requires OpenAI API — not Claude-native.</div>
+          <div class="repo-meta"><span class="tag fetched">Fetched</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="trending">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r9" onchange="updateStats()">
+          <label class="check-box" for="r9"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/msitarzewski/agency-agents" target="_blank">msitarzewski/agency-agents</a>
+          <div class="repo-desc">Trending March 2026. Agent-based automation framework. Not yet fetched.</div>
+          <div class="repo-meta"><span class="tag trending">Trending Mar 2026</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MCP / AUTOMATION / TOOLS -->
+  <div class="category" data-category="mcp">
+    <div class="category-header" onclick="toggleCategory(this)">
+      <span class="category-label">MCP / Automation / Tools</span>
+      <span class="category-count" id="count-mcp"></span>
+      <div class="category-line"></div>
+      <span class="category-toggle">▼</span>
+    </div>
+    <div class="repo-grid" id="grid-mcp">
+
+      <div class="repo-card" data-tags="fetched">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r10" onchange="updateStats()">
+          <label class="check-box" for="r10"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/czlonkowski/n8n-mcp" target="_blank">czlonkowski/n8n-mcp</a>
+          <div class="repo-desc">MCP server for n8n — 1,396+ workflow automation nodes accessible via Claude Code. 16k stars. Cloud-dependent but powerful for automation builds.</div>
+          <div class="repo-meta"><span class="tag fetched">Fetched</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="fetched priority">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r11" onchange="updateStats()">
+          <label class="check-box" for="r11"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/googleapis/mcp-toolbox" target="_blank">googleapis/mcp-toolbox</a>
+          <div class="repo-desc">Google's MCP server for databases. Connect Claude Code directly to SQLite, Postgres, MongoDB and 20+ others via tools.yaml config. Binary install. 14k stars.</div>
+          <div class="repo-meta"><span class="tag priority">Priority</span><span class="tag fetched">Fetched</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="fetched">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r12" onchange="updateStats()">
+          <label class="check-box" for="r12"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/jackwener/opencli" target="_blank">jackwener/opencli</a>
+          <div class="repo-desc">Turn any website into a CLI by reusing Chrome login session. AI agent mode discovers APIs and generates YAML adapters. 35+ commands, 17 sites.</div>
+          <div class="repo-meta"><span class="tag fetched">Fetched</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DESIGN & UI -->
+  <div class="category" data-category="design">
+    <div class="category-header" onclick="toggleCategory(this)">
+      <span class="category-label">Design & UI Reference</span>
+      <span class="category-count" id="count-design"></span>
+      <div class="category-line"></div>
+      <span class="category-toggle">▼</span>
+    </div>
+    <div class="repo-grid" id="grid-design">
+
+      <div class="repo-card" data-tags="fetched memory priority">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r13" onchange="updateStats()">
+          <label class="check-box" for="r13"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/alexpate/awesome-design-systems" target="_blank">alexpate/awesome-design-systems</a>
+          <div class="repo-desc">100+ real-world design systems: Adobe Spectrum, IBM Carbon, Shopify Polaris, GitHub Primer, Vercel. Components, color palettes, voice/tone, Figma kits. 18.9k stars.</div>
+          <div class="repo-meta"><span class="tag priority">Priority</span><span class="tag memory">In Memory</span><span class="tag fetched">Fetched</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="memory priority">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r14" onchange="updateStats()">
+          <label class="check-box" for="r14"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/bradtraversy/design-resources-for-developers" target="_blank">bradtraversy/design-resources-for-developers</a>
+          <div class="repo-desc">Curated design and UI resources for developers: color tools, fonts, icons, stock photos, UI libraries, frameworks, and more. Bradtraversy's definitive reference.</div>
+          <div class="repo-meta"><span class="tag priority">Priority</span><span class="tag memory">In Memory</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEB SCRAPING -->
+  <div class="category" data-category="scraping">
+    <div class="category-header" onclick="toggleCategory(this)">
+      <span class="category-label">Web Scraping</span>
+      <span class="category-count" id="count-scraping"></span>
+      <div class="category-line"></div>
+      <span class="category-toggle">▼</span>
+    </div>
+    <div class="repo-grid" id="grid-scraping">
+
+      <div class="repo-card" data-tags="fetched memory priority">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r15" onchange="updateStats()">
+          <label class="check-box" for="r15"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/firecrawl/firecrawl" target="_blank">firecrawl/firecrawl</a>
+          <div class="repo-desc">Turn any URL into LLM-ready markdown. Handles JS-rendered pages, anti-bot, dynamic content. Scrape/crawl/extract/search modes. Python + Node SDKs. Self-hostable. 78.7k stars. T3 solution.</div>
+          <div class="repo-meta"><span class="tag priority">Priority</span><span class="tag memory">In Memory</span><span class="tag fetched">Fetched</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="trending">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r16" onchange="updateStats()">
+          <label class="check-box" for="r16"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/666ghj/MiroFish" target="_blank">666ghj/MiroFish</a>
+          <div class="repo-desc">Trending March 2026. Not yet fetched.</div>
+          <div class="repo-meta"><span class="tag trending">Trending Mar 2026</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SYSTEM DESIGN -->
+  <div class="category" data-category="sysdesign">
+    <div class="category-header" onclick="toggleCategory(this)">
+      <span class="category-label">System Design</span>
+      <span class="category-count" id="count-sysdesign"></span>
+      <div class="category-line"></div>
+      <span class="category-toggle">▼</span>
+    </div>
+    <div class="repo-grid" id="grid-sysdesign">
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r17" onchange="updateStats()">
+          <label class="check-box" for="r17"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/donnemartin/system-design-primer" target="_blank">donnemartin/system-design-primer</a>
+          <div class="repo-desc">The definitive system design reference. Scale to millions of users, load balancers, caching, databases, CAP theorem. 290k+ stars.</div>
+          <div class="repo-meta"></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r18" onchange="updateStats()">
+          <label class="check-box" for="r18"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/ByteByteGoHq/system-design-101" target="_blank">ByteByteGoHq/system-design-101</a>
+          <div class="repo-desc">System Design 101 by ByteByteGo. Visual explanations of complex systems. REST vs GraphQL, caching, CI/CD, microservices patterns.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r19" onchange="updateStats()">
+          <label class="check-box" for="r19"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/karanpratapsingh/system-design" target="_blank">karanpratapsingh/system-design</a>
+          <div class="repo-desc">Comprehensive system design guide covering fundamentals, distributed systems, databases, messaging queues, and real-world architectures.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r20" onchange="updateStats()">
+          <label class="check-box" for="r20"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/InterviewReady/system-design-resources" target="_blank">InterviewReady/system-design-resources</a>
+          <div class="repo-desc">Curated system design resources for interviews and real-world use. Papers, blogs, case studies.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r21" onchange="updateStats()">
+          <label class="check-box" for="r21"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/ashishps1/awesome-system-design-resources" target="_blank">ashishps1/awesome-system-design-resources</a>
+          <div class="repo-desc">Alternative awesome system design list. Structured learning path with free resources.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r22" onchange="updateStats()">
+          <label class="check-box" for="r22"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/arpit20adlakha/Data-Structure-Algorithms-LLD-HLD" target="_blank">arpit20adlakha/Data-Structure-Algorithms-LLD-HLD</a>
+          <div class="repo-desc">DSA + Low-Level Design + High-Level Design combined reference. From data structures to full system architecture.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r23" onchange="updateStats()">
+          <label class="check-box" for="r23"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/kamranahmedse/design-patterns-for-humans" target="_blank">kamranahmedse/design-patterns-for-humans</a>
+          <div class="repo-desc">Ultra-simplified explanation of design patterns with real-world analogies. Same author as developer-roadmap.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DEVOPS -->
+  <div class="category" data-category="devops">
+    <div class="category-header" onclick="toggleCategory(this)">
+      <span class="category-label">DevOps</span>
+      <span class="category-count" id="count-devops"></span>
+      <div class="category-line"></div>
+      <span class="category-toggle">▼</span>
+    </div>
+    <div class="repo-grid" id="grid-devops">
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r24" onchange="updateStats()">
+          <label class="check-box" for="r24"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/techiescamp/devops-tools" target="_blank">techiescamp/devops-tools</a>
+          <div class="repo-desc">Curated list of DevOps tools by category: CI/CD, monitoring, containers, IaC, security, and more.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r25" onchange="updateStats()">
+          <label class="check-box" for="r25"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/bregman-arie/devops-exercises" target="_blank">bregman-arie/devops-exercises</a>
+          <div class="repo-desc">2,600+ DevOps questions and exercises across Linux, Docker, Kubernetes, CI/CD, cloud platforms, and more.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r26" onchange="updateStats()">
+          <label class="check-box" for="r26"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/milanm/DevOps-Roadmap" target="_blank">milanm/DevOps-Roadmap</a>
+          <div class="repo-desc">Step-by-step DevOps roadmap with curated resources for each skill area. Visual and structured.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LEARNING / EDUCATION -->
+  <div class="category" data-category="learning">
+    <div class="category-header" onclick="toggleCategory(this)">
+      <span class="category-label">Learning & Education</span>
+      <span class="category-count" id="count-learning"></span>
+      <div class="category-line"></div>
+      <span class="category-toggle">▼</span>
+    </div>
+    <div class="repo-grid" id="grid-learning">
+
+      <div class="repo-card" data-tags="memory">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r27" onchange="updateStats()">
+          <label class="check-box" for="r27"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/kamranahmedse/developer-roadmap" target="_blank">kamranahmedse/developer-roadmap</a>
+          <div class="repo-desc">Interactive roadmaps for frontend, backend, DevOps, Android, and more. The gold standard learning path visualizer. 300k+ stars.</div>
+          <div class="repo-meta"><span class="tag memory">In Memory</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r28" onchange="updateStats()">
+          <label class="check-box" for="r28"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/sindresorhus/awesome" target="_blank">sindresorhus/awesome</a>
+          <div class="repo-desc">The original awesome list — curated lists of everything. Index of all awesome-* repos on GitHub. 330k+ stars.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r29" onchange="updateStats()">
+          <label class="check-box" for="r29"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/jwasham/coding-interview-university" target="_blank">jwasham/coding-interview-university</a>
+          <div class="repo-desc">Complete CS study plan to become a software engineer. Covers data structures, algorithms, OS concepts. Used by self-taught devs worldwide.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r30" onchange="updateStats()">
+          <label class="check-box" for="r30"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/freeCodeCamp/freeCodeCamp" target="_blank">freeCodeCamp/freeCodeCamp</a>
+          <div class="repo-desc">Nonprofit free coding curriculum. Full-stack web dev, data science, ML. 400k+ stars. The largest free coding education platform.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r31" onchange="updateStats()">
+          <label class="check-box" for="r31"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/mtdvio/every-programmer-should-know" target="_blank">mtdvio/every-programmer-should-know</a>
+          <div class="repo-desc">Collection of technical things every developer should know: latency numbers, algorithms, architecture patterns, security basics.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="memory">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r32" onchange="updateStats()">
+          <label class="check-box" for="r32"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/codecrafters-io/build-your-own-x" target="_blank">codecrafters-io/build-your-own-x</a>
+          <div class="repo-desc">Build your own: Git, Docker, Redis, Browser, OS, Shell. Master programming by recreating tools from scratch. 330k+ stars.</div>
+          <div class="repo-meta"><span class="tag memory">In Memory</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r33" onchange="updateStats()">
+          <label class="check-box" for="r33"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/getify/You-Dont-Know-JS" target="_blank">getify/You-Dont-Know-JS</a>
+          <div class="repo-desc">Deep-dive JS book series. Scope & Closures, this & Object Prototypes, Async & Performance. Free online. The definitive JS internals reference.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r34" onchange="updateStats()">
+          <label class="check-box" for="r34"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/lydiahallie/javascript-questions" target="_blank">lydiahallie/javascript-questions</a>
+          <div class="repo-desc">Long list of JavaScript questions with explanations. Tests and deepens JS understanding. Great for identifying gaps.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r35" onchange="updateStats()">
+          <label class="check-box" for="r35"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/trekhleb/javascript-algorithms" target="_blank">trekhleb/javascript-algorithms</a>
+          <div class="repo-desc">Algorithms and data structures in JavaScript with explanations and links to further reading. 185k+ stars.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="memory">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r36" onchange="updateStats()">
+          <label class="check-box" for="r36"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/Chalarangelo/30-seconds-of-code" target="_blank">Chalarangelo/30-seconds-of-code</a>
+          <div class="repo-desc">Short code snippets for all your development needs. JavaScript, Python, CSS, React, Node. 120k+ stars. Quick reference.</div>
+          <div class="repo-meta"><span class="tag memory">In Memory</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r37" onchange="updateStats()">
+          <label class="check-box" for="r37"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/practical-tutorials/project-based-learning" target="_blank">practical-tutorials/project-based-learning</a>
+          <div class="repo-desc">Curated list of project-based tutorials. Build real things to learn: web apps, games, compilers, bots, CLIs.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r38" onchange="updateStats()">
+          <label class="check-box" for="r38"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/sdmg15/Best-websites-a-programmer-should-visit" target="_blank">sdmg15/Best-websites-a-programmer-should-visit</a>
+          <div class="repo-desc">Curated list of programming websites covering coding challenges, news, communities, tools, and learning platforms.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r39" onchange="updateStats()">
+          <label class="check-box" for="r39"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/alex/what-happens-when" target="_blank">alex/what-happens-when</a>
+          <div class="repo-desc">Exhaustive answer to "what happens when you type google.com into your browser?" DNS, TCP, TLS, HTTP, rendering — the full stack explained.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r40" onchange="updateStats()">
+          <label class="check-box" for="r40"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/sachin-source/top-github-repositories-which-everyone-should-look" target="_blank">sachin-source/top-github-repositories-which-everyone-should-look</a>
+          <div class="repo-desc">Master aggregation repo — points to all the top GitHub repos every developer should know about.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- INTERVIEW / CAREER -->
+  <div class="category" data-category="interview">
+    <div class="category-header" onclick="toggleCategory(this)">
+      <span class="category-label">Interview & Career</span>
+      <span class="category-count" id="count-interview"></span>
+      <div class="category-line"></div>
+      <span class="category-toggle">▼</span>
+    </div>
+    <div class="repo-grid" id="grid-interview">
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r41" onchange="updateStats()">
+          <label class="check-box" for="r41"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/yangshun/tech-interview-handbook" target="_blank">yangshun/tech-interview-handbook</a>
+          <div class="repo-desc">Curated interview prep. Algorithms, behavioral, system design, negotiation. From an ex-Meta engineer. Practical and battle-tested.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r42" onchange="updateStats()">
+          <label class="check-box" for="r42"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/kdn251/interviews" target="_blank">kdn251/interviews</a>
+          <div class="repo-desc">Software engineering interview prep resources: problems, algorithms, company-specific questions, and links to additional resources.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r43" onchange="updateStats()">
+          <label class="check-box" for="r43"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/AndrewStetsenko/tech-jobs-with-relocation" target="_blank">AndrewStetsenko/tech-jobs-with-relocation</a>
+          <div class="repo-desc">Tech companies offering relocation packages for software engineers. Curated list with details on visa sponsorship and relocation support.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r44" onchange="updateStats()">
+          <label class="check-box" for="r44"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/gregorojstersek/resources-to-become-a-great-engineering-leader" target="_blank">gregorojstersek/resources-to-become-a-great-engineering-leader</a>
+          <div class="repo-desc">Curated resources for engineering leadership: books, newsletters, frameworks for transitioning from IC to EM.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- UTILITIES & REFERENCE -->
+  <div class="category" data-category="utils">
+    <div class="category-header" onclick="toggleCategory(this)">
+      <span class="category-label">Utilities & Reference</span>
+      <span class="category-count" id="count-utils"></span>
+      <div class="category-line"></div>
+      <span class="category-toggle">▼</span>
+    </div>
+    <div class="repo-grid" id="grid-utils">
+
+      <div class="repo-card" data-tags="memory">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r45" onchange="updateStats()">
+          <label class="check-box" for="r45"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/public-apis/public-apis" target="_blank">public-apis/public-apis</a>
+          <div class="repo-desc">Collective list of free APIs for use in software and web development. Categorized by domain. 320k+ stars. Essential for T2/T3 signal sourcing.</div>
+          <div class="repo-meta"><span class="tag memory">In Memory</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r46" onchange="updateStats()">
+          <label class="check-box" for="r46"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/github/gitignore" target="_blank">github/gitignore</a>
+          <div class="repo-desc">GitHub's official collection of .gitignore templates for every language and framework. Reference when setting up new projects.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r47" onchange="updateStats()">
+          <label class="check-box" for="r47"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/ripienaar/free-for-dev" target="_blank">ripienaar/free-for-dev</a>
+          <div class="repo-desc">List of SaaS, PaaS and IaaS offerings with free tiers. Essential for zero-cost stack building. Directly relevant to Logos free-tier-only constraint.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r48" onchange="updateStats()">
+          <label class="check-box" for="r48"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/kilimchoi/engineering-blogs" target="_blank">kilimchoi/engineering-blogs</a>
+          <div class="repo-desc">Curated list of engineering blogs from top tech companies. Anthropic, Google, Netflix, Stripe, Cloudflare, and hundreds more.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r49" onchange="updateStats()">
+          <label class="check-box" for="r49"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/ReactNativeNews/React-Native-Apps" target="_blank">ReactNativeNews/React-Native-Apps</a>
+          <div class="repo-desc">Curated list of open source React Native apps. Reference implementations for mobile development patterns.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r50" onchange="updateStats()">
+          <label class="check-box" for="r50"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/TheAlgorithms" target="_blank">TheAlgorithms (org)</a>
+          <div class="repo-desc">Open source algorithm implementations in every language. Python, Java, JavaScript, Go, C++. Reference for understanding algorithm internals.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r51" onchange="updateStats()">
+          <label class="check-box" for="r51"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/tensorflow/tensorflow" target="_blank">tensorflow/tensorflow</a>
+          <div class="repo-desc">Google's open source ML framework. Reference for understanding ML infrastructure and patterns. Relevant if T2 trading system moves toward ML signals.</div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TRENDING MAR 2026 -->
+  <div class="category" data-category="trending2026">
+    <div class="category-header" onclick="toggleCategory(this)">
+      <span class="category-label">Trending — March 2026</span>
+      <span class="category-count" id="count-trending2026"></span>
+      <div class="category-line"></div>
+      <span class="category-toggle">▼</span>
+    </div>
+    <div class="repo-grid" id="grid-trending2026">
+
+      <div class="repo-card" data-tags="trending">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r52" onchange="updateStats()">
+          <label class="check-box" for="r52"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/volcengine/OpenViking" target="_blank">volcengine/OpenViking</a>
+          <div class="repo-desc">ByteDance's volcengine. Trending March 2026. Not yet fetched.</div>
+          <div class="repo-meta"><span class="tag trending">Trending Mar 2026</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="trending">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r53" onchange="updateStats()">
+          <label class="check-box" for="r53"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/iamlukethedev/Claw3D" target="_blank">iamlukethedev/Claw3D</a>
+          <div class="repo-desc">Trending March 2026. Not yet fetched.</div>
+          <div class="repo-meta"><span class="tag trending">Trending Mar 2026</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GISTS & KNOWLEDGE RESOURCES -->
+  <div class="category" data-category="gists">
+    <div class="category-header" onclick="toggleCategory(this)">
+      <span class="category-label">Gists & Knowledge Resources</span>
+      <span class="category-count" id="count-gists"></span>
+      <div class="category-line"></div>
+      <span class="category-toggle">▼</span>
+    </div>
+    <div class="repo-grid" id="grid-gists">
+
+      <div class="repo-card" data-tags="priority fetched">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r54" onchange="updateStats()">
+          <label class="check-box" for="r54"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://gist.github.com/rohitg00/2067ab416f7bbe447c1977edaaa681e2" target="_blank">rohitg00 / llm-wiki.md (Gist)</a>
+          <div class="repo-desc">LLM Wiki v2 — extends Karpathy's LLM Wiki pattern with production lessons from agentmemory. Adds memory lifecycle (confidence scoring, supersession, forgetting curves), knowledge graphs with typed relationships, hybrid search (BM25 + vector + graph), consolidation tiers (working → episodic → semantic → procedural), event-driven automation hooks, and self-healing quality controls. The schema/CLAUDE.md is the real product. Directly relevant to Logos T4 memory architecture.</div>
+          <div class="repo-meta"><span class="tag priority">Priority</span><span class="tag fetched">Fetched</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="empty-state" id="empty-state">No repos match your current filter.</div>
+
+</main>
+
+<footer>
+  <div>LOGOS AGENT // Master GitHub Skills Thread</div>
+  <div>wasatchphone-ux · <span id="footer-date"></span></div>
+  <div>Saved to: <span>master-github-skills.html</span></div>
+</footer>
+
+<script>
+  // Set date
+  document.getElementById('footer-date').textContent = new Date().toLocaleDateString('en-US', {year:'numeric',month:'short',day:'numeric'});
+
+  // Persist checkboxes via localStorage
+  function saveState() {
+    const state = {};
+    document.querySelectorAll('.custom-check').forEach(cb => {
+      state[cb.id] = cb.checked;
+    });
+    localStorage.setItem('logos-github-skills', JSON.stringify(state));
+  }
+
+  function loadState() {
+    const saved = localStorage.getItem('logos-github-skills');
+    if (!saved) return;
+    const state = JSON.parse(saved);
+    Object.entries(state).forEach(([id, checked]) => {
+      const cb = document.getElementById(id);
+      if (cb) {
+        cb.checked = checked;
+        if (checked) cb.closest('.repo-card').classList.add('checked');
+      }
+    });
+  }
+
+  function updateStats() {
+    const all = document.querySelectorAll('.custom-check');
+    const done = document.querySelectorAll('.custom-check:checked');
+    const total = all.length;
+    const doneCount = done.length;
+    const remaining = total - doneCount;
+    const pct = total > 0 ? Math.round((doneCount / total) * 100) : 0;
+
+    document.getElementById('total-count').textContent = total;
+    document.getElementById('done-count').textContent = doneCount;
+    document.getElementById('remaining-count').textContent = remaining;
+    document.getElementById('progress-pct').textContent = pct + '%';
+    document.getElementById('progress-fill').style.width = pct + '%';
+
+    // Update card state
+    document.querySelectorAll('.custom-check').forEach(cb => {
+      const card = cb.closest('.repo-card');
+      if (cb.checked) {
+        card.classList.add('checked');
+      } else {
+        card.classList.remove('checked');
+      }
+    });
+
+    // Update category counts
+    document.querySelectorAll('.category').forEach(cat => {
+      const catId = cat.dataset.category;
+      const grid = document.getElementById('grid-' + catId);
+      if (!grid) return;
+      const total = grid.querySelectorAll('.custom-check').length;
+      const done = grid.querySelectorAll('.custom-check:checked').length;
+      const countEl = document.getElementById('count-' + catId);
+      if (countEl) countEl.textContent = done + ' / ' + total;
+    });
+
+    saveState();
+  }
+
+  // Category toggle
+  function toggleCategory(header) {
+    const gridId = header.closest('.category').dataset.category;
+    const grid = document.getElementById('grid-' + gridId);
+    const toggle = header.querySelector('.category-toggle');
+    grid.classList.toggle('collapsed');
+    toggle.textContent = grid.classList.contains('collapsed') ? '▶' : '▼';
+  }
+
+  // Filter
+  let currentFilter = 'all';
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFilter = btn.dataset.filter;
+      applyFilter();
+    });
+  });
+
+  function applyFilter() {
+    const search = document.getElementById('search').value.toLowerCase();
+    let anyVisible = false;
+
+    document.querySelectorAll('.repo-card').forEach(card => {
+      const tags = card.dataset.tags || '';
+      const text = card.textContent.toLowerCase();
+      const cb = card.querySelector('.custom-check');
+      const checked = cb.checked;
+
+      let filterPass = true;
+      if (currentFilter === 'checked') filterPass = checked;
+      else if (currentFilter === 'unchecked') filterPass = !checked;
+      else if (currentFilter === 'priority') filterPass = tags.includes('priority');
+      else if (currentFilter === 'memory') filterPass = tags.includes('memory');
+      else if (currentFilter === 'trending') filterPass = tags.includes('trending');
+
+      const searchPass = !search || text.includes(search);
+
+      if (filterPass && searchPass) {
+        card.classList.remove('hidden');
+        anyVisible = true;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    document.getElementById('empty-state').style.display = anyVisible ? 'none' : 'block';
+  }
+
+  document.getElementById('search').addEventListener('input', applyFilter);
+
+  // Export checked
+  function exportChecked() {
+    const lines = [];
+    document.querySelectorAll('.custom-check:checked').forEach(cb => {
+      const card = cb.closest('.repo-card');
+      const link = card.querySelector('.repo-name');
+      lines.push(link.href + ' — ' + link.textContent);
+    });
+    if (lines.length === 0) { alert('No repos checked yet.'); return; }
+    const blob = new Blob([lines.join('\n')], {type: 'text/plain'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'logos-github-checked.txt';
+    a.click();
+  }
+
+  // Reset
+  function resetAll() {
+    if (!confirm('Reset all checkboxes?')) return;
+    document.querySelectorAll('.custom-check').forEach(cb => { cb.checked = false; });
+    localStorage.removeItem('logos-github-skills');
+    updateStats();
+  }
+
+  // Init
+  loadState();
+  updateStats();
+  applyFilter();
+</script>
+</body>
+</html>
