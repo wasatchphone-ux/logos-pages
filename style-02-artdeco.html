@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wasatch Combat Sports</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --deep: #0a0a08;
+    --parchment: #f5f0e8;
+    --gold: #c9a84c;
+    --gold-light: #e8cc7a;
+    --gold-dark: #8b6914;
+    --cream: #faf6ed;
+    --warm-mid: #2c2416;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--deep);
+    color: var(--parchment);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+  }
+
+  /* Decorative border frame */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 12px;
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    pointer-events: none;
+    z-index: 900;
+  }
+
+  /* Top ornamental bar */
+  .ornament-bar {
+    width: 100%;
+    text-align: center;
+    padding: 0.6rem;
+    background: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.4em;
+    color: var(--deep);
+    text-transform: uppercase;
+  }
+
+  /* Header */
+  header {
+    padding: 3rem 4rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 4rem; right: 4rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .wordmark {
+    text-align: left;
+  }
+
+  .wordmark-top {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .wordmark-main {
+    font-family: 'Cinzel', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--parchment);
+    line-height: 1;
+  }
+
+  .wordmark-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--gold-dark);
+    text-transform: uppercase;
+    display: block;
+    margin-top: 0.3rem;
+  }
+
+  nav {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+    padding-top: 0.5rem;
+  }
+
+  nav a {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #888;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--gold); }
+
+  /* Hero */
+  .hero {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Geometric Art Deco background */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 50% 50%, rgba(201,168,76,0.04) 0%, transparent 70%),
+      radial-gradient(ellipse 100% 80% at 50% 100%, rgba(201,168,76,0.06) 0%, transparent 60%);
+  }
+
+  /* Art Deco sunburst lines */
+  .sunburst {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 700px;
+    opacity: 0.04;
+  }
+
+  .sunburst::before, .sunburst::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+  }
+
+  .sunburst::after {
+    inset: 80px;
+  }
+
+  .hero-inner { position: relative; max-width: 720px; }
+
+  .hero-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.5em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: 0.05em;
+    color: var(--parchment);
+    margin-bottom: 0.5rem;
+  }
+
+  h1 em {
+    display: block;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    color: var(--gold-light);
+    letter-spacing: 0.08em;
+  }
+
+  .hero-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2.5rem auto;
+  }
+
+  .hero-divider::before, .hero-divider::after {
+    content: '';
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold));
+  }
+
+  .hero-divider::after {
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+
+  .diamond {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    transform: rotate(45deg);
+  }
+
+  .hero-body {
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.9;
+    color: #b0a898;
+    max-width: 48ch;
+    margin: 0 auto 3rem;
+    letter-spacing: 0.02em;
+  }
+
+  .cta-group {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 2.5rem;
+    background: var(--gold);
+    color: var(--deep);
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+
+  .btn-gold:hover {
+    background: var(--gold-light);
+    letter-spacing: 0.4em;
+  }
+
+  .btn-outline-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.9rem 2.5rem;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+
+  .btn-outline-gold:hover {
+    background: rgba(201,168,76,0.1);
+    letter-spacing: 0.4em;
+  }
+
+  /* Disciplines */
+  .disciplines {
+    padding: 5rem 4rem;
+    position: relative;
+  }
+
+  .disciplines::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 4rem; right: 4rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .section-label {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-label-top {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.5em;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .section-label h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: var(--parchment);
+  }
+
+  .disc-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: rgba(201,168,76,0.15);
+  }
+
+  .disc-card {
+    background: var(--deep);
+    padding: 3rem 1.5rem;
+    text-align: center;
+    transition: background 0.2s;
+  }
+
+  .disc-card:hover {
+    background: rgba(201,168,76,0.06);
+  }
+
+  .disc-roman {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--gold-dark);
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+
+  .disc-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--parchment);
+    display: block;
+    margin-bottom: 1rem;
+    letter-spacing: 0.08em;
+  }
+
+  .disc-desc {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: #666;
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  /* Footer */
+  footer {
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 4rem; right: 4rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .footer-left {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    color: var(--gold-dark);
+    text-transform: uppercase;
+  }
+
+  .footer-center {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .footer-center span {
+    width: 4px; height: 4px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    display: block;
+  }
+
+  .footer-right {
+    font-size: 0.65rem;
+    color: #555;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+
+<div class="ornament-bar">Wasatch Combat Sports — Est. 2013 — Orem, Utah</div>
+
+<header>
+  <div class="wordmark">
+    <span class="wordmark-top">Since 2013</span>
+    <div class="wordmark-main">WCS</div>
+    <span class="wordmark-sub">Wasatch Combat Sports</span>
+  </div>
+  <nav>
+    <a href="#">Disciplines</a>
+    <a href="#">Schedule</a>
+    <a href="#">Membership</a>
+    <a href="#">About</a>
+    <a href="#" style="color: var(--gold)">Enroll</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="sunburst"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">329 Five-Star Reviews</div>
+    <h1>
+      Forge Your<br>
+      <em>Fighting Spirit</em>
+    </h1>
+    <div class="hero-divider"><div class="diamond"></div></div>
+    <p class="hero-body">
+      Eleven years of championship coaching in Muay Thai, Brazilian Jiu-Jitsu,
+      MMA, Boxing, and Strength &amp; Conditioning. Over 400 members. One mat.
+    </p>
+    <div class="cta-group">
+      <a href="#" class="btn-gold">Begin Your Journey</a>
+      <a href="#" class="btn-outline-gold">View Schedule</a>
+    </div>
+  </div>
+</section>
+
+<section class="disciplines">
+  <div class="section-label">
+    <span class="section-label-top">The Arts</span>
+    <h2>Five Disciplines</h2>
+  </div>
+  <div class="disc-grid">
+    <div class="disc-card">
+      <span class="disc-roman">I</span>
+      <span class="disc-name">Muay Thai</span>
+      <p class="disc-desc">The art of eight limbs. Stand-up striking rooted in Thai tradition.</p>
+    </div>
+    <div class="disc-card">
+      <span class="disc-roman">II</span>
+      <span class="disc-name">BJJ</span>
+      <p class="disc-desc">Ground mastery through leverage, timing, and positional control.</p>
+    </div>
+    <div class="disc-card">
+      <span class="disc-roman">III</span>
+      <span class="disc-name">MMA</span>
+      <p class="disc-desc">The complete fighter. Striking and grappling unified.</p>
+    </div>
+    <div class="disc-card">
+      <span class="disc-roman">IV</span>
+      <span class="disc-name">Boxing</span>
+      <p class="disc-desc">Head movement, footwork, and the sweet science of the hands.</p>
+    </div>
+    <div class="disc-card">
+      <span class="disc-roman">V</span>
+      <span class="disc-name">S&amp;C</span>
+      <p class="disc-desc">Athlete conditioning built for durability and explosive power.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">972 N 1430 W, Orem UT 84057</div>
+  <div class="footer-center">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="footer-right">wasatchcombatsports.com</div>
+</footer>
+
+</body>
+</html>
