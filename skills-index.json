@@ -2,7 +2,7 @@
   "meta": {
     "version": "1.1",
     "updated": "2026-04-12",
-    "total": 57,
+    "total": 59,
     "source_html": "https://wasatchphone-ux.github.io/logos-pages/master-github-skills.html",
     "purpose": "Agent-queryable index of GitHub repos and skills relevant to Logos project stack. Fetch this file, match use_when fields against your project description, then install or reference the relevant repos.",
     "usage_instruction": "POST this JSON + your project description to an LLM: 'Given project: [X], which repos in this index are most relevant? Return IDs and install commands.'"
@@ -196,6 +196,31 @@
       "logos_relevance": "HIGH — T3 escalation layer above Firecrawl for hardened anti-bot sites",
       "install": "git clone https://github.com/jo-inc/camofox-browser && npm install && npm start",
       "caveat": "Built for OpenClaw originally; REST server is standalone and usable from any agent. ~300MB Camoufox download on first run."
+    },
+    {
+      "id": "r58",
+      "name": "D4Vinci/Scrapling",
+      "url": "https://github.com/D4Vinci/Scrapling",
+      "category": "scraping",
+      "stars": 22700,
+      "forks": 1600,
+      "description": "Adaptive Python scraping framework. Handles single requests to full crawls. StealthyFetcher bypasses Cloudflare Turnstile. Adaptive element tracking survives redesigns. Scrapy-like spider API with pause/resume, async, multi-session. Built-in MCP server for Claude.",
+      "use_when": ["T3 Date Curator scraping", "any Python scraping project", "Cloudflare-protected sites", "JS-rendered pages needing stealth", "full-scale crawling with pause/resume", "scraping with Claude via MCP", "sites that change layout frequently"],
+      "logos_relevance": "HIGH — Python-native, MCP server for Claude, T3 primary scraping solution",
+      "install": "pip install 'scrapling[all]' && scrapling install"
+    },
+    {
+      "id": "r59",
+      "name": "daijro/camoufox",
+      "url": "https://github.com/daijro/camoufox",
+      "category": "scraping",
+      "stars": 7000,
+      "forks": 601,
+      "description": "Firefox fork with C++ anti-detection fingerprint spoofing. Engine behind Scrapling StealthyFetcher and camofox-browser. Playwright API compatible.",
+      "use_when": ["need raw browser engine with anti-detection", "building custom scraping infrastructure", "sites that defeat all other tools"],
+      "logos_relevance": "MEDIUM — use Scrapling or camofox-browser wrappers instead of raw camoufox",
+      "install": "pip install camoufox && python -m camoufox fetch",
+      "caveat": "Maintenance gap in 2025 — under re-development 2026. Use Scrapling's StealthyFetcher as the stable wrapper."
     },
     {
       "id": "r16",
