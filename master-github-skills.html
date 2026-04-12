@@ -413,6 +413,152 @@
 
 <main id="main-content">
 
+  <!-- TOP 15 LEADERBOARD -->
+  <div class="category" data-category="leaderboard">
+    <div class="category-header" onclick="toggleCategory(this)">
+      <span class="category-label">⭐ Top 15 — Ranked by Stars & Forks</span>
+      <span class="category-count" id="count-leaderboard"></span>
+      <div class="category-line"></div>
+      <span class="category-toggle">▼</span>
+    </div>
+    <div class="repo-grid" id="grid-leaderboard" style="grid-template-columns: 1fr;">
+
+      <div style="background:var(--surface);padding:0.6rem 1.2rem;display:grid;grid-template-columns:2.5rem 1fr 7rem 7rem 6rem;gap:0.5rem;align-items:center;border-bottom:1px solid var(--border);">
+        <span style="font-size:0.5rem;color:var(--mid);letter-spacing:0.15em;text-transform:uppercase;">RANK</span>
+        <span style="font-size:0.5rem;color:var(--mid);letter-spacing:0.15em;text-transform:uppercase;">REPOSITORY</span>
+        <span style="font-size:0.5rem;color:var(--mid);letter-spacing:0.15em;text-transform:uppercase;text-align:right;">⭐ STARS</span>
+        <span style="font-size:0.5rem;color:var(--mid);letter-spacing:0.15em;text-transform:uppercase;text-align:right;">🍴 FORKS</span>
+        <span style="font-size:0.5rem;color:var(--mid);letter-spacing:0.15em;text-transform:uppercase;">CATEGORY</span>
+      </div>
+
+      <!-- Rows -->
+      <div class="lb-row" style="background:var(--surface2);padding:0.7rem 1.2rem;display:grid;grid-template-columns:2.5rem 1fr 7rem 7rem 6rem;gap:0.5rem;align-items:center;border-bottom:1px solid var(--border);">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--gold);opacity:0.6;">1</span>
+        <a href="https://github.com/freeCodeCamp/freeCodeCamp" target="_blank" style="color:var(--gold);text-decoration:none;font-size:0.68rem;font-weight:700;">freeCodeCamp/freeCodeCamp</a>
+        <span style="text-align:right;font-size:0.7rem;color:#4caf72;font-weight:700;">~400k</span>
+        <span style="text-align:right;font-size:0.7rem;color:var(--mid);">~37k</span>
+        <span style="font-size:0.5rem;color:var(--mid);">Learning</span>
+      </div>
+
+      <div class="lb-row" style="background:var(--surface);padding:0.7rem 1.2rem;display:grid;grid-template-columns:2.5rem 1fr 7rem 7rem 6rem;gap:0.5rem;align-items:center;border-bottom:1px solid var(--border);">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--gold);opacity:0.6;">2</span>
+        <a href="https://github.com/sindresorhus/awesome" target="_blank" style="color:var(--gold);text-decoration:none;font-size:0.68rem;font-weight:700;">sindresorhus/awesome</a>
+        <span style="text-align:right;font-size:0.7rem;color:#4caf72;font-weight:700;">~330k</span>
+        <span style="text-align:right;font-size:0.7rem;color:var(--mid);">~27k</span>
+        <span style="font-size:0.5rem;color:var(--mid);">Reference</span>
+      </div>
+
+      <div class="lb-row" style="background:var(--surface2);padding:0.7rem 1.2rem;display:grid;grid-template-columns:2.5rem 1fr 7rem 7rem 6rem;gap:0.5rem;align-items:center;border-bottom:1px solid var(--border);">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--gold);opacity:0.6;">3</span>
+        <a href="https://github.com/codecrafters-io/build-your-own-x" target="_blank" style="color:var(--gold);text-decoration:none;font-size:0.68rem;font-weight:700;">codecrafters-io/build-your-own-x</a>
+        <span style="text-align:right;font-size:0.7rem;color:#4caf72;font-weight:700;">~330k</span>
+        <span style="text-align:right;font-size:0.7rem;color:var(--mid);">~29k</span>
+        <span style="font-size:0.5rem;color:var(--mid);">Learning</span>
+      </div>
+
+      <div class="lb-row" style="background:var(--surface);padding:0.7rem 1.2rem;display:grid;grid-template-columns:2.5rem 1fr 7rem 7rem 6rem;gap:0.5rem;align-items:center;border-bottom:1px solid var(--border);">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--gold);opacity:0.6;">4</span>
+        <a href="https://github.com/public-apis/public-apis" target="_blank" style="color:var(--gold);text-decoration:none;font-size:0.68rem;font-weight:700;">public-apis/public-apis</a>
+        <span style="text-align:right;font-size:0.7rem;color:#4caf72;font-weight:700;">~320k</span>
+        <span style="text-align:right;font-size:0.7rem;color:var(--mid);">~34k</span>
+        <span style="font-size:0.5rem;color:var(--mid);">Utils</span>
+      </div>
+
+      <div class="lb-row" style="background:var(--surface2);padding:0.7rem 1.2rem;display:grid;grid-template-columns:2.5rem 1fr 7rem 7rem 6rem;gap:0.5rem;align-items:center;border-bottom:1px solid var(--border);">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--gold);opacity:0.6;">5</span>
+        <a href="https://github.com/jwasham/coding-interview-university" target="_blank" style="color:var(--gold);text-decoration:none;font-size:0.68rem;font-weight:700;">jwasham/coding-interview-university</a>
+        <span style="text-align:right;font-size:0.7rem;color:#4caf72;font-weight:700;">~310k</span>
+        <span style="text-align:right;font-size:0.7rem;color:var(--mid);">~39k</span>
+        <span style="font-size:0.5rem;color:var(--mid);">Interview</span>
+      </div>
+
+      <div class="lb-row" style="background:var(--surface);padding:0.7rem 1.2rem;display:grid;grid-template-columns:2.5rem 1fr 7rem 7rem 6rem;gap:0.5rem;align-items:center;border-bottom:1px solid var(--border);">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--gold);opacity:0.6;">6</span>
+        <a href="https://github.com/kamranahmedse/developer-roadmap" target="_blank" style="color:var(--gold);text-decoration:none;font-size:0.68rem;font-weight:700;">kamranahmedse/developer-roadmap</a>
+        <span style="text-align:right;font-size:0.7rem;color:#4caf72;font-weight:700;">~300k</span>
+        <span style="text-align:right;font-size:0.7rem;color:var(--mid);">~38k</span>
+        <span style="font-size:0.5rem;color:var(--mid);">Learning</span>
+      </div>
+
+      <div class="lb-row" style="background:var(--surface2);padding:0.7rem 1.2rem;display:grid;grid-template-columns:2.5rem 1fr 7rem 7rem 6rem;gap:0.5rem;align-items:center;border-bottom:1px solid var(--border);">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--gold);opacity:0.6;">7</span>
+        <a href="https://github.com/donnemartin/system-design-primer" target="_blank" style="color:var(--gold);text-decoration:none;font-size:0.68rem;font-weight:700;">donnemartin/system-design-primer</a>
+        <span style="text-align:right;font-size:0.7rem;color:#4caf72;font-weight:700;">~290k</span>
+        <span style="text-align:right;font-size:0.7rem;color:var(--mid);">~47k</span>
+        <span style="font-size:0.5rem;color:var(--mid);">Sys Design</span>
+      </div>
+
+      <div class="lb-row" style="background:var(--surface);padding:0.7rem 1.2rem;display:grid;grid-template-columns:2.5rem 1fr 7rem 7rem 6rem;gap:0.5rem;align-items:center;border-bottom:1px solid var(--border);">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--gold);opacity:0.6;">8</span>
+        <a href="https://github.com/trekhleb/javascript-algorithms" target="_blank" style="color:var(--gold);text-decoration:none;font-size:0.68rem;font-weight:700;">trekhleb/javascript-algorithms</a>
+        <span style="text-align:right;font-size:0.7rem;color:#4caf72;font-weight:700;">~185k</span>
+        <span style="text-align:right;font-size:0.7rem;color:var(--mid);">~30k</span>
+        <span style="font-size:0.5rem;color:var(--mid);">Learning</span>
+      </div>
+
+      <div class="lb-row" style="background:var(--surface2);padding:0.7rem 1.2rem;display:grid;grid-template-columns:2.5rem 1fr 7rem 7rem 6rem;gap:0.5rem;align-items:center;border-bottom:1px solid var(--border);">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--gold);opacity:0.6;">9</span>
+        <a href="https://github.com/getify/You-Dont-Know-JS" target="_blank" style="color:var(--gold);text-decoration:none;font-size:0.68rem;font-weight:700;">getify/You-Dont-Know-JS</a>
+        <span style="text-align:right;font-size:0.7rem;color:#4caf72;font-weight:700;">~180k</span>
+        <span style="text-align:right;font-size:0.7rem;color:var(--mid);">~22k</span>
+        <span style="font-size:0.5rem;color:var(--mid);">Learning</span>
+      </div>
+
+      <div class="lb-row" style="background:var(--surface);padding:0.7rem 1.2rem;display:grid;grid-template-columns:2.5rem 1fr 7rem 7rem 6rem;gap:0.5rem;align-items:center;border-bottom:1px solid var(--border);">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--gold);opacity:0.6;">10</span>
+        <a href="https://github.com/Chalarangelo/30-seconds-of-code" target="_blank" style="color:var(--gold);text-decoration:none;font-size:0.68rem;font-weight:700;">Chalarangelo/30-seconds-of-code</a>
+        <span style="text-align:right;font-size:0.7rem;color:#4caf72;font-weight:700;">~120k</span>
+        <span style="text-align:right;font-size:0.7rem;color:var(--mid);">~12k</span>
+        <span style="font-size:0.5rem;color:var(--mid);">Utils</span>
+      </div>
+
+      <div class="lb-row" style="background:var(--surface2);padding:0.7rem 1.2rem;display:grid;grid-template-columns:2.5rem 1fr 7rem 7rem 6rem;gap:0.5rem;align-items:center;border-bottom:1px solid var(--border);">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--gold);opacity:0.6;">11</span>
+        <a href="https://github.com/yangshun/tech-interview-handbook" target="_blank" style="color:var(--gold);text-decoration:none;font-size:0.68rem;font-weight:700;">yangshun/tech-interview-handbook</a>
+        <span style="text-align:right;font-size:0.7rem;color:#4caf72;font-weight:700;">~120k</span>
+        <span style="text-align:right;font-size:0.7rem;color:var(--mid);">~14k</span>
+        <span style="font-size:0.5rem;color:var(--mid);">Interview</span>
+      </div>
+
+      <div class="lb-row" style="background:var(--surface);padding:0.7rem 1.2rem;display:grid;grid-template-columns:2.5rem 1fr 7rem 7rem 6rem;gap:0.5rem;align-items:center;border-bottom:1px solid var(--border);">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--gold);opacity:0.6;">12</span>
+        <a href="https://github.com/firecrawl/firecrawl" target="_blank" style="color:var(--gold);text-decoration:none;font-size:0.68rem;font-weight:700;">firecrawl/firecrawl ✓ fetched</a>
+        <span style="text-align:right;font-size:0.7rem;color:#4caf72;font-weight:700;">78.7k</span>
+        <span style="text-align:right;font-size:0.7rem;color:var(--mid);">5.9k</span>
+        <span style="font-size:0.5rem;color:var(--mid);">Scraping</span>
+      </div>
+
+      <div class="lb-row" style="background:var(--surface2);padding:0.7rem 1.2rem;display:grid;grid-template-columns:2.5rem 1fr 7rem 7rem 6rem;gap:0.5rem;align-items:center;border-bottom:1px solid var(--border);">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--gold);opacity:0.6;">13</span>
+        <a href="https://github.com/alexpate/awesome-design-systems" target="_blank" style="color:var(--gold);text-decoration:none;font-size:0.68rem;font-weight:700;">alexpate/awesome-design-systems ✓ fetched</a>
+        <span style="text-align:right;font-size:0.7rem;color:#4caf72;font-weight:700;">18.9k</span>
+        <span style="text-align:right;font-size:0.7rem;color:var(--mid);">1.1k</span>
+        <span style="font-size:0.5rem;color:var(--mid);">Design</span>
+      </div>
+
+      <div class="lb-row" style="background:var(--surface);padding:0.7rem 1.2rem;display:grid;grid-template-columns:2.5rem 1fr 7rem 7rem 6rem;gap:0.5rem;align-items:center;border-bottom:1px solid var(--border);">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--gold);opacity:0.6;">14</span>
+        <a href="https://github.com/czlonkowski/n8n-mcp" target="_blank" style="color:var(--gold);text-decoration:none;font-size:0.68rem;font-weight:700;">czlonkowski/n8n-mcp ✓ fetched</a>
+        <span style="text-align:right;font-size:0.7rem;color:#4caf72;font-weight:700;">16.6k</span>
+        <span style="text-align:right;font-size:0.7rem;color:var(--mid);">2.8k</span>
+        <span style="font-size:0.5rem;color:var(--mid);">MCP</span>
+      </div>
+
+      <div class="lb-row" style="background:var(--surface2);padding:0.7rem 1.2rem;display:grid;grid-template-columns:2.5rem 1fr 7rem 7rem 6rem;gap:0.5rem;align-items:center;border-bottom:1px solid var(--border);">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--gold);opacity:0.6;">15</span>
+        <a href="https://github.com/googleapis/mcp-toolbox" target="_blank" style="color:var(--gold);text-decoration:none;font-size:0.68rem;font-weight:700;">googleapis/mcp-toolbox ✓ fetched</a>
+        <span style="text-align:right;font-size:0.7rem;color:#4caf72;font-weight:700;">14k</span>
+        <span style="text-align:right;font-size:0.7rem;color:var(--mid);">1.4k</span>
+        <span style="font-size:0.5rem;color:var(--mid);">MCP</span>
+      </div>
+
+      <div style="background:var(--surface);padding:0.5rem 1.2rem;font-size:0.5rem;color:var(--mid);letter-spacing:0.06em;border-top:1px solid var(--border);">
+        ✓ fetched = verified this session · Stars approximate for unfetched repos · Sorted by ⭐ descending
+      </div>
+
+    </div>
+  </div>
+
   <!-- CLAUDE CODE / AI AGENT SKILLS -->
   <div class="category" data-category="claude">
     <div class="category-header" onclick="toggleCategory(this)">
@@ -536,6 +682,19 @@
           <a class="repo-name" href="https://github.com/msitarzewski/agency-agents" target="_blank">msitarzewski/agency-agents</a>
           <div class="repo-desc">Trending March 2026. Agent-based automation framework. Not yet fetched.</div>
           <div class="repo-meta"><span class="tag trending">Trending Mar 2026</span></div>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="repo-card" data-tags="priority fetched">
+        <div class="check-col">
+          <input type="checkbox" class="custom-check" id="r55" onchange="updateStats()">
+          <label class="check-box" for="r55"></label>
+        </div>
+        <div class="repo-info">
+          <a class="repo-name" href="https://github.com/luongnv89/claude-howto" target="_blank">luongnv89/claude-howto</a>
+          <div class="repo-desc">Visual, example-driven guide to Claude Code. 10 modules: slash commands, memory, skills, subagents, MCP, hooks, plugins, checkpoints, advanced features, CLI. Copy-paste templates, Mermaid diagrams, guided learning path. 1.1k stars, 80 forks. Updated March 2026.</div>
+          <div class="repo-meta"><span class="tag priority">Priority</span><span class="tag fetched">Fetched</span></div>
         </div>
         <div class="status-dot"></div>
       </div>
