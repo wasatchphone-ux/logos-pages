@@ -2,7 +2,7 @@
   "meta": {
     "version": "1.1",
     "updated": "2026-04-12",
-    "total": 60,
+    "total": 61,
     "source_html": "https://wasatchphone-ux.github.io/logos-pages/master-github-skills.html",
     "purpose": "Agent-queryable index of GitHub repos and skills relevant to Logos project stack. Fetch this file, match use_when fields against your project description, then install or reference the relevant repos.",
     "usage_instruction": "POST this JSON + your project description to an LLM: 'Given project: [X], which repos in this index are most relevant? Return IDs and install commands.'"
@@ -12,8 +12,19 @@
     "primary_language": "Python, JavaScript",
     "database": "SQLite",
     "constraint": "No cloud dependencies, free-tier APIs only, local-first",
-    "active_tranches": ["T1 WCS gym system", "T2 NQ futures trading", "T3 Date Curator Utah County events", "T4 Muay Thai curriculum pipeline"],
-    "key_tools": ["yt-dlp", "Whisper", "Telegram", "Shopify", "GitHub Pages"]
+    "active_tranches": [
+      "T1 WCS gym system",
+      "T2 NQ futures trading",
+      "T3 Date Curator Utah County events",
+      "T4 Muay Thai curriculum pipeline"
+    ],
+    "key_tools": [
+      "yt-dlp",
+      "Whisper",
+      "Telegram",
+      "Shopify",
+      "GitHub Pages"
+    ]
   },
   "repos": [
     {
@@ -24,7 +35,13 @@
       "stars": 251,
       "forks": 23,
       "description": "Karpathy-derived CLAUDE.md guidelines: Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution.",
-      "use_when": ["setting up any Claude Code project", "agent makes overcomplicated code", "agent silently picks wrong approach", "need success criteria before coding", "reducing LLM coding mistakes"],
+      "use_when": [
+        "setting up any Claude Code project",
+        "agent makes overcomplicated code",
+        "agent silently picks wrong approach",
+        "need success criteria before coding",
+        "reducing LLM coding mistakes"
+      ],
       "install": "curl -o CLAUDE.md https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md"
     },
     {
@@ -35,7 +52,12 @@
       "stars": null,
       "forks": null,
       "description": "Persistent memory across Claude sessions. Auto-captures and injects codebase context.",
-      "use_when": ["re-teaching Claude your codebase each session", "context lost between sessions", "large multi-file projects", "any Logos tranche with complex state"],
+      "use_when": [
+        "re-teaching Claude your codebase each session",
+        "context lost between sessions",
+        "large multi-file projects",
+        "any Logos tranche with complex state"
+      ],
       "install": "npm install -g claude-mem"
     },
     {
@@ -46,8 +68,13 @@
       "stars": null,
       "forks": null,
       "description": "Curated list of Claude Code skills, hooks, slash commands, orchestrators, and tools.",
-      "use_when": ["discovering available Claude Code community tools", "finding slash command templates", "finding hooks for automation", "exploring Claude Code ecosystem"],
-      "install": "Reference only — browse and cherry-pick"
+      "use_when": [
+        "discovering available Claude Code community tools",
+        "finding slash command templates",
+        "finding hooks for automation",
+        "exploring Claude Code ecosystem"
+      ],
+      "install": "Reference only \u2014 browse and cherry-pick"
     },
     {
       "id": "r4",
@@ -57,7 +84,13 @@
       "stars": null,
       "forks": null,
       "description": "Forces structured thinking before coding: brainstorm, plan, isolated branches, TDD, review.",
-      "use_when": ["starting any new feature", "parallel agent coordination", "TDD workflow", "before writing T2 SPEC.md", "reducing costly mistakes on complex work"],
+      "use_when": [
+        "starting any new feature",
+        "parallel agent coordination",
+        "TDD workflow",
+        "before writing T2 SPEC.md",
+        "reducing costly mistakes on complex work"
+      ],
       "install": "cp -r superpowers/skills ~/.claude/skills/"
     },
     {
@@ -68,7 +101,11 @@
       "stars": null,
       "forks": null,
       "description": "Full agent harness with skills, instincts, security scanning, multi-language coverage.",
-      "use_when": ["full Claude Code project setup", "multi-language projects", "security scanning needs"],
+      "use_when": [
+        "full Claude Code project setup",
+        "multi-language projects",
+        "security scanning needs"
+      ],
       "install": "git clone https://github.com/affaan-m/everything-claude-code.git"
     },
     {
@@ -79,7 +116,10 @@
       "stars": null,
       "forks": null,
       "description": "Comprehensive docs, production-ready templates, quizzes, agentic workflow guides.",
-      "use_when": ["learning Claude Code agentic workflows", "production template reference"],
+      "use_when": [
+        "learning Claude Code agentic workflows",
+        "production template reference"
+      ],
       "install": "Reference only"
     },
     {
@@ -90,7 +130,16 @@
       "stars": 26,
       "forks": 1,
       "description": "Production-grade SKILL.md files by Addy Osmani (Google Chrome). Full dev lifecycle: spec, plan, build, test, review, ship.",
-      "use_when": ["spec-driven development", "building frontend UI", "API design", "TDD workflow", "code review process", "CI/CD setup", "security hardening", "before starting any T2 or T4 build phase"],
+      "use_when": [
+        "spec-driven development",
+        "building frontend UI",
+        "API design",
+        "TDD workflow",
+        "code review process",
+        "CI/CD setup",
+        "security hardening",
+        "before starting any T2 or T4 build phase"
+      ],
       "install": "git clone https://github.com/addyosmani/agent-skills.git && cp -r agent-skills/skills/* ~/.claude/skills/"
     },
     {
@@ -100,10 +149,13 @@
       "category": "claude-code",
       "stars": 4000,
       "forks": 998,
-      "description": "Python multi-agent orchestration framework. Requires OpenAI API — not Claude-native.",
-      "use_when": ["multi-agent workflows with OpenAI", "orchestrating specialized agent roles"],
+      "description": "Python multi-agent orchestration framework. Requires OpenAI API \u2014 not Claude-native.",
+      "use_when": [
+        "multi-agent workflows with OpenAI",
+        "orchestrating specialized agent roles"
+      ],
       "install": "pip install agency-swarm",
-      "caveat": "OpenAI API required — not compatible with local-first Logos constraint without OpenRouter"
+      "caveat": "OpenAI API required \u2014 not compatible with local-first Logos constraint without OpenRouter"
     },
     {
       "id": "r9",
@@ -113,7 +165,9 @@
       "stars": null,
       "forks": null,
       "description": "Trending March 2026. Agent-based automation framework. Not yet fetched.",
-      "use_when": ["agent automation workflows"],
+      "use_when": [
+        "agent automation workflows"
+      ],
       "install": "Not yet evaluated"
     },
     {
@@ -124,7 +178,12 @@
       "stars": 16600,
       "forks": 2800,
       "description": "MCP server giving Claude Code access to 1396+ n8n workflow automation nodes.",
-      "use_when": ["building workflow automation", "connecting external services", "T1 WCS ops automation", "webhook-based pipelines"],
+      "use_when": [
+        "building workflow automation",
+        "connecting external services",
+        "T1 WCS ops automation",
+        "webhook-based pipelines"
+      ],
       "install": "npx n8n-mcp",
       "caveat": "Cloud-dependent for hosted n8n; self-hostable with Docker"
     },
@@ -136,7 +195,12 @@
       "stars": 14000,
       "forks": 1400,
       "description": "Google MCP server for databases. Connects Claude Code directly to SQLite, Postgres, MongoDB via tools.yaml.",
-      "use_when": ["Claude Code needs to query SQLite databases directly", "T1 WCS database queries from agent", "T4 t4.db schema exploration", "T2 trading signal data access"],
+      "use_when": [
+        "Claude Code needs to query SQLite databases directly",
+        "T1 WCS database queries from agent",
+        "T4 t4.db schema exploration",
+        "T2 trading signal data access"
+      ],
       "install": "npx @toolbox-sdk/server --config tools.yaml"
     },
     {
@@ -147,7 +211,11 @@
       "stars": 235,
       "forks": 28,
       "description": "Turn any website into CLI by reusing Chrome login session. AI discovers APIs, generates YAML adapters.",
-      "use_when": ["scraping sites you are already logged into", "building CLI wrappers around web apps", "T3 scraping authenticated sources"],
+      "use_when": [
+        "scraping sites you are already logged into",
+        "building CLI wrappers around web apps",
+        "T3 scraping authenticated sources"
+      ],
       "install": "npm install -g @jackwener/opencli"
     },
     {
@@ -158,8 +226,14 @@
       "stars": 18900,
       "forks": 1100,
       "description": "100+ real-world design systems: Adobe Spectrum, IBM Carbon, Shopify Polaris, GitHub Primer, Vercel.",
-      "use_when": ["building UI components", "choosing color palette", "design system reference", "WCS recapture landing page redesign", "Logos dashboard aesthetic decisions"],
-      "install": "Reference only — browse at https://github.com/alexpate/awesome-design-systems"
+      "use_when": [
+        "building UI components",
+        "choosing color palette",
+        "design system reference",
+        "WCS recapture landing page redesign",
+        "Logos dashboard aesthetic decisions"
+      ],
+      "install": "Reference only \u2014 browse at https://github.com/alexpate/awesome-design-systems"
     },
     {
       "id": "r14",
@@ -169,7 +243,12 @@
       "stars": null,
       "forks": null,
       "description": "Curated design and UI resources: color tools, fonts, icons, stock photos, UI libraries.",
-      "use_when": ["finding fonts", "finding icon sets", "finding color palette tools", "UI resource discovery for any front-end build"],
+      "use_when": [
+        "finding fonts",
+        "finding icon sets",
+        "finding color palette tools",
+        "UI resource discovery for any front-end build"
+      ],
       "install": "Reference only"
     },
     {
@@ -180,9 +259,14 @@
       "stars": 78700,
       "forks": 5900,
       "description": "Turn any URL into LLM-ready markdown. Handles JS-rendered pages, anti-bot, dynamic content.",
-      "use_when": ["scraping JS-rendered pages", "T3 Date Curator scraping Eventbrite or UtahValley.com", "any site that blocks standard scrapers", "converting web content to LLM context"],
+      "use_when": [
+        "scraping JS-rendered pages",
+        "T3 Date Curator scraping Eventbrite or UtahValley.com",
+        "any site that blocks standard scrapers",
+        "converting web content to LLM context"
+      ],
       "install": "pip install firecrawl-py",
-      "logos_relevance": "HIGH — solves T3 JS-rendered scraping blocker directly"
+      "logos_relevance": "HIGH \u2014 solves T3 JS-rendered scraping blocker directly"
     },
     {
       "id": "r60",
@@ -192,18 +276,35 @@
       "stars": 31600,
       "forks": 1900,
       "description": "Official Google MCP server giving Claude Code full Chrome DevTools access via your real Chrome browser. 29 tools: click, type, fill forms, navigate, screenshot, network inspection, performance traces, Lighthouse audit, evaluate JS. Uses your actual cookies and login sessions.",
-      "use_when": ["scraping sites you are already logged into", "T3 Eventbrite or UtahValley.com with existing login", "T1 Shopify admin automation", "sites that block headless browsers", "agent needs to click through pages", "debugging web app performance", "any browser interaction task from Claude Code"],
-      "logos_relevance": "HIGH — uses your real Chrome session, solves login/auth scraping problem across T1 and T3",
+      "use_when": [
+        "scraping sites you are already logged into",
+        "T3 Eventbrite or UtahValley.com with existing login",
+        "T1 Shopify admin automation",
+        "sites that block headless browsers",
+        "agent needs to click through pages",
+        "debugging web app performance",
+        "any browser interaction task from Claude Code"
+      ],
+      "logos_relevance": "HIGH \u2014 uses your real Chrome session, solves login/auth scraping problem across T1 and T3",
       "install": "claude mcp add chrome-devtools --scope user npx chrome-devtools-mcp@latest",
-      "caveat": "Requires Chrome to be open. Not a background headless scraper — agent works in your actual browser."
+      "caveat": "Requires Chrome to be open. Not a background headless scraper \u2014 agent works in your actual browser."
     },
+    {
+      "id": "r57_camofox",
       "url": "https://github.com/jo-inc/camofox-browser",
       "category": "scraping",
       "stars": 55,
       "forks": 3,
-      "description": "Anti-detection headless browser server for AI agents. Camoufox (Firefox fork) spoof fingerprints at C++ level — WebGL, AudioContext, WebRTC, hardwareConcurrency. REST API with accessibility snapshots 90% smaller than HTML. Session isolation, search macros, Docker-ready.",
-      "use_when": ["sites that block Firecrawl", "aggressive bot detection", "Cloudflare-protected sites", "T3 escalation when standard scrapers fail", "JS-rendered sites requiring click interaction", "agent needs to fill forms or click through pages"],
-      "logos_relevance": "HIGH — T3 escalation layer above Firecrawl for hardened anti-bot sites",
+      "description": "Anti-detection headless browser server for AI agents. Camoufox (Firefox fork) spoof fingerprints at C++ level \u2014 WebGL, AudioContext, WebRTC, hardwareConcurrency. REST API with accessibility snapshots 90% smaller than HTML. Session isolation, search macros, Docker-ready.",
+      "use_when": [
+        "sites that block Firecrawl",
+        "aggressive bot detection",
+        "Cloudflare-protected sites",
+        "T3 escalation when standard scrapers fail",
+        "JS-rendered sites requiring click interaction",
+        "agent needs to fill forms or click through pages"
+      ],
+      "logos_relevance": "HIGH \u2014 T3 escalation layer above Firecrawl for hardened anti-bot sites",
       "install": "git clone https://github.com/jo-inc/camofox-browser && npm install && npm start",
       "caveat": "Built for OpenClaw originally; REST server is standalone and usable from any agent. ~300MB Camoufox download on first run."
     },
@@ -215,8 +316,16 @@
       "stars": 22700,
       "forks": 1600,
       "description": "Adaptive Python scraping framework. Handles single requests to full crawls. StealthyFetcher bypasses Cloudflare Turnstile. Adaptive element tracking survives redesigns. Scrapy-like spider API with pause/resume, async, multi-session. Built-in MCP server for Claude.",
-      "use_when": ["T3 Date Curator scraping", "any Python scraping project", "Cloudflare-protected sites", "JS-rendered pages needing stealth", "full-scale crawling with pause/resume", "scraping with Claude via MCP", "sites that change layout frequently"],
-      "logos_relevance": "HIGH — Python-native, MCP server for Claude, T3 primary scraping solution",
+      "use_when": [
+        "T3 Date Curator scraping",
+        "any Python scraping project",
+        "Cloudflare-protected sites",
+        "JS-rendered pages needing stealth",
+        "full-scale crawling with pause/resume",
+        "scraping with Claude via MCP",
+        "sites that change layout frequently"
+      ],
+      "logos_relevance": "HIGH \u2014 Python-native, MCP server for Claude, T3 primary scraping solution",
       "install": "pip install 'scrapling[all]' && scrapling install"
     },
     {
@@ -227,10 +336,14 @@
       "stars": 7000,
       "forks": 601,
       "description": "Firefox fork with C++ anti-detection fingerprint spoofing. Engine behind Scrapling StealthyFetcher and camofox-browser. Playwright API compatible.",
-      "use_when": ["need raw browser engine with anti-detection", "building custom scraping infrastructure", "sites that defeat all other tools"],
-      "logos_relevance": "MEDIUM — use Scrapling or camofox-browser wrappers instead of raw camoufox",
+      "use_when": [
+        "need raw browser engine with anti-detection",
+        "building custom scraping infrastructure",
+        "sites that defeat all other tools"
+      ],
+      "logos_relevance": "MEDIUM \u2014 use Scrapling or camofox-browser wrappers instead of raw camoufox",
       "install": "pip install camoufox && python -m camoufox fetch",
-      "caveat": "Maintenance gap in 2025 — under re-development 2026. Use Scrapling's StealthyFetcher as the stable wrapper."
+      "caveat": "Maintenance gap in 2025 \u2014 under re-development 2026. Use Scrapling's StealthyFetcher as the stable wrapper."
     },
     {
       "id": "r16",
@@ -240,7 +353,9 @@
       "stars": null,
       "forks": null,
       "description": "Trending March 2026. Not yet fetched.",
-      "use_when": ["web scraping (pending evaluation)"],
+      "use_when": [
+        "web scraping (pending evaluation)"
+      ],
       "install": "Not yet evaluated"
     },
     {
@@ -251,7 +366,12 @@
       "stars": 290000,
       "forks": 47000,
       "description": "Definitive system design reference. Scale, load balancers, caching, databases, CAP theorem.",
-      "use_when": ["architecting scalable systems", "T2 trading system architecture decisions", "T4 pipeline design", "any distributed system reference"],
+      "use_when": [
+        "architecting scalable systems",
+        "T2 trading system architecture decisions",
+        "T4 pipeline design",
+        "any distributed system reference"
+      ],
       "install": "Reference only"
     },
     {
@@ -262,7 +382,10 @@
       "stars": null,
       "forks": null,
       "description": "Visual system design explanations. REST vs GraphQL, caching, CI/CD, microservices patterns.",
-      "use_when": ["visual system design reference", "explaining architecture decisions"],
+      "use_when": [
+        "visual system design reference",
+        "explaining architecture decisions"
+      ],
       "install": "Reference only"
     },
     {
@@ -273,7 +396,10 @@
       "stars": null,
       "forks": null,
       "description": "System design fundamentals, distributed systems, databases, messaging queues.",
-      "use_when": ["system design fundamentals reference", "messaging queue design"],
+      "use_when": [
+        "system design fundamentals reference",
+        "messaging queue design"
+      ],
       "install": "Reference only"
     },
     {
@@ -284,7 +410,10 @@
       "stars": null,
       "forks": null,
       "description": "Curated system design resources. Papers, blogs, case studies.",
-      "use_when": ["deep system design research", "finding architecture case studies"],
+      "use_when": [
+        "deep system design research",
+        "finding architecture case studies"
+      ],
       "install": "Reference only"
     },
     {
@@ -295,7 +424,9 @@
       "stars": null,
       "forks": null,
       "description": "Structured system design learning path with free resources.",
-      "use_when": ["structured system design learning"],
+      "use_when": [
+        "structured system design learning"
+      ],
       "install": "Reference only"
     },
     {
@@ -306,7 +437,9 @@
       "stars": null,
       "forks": null,
       "description": "DSA + Low-Level Design + High-Level Design combined reference.",
-      "use_when": ["combined DSA and system design reference"],
+      "use_when": [
+        "combined DSA and system design reference"
+      ],
       "install": "Reference only"
     },
     {
@@ -317,7 +450,11 @@
       "stars": null,
       "forks": null,
       "description": "Design patterns explained with real-world analogies.",
-      "use_when": ["understanding design patterns", "T4 pipeline architecture patterns", "T2 signal architecture patterns"],
+      "use_when": [
+        "understanding design patterns",
+        "T4 pipeline architecture patterns",
+        "T2 signal architecture patterns"
+      ],
       "install": "Reference only"
     },
     {
@@ -328,7 +465,11 @@
       "stars": null,
       "forks": null,
       "description": "Curated DevOps tools by category: CI/CD, monitoring, containers, IaC, security.",
-      "use_when": ["finding DevOps tooling", "CI/CD setup", "container tooling reference"],
+      "use_when": [
+        "finding DevOps tooling",
+        "CI/CD setup",
+        "container tooling reference"
+      ],
       "install": "Reference only"
     },
     {
@@ -339,7 +480,10 @@
       "stars": null,
       "forks": null,
       "description": "2600+ DevOps questions across Linux, Docker, Kubernetes, CI/CD, cloud.",
-      "use_when": ["DevOps practice and testing knowledge", "Linux/Docker reference"],
+      "use_when": [
+        "DevOps practice and testing knowledge",
+        "Linux/Docker reference"
+      ],
       "install": "Reference only"
     },
     {
@@ -350,7 +494,10 @@
       "stars": null,
       "forks": null,
       "description": "Step-by-step DevOps roadmap with curated resources per skill area.",
-      "use_when": ["planning DevOps learning path", "understanding DevOps landscape"],
+      "use_when": [
+        "planning DevOps learning path",
+        "understanding DevOps landscape"
+      ],
       "install": "Reference only"
     },
     {
@@ -361,8 +508,11 @@
       "stars": 300000,
       "forks": 38000,
       "description": "Interactive roadmaps for frontend, backend, DevOps, Android, and more.",
-      "use_when": ["planning learning path for any discipline", "understanding technology landscape"],
-      "install": "Reference only — https://roadmap.sh"
+      "use_when": [
+        "planning learning path for any discipline",
+        "understanding technology landscape"
+      ],
+      "install": "Reference only \u2014 https://roadmap.sh"
     },
     {
       "id": "r28",
@@ -372,7 +522,10 @@
       "stars": 330000,
       "forks": 27000,
       "description": "Index of all awesome-* curated lists on GitHub.",
-      "use_when": ["finding any curated resource list", "discovery of tools in any domain"],
+      "use_when": [
+        "finding any curated resource list",
+        "discovery of tools in any domain"
+      ],
       "install": "Reference only"
     },
     {
@@ -383,7 +536,10 @@
       "stars": 310000,
       "forks": 39000,
       "description": "Complete CS study plan. Data structures, algorithms, OS concepts.",
-      "use_when": ["CS fundamentals study", "algorithm reference"],
+      "use_when": [
+        "CS fundamentals study",
+        "algorithm reference"
+      ],
       "install": "Reference only"
     },
     {
@@ -394,7 +550,10 @@
       "stars": 400000,
       "forks": 37000,
       "description": "Free full-stack curriculum covering web dev, data science, ML.",
-      "use_when": ["free structured coding curriculum", "learning web development fundamentals"],
+      "use_when": [
+        "free structured coding curriculum",
+        "learning web development fundamentals"
+      ],
       "install": "https://www.freecodecamp.org"
     },
     {
@@ -405,7 +564,10 @@
       "stars": null,
       "forks": null,
       "description": "Technical things every developer should know: latency numbers, algorithms, architecture.",
-      "use_when": ["foundational knowledge gaps", "latency and performance reference"],
+      "use_when": [
+        "foundational knowledge gaps",
+        "latency and performance reference"
+      ],
       "install": "Reference only"
     },
     {
@@ -416,7 +578,10 @@
       "stars": 330000,
       "forks": 29000,
       "description": "Build your own Git, Docker, Redis, Browser, OS, Shell from scratch.",
-      "use_when": ["deep learning by reimplementing tools", "understanding internals of any technology"],
+      "use_when": [
+        "deep learning by reimplementing tools",
+        "understanding internals of any technology"
+      ],
       "install": "Reference only"
     },
     {
@@ -427,8 +592,12 @@
       "stars": 180000,
       "forks": 22000,
       "description": "Deep-dive JS book series. Scope, closures, async, prototypes.",
-      "use_when": ["JavaScript internals reference", "understanding JS async patterns", "T3 or T1 JS debugging"],
-      "install": "Reference only — free online"
+      "use_when": [
+        "JavaScript internals reference",
+        "understanding JS async patterns",
+        "T3 or T1 JS debugging"
+      ],
+      "install": "Reference only \u2014 free online"
     },
     {
       "id": "r34",
@@ -438,7 +607,10 @@
       "stars": null,
       "forks": null,
       "description": "Long list of JS questions with explanations.",
-      "use_when": ["testing JavaScript knowledge", "identifying JS knowledge gaps"],
+      "use_when": [
+        "testing JavaScript knowledge",
+        "identifying JS knowledge gaps"
+      ],
       "install": "Reference only"
     },
     {
@@ -449,7 +621,10 @@
       "stars": 185000,
       "forks": 30000,
       "description": "Algorithms and data structures in JavaScript with explanations.",
-      "use_when": ["algorithm implementation reference in JS", "data structure reference"],
+      "use_when": [
+        "algorithm implementation reference in JS",
+        "data structure reference"
+      ],
       "install": "Reference only"
     },
     {
@@ -460,7 +635,10 @@
       "stars": 120000,
       "forks": 12000,
       "description": "Short code snippets for all development needs. JS, Python, CSS, React, Node.",
-      "use_when": ["quick code snippet reference", "common utility function lookup"],
+      "use_when": [
+        "quick code snippet reference",
+        "common utility function lookup"
+      ],
       "install": "https://www.30secondsofcode.org"
     },
     {
@@ -471,7 +649,9 @@
       "stars": null,
       "forks": null,
       "description": "Project-based tutorials for learning by building real things.",
-      "use_when": ["learning a new technology through projects"],
+      "use_when": [
+        "learning a new technology through projects"
+      ],
       "install": "Reference only"
     },
     {
@@ -482,7 +662,9 @@
       "stars": null,
       "forks": null,
       "description": "Programming websites covering challenges, news, communities, tools.",
-      "use_when": ["discovering programming communities and resources"],
+      "use_when": [
+        "discovering programming communities and resources"
+      ],
       "install": "Reference only"
     },
     {
@@ -493,7 +675,11 @@
       "stars": null,
       "forks": null,
       "description": "Exhaustive answer to what happens when you type google.com. DNS, TCP, TLS, HTTP, rendering.",
-      "use_when": ["understanding full-stack web request lifecycle", "debugging network issues", "T3 scraping troubleshooting"],
+      "use_when": [
+        "understanding full-stack web request lifecycle",
+        "debugging network issues",
+        "T3 scraping troubleshooting"
+      ],
       "install": "Reference only"
     },
     {
@@ -504,7 +690,10 @@
       "stars": null,
       "forks": null,
       "description": "Master aggregation repo pointing to top GitHub repos every developer should know.",
-      "use_when": ["discovering important GitHub repos", "meta-reference for repo discovery"],
+      "use_when": [
+        "discovering important GitHub repos",
+        "meta-reference for repo discovery"
+      ],
       "install": "Reference only"
     },
     {
@@ -515,8 +704,11 @@
       "stars": 120000,
       "forks": 14000,
       "description": "Practical interview prep. Algorithms, behavioral, system design, negotiation.",
-      "use_when": ["interview preparation", "negotiation guidance"],
-      "install": "Reference only — https://www.techinterviewhandbook.org"
+      "use_when": [
+        "interview preparation",
+        "negotiation guidance"
+      ],
+      "install": "Reference only \u2014 https://www.techinterviewhandbook.org"
     },
     {
       "id": "r42",
@@ -526,7 +718,9 @@
       "stars": null,
       "forks": null,
       "description": "Software engineering interview prep. Problems, algorithms, company-specific questions.",
-      "use_when": ["company-specific interview prep"],
+      "use_when": [
+        "company-specific interview prep"
+      ],
       "install": "Reference only"
     },
     {
@@ -537,7 +731,10 @@
       "stars": null,
       "forks": null,
       "description": "Tech companies offering relocation with visa sponsorship details.",
-      "use_when": ["finding tech jobs with relocation packages", "international job search"],
+      "use_when": [
+        "finding tech jobs with relocation packages",
+        "international job search"
+      ],
       "install": "Reference only"
     },
     {
@@ -548,7 +745,10 @@
       "stars": null,
       "forks": null,
       "description": "Resources for engineering leadership. Books, newsletters, IC to EM transition.",
-      "use_when": ["transitioning to engineering management", "engineering leadership development"],
+      "use_when": [
+        "transitioning to engineering management",
+        "engineering leadership development"
+      ],
       "install": "Reference only"
     },
     {
@@ -559,9 +759,14 @@
       "stars": 320000,
       "forks": 34000,
       "description": "Collective list of free APIs categorized by domain.",
-      "use_when": ["finding free APIs for any integration", "T2 trading signal sources", "T3 event data sources", "T1 WCS data integrations"],
-      "install": "Reference only — https://publicapis.dev",
-      "logos_relevance": "HIGH — T2 and T3 signal/data source discovery"
+      "use_when": [
+        "finding free APIs for any integration",
+        "T2 trading signal sources",
+        "T3 event data sources",
+        "T1 WCS data integrations"
+      ],
+      "install": "Reference only \u2014 https://publicapis.dev",
+      "logos_relevance": "HIGH \u2014 T2 and T3 signal/data source discovery"
     },
     {
       "id": "r46",
@@ -571,7 +776,10 @@
       "stars": null,
       "forks": null,
       "description": "Official .gitignore templates for every language and framework.",
-      "use_when": ["setting up new project gitignore", "any new Logos tranche repo init"],
+      "use_when": [
+        "setting up new project gitignore",
+        "any new Logos tranche repo init"
+      ],
       "install": "curl https://raw.githubusercontent.com/github/gitignore/main/Python.gitignore >> .gitignore"
     },
     {
@@ -582,9 +790,14 @@
       "stars": null,
       "forks": null,
       "description": "SaaS, PaaS, IaaS offerings with free tiers for developers.",
-      "use_when": ["finding zero-cost services", "Logos free-tier constraint", "finding free hosting alternatives", "T3 free scraping or API options"],
-      "install": "Reference only — https://free-for.dev",
-      "logos_relevance": "HIGH — directly supports Logos free-tier-only constraint"
+      "use_when": [
+        "finding zero-cost services",
+        "Logos free-tier constraint",
+        "finding free hosting alternatives",
+        "T3 free scraping or API options"
+      ],
+      "install": "Reference only \u2014 https://free-for.dev",
+      "logos_relevance": "HIGH \u2014 directly supports Logos free-tier-only constraint"
     },
     {
       "id": "r48",
@@ -594,7 +807,11 @@
       "stars": null,
       "forks": null,
       "description": "Engineering blogs from top tech companies. Anthropic, Google, Netflix, Stripe, Cloudflare.",
-      "use_when": ["following engineering team blogs", "technical research", "architecture inspiration"],
+      "use_when": [
+        "following engineering team blogs",
+        "technical research",
+        "architecture inspiration"
+      ],
       "install": "Reference only"
     },
     {
@@ -605,7 +822,9 @@
       "stars": null,
       "forks": null,
       "description": "Open source React Native app reference implementations.",
-      "use_when": ["React Native mobile development reference"],
+      "use_when": [
+        "React Native mobile development reference"
+      ],
       "install": "Reference only"
     },
     {
@@ -616,8 +835,11 @@
       "stars": null,
       "forks": null,
       "description": "Algorithm implementations in every language: Python, Java, JS, Go, C++.",
-      "use_when": ["algorithm implementation reference in any language", "T2 signal algorithm reference"],
-      "install": "Reference only — https://the-algorithms.com"
+      "use_when": [
+        "algorithm implementation reference in any language",
+        "T2 signal algorithm reference"
+      ],
+      "install": "Reference only \u2014 https://the-algorithms.com"
     },
     {
       "id": "r51",
@@ -627,7 +849,10 @@
       "stars": null,
       "forks": null,
       "description": "Google ML framework. Reference for ML infrastructure and patterns.",
-      "use_when": ["T2 trading system ML signal integration", "ML pipeline architecture reference"],
+      "use_when": [
+        "T2 trading system ML signal integration",
+        "ML pipeline architecture reference"
+      ],
       "install": "pip install tensorflow"
     },
     {
@@ -638,7 +863,9 @@
       "stars": null,
       "forks": null,
       "description": "ByteDance volcengine. Trending March 2026. Not yet evaluated.",
-      "use_when": ["pending evaluation"],
+      "use_when": [
+        "pending evaluation"
+      ],
       "install": "Not yet evaluated"
     },
     {
@@ -649,7 +876,9 @@
       "stars": null,
       "forks": null,
       "description": "Trending March 2026. Not yet evaluated.",
-      "use_when": ["pending evaluation"],
+      "use_when": [
+        "pending evaluation"
+      ],
       "install": "Not yet evaluated"
     },
     {
@@ -659,10 +888,16 @@
       "category": "knowledge",
       "stars": 82,
       "forks": 10,
-      "description": "LLM Wiki v2 — Karpathy pattern extended with memory lifecycle: confidence scoring, supersession, forgetting curves, knowledge graphs, consolidation tiers, automation hooks.",
-      "use_when": ["designing agent memory architecture", "T4 knowledge pipeline design", "building persistent memory systems", "consolidation tiers working to episodic to semantic to procedural", "any tranche requiring cross-session knowledge accumulation"],
-      "install": "Reference only — implement patterns manually",
-      "logos_relevance": "HIGH — T4 memory architecture blueprint"
+      "description": "LLM Wiki v2 \u2014 Karpathy pattern extended with memory lifecycle: confidence scoring, supersession, forgetting curves, knowledge graphs, consolidation tiers, automation hooks.",
+      "use_when": [
+        "designing agent memory architecture",
+        "T4 knowledge pipeline design",
+        "building persistent memory systems",
+        "consolidation tiers working to episodic to semantic to procedural",
+        "any tranche requiring cross-session knowledge accumulation"
+      ],
+      "install": "Reference only \u2014 implement patterns manually",
+      "logos_relevance": "HIGH \u2014 T4 memory architecture blueprint"
     },
     {
       "id": "r55",
@@ -672,7 +907,13 @@
       "stars": 1100,
       "forks": 80,
       "description": "Visual guide to Claude Code. 10 modules: slash commands, memory, skills, subagents, MCP, hooks, plugins, checkpoints, advanced features, CLI. Copy-paste templates, Mermaid diagrams.",
-      "use_when": ["learning all Claude Code features systematically", "copy-paste templates for any Claude Code feature", "hooks setup", "subagent configuration", "slash command templates"],
+      "use_when": [
+        "learning all Claude Code features systematically",
+        "copy-paste templates for any Claude Code feature",
+        "hooks setup",
+        "subagent configuration",
+        "slash command templates"
+      ],
       "install": "git clone https://github.com/luongnv89/claude-howto.git && cp 01-slash-commands/*.md .claude/commands/"
     },
     {
@@ -683,9 +924,40 @@
       "stars": 8200,
       "forks": 681,
       "description": "380+ agent skills from official teams: Anthropic, Vercel, Google, Cloudflare, Stripe, Microsoft, Hugging Face, OpenAI, Sentry, Trail of Bits, HashiCorp, Firecrawl, WordPress. Compatible with Claude Code, Codex, Gemini CLI, Cursor, Antigravity, Windsurf.",
-      "use_when": ["any new Claude Code project setup", "finding official Anthropic skills", "Vercel/Next.js project", "Cloudflare Workers project", "Stripe integration", "security audit", "frontend UI build", "scraping with Firecrawl skill", "n8n automation", "context engineering"],
-      "install": "Browse by team at https://github.com/VoltAgent/awesome-agent-skills — install individual SKILL.md files to .claude/skills/",
-      "logos_relevance": "HIGH — official Anthropic skills directly applicable to all tranches"
+      "use_when": [
+        "any new Claude Code project setup",
+        "finding official Anthropic skills",
+        "Vercel/Next.js project",
+        "Cloudflare Workers project",
+        "Stripe integration",
+        "security audit",
+        "frontend UI build",
+        "scraping with Firecrawl skill",
+        "n8n automation",
+        "context engineering"
+      ],
+      "install": "Browse by team at https://github.com/VoltAgent/awesome-agent-skills \u2014 install individual SKILL.md files to .claude/skills/",
+      "logos_relevance": "HIGH \u2014 official Anthropic skills directly applicable to all tranches"
+    },
+    {
+      "id": "r61",
+      "name": "shanraisshan/claude-code-best-practice",
+      "url": "https://github.com/shanraisshan/claude-code-best-practice",
+      "category": "claude-code",
+      "stars": 19700,
+      "forks": 1700,
+      "description": "Comprehensive Claude Code operating manual. 84 tips from Boris Cherny (creator), Thariq, Cat Wu. Subagents, commands, skills, hooks, workflows, agent teams, scheduled tasks, /sandbox, Ralph Wiggum Loop.",
+      "use_when": [
+        "reducing permission prompts with /sandbox",
+        "setting up wildcard permissions",
+        "agent teams and parallel development",
+        "scheduled recurring tasks with /loop",
+        "understanding subagents vs commands vs skills",
+        "any Claude Code configuration question",
+        "learning advanced Claude Code features"
+      ],
+      "logos_relevance": "HIGH \u2014 /sandbox solves confirmation prompt problem, 84 tips from Claude Code team",
+      "install": "Reference only \u2014 git clone https://github.com/shanraisshan/claude-code-best-practice"
     }
   ],
   "agent_query_template": "You are a skills selector for an AI coding agent. Given the following project description, identify the most relevant repos from the index below and return: (1) repo IDs ranked by relevance, (2) why each is relevant, (3) install commands to run. Project: [INSERT PROJECT DESCRIPTION HERE]. Index: [PASTE skills-index.json repos array]",
