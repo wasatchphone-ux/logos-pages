@@ -2,7 +2,7 @@
   "meta": {
     "version": "1.1",
     "updated": "2026-04-12",
-    "total": 59,
+    "total": 60,
     "source_html": "https://wasatchphone-ux.github.io/logos-pages/master-github-skills.html",
     "purpose": "Agent-queryable index of GitHub repos and skills relevant to Logos project stack. Fetch this file, match use_when fields against your project description, then install or reference the relevant repos.",
     "usage_instruction": "POST this JSON + your project description to an LLM: 'Given project: [X], which repos in this index are most relevant? Return IDs and install commands.'"
@@ -185,8 +185,18 @@
       "logos_relevance": "HIGH — solves T3 JS-rendered scraping blocker directly"
     },
     {
-      "id": "r57",
-      "name": "jo-inc/camofox-browser",
+      "id": "r60",
+      "name": "ChromeDevTools/chrome-devtools-mcp",
+      "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+      "category": "mcp-tools",
+      "stars": 31600,
+      "forks": 1900,
+      "description": "Official Google MCP server giving Claude Code full Chrome DevTools access via your real Chrome browser. 29 tools: click, type, fill forms, navigate, screenshot, network inspection, performance traces, Lighthouse audit, evaluate JS. Uses your actual cookies and login sessions.",
+      "use_when": ["scraping sites you are already logged into", "T3 Eventbrite or UtahValley.com with existing login", "T1 Shopify admin automation", "sites that block headless browsers", "agent needs to click through pages", "debugging web app performance", "any browser interaction task from Claude Code"],
+      "logos_relevance": "HIGH — uses your real Chrome session, solves login/auth scraping problem across T1 and T3",
+      "install": "claude mcp add chrome-devtools --scope user npx chrome-devtools-mcp@latest",
+      "caveat": "Requires Chrome to be open. Not a background headless scraper — agent works in your actual browser."
+    },
       "url": "https://github.com/jo-inc/camofox-browser",
       "category": "scraping",
       "stars": 55,
