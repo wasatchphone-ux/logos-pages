@@ -2,7 +2,7 @@
   "meta": {
     "version": "1.1",
     "updated": "2026-04-12",
-    "total": 61,
+    "total": 62,
     "source_html": "https://wasatchphone-ux.github.io/logos-pages/master-github-skills.html",
     "purpose": "Agent-queryable index of GitHub repos and skills relevant to Logos project stack. Fetch this file, match use_when fields against your project description, then install or reference the relevant repos.",
     "usage_instruction": "POST this JSON + your project description to an LLM: 'Given project: [X], which repos in this index are most relevant? Return IDs and install commands.'"
@@ -958,6 +958,26 @@
       ],
       "logos_relevance": "HIGH \u2014 /sandbox solves confirmation prompt problem, 84 tips from Claude Code team",
       "install": "Reference only \u2014 git clone https://github.com/shanraisshan/claude-code-best-practice"
+    },
+    {
+      "id": "r62",
+      "name": "microsoft/markitdown",
+      "url": "https://github.com/microsoft/markitdown",
+      "category": "utilities",
+      "stars": 87000,
+      "forks": 5100,
+      "description": "Microsoft Python tool converting any document to Markdown for LLM pipelines. PDF, Word, PowerPoint, Excel, images (OCR), audio (transcription), HTML, CSV, JSON, XML, YouTube URLs, EPubs. Has MCP server for Claude Desktop.",
+      "use_when": [
+        "converting any document to Markdown for LLM ingestion",
+        "T4 Muay Thai \u2014 ingesting PDF books, Word docs, coach materials",
+        "building document database from mixed file formats",
+        "processing purchased course materials into pipeline",
+        "extracting text from images or audio files",
+        "any file that needs to become LLM-readable text",
+        "T1 WCS \u2014 converting contracts or schedules to searchable text"
+      ],
+      "logos_relevance": "HIGH \u2014 T4 document ingestion, converts any format to Markdown for Claude extraction pipeline",
+      "install": "pip install 'markitdown[all]'"
     }
   ],
   "agent_query_template": "You are a skills selector for an AI coding agent. Given the following project description, identify the most relevant repos from the index below and return: (1) repo IDs ranked by relevance, (2) why each is relevant, (3) install commands to run. Project: [INSERT PROJECT DESCRIPTION HERE]. Index: [PASTE skills-index.json repos array]",
