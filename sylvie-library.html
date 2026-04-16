@@ -56,12 +56,18 @@ body{
 
 /* ── FILTER ROW ── */
 #filter-row{
-  display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px;
+  display:flex;flex-wrap:wrap;align-items:center;gap:10px 0;
 }
-.fgroup{display:flex;align-items:center;gap:8px}
+.fgroup{
+  display:flex;align-items:center;gap:8px;
+  padding-right:20px;margin-right:4px;
+  border-right:1px solid var(--border);
+}
+.fgroup:last-child{border-right:none}
 .flabel{
-  font-family:'Bebas Neue',sans-serif;font-size:12px;
-  letter-spacing:.1em;color:var(--muted);white-space:nowrap;
+  font-family:'Bebas Neue',sans-serif;font-size:11px;
+  letter-spacing:.12em;color:var(--muted);white-space:nowrap;
+  border-right:1px solid var(--border);padding-right:8px;
 }
 #trainer-wrap{position:relative}
 #trainer-input{
@@ -156,12 +162,16 @@ body{
 }
 .yt-btn:hover{background:var(--gold-dim);border-color:var(--gold)}
 .watch-btn{
-  background:none;border:none;cursor:pointer;
-  font-size:13px;color:var(--muted);transition:color .15s;padding:0 2px;
-  flex-shrink:0;
+  width:15px;height:15px;flex-shrink:0;
+  background:transparent;border:1px solid var(--muted);border-radius:2px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:9px;color:transparent;transition:all .15s;padding:0;
 }
-.watch-btn:hover{color:var(--gold)}
-.card.watched .watch-btn{color:var(--gold)}
+.watch-btn:hover{border-color:var(--gold);color:rgba(201,168,76,.4)}
+.card.watched .watch-btn{
+  border-color:var(--gold);background:var(--gold-dim);
+  color:var(--gold);
+}
 
 /* ── DETAIL DRAWER ── */
 #detail-panel{
@@ -174,21 +184,34 @@ body{
 #detail-panel.open{transform:translateY(0)}
 #detail-head{
   display:flex;align-items:center;gap:12px;
-  padding:10px 20px 8px;border-bottom:1px solid var(--border);
-  flex-shrink:0;
+  padding:8px 16px 8px 20px;border-bottom:1px solid var(--border);
+  flex-shrink:0;min-height:48px;
 }
+#detail-meta{display:flex;flex-direction:column;gap:2px;flex:1;overflow:hidden}
 #detail-session{
-  font-family:'Bebas Neue',sans-serif;font-size:20px;
-  color:var(--gold);letter-spacing:.05em;
+  font-family:'Bebas Neue',sans-serif;font-size:18px;
+  color:var(--gold);letter-spacing:.05em;white-space:nowrap;
 }
-#detail-title-text{font-size:12px;font-weight:700;flex:1}
-#detail-trainer{font-size:11px;color:var(--text2)}
-#detail-yt{margin-left:8px}
+#detail-title-text{
+  font-size:11px;font-weight:700;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis;
+}
+#detail-trainer{font-size:10px;color:var(--text2)}
+#detail-embed{
+  flex-shrink:0;border-left:1px solid var(--border);margin-left:8px;padding-left:12px;
+}
+#detail-embed iframe{display:block;border:none;border-radius:2px}
+#detail-embed-placeholder{
+  width:160px;height:90px;background:#1a1a1a;border-radius:2px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;color:var(--muted);letter-spacing:.08em;
+}
 #detail-close{
-  background:none;border:none;color:var(--muted);cursor:pointer;
-  font-size:18px;padding:0 4px;transition:color .15s;margin-left:auto;
+  background:none;border:1px solid var(--border);border-radius:2px;
+  color:var(--muted);cursor:pointer;font-size:14px;padding:4px 8px;
+  transition:all .15s;flex-shrink:0;margin-left:8px;
 }
-#detail-close:hover{color:var(--white)}
+#detail-close:hover{border-color:var(--white);color:var(--white)}
 #detail-body{display:flex;flex:1;overflow:hidden;gap:0}
 
 #tech-panel{
@@ -225,11 +248,27 @@ body{
 .ttag-footwork,
 .ttag-sweep            {border-color:rgba(123,232,160,.35);color:#7be8a0}
 
-.notes-text{
-  font-size:11px;line-height:1.65;color:var(--muted);
-  white-space:pre-wrap;word-break:break-word;
+.notes-text{font-size:0.875rem;color:var(--text2);word-break:break-word}
+.notes-text p{line-height:1.7;margin-bottom:0.9em}
+.notes-text p:last-child{margin-bottom:0}
+
+/* ── MORE FROM TRAINER ── */
+.more-trainer{margin-top:20px;border-top:1px solid var(--border);padding-top:14px}
+.more-trainer .panel-heading{margin-bottom:8px}
+.more-list{display:flex;flex-direction:column;gap:4px}
+.more-item{
+  display:flex;align-items:center;gap:10px;padding:6px 8px;
+  border:1px solid var(--border);border-radius:var(--radius);
+  cursor:pointer;transition:border-color .15s,background .15s;
 }
-.notes-text em{color:var(--text2);font-style:normal}
+.more-item:hover{border-color:var(--border-h);background:var(--bg-card-h)}
+.more-item.current{border-color:var(--gold);opacity:.6;cursor:default;pointer-events:none}
+.more-num{
+  font-family:'Bebas Neue',sans-serif;font-size:15px;
+  color:var(--gold);min-width:30px;
+}
+.more-title{font-size:11px;font-weight:700;flex:1;line-height:1.3}
+.more-meta{font-size:10px;color:var(--muted);white-space:nowrap}
 
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar{width:4px;height:4px}
@@ -285,10 +324,14 @@ body{
 
 <div id="detail-panel">
   <div id="detail-head">
-    <span id="detail-session"></span>
-    <span id="detail-title-text"></span>
-    <span id="detail-trainer"></span>
-    <a id="detail-yt" class="yt-btn" href="#" target="_blank" rel="noopener" style="display:none">&#9654; WATCH</a>
+    <div id="detail-meta">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <span id="detail-session"></span>
+        <span id="detail-trainer"></span>
+      </div>
+      <div id="detail-title-text"></div>
+    </div>
+    <div id="detail-embed"></div>
     <button id="detail-close">&#x2715;</button>
   </div>
   <div id="detail-body">
@@ -320,6 +363,13 @@ function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;')
 function slug(s){ return s.replace(/\s+/g,'-') }
 function fmtDate(d){ if(!d) return ''; const [y,m] = d.split('-'); const mn=['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; return mn[+m]+' '+y }
 function sessionLabel(s){ return s.title.replace(/^#\d+\s*/,'') }
+function ytId(url){ if(!url) return null; const m=url.match(/(?:youtu\.be\/|[?&]v=)([A-Za-z0-9_-]{11})/); return m?m[1]:null }
+function notesHtml(raw){
+  if(!raw) return '';
+  return raw.trim().split(/\n\n+/).map(p =>
+    `<p>${esc(p.replace(/\n/g,' '))}</p>`
+  ).join('');
+}
 
 // ── Filter ──
 function filtered(){
@@ -395,9 +445,13 @@ function openDetail(session){
   document.getElementById('detail-session').textContent = '#'+session.session_number;
   document.getElementById('detail-title-text').textContent = sessionLabel(session);
   document.getElementById('detail-trainer').textContent = session.trainer_name||'';
-  const ytEl = document.getElementById('detail-yt');
-  if(session.youtube_url){ ytEl.href=session.youtube_url; ytEl.style.display=''; }
-  else ytEl.style.display='none';
+  const vid = ytId(session.youtube_url);
+  const embedEl = document.getElementById('detail-embed');
+  if(vid){
+    embedEl.innerHTML = `<iframe width="160" height="90" src="https://www.youtube.com/embed/${vid}" allowfullscreen></iframe>`;
+  } else {
+    embedEl.innerHTML = '<div id="detail-embed-placeholder">NO VIDEO</div>';
+  }
 
   // Techniques
   const techs = session.techniques;
@@ -426,15 +480,34 @@ function openDetail(session){
 
   // Notes
   const np = document.getElementById('notes-panel');
-  const notes = (session.notes_text||'').trim();
   np.innerHTML = '<div class="panel-heading">SESSION NOTES</div>' +
-    (notes
-      ? `<div class="notes-text">${esc(notes)}</div>`
+    (session.notes_text
+      ? `<div class="notes-text">${notesHtml(session.notes_text)}</div>`
       : '<div style="color:var(--muted);font-size:11px">No notes available.</div>');
+
+  // More from this trainer
+  if(session.trainer_name){
+    const others = DATA.filter(x => x.trainer_name===session.trainer_name && x.source_id!==session.source_id);
+    if(others.length){
+      const tp = document.getElementById('tech-panel');
+      tp.innerHTML += `<div class="more-trainer">
+        <div class="panel-heading">MORE FROM ${esc(session.trainer_name.toUpperCase())}</div>
+        <div class="more-list">
+          ${others.map(o=>`<div class="more-item" onclick="loadSession(${o.source_id})">
+            <span class="more-num">#${o.session_number}</span>
+            <span class="more-title">${esc(sessionLabel(o))}</span>
+            <span class="more-meta">${o.techniques.length} tech</span>
+          </div>`).join('')}
+        </div>
+      </div>`;
+    }
+  }
 
   document.getElementById('detail-panel').classList.add('open');
   renderCards(); // re-render to update selected state
 }
+
+function loadSession(sourceId){ const s=DATA.find(x=>x.source_id===sourceId); if(s) openDetail(s); }
 
 function closeDetail(){
   ST.selected = null;
@@ -554,6 +627,7 @@ function init(){
   });
 
   document.getElementById('clear-btn').addEventListener('click', clearFilters);
+  document.getElementById('detail-close').addEventListener('click', closeDetail);
 
   render();
 }
