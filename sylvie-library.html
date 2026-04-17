@@ -5,31 +5,31 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Muay Thai Library — Sylvie von Duuglas-Ittu</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:        #0d0d0d;
-  --bg-card:   #131313;
-  --bg-card-h: #1a1a1a;
-  --bg-bar:    #0f0f0f;
-  --bg-drawer: #111111;
-  --border:    #252525;
-  --border-h:  #3a3a3a;
+  --bg:        #111111;
+  --bg-card:   #1a1a1a;
+  --bg-card-h: #202020;
+  --bg-bar:    #0d0d0d;
+  --bg-drawer: #141414;
+  --border:    #2a2a2a;
+  --border-h:  #3d3d3d;
   --gold:      #c9a84c;
   --gold-dim:  rgba(201,168,76,.12);
   --gold-glow: rgba(201,168,76,.25);
-  --white:     #e8e4dc;
-  --muted:     #555;
-  --text2:     #888;
-  --radius:    3px;
-  --drawer-h:  52vh;
+  --white:     #e8e8e8;
+  --muted:     #888888;
+  --text2:     #aaaaaa;
+  --radius:    4px;
+  --drawer-h:  60vh;
   --bar-h:     108px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
   background:var(--bg);color:var(--white);
-  font-family:'Space Mono',monospace;font-size:13px;
+  font-family:Inter,system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.6;
   padding-bottom:calc(var(--drawer-h) + 24px);
 }
 
@@ -48,7 +48,7 @@ body{
 #search{
   flex:1;max-width:420px;margin-left:auto;
   background:#1a1a1a;border:1px solid var(--border);border-radius:var(--radius);
-  color:var(--white);padding:6px 10px;font-family:'Space Mono',monospace;font-size:12px;
+  color:var(--white);padding:6px 10px;font-family:inherit;font-size:13px;
   outline:none;transition:border-color .15s;
 }
 #search:focus{border-color:var(--gold)}
@@ -59,20 +59,21 @@ body{
   display:flex;flex-wrap:wrap;align-items:center;gap:10px 0;
 }
 .fgroup{
-  display:flex;align-items:center;gap:8px;
+  display:flex;align-items:center;gap:10px;
   padding-right:20px;margin-right:4px;
   border-right:1px solid var(--border);
 }
 .fgroup:last-child{border-right:none}
 .flabel{
-  font-family:'Bebas Neue',sans-serif;font-size:11px;
-  letter-spacing:.12em;color:var(--muted);white-space:nowrap;
+  font-family:Inter,system-ui,-apple-system,sans-serif;font-weight:600;
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);white-space:nowrap;
   border-right:1px solid var(--border);padding-right:8px;
 }
 #trainer-wrap{position:relative}
 #trainer-input{
   background:#1a1a1a;border:1px solid var(--border);border-radius:var(--radius);
-  color:var(--white);padding:4px 8px;font-family:'Space Mono',monospace;font-size:11px;
+  color:var(--white);padding:4px 8px;font-family:inherit;font-size:12px;
   width:180px;outline:none;transition:border-color .15s;
 }
 #trainer-input:focus{border-color:var(--gold)}
@@ -84,27 +85,27 @@ body{
 }
 #trainer-dropdown.open{display:block}
 .td-item{
-  padding:5px 10px;cursor:pointer;font-size:11px;white-space:nowrap;
+  padding:5px 10px;cursor:pointer;font-size:12px;white-space:nowrap;
   transition:background .1s;
 }
 .td-item:hover,.td-item.active{background:var(--gold-dim);color:var(--gold)}
 .pill-group{display:flex;flex-wrap:wrap;gap:5px}
 .pill{
-  cursor:pointer;padding:3px 8px;border-radius:12px;font-size:10px;
+  cursor:pointer;padding:4px 12px;border-radius:12px;font-size:12px;
   border:1px solid var(--border);color:var(--muted);background:transparent;
-  transition:all .15s;white-space:nowrap;user-select:none;
+  transition:all .15s;white-space:nowrap;user-select:none;letter-spacing:.02em;
 }
 .pill:hover{border-color:var(--border-h);color:var(--text2)}
 .pill.active{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
 #sort-select{
   background:#1a1a1a;border:1px solid var(--border);border-radius:var(--radius);
-  color:var(--white);padding:4px 8px;font-family:'Space Mono',monospace;font-size:11px;
+  color:var(--white);padding:4px 8px;font-family:inherit;font-size:12px;
   outline:none;cursor:pointer;
 }
 #clear-btn{
   margin-left:auto;padding:4px 12px;
   background:transparent;border:1px solid var(--border);border-radius:var(--radius);
-  color:var(--muted);font-family:'Space Mono',monospace;font-size:10px;
+  color:var(--muted);font-family:inherit;font-size:11px;
   cursor:pointer;letter-spacing:.08em;transition:all .15s;
 }
 #clear-btn:hover{border-color:var(--gold);color:var(--gold)}
@@ -112,39 +113,61 @@ body{
 /* ── GRID ── */
 #grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
   gap:12px;padding:16px 20px;
 }
 #no-results{
   grid-column:1/-1;text-align:center;color:var(--muted);
-  padding:60px 0;font-size:12px;letter-spacing:.1em;
+  padding:60px 0;font-size:13px;letter-spacing:.1em;
 }
 
 /* ── CARD ── */
 .card{
   background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);
-  padding:14px 16px 12px;cursor:pointer;transition:border-color .15s,background .15s;
-  display:flex;flex-direction:column;gap:8px;position:relative;
+  cursor:pointer;transition:border-color .15s,background .15s;
+  display:flex;flex-direction:column;overflow:hidden;position:relative;
 }
 .card:hover{background:var(--bg-card-h);border-color:var(--border-h)}
 .card.selected{border-color:var(--gold);background:var(--bg-card-h)}
-.card.watched{opacity:.55}
-.card.watched:hover,.card.watched.selected{opacity:1}
-.card-top{display:flex;align-items:center;gap:8px}
-.session-num{
-  font-family:'Bebas Neue',sans-serif;font-size:18px;
-  color:var(--gold);letter-spacing:.05em;min-width:36px;
+
+/* thumbnail */
+.card-thumb-wrap{position:relative;overflow:hidden}
+.card-thumb{
+  display:block;width:100%;aspect-ratio:16/9;object-fit:cover;
+  transition:filter .2s,opacity .2s;
 }
-.card-title{
-  font-size:12px;font-weight:700;line-height:1.35;color:var(--white);flex:1;
+.card-thumb-placeholder{
+  width:100%;aspect-ratio:16/9;background:#161616;
 }
-.card-trainer{font-size:11px;color:var(--text2)}
-.card-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.card-date{font-size:10px;color:var(--muted)}
-.card-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;margin-top:2px}
+.card.watched .card-thumb{filter:grayscale(1);opacity:.4}
+.card.watched:hover .card-thumb,
+.card.watched.selected .card-thumb{filter:none;opacity:1}
+.card-num{
+  position:absolute;bottom:8px;left:10px;
+  font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--gold);
+  text-shadow:0 1px 4px rgba(0,0,0,.8),0 0 12px rgba(0,0,0,.6);
+  line-height:1;pointer-events:none;
+}
+.card-thumb-wrap .watch-btn{
+  position:absolute;top:8px;right:8px;
+  width:26px;height:26px;
+  background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.18);border-radius:var(--radius);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:11px;color:rgba(255,255,255,.6);transition:all .15s;padding:0;
+}
+.card-thumb-wrap .watch-btn:hover{border-color:var(--gold);color:var(--gold);background:rgba(0,0,0,.7)}
+.card.watched .card-thumb-wrap .watch-btn{
+  border-color:var(--gold);background:var(--gold-dim);color:var(--gold);
+}
+
+/* card body */
+.card-body{padding:12px 14px 14px}
+.card-title{font-size:14px;font-weight:600;line-height:1.35;color:var(--white);margin-bottom:3px}
+.card-trainer{font-size:13px;color:var(--text2);margin-bottom:8px}
+.card-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px}
 .style-pills{display:flex;flex-wrap:wrap;gap:4px}
 .stag{
-  padding:2px 6px;border-radius:10px;font-size:9px;
+  padding:2px 7px;border-radius:10px;font-size:11px;
   border:1px solid;white-space:nowrap;
 }
 .stag-Muay-Khao  {color:#7baee8;border-color:rgba(123,174,232,.3);background:rgba(123,174,232,.08)}
@@ -154,24 +177,13 @@ body{
 .stag-Muay-Bouk  {color:#e8b07b;border-color:rgba(232,176,123,.3);background:rgba(232,176,123,.08)}
 .stag-Muay-Tae   {color:#e8e07b;border-color:rgba(232,224,123,.3);background:rgba(232,224,123,.08)}
 .card-actions{display:flex;align-items:center;gap:8px}
-.tech-count{font-size:10px;color:var(--muted)}
+.tech-count{font-size:12px;color:var(--muted)}
 .yt-btn{
-  font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.08em;
+  font-family:inherit;font-size:11px;letter-spacing:.04em;
   color:var(--gold);border:1px solid rgba(201,168,76,.4);border-radius:2px;
-  padding:3px 7px;text-decoration:none;transition:all .15s;white-space:nowrap;
+  padding:3px 8px;text-decoration:none;transition:all .15s;white-space:nowrap;
 }
 .yt-btn:hover{background:var(--gold-dim);border-color:var(--gold)}
-.watch-btn{
-  width:15px;height:15px;flex-shrink:0;
-  background:transparent;border:1px solid var(--muted);border-radius:2px;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;
-  font-size:9px;color:transparent;transition:all .15s;padding:0;
-}
-.watch-btn:hover{border-color:var(--gold);color:rgba(201,168,76,.4)}
-.card.watched .watch-btn{
-  border-color:var(--gold);background:var(--gold-dim);
-  color:var(--gold);
-}
 
 /* ── DETAIL DRAWER ── */
 #detail-panel{
@@ -193,10 +205,10 @@ body{
   color:var(--gold);letter-spacing:.05em;white-space:nowrap;
 }
 #detail-title-text{
-  font-size:11px;font-weight:700;white-space:nowrap;
+  font-size:13px;font-weight:600;white-space:nowrap;
   overflow:hidden;text-overflow:ellipsis;
 }
-#detail-trainer{font-size:10px;color:var(--text2)}
+#detail-trainer{font-size:12px;color:var(--text2)}
 #detail-embed{
   flex-shrink:0;border-left:1px solid var(--border);margin-left:8px;padding-left:12px;
 }
@@ -204,7 +216,7 @@ body{
 #detail-embed-placeholder{
   width:160px;height:90px;background:#1a1a1a;border-radius:2px;
   display:flex;align-items:center;justify-content:center;
-  font-size:9px;color:var(--muted);letter-spacing:.08em;
+  font-size:11px;color:var(--muted);letter-spacing:.08em;
 }
 #detail-close{
   background:none;border:1px solid var(--border);border-radius:2px;
@@ -221,25 +233,26 @@ body{
   width:360px;overflow-y:auto;padding:12px 16px;flex-shrink:0;
 }
 .panel-heading{
-  font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:.12em;
+  font-family:Inter,system-ui,-apple-system,sans-serif;font-weight:600;
+  font-size:11px;letter-spacing:.1em;text-transform:uppercase;
   color:var(--muted);margin-bottom:10px;
 }
 .tech-item{
-  padding:8px 0;border-bottom:1px solid var(--border);
+  padding:12px 0;border-bottom:1px solid var(--border);
   transition:opacity .15s;
 }
 .tech-item.dim{opacity:.28}
 .tech-item:last-child{border-bottom:none}
-.tech-name{font-size:12px;font-weight:700;color:var(--white);margin-bottom:4px}
+.tech-name{font-size:13px;font-weight:600;color:var(--white);margin-bottom:4px}
 .tech-name .match-highlight{color:var(--gold)}
-.tech-desc{font-size:11px;color:var(--text2);line-height:1.5;margin-bottom:4px}
+.tech-desc{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:4px}
 .tech-quote{
-  font-size:10px;font-style:italic;color:var(--muted);
-  border-left:2px solid var(--border);padding-left:8px;line-height:1.45;
+  font-size:13px;font-style:italic;color:var(--text2);
+  border-left:2px solid var(--gold);padding-left:10px;margin-top:4px;line-height:1.5;
 }
 .tech-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
 .ttag{
-  padding:2px 6px;border-radius:10px;font-size:9px;border:1px solid var(--border);color:var(--muted);
+  padding:2px 6px;border-radius:10px;font-size:11px;border:1px solid var(--border);color:var(--muted);
 }
 .ttag-knee,.ttag-clinch{border-color:rgba(201,168,76,.35);color:#c9a84c}
 .ttag-kick,.ttag-teep  {border-color:rgba(123,174,232,.35);color:#7baee8}
@@ -248,8 +261,8 @@ body{
 .ttag-footwork,
 .ttag-sweep            {border-color:rgba(123,232,160,.35);color:#7be8a0}
 
-.notes-text{font-size:0.875rem;color:var(--text2);word-break:break-word}
-.notes-text p{line-height:1.7;margin-bottom:0.9em}
+.notes-text{font-size:14px;color:var(--text2);word-break:break-word;max-width:55ch;line-height:1.7}
+.notes-text p{margin-bottom:0.9em}
 .notes-text p:last-child{margin-bottom:0}
 
 /* ── MORE FROM TRAINER ── */
@@ -267,8 +280,8 @@ body{
   font-family:'Bebas Neue',sans-serif;font-size:15px;
   color:var(--gold);min-width:30px;
 }
-.more-title{font-size:11px;font-weight:700;flex:1;line-height:1.3}
-.more-meta{font-size:10px;color:var(--muted);white-space:nowrap}
+.more-title{font-size:13px;font-weight:500;flex:1;line-height:1.3}
+.more-meta{font-size:12px;color:var(--muted);white-space:nowrap}
 
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar{width:4px;height:4px}
@@ -415,22 +428,26 @@ function renderCards(){
     ).join('');
     const isW = watched.has(s.source_id);
     const isSel = ST.selected===s.source_id;
+    const vid = ytId(s.youtube_url);
+    const thumb = vid
+      ? `<img class="card-thumb" src="https://img.youtube.com/vi/${vid}/mqdefault.jpg" alt="" loading="lazy">`
+      : '<div class="card-thumb-placeholder"></div>';
     return `<div class="card${isW?' watched':''}${isSel?' selected':''}"
       data-id="${s.source_id}" onclick="handleCardClick(event,${s.source_id})">
-      <div class="card-top">
-        <span class="session-num">#${s.session_number}</span>
-        <span class="card-title">${esc(sessionLabel(s))}</span>
+      <div class="card-thumb-wrap">
+        ${thumb}
+        <span class="card-num">#${s.session_number}</span>
         <button class="watch-btn" title="${isW?'Unmark':'Mark watched'}" onclick="toggleWatched(event,${s.source_id})">${isW?'&#x2713;':'&#x25CB;'}</button>
       </div>
-      <div class="card-trainer">${esc(s.trainer_name||'Unknown')}</div>
-      <div class="card-meta">
-        <span class="card-date">${fmtDate(s.post_date)}</span>
-      </div>
-      <div class="card-footer">
-        <div class="style-pills">${pills}</div>
-        <div class="card-actions">
-          <span class="tech-count">${tcLabel} tech</span>
-          ${s.youtube_url?`<a class="yt-btn" href="${esc(s.youtube_url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">&#9654; WATCH</a>`:''}
+      <div class="card-body">
+        <div class="card-title">${esc(sessionLabel(s))}</div>
+        <div class="card-trainer">${esc(s.trainer_name||'Unknown')}</div>
+        <div class="card-footer">
+          <div class="style-pills">${pills}</div>
+          <div class="card-actions">
+            <span class="tech-count">${tcLabel} tech</span>
+            ${s.youtube_url?`<a class="yt-btn" href="${esc(s.youtube_url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">&#9654; WATCH</a>`:''}
+          </div>
         </div>
       </div>
     </div>`;
@@ -458,7 +475,7 @@ function openDetail(session){
   const matchSet = ST.techTypes;
   const tp = document.getElementById('tech-panel');
   if(!techs.length){
-    tp.innerHTML='<div class="panel-heading">TECHNIQUES</div><div style="color:var(--muted);font-size:11px">No techniques extracted for this session.</div>';
+    tp.innerHTML='<div class="panel-heading">TECHNIQUES</div><div style="color:var(--muted);font-size:13px">No techniques extracted for this session.</div>';
   } else {
     tp.innerHTML = '<div class="panel-heading">TECHNIQUES — '+techs.length+'</div>' +
       techs.map(t => {
@@ -483,7 +500,7 @@ function openDetail(session){
   np.innerHTML = '<div class="panel-heading">SESSION NOTES</div>' +
     (session.notes_text
       ? `<div class="notes-text">${notesHtml(session.notes_text)}</div>`
-      : '<div style="color:var(--muted);font-size:11px">No notes available.</div>');
+      : '<div style="color:var(--muted);font-size:13px">No notes available.</div>');
 
   // More from this trainer
   if(session.trainer_name){
