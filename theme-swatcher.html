@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="editorial">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T4 Theme Swatcher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+
+/* ===== THEME DEFINITIONS ===== */
+
+[data-theme="editorial"] {
+  --bg: #111111;
+  --bg-card: #1a1a1a;
+  --bg-card-h: #202020;
+  --bg-bar: #0d0d0d;
+  --border: #2a2a2a;
+  --border-h: #3d3d3d;
+  --accent: #c9a84c;
+  --accent-dim: rgba(201,168,76,.12);
+  --text: #e8e8e8;
+  --text2: #aaaaaa;
+  --muted: #888888;
+  --radius: 4px;
+  --font-body: Inter, system-ui, sans-serif;
+  --font-display: 'Bebas Neue', sans-serif;
+}
+
+[data-theme="thai-fight-poster"] {
+  --bg: #0a0a0a;
+  --bg-card: #111111;
+  --bg-card-h: #1a0a0a;
+  --bg-bar: #050505;
+  --border: #2a1010;
+  --border-h: #c0392b;
+  --accent: #c0392b;
+  --accent-dim: rgba(192,57,43,.15);
+  --text: #ffffff;
+  --text2: #cccccc;
+  --muted: #666666;
+  --radius: 0px;
+  --font-body: 'Arial Narrow', Arial, sans-serif;
+  --font-display: Impact, 'Arial Black', sans-serif;
+}
+
+[data-theme="documentary-archive"] {
+  --bg: #1a1410;
+  --bg-card: #221c16;
+  --bg-card-h: #2a2018;
+  --bg-bar: #120f0a;
+  --border: #3a2e24;
+  --border-h: #5a4a38;
+  --accent: #b8965a;
+  --accent-dim: rgba(184,150,90,.15);
+  --text: #d4c4a0;
+  --text2: #a89070;
+  --muted: #705840;
+  --radius: 2px;
+  --font-body: Georgia, 'Times New Roman', serif;
+  --font-display: Georgia, serif;
+}
+
+[data-theme="gym-wall"] {
+  --bg: #1c1c1c;
+  --bg-card: #242424;
+  --bg-card-h: #2c2c2c;
+  --bg-bar: #141414;
+  --border: #333333;
+  --border-h: #555555;
+  --accent: #c0392b;
+  --accent-dim: rgba(192,57,43,.1);
+  --text: #f0f0f0;
+  --text2: #b0b0b0;
+  --muted: #707070;
+  --radius: 0px;
+  --font-body: 'Courier New', Courier, monospace;
+  --font-display: 'Courier New', Courier, monospace;
+}
+
+[data-theme="night-market"] {
+  --bg: #080c10;
+  --bg-card: #0d1318;
+  --bg-card-h: #131c24;
+  --bg-bar: #050810;
+  --border: rgba(0,212,255,.15);
+  --border-h: rgba(0,212,255,.4);
+  --accent: #00d4ff;
+  --accent-dim: rgba(0,212,255,.1);
+  --accent2: #ff2d78;
+  --text: #e0f4ff;
+  --text2: #7ab8cc;
+  --muted: #3a6070;
+  --radius: 0px;
+  --font-body: 'Courier New', Courier, monospace;
+  --font-display: 'Courier New', Courier, monospace;
+}
+
+/* ===== BASE / RESET ===== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  transition: background .2s, color .2s;
+}
+
+/* Night Market grid background */
+[data-theme="night-market"] body {
+  background-image:
+    linear-gradient(rgba(0,212,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,.04) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* ===== TOGGLE BAR ===== */
+
+.theme-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg-bar);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 20px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.t-btn {
+  padding: 6px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 12px;
+  font-family: var(--font-body);
+  transition: all .15s;
+}
+
+.t-btn:hover {
+  border-color: var(--border-h);
+  color: var(--text2);
+}
+
+.t-btn.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+/* ===== PREVIEW WRAP ===== */
+
+.preview-wrap {
+  max-width: 700px;
+  margin: 32px auto;
+  padding: 0 20px;
+}
+
+.preview-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+  margin-top: 24px;
+  font-family: var(--font-body);
+}
+
+/* ===== CARD ===== */
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  width: 320px;
+}
+
+/* Thai Fight Poster: red left border accent */
+[data-theme="thai-fight-poster"] .card {
+  border-left: 4px solid var(--accent);
+}
+
+/* Documentary Archive: sepia thumbnail */
+[data-theme="documentary-archive"] .card-thumb {
+  background: #2a2018 !important;
+}
+
+/* Gym Wall: dashed border */
+[data-theme="gym-wall"] .card {
+  border-style: dashed;
+}
+
+/* Night Market: neon glow */
+[data-theme="night-market"] .card {
+  box-shadow: 0 0 0 1px var(--border), 0 0 12px var(--accent-dim);
+}
+
+.card-thumb {
+  aspect-ratio: 16/9;
+  width: 100%;
+  background: var(--bg-card-h);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-thumb-icon {
+  color: var(--muted);
+  font-size: 28px;
+  opacity: 0.5;
+  font-family: var(--font-body);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.session-badge {
+  position: absolute;
+  bottom: 8px;
+  left: 10px;
+  font-family: var(--font-display);
+  font-size: 26px;
+  color: var(--accent);
+  text-shadow: 0 1px 6px rgba(0,0,0,.9);
+  line-height: 1;
+}
+
+.watch-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: var(--radius);
+  padding: 7px 18px;
+  font-size: 12px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity .15s;
+}
+
+[data-theme="night-market"] .watch-btn {
+  background: #ff2d78;
+  color: #fff;
+}
+
+.card-thumb:hover .watch-btn {
+  opacity: 1;
+}
+
+.card-body {
+  padding: 12px 14px 14px;
+}
+
+.card-title {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+[data-theme="gym-wall"] .card-title {
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.card-trainer {
+  font-size: 13px;
+  color: var(--text2);
+  margin-top: 4px;
+  font-family: var(--font-body);
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 10px;
+}
+
+.card-meta {
+  font-size: 11px;
+  color: var(--muted);
+  margin-right: auto;
+}
+
+.style-pill {
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-family: var(--font-body);
+}
+
+/* ===== FILTER BAR ===== */
+
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--bg-bar);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+[data-theme="night-market"] .filter-bar {
+  box-shadow: 0 0 0 1px var(--border), 0 0 12px var(--accent-dim);
+}
+
+.filter-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-right: 10px;
+  border-right: 1px solid var(--border);
+  white-space: nowrap;
+  font-family: var(--font-body);
+}
+
+.filter-pill {
+  padding: 4px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+  background: transparent;
+  font-family: var(--font-body);
+  transition: all .15s;
+}
+
+.filter-pill:hover {
+  border-color: var(--border-h);
+  color: var(--text2);
+}
+
+.filter-pill.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+/* ===== DRAWER HEADER ===== */
+
+.drawer-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--accent);
+  border-radius: var(--radius);
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+[data-theme="night-market"] .drawer-head {
+  box-shadow: 0 0 0 1px var(--border), 0 0 12px var(--accent-dim);
+}
+
+.drawer-session-num {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--accent);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.drawer-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.drawer-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  font-family: var(--font-body);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+[data-theme="gym-wall"] .drawer-title {
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.drawer-trainer {
+  font-size: 12px;
+  color: var(--text2);
+  font-family: var(--font-body);
+  margin-top: 2px;
+}
+
+.embed-placeholder {
+  width: 100px;
+  height: 56px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  color: var(--muted);
+  flex-shrink: 0;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-family: var(--font-body);
+}
+
+.close-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: var(--radius);
+  font-size: 12px;
+  font-family: var(--font-body);
+  flex-shrink: 0;
+  transition: all .15s;
+}
+
+.close-btn:hover {
+  border-color: var(--border-h);
+  color: var(--text2);
+}
+
+</style>
+</head>
+<body>
+
+<!-- TOGGLE BAR -->
+<div class="theme-bar">
+  <button class="t-btn" data-theme="editorial">Editorial</button>
+  <button class="t-btn" data-theme="thai-fight-poster">Thai Fight Poster</button>
+  <button class="t-btn" data-theme="documentary-archive">Documentary Archive</button>
+  <button class="t-btn" data-theme="gym-wall">Gym Wall</button>
+  <button class="t-btn" data-theme="night-market">Night Market</button>
+</div>
+
+<!-- PREVIEW AREA -->
+<div class="preview-wrap">
+
+  <!-- CARD -->
+  <div class="preview-label">Card</div>
+  <div class="card">
+    <div class="card-thumb">
+      <span class="card-thumb-icon">Thumbnail</span>
+      <div class="session-badge">#6</div>
+      <button class="watch-btn">Watch</button>
+    </div>
+    <div class="card-body">
+      <div class="card-title">The Long Guard — Maintaining Distance and Redirecting Attacks</div>
+      <div class="card-trainer">Karuhat Sor Supawan</div>
+      <div class="card-footer">
+        <span class="card-meta">8 techniques &middot; Nov 2018</span>
+        <span class="style-pill">Muay Femur</span>
+        <span class="style-pill">Muay Khao</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILTER BAR -->
+  <div class="preview-label">Filter Bar</div>
+  <div class="filter-bar">
+    <span class="filter-label">Style</span>
+    <button class="filter-pill active">Muay Femur</button>
+    <button class="filter-pill">Muay Khao</button>
+    <button class="filter-pill">Muay Mat</button>
+    <button class="filter-pill">Muay Tae</button>
+    <button class="filter-pill">All</button>
+  </div>
+
+  <!-- DRAWER HEADER -->
+  <div class="preview-label">Drawer Header</div>
+  <div class="drawer-head">
+    <div class="drawer-session-num">#6</div>
+    <div class="drawer-info">
+      <div class="drawer-title">The Long Guard — Maintaining Distance and Redirecting Attacks</div>
+      <div class="drawer-trainer">Karuhat Sor Supawan</div>
+    </div>
+    <div class="embed-placeholder">video embed</div>
+    <button class="close-btn">&#x2715;</button>
+  </div>
+
+</div>
+
+<script>
+  // Initialize theme from first button
+  const buttons = document.querySelectorAll('.t-btn');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.documentElement.setAttribute('data-theme', btn.dataset.theme);
+    });
+  });
+
+  // Set default theme
+  document.documentElement.setAttribute('data-theme', 'editorial');
+  document.querySelector('.t-btn[data-theme="editorial"]').classList.add('active');
+
+  // Filter pill toggle (demo interactivity)
+  document.querySelectorAll('.filter-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
