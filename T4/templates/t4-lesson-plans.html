@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T4 Lesson Plans & Session Notes</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0d0d0d; color: #e0e0e0; font-family: 'Georgia', serif; }
+  header { background: #111; border-bottom: 2px solid #c9a84c; padding: 24px 32px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; }
+  header h1 { font-family: 'Bebas Neue', 'Impact', sans-serif; font-size: 2rem; color: #c9a84c; letter-spacing: 2px; }
+  header span { color: #666; font-size: 0.9rem; }
+  .controls { padding: 16px 32px; display: flex; gap: 12px; align-items: center; background: #0d0d0d; border-bottom: 1px solid #222; }
+  .controls input { background: #1a1a1a; border: 1px solid #333; color: #e0e0e0; padding: 8px 14px; border-radius: 4px; font-size: 0.9rem; width: 300px; }
+  .controls input:focus { outline: none; border-color: #c9a84c; }
+  .controls select { background: #1a1a1a; border: 1px solid #333; color: #e0e0e0; padding: 8px 12px; border-radius: 4px; font-size: 0.9rem; }
+  .doc-count { margin-left: auto; color: #666; font-size: 0.85rem; }
+  .grid { display: grid; grid-template-columns: 300px 1fr; min-height: calc(100vh - 120px); }
+  .sidebar { background: #111; border-right: 1px solid #222; overflow-y: auto; }
+  .doc-item { padding: 14px 20px; border-bottom: 1px solid #1a1a1a; cursor: pointer; transition: background 0.15s; }
+  .doc-item:hover { background: #1a1a1a; }
+  .doc-item.active { background: #1a1a1a; border-left: 3px solid #c9a84c; }
+  .doc-item .doc-title { font-size: 0.85rem; color: #ddd; line-height: 1.4; }
+  .doc-item .doc-type { font-size: 0.7rem; color: #c9a84c; margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
+  .doc-item.hidden { display: none; }
+  .content { padding: 40px; overflow-y: auto; max-height: calc(100vh - 120px); }
+  .content h2 { font-size: 1.4rem; color: #c9a84c; margin-bottom: 8px; font-family: 'Bebas Neue', 'Impact', sans-serif; letter-spacing: 1px; }
+  .content .meta { color: #666; font-size: 0.8rem; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid #222; }
+  .content .body { font-size: 0.9rem; line-height: 1.8; color: #ccc; white-space: pre-wrap; }
+  .placeholder { display: flex; align-items: center; justify-content: center; height: 100%; color: #444; font-size: 1.1rem; }
+  .tag { display: inline-block; background: #1a1a1a; border: 1px solid #333; color: #888; font-size: 0.7rem; padding: 2px 8px; border-radius: 3px; margin-right: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .tag.lesson { border-color: #c9a84c; color: #c9a84c; }
+  .tag.notes { border-color: #5588aa; color: #5588aa; }
+  .tag.reference { border-color: #558855; color: #558855; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>T4 LESSON PLANS & SESSION NOTES</h1>
+  <span id="docCountHeader">32 documents</span>
+</header>
+
+<div class="controls">
+  <input type="text" id="search" placeholder="Search documents..." oninput="filterDocs()">
+  <select id="typeFilter" onchange="filterDocs()">
+    <option value="">All types</option>
+    <option value="lesson">Lesson Plans</option>
+    <option value="notes">Session Notes</option>
+  </select>
+  <span class="doc-count" id="visibleCount">32 documents</span>
+</div>
+
+<div class="grid">
+  <div class="sidebar" id="sidebar"></div>
+  <div class="content" id="content">
+    <div class="placeholder">Select a document to read</div>
+  </div>
+</div>
+
+<script>
+const docs = [
+  {
+    id: "wangchannoi_simple",
+    title: "Wangchannoi #93 — Simple Class Structure (Counter Fighting)",
+    type: "lesson",
+    content: `MONDAY: MUAY THAI
+
+Counter Fighting – Step With Every Strike & Disrupt Their Frame
+
+(You already have your standard warm-up sequence – not included here.)
+
+Partner Drills: Gloves
+
+Round 1 (4 Min) – Step with Every Punch
+Partners go 4-for-4, trading single strikes with step:
+- Jab with step
+- Cross with step
+- Lead uppercut with step
+- Hook with diagonal step forward and pivot rear foot to recover stance
+
+Focus: "Like stepping off a curb." Foot and punch land together. Head stays over hips, no ducking or leaning.
+
+Round 2 (4 Min) – Unified Body Mechanics
+Partners go 4-for-4:
+- Jab – ensure shoulder touches jaw
+- Cross – shoulder brushes jaw
+- Lead uppercut – load hook
+- Hook – elbow stays low, no turning over
+
+Focus: Head stays straight. No side-to-side. No squatting. Everything drives forward, unified.
+
+Round 3 (4 Min) – Disrupting Frame
+Partners go 4-for-4:
+- Jab + lead uppercut + hook
+- Jab + hook to neck
+- Lead uppercut + hook to collarbone
+- Cross + hook to ear
+
+Goal: Make them step back. Hit the neck or collarbone to break posture. Talk about making them reset.
+
+Round 4 (4 Min) – Defense with Hands and Elbows
+Partners go 4-for-4 (one attacks, one defends):
+- Bat straight punches (short chop deflections)
+- Shunt block lead hook
+- Elbow block uppercut
+- Shunt + elbow block cross
+
+Focus: No leaning. No distance defense. Defense creates the next strike.
+
+Round 5 (4 Min) – Counter Fighting Flow
+Pad holder feeds sequence, striker responds:
+- Block jab (bat) → step + cross
+- Shunt block lead hook → jam forearm to neck → rear roundhouse
+- Bat cross → lead uppercut + cross
+- Elbow block uppercut → pivot + cross/hook
+
+Focus: Punch as foot lands. Every strike has weight. Disrupt their balance.
+
+Round 6 (4 Min) – Off-Balancing After Catch or Block
+- Catch teep → push-pull-push → rear kick
+- Shunt hook → step forward → jam → cross
+- Catch jab → yank shoulder off-line → roundhouse
+- Catch body kick → shove → cross + lead knee`
+  },
+  {
+    id: "wangchannoi_lesson1",
+    title: "Wangchannoi Lesson 1 — Raw Notes & Principles",
+    type: "lesson",
+    content: `Wangchannoi Sor Palangchai. Lesson1
+
+Class: 60 minutes. First 5 min stretching/warmup. Last 5 min burnouts with weights.
+
+CORE TECHNIQUES & PRINCIPLES:
+
+Go light at first — warm up, become good partners.
+
+Stepping with every punch: Uppercut. Jab. Cross. Hook. On the hook step diagonally forward. Then pivot your rear foot back into a good balanced position. Set the hook up with some uppercuts. Aim for neck and ear. Use the lead uppercut to setup hooks and crosses. Don't turn the elbow over on the hook.
+
+Goal: Hit them hard enough to disrupt their balance. Make them step back. Interrupt the series of punches they want to throw. Break their frame. After shunt block: roundhouse, knee, elbow, or cross.
+
+Defense without distance: Don't use distance for defense. Deflect punches using little chopping turning motions with your hands. This can make their punch go across their own body — then throw a counter roundhouse. If punch is straight: bat it. If hook: shunt.
+
+Drill each separately. Then drill together.
+
+3rd component: Blocking punches using your elbows combined with a shunt-type rotating block. Uppercuts can be blocked with elbows or by turning hand palm-down to catch it.
+
+Putting it all together: Block jab and cross with shunts and elbows. Disrupt the 3rd punch (the hook) with the step-straight-arm combined with a shunt. After the shunt: roundhouse, elbow, or cross.
+
+KEY PRINCIPLES FROM THE SESSION:
+
+1) Countering a lead hook: Step forward and jam opponent with a stiff forearm to the neck or collarbone while tight shunt blocking.
+
+1a) Step on EVERY SINGLE STRIKE. All of them. Like stepping off a curb — whole weight coming forward, sometimes quite long — but head stays over hip and shoulder. Never dive the head beyond the foot.
+
+2) The head comes forward: on jab or cross your head comes forward (never beyond the foot) but it's STRAIGHT. Don't let head go side to side — kills power. Don't squat into legs — kills power. Right shoulder should touch right jaw, head stays straight.
+
+3) Block with your elbows.
+
+4) Off-Balance (Sia Lak): Ruin your opponent's balance. Punch through someone so their counter kick is spoiled and second attack is ensured. Catch a teep → push, pull, push again → kick their head off.
+
+5) Target the Neck: Top of head is bone — don't bother. Jaw has nerves but can be protected. The neck has all the nerves and all the weakness of a slack jaw. Target that.
+
+6) Counter (Jang-wa Song): He comes forward, pressures, knocks opponents back. But let opponent go first and wait. "Be slow, jai yen yen, but hit hard."
+
+7) The Order of Things: Rounds 1-2 = lower strikes, body punches, leg kicks. Hurt them and tire them. Make them slow. Rounds 3-5 = scoring.`
+  },
+  {
+    id: "wangchannoi_2",
+    title: "Wangchannoi #93 Lesson — Full Structured Plan with Drills",
+    type: "lesson",
+    content: `Wangchannoi Sor Palangchai. #93 Lesson1 Counter Fighting
+
+60-minute class. First 5 min warmup. Last 5 min burnouts.
+
+PRINCIPLE INTRODUCTION:
+Counter-attacks, stepping with strikes, maintaining balance, targeting vulnerable areas, and pacing a fight.
+
+Counter-attacks disrupt an opponent's offensive momentum, turning their strikes into opportunities. Stepping with each strike = stepping off a small curb, bringing whole bodyweight forward, increasing power. Balance is crucial for defense, evasion, power, and accurate strikes. The neck is vulnerable — less muscular and bony protection than head or torso. Pace a fight: rounds 1-2 are lower strikes, 3-5 are scoring.
+
+STEPPING WITH EVERY STRIKE:
+Students practice stepping forward on each strike. Whole bodyweight into the strike. Control is essential — maintain balance and be ready for the next movement.
+
+MAINTAINING A STRAIGHT HEAD:
+A straight head = balance and focus. Straight head aligned with spine protects the chin. Practice forward movements keeping head straight without throwing strikes.
+
+DRILL 1 — Countering a Lead Hook:
+In pairs. One student throws a lead hook, the other counters by stepping forward and jamming a stiff forearm into partner's neck or collarbone. Forearm jam serves as both block and strike — defense immediately becomes offense.
+
+DRILL 2 — Unified Body Movement and Cross Technique:
+Practice throwing crosses so shoulder brushes jaw. Ensures head stays straight, body unified behind the punch, maximizing power.
+
+DRILL 3 & 4 — Blocking with Elbows, Shunt Blocks, Off-Balancing:
+Practice blocking strikes using elbows. Incorporate shunt-type blocks to deflect incoming attacks. After catching partner's teep, practice off-balancing: push-pull-push to disrupt their stance.
+
+TARGETING THE NECK:
+Neck lacks muscular and bony protection of head and body. Susceptible to strikes that end fights. Practice slow, controlled strikes to neck area.
+
+TIMED LESSON PLAN:
+
+00:00–05:00 — Warmup and Stretching
+Neck circles, shoulder circles, arm swings, leg swings, ankle rolls.
+
+05:01–10:00 — Introduction and Stepping with Every Strike
+Introduce core principles. Highlight stepping with every strike — like stepping off a small curb, full weight forward, power amplified.
+
+10:01–15:00 — Drill 1: Stepping with Strikes
+Pairs practice stepping into strikes. Maintain balance, heads aligned over hips and shoulders.
+
+15:01–20:00 — Head Position and Unified Body Movement
+Keep head straight for balance, accuracy, power. Unified body = maximum power transfer on the cross.
+
+20:01–30:00 — Drill 2: Unified Body Movement with Crosses
+Pairs practice crosses — shoulder brushes jaw = straight head, full body power.
+
+30:01–35:00 — Elbow Blocking and Shunt Blocks
+Use elbows to block incoming strikes. Shunt-type blocks deflect punches. Solid defense sets up counter-strikes.
+
+35:01–45:00 — Drill 3: Elbow Blocking and Shunt Blocks
+One throws punches, other practices blocks. Focus on timing and positioning.
+
+45:01–50:00 — Off-Balance (Sia Lak) Techniques
+Off-balance opponent to disrupt rhythm and create openings. After catching teep: push-pull-push sequence.
+
+50:01–55:00 — Drill 4: Off-Balance Techniques
+Pairs alternate roles — executing and defending against off-balance tactics.
+
+55:01–60:00 — Burnout Session
+Kettlebell swings (20 reps), goblet squats (30 sec), push press (30 sec per arm).`
+  },
+  {
+    id: "matee_132",
+    title: "#132 Matee Jedeepitak — Femeu Timing & Distance (Lesson Plan)",
+    type: "lesson",
+    content: `#132 Matee Jedeepitak - The Keys To Femeu Timing & Distance (1 hr, 6 min)
+
+Core principle triad: TIMING, DISTANCE, BASICS.
+
+RAW NOTES:
+1. Warm up drill — combo of skipping rope and tire jumping. Helps find rhythm and timing. Don't throw hands at first. Then add hands. Hands should land at the same time as the feet.
+
+2. Skip Back countering. Pretend tire jumping = jumping over a large tire in a "U" shape. Skip Back a couple times. Quickly launch rear leg after briefly touching for roundhouse. Can also be a teep or a knee (long weapons). Don't slide. Skip. Wait until they throw a weapon to do it.
+
+Explains why it's a skip not a slide: if you are wrong you can change stance and skip again instead of launching the kick. The transition of change = same as the skip back but you slow down a little bit and let the front foot slide to the rear before it quickly launches.
+
+Drill: Skip back and switch stances. When you switch stance either throw a switch kick or a cross. Or skip back again and throw the other side roundhouse.
+
+Walking backward alternate steps. Choose a leg you are going to kick with. Step back. Touch, launch off the ground.
+
+KEY TEACHING POINTS FROM SYLVIE'S NOTES:
+
+Timing: Footwork exercise is his standard warmup — bouncing on a tire or skipping rope — can add punches to land at same time as feet.
+
+Skip Back/Walk Back: Ideal for counter striking. "Skip" is a much considered word — not the same as a jump or a slide. Skip allows speed, ability to make quick adjustment, create more space or pivot if needed.
+
+Momentum: Weight and balance. Necessary for maintaining distance while moving forward or backward.
+
+Countering > Blocking: Matee prefers a counter to a block — difference between opponent's timing (blocking) or "my timing" (countering).
+
+Not Rotating the Shoulders: Keep shoulders still and rotate only the torso for power. Feet can switch stance and change direction without giving away intentions. Invisibility. Rotating shoulders slows you down and over-commits you.
+
+Trampoline Floor: Same "springboard" floor as Karuhat — foot tapping down and springing up with incredible speed to land counter strikes against an advancing opponent.
+
+STRUCTURED CLASS:
+
+Segment 1 (5 min) — Warm-Up
+Skipping rope or pretend tire jumping. Find rhythm and timing without focusing on hands. Don't turn body. Find your timing.
+
+Segment 2 (5 min) — Adding Punches to Warm-Up
+Add punches — land at same time as feet. Sync punches with footwork.
+
+Segment 3 (5 min) — Skip Back Countering
+Explain difference between skipping and sliding. Skip back rather than slide. Quickly launch rear leg roundhouse, teep, or knee.
+
+Segment 4 (10 min) — Skip Back with Stance Switch
+Integrate stance switch. Skip back → change stance → throw switch kick or cross. Or skip back again and throw other side roundhouse. Focus on smoothness and speed of transitions.
+
+Segment 5 (15 min) — Skip vs Slide and Stance Switching
+Explanation (3 min): Skip = speed + ability to adjust. Slide = limits options.
+Skip Back Drill (4 min): Start in fighting stance, skip back quickly as if evading strike. Can change stance and skip again if wrong.
+Stance Switch Drill (4 min): Add stance switch to the skip. Slow down slightly, let front foot slide to rear before launching next move.
+Skip Back, Switch, and Strike (4 min): Add counter-strike after stance switch — switch kick, cross, or other-side roundhouse.
+
+Segment 6 (10 min) — Backward Walking with Counter
+Walking backward using alternate steps. Choose one leg for counter-kick. Step back, lightly touch ground, launch kick immediately. Quick footwork and timing.
+
+BURNOUT:
+Leg strengthening: mini dips with weights under heels. Start at 50-100, work to 500.
+Neck strengthening: weight held by towel, perform lifts.
+Weighted shadow boxing: small weights each hand.
+Bouncing knee to chest.
+Partner hop-and-scramble drill (10 reps, switch).
+Final: bounce, high knee, clap hands under raised knee.
+Kettlebell swings (30 sec), goblet squats (30 sec), push press (30 sec per arm).`
+  },
+  {
+    id: "namsaknoi_65",
+    title: "#65 Namsaknoi Yudthagarngamtorn — Sharking The Angles",
+    type: "notes",
+    content: `#65 Namsaknoi Yudthagarngamtorn 1 - Sharking The Angles (67 min)
+Jul 4, 2019
+
+Fighter of the Year 1996. 6 years undefeated as Lumpinee Champion.
+
+Playful but when you feel him shift from evasiveness to "I'm just going to stand right here," you don't feel like he's so nice anymore.
+
+WHAT TO LOOK FOR:
+
+1) His Stance: Watch his legs. Broader stance than Karuhat — uses this to pace outside of his opponent's stance all the time. Able to cut off the ring, corral the opponent, slip to the side, throw a strike you didn't see — all from always staying outside the opponent's stance.
+
+2) Switch-Step Punches: Namsaknoi gallops with a switch step to turn his jab into a cross. Uses this as a slip to an opponent's jab, or just to get to the outside and land a strike any time. If opponent doesn't go backwards, use this as a clinch grab.
+
+3) Off-Line: General technique of getting "off-line" with what looks like a stagger step that's either lateral (slipping the jab and throwing a headkick) or 45 degrees to the outside of opponent's foot for a strike.
+
+4) The Juggernaut: Slips to the outside like a standard boxer's slip, then reverses direction and body-checks with that front shoulder.
+
+5) Head Dives: Quick duck down and tackle. Changing of levels, a fake, a body attack, or a hidden headkick. Uses it to close distance.
+
+6) Strategic Change of Direction: Brilliant at pushing in one direction and then immediately reversing. Goes backwards then does the head dive and is past you. Or starts going right then flips left.
+
+7) "Good Idea/Bad Idea": Whole program of letting opponent think they've made a good decision, which turns out to be a bad decision. Lets them land a strike — "if they can do it, they will do it again" — but then has a solution. Lets them do it one extra time so they can pat themselves on the back and maybe throw themselves into it harder. To their peril.`
+  },
+  {
+    id: "khorat_39",
+    title: "#39 Khorat Saknarin — Precise Tensions",
+    type: "notes",
+    content: `#39 Khorat Saknarin - Precise Tensions (97 min)
+May 11, 2018
+
+Style: Slick, powerful, aggressive. Insisted on looking opponent in the eye as focal point — from which you can get a full sight picture. Strategic and evasive, but aggressive and powerful.
+
+KEY TECHNIQUES:
+
+Palm Catch on a Kicked Leg: Using palm of hand to dissipate power on a caught kick. Interrupting the kick on impact. Effective at dissipating power AND gives a lot of control of the caught leg for counters.
+
+Parry, Pause, Then Kick: Huge realization. Parry an arm or punch, step over and kick as opponent is stopped or "matadored" to the side. The fix: just take a split second to let the parry sink in before throwing the kick. They're individual, precise, distinct. Not stopping — pausing for emphasis. (Khorat called the muddy version "muay mua" — indistinct movements.)
+
+Arm Hook on a Parry: Khorat doesn't just slap the guard down — he uses palm or wrist to HOOK the forearm, Scorpion-style "Get over here!", yanking opponent into his elbow.
+
+Air-Kick Defense: When your kick is caught, do a secondary "air kick" as the leg is being thrown and it keeps you from spinning, almost at all. Doesn't matter how hard opponent spins you — if you air kick as they try, you stay put. Total control of your own leg without tensing up. Mind-blowing.
+
+Tension + Looseness: Appears to have insanely tense energy — cuts through everything. But hidden looseness in his darting, evasive maneuvers. Puts his face forward and stares into your eyes to get you to try to punch him, then darts away and counters hard. You can't accomplish the get-out-of-the-way part if you're truly tense. Tense in the right places, loose enough to move really fast.
+
+TEACHING STYLE: Moved through technique demonstrations so quickly. Never ran out. Wealth of knowledge might never be exhausted.`
+  },
+  {
+    id: "chatchai_14",
+    title: "#14 Chatchai Sasakul — Perfecting Hands",
+    type: "notes",
+    content: `#14 Chatchai Sasakul 1 - Perfecting Hands (106 min)
+Apr 19, 2017
+
+Former WBC World Boxing Champion (1997). Best Coach in Thailand (2007). Began as Petchyindee Muay Thai fighter.
+
+CORE INSIGHT: Great fighters aren't doing anything fancy. They're doing the same moves as an amateur — just really, really well. What drives Sylvie crazy about Chatchai's movements: BALANCE. His balance is unreal.
+
+Footwork allows the punches — not the other way around.
+
+FIRST HOUR — Weight Transfer on Punches:
+
+Chatchai's Jab: Rotate front foot on the ball, twisting the heel out like a left hook. Jab comes straight out with hip and shoulder twisting in perfect alignment, weight staying or shifting to the BACK foot. From a distance — back foot, knee, hip and shoulder are perfectly aligned. Front side also lined up like final position of a left hook, but with front arm straight.
+
+Off the Jab: Weight on back leg → shift weight onto front foot while pivoting on ball of back foot, driving hip and shoulder → right cross. Front side: foot, knee, hip and shoulder all in a line.
+
+The Hook: Step out and a bit forward with back foot, shifting ALL weight over and across as hook follows in line with knee, hip and shoulder. Balanced, effortlessly powerful.
+
+The Eureka Moment: Weight shifts onto OPPOSITE side from the punch. Most people do exactly the opposite — jabbing with weight on front foot, cross on front foot, hook on front foot. The common version causes a slight lean. Tiny adjustment — fingers pulling shoulders more center — felt huge.
+
+First Hour Summary:
+- Bringing front leg out and twisting heel to side on jab
+- Keeping weight on opposite foot from punch
+- Angling hook somewhat downward to get around the guard
+- Keeping cross and uppercut closer to body, elbows to ribs
+- Footwork connected to weight transfer
+- Speed comes from slowing down + accuracy
+- "Head movement" and how to train it
+- Training to FEEL the correct movements
+
+SECOND HOUR — Jab and Cross Focus:
+
+Really keeping weight on back foot for the jab. Tapping back foot on the cross to flow into step-out for a hook. Smooth transitions between punches — not throwing everything individually, flowing between them. Using twist of shoulders for real power, speed, fluidity. Footwork — when to punch and when to pivot.`
+  },
+  {
+    id: "metprik_103",
+    title: "#103 Arjan Metprik Silachai — Old School Muay Mat Lowkick Pressure",
+    type: "notes",
+    content: `#103 Metprik Silachai - Lost Techniques of Old School Muay Maat Lowkick Pressure (81 min)
+Mar 19, 2021
+
+Bantamweight Lumpinee Champion 1970. 71 years old at filming. Responsible for raising Tongchai Tor Silachai (Fighter of the Year, 2001).
+
+FOCUS: 20 minutes of slow-motion footage. Old school kicking style meant for close-range fighting combined with punches. Dieselnoi used a version of this close kick. Kongsamut in the Library shows how it was deployed in the Golden Age.
+
+WHAT TO LOOK FOR:
+
+1) Low Kick as Punishment: Catches you with a leg kick as you're coming off a strike. Pavlovian — you start to hate your own strikes because you're punished for them. Brilliant timing — weight is coming back down right as he strikes, so opponent can't really protect himself at all.
+
+2) Pivots and Shins: Strong pivot around standing leg, ball of foot swivels. Kicking leg is all one piece — just a bend at knee, no "hinging." Digs into IT Band and around back of thigh with shin. Hurts.
+
+3) Standing In and Dern: When asked whether to stand ground or come forward, insists all his fighters come forward. They don't ever go backwards. He angles off rather than standing still.
+
+4) The Purpose of a Reverse Elbow: Uses the overturn from a slip in the clinch to spin all the way around for an elbow. Acts like he's being defeated — then SLAM, elbow.
+
+5) Using Confidence Against You: Lets a few strong teeps land before melting off the third one and countering with a leg kick. First two landing allow opponent to feel confident and lean into the strike — then melts off and they're yours.
+
+6) Pushing Forward for Leg Kicks: Pushed opponent backwards gently — just how you'd march an opponent back — then landed kicks to legs as they were in reverse.
+
+7) Set Up and Follow Up: How he sets up leg kicks, how he follows up. Punches to close up opponent in their guard; counters; as opponent's leg comes back down from their own kick or block.
+
+8) Stopping a Kick or Knee with Heel of Your Hand: Stop opponent's kick or knee at close range by patting it with your hand and pivoting off. Not strong or powerful but effective — can hurt their thigh if you dig in a bit.
+
+NOTE: Karuhat also advising off-camera during session.`
+  },
+  {
+    id: "bluksek_46",
+    title: "#46 Bluksek Kru Noi Sityodtong — Internal Knees & Elbows",
+    type: "notes",
+    content: `#46 Bluksek "Kru Noi" Sityodtong - Internal Knees & Elbows (59 min)
+
+Sityodtong — oldest gym in Pattaya. Home of Master Yodtong who produced the greatest number of champions in Thai history. Kru Noi taught there for years before teaching 7 years in Singapore — style adapted to Western students.
+
+WHAT TO LOOK FOR:
+
+Elbow Counter on Kicks: Step just inside someone's kick and land an elbow (not a hook like Chatchai teaches). About timing — stepping forward takes power out of kick by cutting off its trajectory. Land close to their standing leg to get the elbow right on their jaw. Timing first, power by proximity.
+
+Watching the Legs: Watch legs (not the strike) — they're a faster indication of where the strike will be. If he's stepping with right foot, that's carrying his left knee. Follow the side of the step and meet it with your elbow. Super fast.
+
+Low Kick Destroyer: Instead of checking the kick, tuck heel up to your butt the way you would for a knee and jam it right into opponent's oncoming kick. Nasty, fast, hurts opponent. Land off that block with a step → target same leg with a cross knee right after.
+
+Elbows on a Punch: Step toward the oncoming long punch and interrupt it with your elbows. Hurts. Can do enough damage to the arm that later punches are less effective. Can land a wonderful back elbow off it.
+
+Catching Kicks — 2 Options:
+Option 1: Step at 45-degree angle toward opponent's standing leg. Snatch leg around knee, so close to standing leg that when you pivot hard they just spin. REVISION: Keep stepping away from kick and spin opponent until you can crush them.
+Option 2: Stand your ground and check the kick. Pin other side of opponent's leg right on your own shin — throw their leg and spin them. "Not hurt!" Catching on shin doesn't take breath or hurt nearly as much as catching on ribs.
+
+Clinch Tips: Always swim inside. If you can't get in — push the face (to create space, which allows you to swim inside again). "In Thailand, have to inside." Clinching is 50/50 — "you knee, I knee, you knee, I knee" — but the TURNS are what give bigger points and can win an otherwise even exchange. Turns aren't tricks — they're finishers.
+
+SCHOOL OF THOUGHT — PAINFUL DEFENSE: Not just nullifying a point but causing pain and damage to opponent. Got a kicker? Hurt them on their kicks and they'll stop all by themselves. Knee to knee or shin to shin — you both hurt. Jam your knee into someone's thigh on a kick — they hurt alone.`
+  },
+  {
+    id: "chamuakpet_139",
+    title: "#139 Chamuakpet Hapalang 3 — Vertical Attack, Control of Space",
+    type: "notes",
+    content: `#139 Chamuakpet Hapalang 3 - Vertical Attack, Control of Space (95 min)
+October 28
+
+Truly one of the greatest fighters who ever fought. 17 years at the National Stadia. One of the 3 Kings of Muay Khao from Hapalang Gym (with Dieselnoi and Panomtuanlek). Called "Mr. Computer Knee" for his IQ in using knees. Lives and teaches in Japan.
+
+WHAT TO LOOK FOR:
+
+1) Teep is for All Styles: Tendency to associate teep as a Femeu weapon — but it's the equalizer. Fits all styles. Used offensively and defensively to off-balance and juggle, control timing and distance. Chamuakpet's teep is short, powerful, like a piston.
+
+2) Bi-Directional Power: Total epiphany. The charge of power for any strike shoots DOWN into the ground with the standing foot, AND simultaneously shoots UP or OUT (depending on weapon) — like a lightning strike connecting sky to earth. Once you feel it, you know.
+
+3) Standing Leg and Ruup: Because of bi-directional power, the standing leg becomes paramount — pillar to both power and balance. His alignment (Ruup) from foot to knee to hip to shoulder to head when on one foot = perfect balance and pillar of power.
+
+4) Up the Middle: Because of his balance, can come up the middle with amazing speed and power. Economy of movement makes him almost invisible — doesn't betray movements via visible rotation of hips or shoulders. Strikes are all up the middle: teep, knee straight up, elbows on inside of opponent's guard.
+
+5) Forcefield and Not Reaching: Balance thrown by unconscious desire to "reach" for the target. Teeps reaching, knees going forward — even a chest-jab was reaching slightly beyond perfect balance. Chamuakpet avoids this like a mime inside an invisible box — never breaking it. Within a forcefield, perfectly balanced, never reaches beyond its limit, never allows opponent to cross it.
+
+6) Jangwa 2 and Chon: Counter fighter = "second rhythm" (jangwa song) — let opponent go first, interrupt their attack or block and counter. Chamuakpet is barely a half-beat behind — striking and interrupting nearly simultaneous to their strike, but beating them by just a little. This creates CHON — Thai word for a clash or crash (like a car crash). The forcefield is what opponents run into as they try to reach him.
+
+7) Clinch Immediacy: Doesn't like to grab or lock in clinch. Would rather strike at grabbing range — rips, pulls, trips right as the grab is happening. Very fast and decisive — not changing positions or gaining dominant positions, but "striking" within grappling. Everything is a spoiling or counter upon contact.`
+  },
+  {
+    id: "detduang_138",
+    title: "#138 Detduang Por Pongsawang — Close Range Counter Power",
+    type: "notes",
+    content: `#138 Detduang Por. Pongsawang - Close Range Counter Power (91 min)
+October 2
+
+Kru at PK Saenchai. Fought all top names of the Golden Age, contested for stadium belts several times. Powerful, closing style made for shorter fighters who don't want to be evasive. Principles for anyone who wants to stand in, especially for lowkick fighters.
+
+WHAT TO LOOK FOR:
+
+1) Progression of Rounds: Not explicitly stated — but illustrated clearly. Uses padwork to progress from offense and closing distance → defense and maintaining distance, just like a standard 5-round narratively scored fight in Thailand. Padwork informs how a fighter will fight. As a short fighter, how he uses defense within his offense to close distance and stay close is incredibly helpful.
+
+2) Leg Kicks — Get the Lead Pipe: Different ways of throwing leg kicks. Detduang is in the "do damage" camp, not the stinging camp. Targets the IT Band with center of shin. Chops with kicking leg very straight.
+
+3) Weight Transfer for Counters and Offense: How he transfers weight between feet and through torso off defensive moves to land counters and offensive strikes. Really efficient and powerful.
+
+4) Body Cross from Longer: Body punches are longer in Muay Thai because of elbows and knees. Detduang's body punch is very long, aims at the diaphragm, doesn't bring head forward at all.
+
+5) Short Range Spear Knee: When opponent pushes hips deeply toward you to stifle your knees — tuck knee straight up between the two of you and fold opponent over it. Once they're bent, step-back for a straight to face or chest.
+
+6) Matador as an In-Fighter: Even forward fighters can be the matador. It's about cutting angles while staying close, pivoting, interrupting and parrying the opponent's guard to stay close.
+
+7) Take a Beat: First taught by Kru Khorat. A lot of us rush without realizing it. We think being "fast" means minimizing time between our own movements rather than being explosive with room to breathe between explosions. Detduang will catch a kick, hold it, pause, "take a beat" before executing an off-balancing move and counter. Makes moves so legible. Makes sure you don't spoil the technique or power by rushing.`
+  },
+  {
+    id: "sagat_notes",
+    title: "Sagat Petchyindee Session 3 — Raw Notes",
+    type: "notes",
+    content: `Sagat Petchyindee Session 3 - Raw Feed Supplement
+
+WHAT TO LOOK FOR:
+
+1) Watch His Shoulders: All the time. See how he pulls the opposite side back so dramatically to create reach and power on the striking side.
+
+2) Confined vs. Constrained: Keeps everything so close to his body, never breaking his frame — but it's efficiency, not "tightness." Elbows stay pinned to body until forced out after he's already rotated. Makes power unreal. Looks like he's barely touching — but he IS only barely touching. Jesus.
+
+3) Counters Inside the Opponent's Guard: Variety of options — but all of them involve allowing the opponent's strike to come, blocking in some way, and then destroying from inside that guard.
+
+4) Parries for a Counter: Just barely moving opponent's strike out of the way so you can counter while they're off balance. Like how Quicksilver moves a bullet out of the way. Super minimal but off-balancing. Sagat's deflections.
+
+5) The Float-In: Sagat kind of floats in on his straight strikes. His way of closing distance when already on his way in. More 3-dimensional than just going side-to-side in footwork or rotating from legs. Like Karuhat's float and rise on the kick, but on punches and elbows. Never hunches, even crouching.
+
+6) Weight Transfer: Watch this all the time. Every second. The way he puts his stance outside of opponent's stance and crosses back and forth — like swinging an axe through a tree with every single strike.`
+  }
+,
+  {
+    id: "easton_muaythai_kids",
+    title: "Easton Kids Muay Thai — Week of April 20 (Tigers)",
+    type: "reference",
+    content: `SOURCE: Easton Online affiliate curriculum email
+PROGRAM: Kids Muay Thai — Tigers Level
+UNIT 1: Boxing Offense
+
+TECHNIQUES:
+- Combos 1-6
+- Body Punches
+- Reload Series
+
+CONCEPTS:
+- Attacking two levels (head and body)
+- Attacking the head to open up the body
+- Attacking the body to open up the head
+- Punching with power on the same side, multiple times in a row
+
+PARTNER DRILLS:
+- Learning how to catch basic punch combos 1-4 on gloves
+- Learning how to hold for body hooks on gloves
+
+SPEECH/MAT CHAT: Unit 16 - Hygiene
+
+NOTES FOR WCS USE:
+Easton organizes kids curriculum by Unit with four distinct components: Techniques, Concepts, Partner Drills, and a Speech/Mat Chat life-skills component. This is a useful structural template even if the specific content differs. The concept of "attacking two levels" and setting up head strikes with body strikes (and vice versa) maps well to Muay Thai fundamentals for beginners.`
+  },
+  {
+    id: "easton_bjj_kids",
+    title: "Easton Kids BJJ — Week of April 20 (Multi-Level)",
+    type: "reference",
+    content: `SOURCE: Easton Online affiliate curriculum email
+PROGRAM: Kids BJJ — Multiple levels
+Week of April 20
+
+LITTLE TIGERS (youngest):
+Unit 15
+Standing: Side Clinch
+Ground Technique A: Closed Guard + Stand to Pass
+Ground Technique B: Mount + Knee to Elbow
+
+TIGERS FUNDAMENTALS:
+Unit 4
+Standing: Grip Strip + Single Leg
+Position: Guard Passing
+Ground: Toreando (Bullfighter Pass)
+
+Flow Drills:
+Gi: grip strip + single leg > HQ > up and base | HQ > toreando > shoulder roll re-guard > open guard
+No Gi: arm drag + single leg > HQ > toreando > side control > shoulder roll re-guard > up and base
+
+TIGERS INTERMEDIATE — GI:
+Unit 2
+Standing Focus: Single Leg
+Standing Techniques: Lapel + Sweep Single, Lapel + Sweep Single + Gravitron, Lapel + Sweep Single + Misdirectional Dump
+Ground Focus: HQ Passing
+Ground Techniques: Knee Slice
+Ground Flow: Open Guard + HQ + Knee Slice + Side Control + Mount + Finish
+
+TIGERS INTERMEDIATE — NO-GI:
+Unit 2
+Standing Focus: Single Leg
+Standing Techniques: Sweep Single Drills, Sweep Single + Running The Pipe, Single Leg + Heist Leg + Trip
+Ground Focus: HQ Passing
+Ground Techniques: Knee Slice
+Ground Flow: Open Guard + HQ + Knee Slice + Side Control + Guard Recovery
+
+MAT CHAT: Unit 16 - Hygiene
+
+NOTES FOR WCS USE:
+Key structural insight from Easton: curriculum organized by Standing → Ground with explicit Flow Drills that chain techniques together in sequences. Each level (Little Tigers, Fundamentals, Intermediate) has the same weekly unit number but different technique depth. The "flow" concept — chaining techniques into a sequence students drill as a unit — is worth adopting for Muay Thai curriculum planning.`
+  }
+,
+  {
+    id: "bang_teeps",
+    title: "Bang Muay Thai — Teeps 1-5 & Teep Parries (Week of 8-26-19)",
+    type: "reference",
+    content: `SOURCE: Bang Muay Thai weekly curriculum
+FOCUS: Teeps & Teep Parries — 4-day progression
+
+STRUCTURE NOTE: Bang uses a consistent daily format:
+- Line up and bow in
+- Jump Rope (3 min)
+- Shadow Boxing (3 min)
+- Water break / Gear up / Partner up
+- Warm Up Drills 10 min (Dutch style line drills)
+- Technical rounds
+
+STANDARD WARM UP LINE DRILLS (used every day):
+- Jab - Jab - Cross (Forward and Backward)
+- Walking Knees
+- Shuffle Knees
+- Jab - Jab - Cross w/ Roll to opposite stance + Lead Hook
+- Jab - Jab - Cross w/ Roll to opposite stance + Lead Hook + Rear Knee
+
+MONDAY — Lead Pendulum Teep + Rear Teep + Teep Parry:
+- Lead Pendulum Teep: 1 for 1
+- Rear Teep: 1 for 1
+- Teep Parry: Both teeps, sweep the leg and get an angle. 10 for 10
+- Combos with Teeps: 1 round each partner
+
+TUESDAY — Lead & Rear Teep + Parry with Counter:
+- Lead and Rear Teep: 1 for 1
+- Teep Parries: 10 for 10
+- Parry w/ Counter 2 Hand and Kick: 1 partner full round then switch
+- Combos with Teeps and Teep Parry w/ Counter 2 Hands and Kick: 1 partner full round then switch
+
+WEDNESDAY — Hook Slip Drill:
+Part 1: Lead Hook - Slip - Hook - Cross - Hook - Roll - Hook - Cross (5 for 5)
+Add Part 2: Slip - Cross - Hook - Cross - Roll - Cross - Hook - Cross (5 for 5)
+Full combined drill: 5 for 5
+- Parry w/ Counter 2 Hand and Kick: 1 partner full round then switch
+
+THURSDAY — Bas Combo Recap + Walking Teeps:
+- Walking Teeps with Kick Shield: Line Drill, switch every time you reach the end
+- Combos with Teeps: 1 round each
+- Parry w/ Counter 2 Hands and Kick: 1 partner full round then switch
+- Combos with Teeps and Teep Parry: 1 partner full round then switch
+- Free Pad Work: Mix in Teep Parry w/ Counter 2 Hands and Kick
+
+NOTES FOR WCS USE:
+Bang curriculum builds progressively across the week — Monday introduces, Tuesday drills it, Wednesday adds complexity, Thursday mixes it into free work. The Hook Slip Drill on Wednesday is a standalone sequence worth drilling independently. Teep parry with 2-hand counter + kick is the core payoff technique of the week.`
+  },
+  {
+    id: "wcs_defense_feb2019",
+    title: "WCS — Defense: Blocking & Returning (Week of Feb 3, 2019)",
+    type: "lesson",
+    content: `SOURCE: WCS own curriculum
+FOCUS: Defense — Blocking & Returning — 4-day progression
+Week of February 3, 2019
+
+STRUCTURE: 15 min warmup + partner drills (gloves) + Thai pads. 4 min rounds. 4-for-4 partner format.
+
+MONDAY — Straight Punch Defense:
+Partner Drills (Gloves):
+Round 1 (4 min) — 4 for 4:
+- Slip Jab
+- Slip Cross
+- Pull Jab
+- Duck Cross
+
+Round 2 (4 min) — Adding Counters:
+- Slip Jab → Cross/Hook/Cross
+- Slip Cross → Hook/Cross/Hook
+- Pull Jab → Cross/Hook/Cross
+- Duck Cross → Hook/Cross/Hook
+
+Round 3 (4 min):
+- Block Jab (Body)
+- Block Cross (Body)
+- Parry/Catch Jab
+- Parry/Catch Cross
+
+Round 4 (4 min) — Adding Counters:
+- Block Jab (Body) → Hook/Cross/Hook
+- Block Cross (Body) → Cross/Hook/Cross
+- Parry/Catch Jab → Hook/Cross/Hook
+- Parry/Catch Cross → Cross/Hook/Cross
+
+Thai Pads (one partner goes, then switch):
+Round 5 (4 min) — Straight Punch Defense with Hand Counters:
+- Slip Jab → Cross/Hook/Cross/Lead Kick
+- Slip Cross → Hook/Cross/Hook/Rear Kick
+- Pull Jab → Cross/Hook/Cross/Lead Kick
+- Duck Cross → Hook/Cross/Hook/Rear Kick
+
+Round 6 (4 min):
+- Block Jab (Body) → Hook/Cross/Hook/Rear Knee
+- Block Cross (Body) → Cross/Hook/Cross/Lead Knee
+- Parry/Catch Jab → Hook/Cross/Hook/Rear Knee
+- Parry/Catch Cross → Cross/Hook/Cross/Lead Knee
+
+TUESDAY — Hook Defense:
+Partner Drills (Gloves):
+Round 1 (4 min):
+- Block Lead Hook
+- Block Right Hook
+- Block Lead Body Hook
+- Block Right Body Hook
+
+Round 2 (4 min) — Adding Counters:
+- Block Lead Hook → Hook/Cross/Hook
+- Block Right Hook → Cross/Hook/Cross
+- Block Lead Body Hook → #9 (Uppercut/Cross/Hook)
+- Block Right Body Hook → #8 (Rear Uppercut/Hook/Cross)
+
+Round 3 (4 min):
+- Roll under Left Hook
+- Roll under Right Hook
+- Block Right Hook
+- Block Left Hook
+
+Round 4 (4 min) — Adding Counters:
+- Roll under Left Hook → Cross/Hook/Cross
+- Roll under Right Hook → Hook/Cross/Hook
+- Block Right Hook → Cross/Hook/Cross
+- Block Left Hook → Hook/Cross/Hook
+
+Thai Pads:
+Round 5 (4 min):
+- Block Lead Hook → Hook/Cross/Hook/Rear Knee
+- Block Right Hook → Cross/Hook/Cross/Lead Knee
+- Block Lead Body Hook → #9/Rear Knee
+- Block Right Body Hook → #8/Lead Knee
+
+Round 6 (4 min):
+- Roll under Left Hook → Cross/Hook/Cross/Lead Kick
+- Roll under Right Hook → Hook/Cross/Hook/Rear Kick
+- Block Right Hook → Cross/Hook/Cross/Lead Kick
+- Block Left Hook → Hook/Cross/Hook/Rear Kick
+
+WEDNESDAY — Kick Defense:
+Partner Drills (Gloves + Shin Guards):
+Round 1: Check Left/Right Leg Kick, Check Left/Right Body Kick
+Round 2 — Counters: Check Left Leg → Cross/Hook/Cross | Check Right Leg → Hook/Cross/Hook | Catch Left Body → Kick/Hook/Cross | Catch Right Body → Kick/Cross/Hook
+Round 3: Block Left/Right Body Kick, Catch Left/Right Body Kick
+Round 4 — Counters: Block Left Body → Lead Uppercut/Cross/Lead Kick | Block Right Body → Rear Uppercut/Hook/Rear Kick | Catch Left Body → Lead Kick/Cross/Hook/Cross | Catch Right Body → Rear Kick/Hook/Cross/Hook
+Round 5: Block Left/Right Head Kick, Evade Left/Right Head Kick
+Round 6 — Counters: Block Left Head → Hook/Cross/Hook | Block Right Head → Cross/Hook/Cross | Evade Left Head → Lead Kick/Cross/Hook/Cross | Evade Right Head → Rear Kick/Hook/Cross/Hook
+Round 7: Parry Left/Right Teep, Catch Left/Right Teep
+Round 8 — Counters: Parry Left Teep → Kick/Cross/Hook/Cross | Parry Right Teep → Kick/Hook/Cross/Hook | Catch Left Teep → Cross/Hook/Lead Knee | Catch Right Teep → Hook/Cross/Rear Knee
+
+THURSDAY — Thai Pads/Focus Mitts/Belly Pad (Combination Day):
+4 min rounds. Builds cumulatively:
+
+Round 1: Roll Under Lead Hook/Cross/Lead Kick/Cross | Block Left Hook/Hook/Cross/Hook
+Round 2 (Round 1 + add): Full Round 1 sequence + Check Lead Kick/Return Rear Kick/Hook/Cross
+Round 3 (Round 2 + add): Full Round 2 sequence + Lead Body Hook/Cross
+Round 4 (Full): Roll Under Lead Hook/Cross/Lead Kick/Cross/Block Lead Hook/Hook/Cross/Hook/Check Lead Kick/Return Rear Kick/Hook/Cross/Lead Body Hook/Cross/Slip Cross/Rear Uppercut/Hook/Rear Knee
+Switch partners.
+
+NOTES FOR WCS USE:
+This is Ben's own WCS curriculum document — the format and progression IS the template. 4-for-4 partner drill format, building from defense-only → defense + counter → pads with full sequence. Wednesday covers the most ground (full kick defense curriculum). Thursday's cumulative build format — adding one element per round until the full sequence runs — is a strong teaching pattern.`
+  }
+,
+  {
+    id: "wcs_competencies",
+    title: "WCS Muay Thai Striking System — Core Competencies (Ben's Draft)",
+    type: "lesson",
+    content: `SOURCE: Wasatch Combat Sports — Ben's own first draft competency list
+TYPE: Belt/level requirement framework — WCS internal
+
+KICKS:
+Roundhouses (Rear Leg):
+- Rear Kick (Wide)
+- Rear Kick (Golden Age)
+
+Roundhouses (Lead Leg):
+- Lead Leg Kick 1 — Switch
+- Lead Leg Kick 2 — Step
+- Lead Leg Kick 3 — Spot
+- Lead Leg Kick 4 — Jump
+
+Teep:
+- Teep (Rear Leg)
+- Teep (Lead Leg)
+- Shuffle Lead Teep
+- Front Knee Lift Fake to Rear Teep
+- Lunging Lead Teep
+- Scissor Hopping Rear Teep
+
+Low Kicks:
+- Low Kicks (Lead Leg)
+- Low Kicks (Rear Leg)
+
+PUNCHES:
+- Jab (Types)
+- Cross (Types)
+- Lead Hook
+- Rear Hook
+- Lead Uppercut
+- Rear Uppercut
+
+ELBOWS:
+- Elbows 1-6
+- Shunt to Elbow
+
+KNEES:
+- Step Knee
+- Counter Knee
+- Straight Knee
+- Side Knee
+- Knees from Clinch Control
+- Different Knee Types
+
+SWEEPS:
+- Different Sweeps
+
+BASIC COUNTERS:
+- Counter the Jab
+- Counter the Teep
+- Counter the Cross
+- Counter the Knee
+- Counter the Kick
+
+FOOTWORK:
+- Step Forward / Back / Left / Right
+- Pivot
+
+GUARD:
+- Basic Guard
+- 11 Guard
+- Long Guard (Vampire Guard)
+- Diamond Guard
+
+BLOCKS:
+- Shin Block (Same Side)
+- Shin Block (Cross Body)
+- Double Forearm
+- 11 Block
+- Single Forearm (Catch)
+
+PARRY:
+- Catch
+- Inside Parry
+- Outside Parry
+- Downward Parry
+
+EVASION:
+- Inside Slip
+- Outside Slip
+- Duck
+- Lean Back
+
+CLINCH:
+- Inside Clinch Control
+- Outside Clinch Control
+- Elbows from Clinch Control
+
+STRETCHING PROTOCOL:
+- Butterfly (inner groin)
+- Frog (inner thighs)
+- Cat (spine)
+- Seated Partner Stretch (forward fold with partner)
+- 90/90 Stretch
+- Modified Camel (hip flexor)
+- Wall and Shelf Stretch (hip rotation)
+- Head Kick Stretch (partner shoulder lift)
+- Arms Big Circles / Little Circles
+- Partner Shoulder Stretch
+- Cross Face (shoulder)
+
+NOTES: This is Ben's first draft framework for WCS. Serves as the master technique inventory from which belt/level requirements will be drawn. More granular than the FFT system — includes teep variations and kick types that FFT groups broadly.`
+  },
+  {
+    id: "fft_white_gold",
+    title: "Focused Fightware — Belt Requirements: White to Gold (Classes 1-10)",
+    type: "reference",
+    content: `SOURCE: Focused Fightware LLC (FFT) — external curriculum reference
+BELT LEVEL: White → Gold (Classes 1-10)
+Color coding: Yellow/Gold bar
+
+CLASS 1 — Stance & Footwork:
+- Fight Stance
+- Footwork: Forward / Back / Left / Right / Circle
+
+CLASS 2 — Punches 1-6:
+- Shadow Boxing: Stance & Motion
+- Individual Strikes: 1 Hit
+- Level Change: 1-4
+
+CLASS 3 — Teep:
+- Lead Teep / Rear Teep
+- 1 + 2 + Lead Teep
+- 1 + 2 + Rear Teep
+
+CLASS 4 — Round Kick (Static / Rear Leg):
+- 1 - RL Round
+- 123 - RL Round
+- 3 - RL Round
+- 5 - RL Round
+
+CLASS 5 — Sparring + Fitness:
+- Sparring: Get Hit and Return
+- Fitness: 1 Set (one set = 10 reps each: 1+2, 3+4, 5+6, L/R Roundkick)
+
+CLASS 6 — Shadow Boxing + Boxing Covers 1-3:
+- Shadow Boxing: Basic Footwork
+- Cover 1 (Lead Straight) + 23
+- Cover 2 (Rear Straight) + 11 / 32
+- Cover 3 (Double) + 23
+
+CLASS 7 — Boxing Covers 4 & 5:
+- 4 Corners
+- Cover 4 (Lead Side Head) + 23
+- Cover 5 (Rear Side Head) + 32
+
+CLASS 8 — Boxing Covers 6 & 7:
+- Cover 6 (Lead Side Body) + 63
+- Cover 7 (Rear Side Body) + 52
+- Cover 8 (Double Body Shell) + 63
+
+CLASS 9 — Combos + Round Kick Switch/Walk Up:
+- Combos: 12 / 23 / 32 / 43 / 52 / 63 / 11 / 13 / 15 / 112
+- 1 + 2 + Switch Kick
+- 1 + 2 + Walk Up
+- 12 + Switch Kick + RL Round
+
+CLASS 10 — Combos + Sparring:
+- Combos: 23 / 25 / 13 / 11 / RL Round / 12 / 32 / 52 / Switch
+- Sparring: Boxing Cover and Return
+- Fitness: 2 Sets
+
+FITNESS STANDARD (escalating through belt levels):
+One set = 10 reps each: 1+2, 3+4, 5+6, L/R Roundkick
+White-Gold: 1-2 sets`
+  },
+  {
+    id: "fft_orange_green",
+    title: "Focused Fightware — Belt Requirements: Orange to Green (Classes 11-20)",
+    type: "reference",
+    content: `SOURCE: Focused Fightware LLC (FFT) — external curriculum reference
+BELT LEVEL: Orange → Green (Classes 11-20)
+Color coding: Orange bar
+
+CLASS 11 — Shadow Boxing + Straight Knee:
+- Shadow Boxing: Lung Step / Quarter Turn
+- Straight Knee — Switch / Rear
+- 12-Switch Knee - 23
+- 23-Rear Knee - 32
+
+CLASS 12 — Leg Kick:
+- 1-Leg Kick / 3-Leg Kick / 5-Leg Kick
+- 13-Leg Kick / 15-Leg Kick
+- 23-Leg Kick / 25-Leg Kick
+
+CLASS 13 — Kick Defense (Body):
+- Lead Body Cover + 32 / Round Kick
+- Rear Body Cover + 23 / Round Kick
+
+CLASS 14 — Kick Defense (Head + Legs):
+- Lead Head Cover + 32 / Round Kick
+- Rear Head Cover + 23 / Round Kick
+- Outside Shin + 23 / Round Kick
+
+CLASS 15 — Sparring + Fitness:
+- Sparring (Ranges): Kickboxing
+- Fitness: 3 Sets (add L/R Knee to standard set)
+
+CLASS 16 — Long Guard + Switch Teep:
+- Long Guard
+- Switch Teep: Walk Up Round / RL Round
+
+CLASS 17 — Inside Leg Kick:
+- 1 + Inside Leg Kick + 2
+- 12 + Inside Leg Kick + Switch Kick
+- 12 + Inside Leg Kick + Teep
+
+CLASS 18 — Pat In / Pat Down:
+- Pat In (Jab and Cross): (1) 12/Leg Kick/Teep, (2) 23/Leg Kick/Teep
+- Pat Down (Jab and Cross): (1) 23/Leg Kick/Teep, (2) 12/Leg Kick/Teep
+
+CLASS 19 — Block & Dive (Hooks):
+- Block Lead & Rear Hook: (3) 23/Leg Kick/Teep, (4) 12/Leg Kick/Teep
+- Dive Lead & Rear Hook: (3) Switch Knee, (4) Rear Knee
+
+CLASS 20 — Scoop Kicks + Sparring:
+- Scoop Kicks: Front / Round
+- Cross Scoop — Leg Kick + Round — Return Punch
+- Sparring: Open Sparring / All Ranges
+- Fitness: 4 Sets`
+  },
+  {
+    id: "fft_blue_purple",
+    title: "Focused Fightware — Belt Requirements: Blue to Purple (Classes 6-15 next level)",
+    type: "reference",
+    content: `SOURCE: Focused Fightware LLC (FFT) — external curriculum reference
+BELT LEVEL: Blue → Purple
+Color coding: Blue/Purple bar
+
+CLASS 6 — Combos: Level Changes High/Low:
+- Opposites: 12 / 23 / 32 / 14
+- Same: 11 / 22 / 13
+
+CLASS 7 — Kick Defense (Inside Leg Kick):
+- Cross Shin + 23 / Leg Kick
+
+CLASS 8 — Snap Back (1-4):
+- 12 / 23 / Round Kick
+
+CLASS 9 — Kick Defense (Body & Legs): Hop Back:
+- Evade 12 / 23 / Round Kick
+
+CLASS 10 — Clinch Entries:
+- 12 + Clinch + 2x Knees
+- 23 + Clinch + 2x Knees
+- Switch Round + Clinch / RL + Clinch
+- Defensive: Cover 123 to Clinch
+
+CLASS 11 — Combos: Level Changes Low/High:
+- Opposites: 12 / 14 / 23 / 25 / 43
+- Same: 11 / 13 / 33 / 55 / 66
+
+CLASS 12 — Evade: Slip Lead Hand:
+- Slip - 23
+- [Slip 1] + 1 Body - 23
+
+CLASS 13 — Evade: Slip Rear Hand:
+- Slip - 32
+- [Slip 2] + 2 Body - 32
+
+CLASS 14 — Evade: Bob & Weave:
+- [B&W 3] + 23
+- [B&W 4] + 32
+
+CLASS 15 — Clinch Defense + Sparring:
+- Single Chin / Double Chin
+- X-Block - Sweep
+- Sparring: Open; Good Offense & Defense
+- Fitness: 5-6 Sets (add L/R Knee)`
+  },
+  {
+    id: "fft_brown_red",
+    title: "Focused Fightware — Belt Requirements: Brown to Red (Classes 16-25)",
+    type: "reference",
+    content: `SOURCE: Focused Fightware LLC (FFT) — external curriculum reference
+BELT LEVEL: Brown → Red (Classes 16-25)
+Color coding: Brown/Red bar
+
+CLASS 16 — Stop Hit Teep:
+- Boxing vs Teep
+- Round Kick vs Teep
+
+CLASS 17 — Switch Stances / Step Out:
+- 12 - Step Out - 3 - RL Kick
+- 12 - Step Out - 32
+- 12 (charge) Step Back - 32
+
+CLASS 18 — Catch + Trip:
+- (Round Kick) - Trip - Inside Foot
+- (Round Kick) - Trip - Outside Foot
+
+CLASS 19 — Catch Defense:
+- (Round Kick) - Boot Escape
+- (Round Kick) - Slide Out Escape
+
+CLASS 20 — Clinch: Dirty Boxing:
+- (Plum) - Body - Head - Single Chin
+- Body - Head - Pummel
+- Sparring: Open; Good Offense & Defense
+- Fitness: 7 Sets
+
+CLASS 21 — Elbow: Horizontal / Upward:
+- 12 Elbow / 23 Elbow
+- 12 Switch Knee - Elbow
+- 23 RL Knee - Elbow
+
+CLASS 22 — Punch-Kick-Elbow-Knee:
+- 1 - RL - Elbow - Walk Up Knee
+- 2 - SW - Elbow - Walk Up Knee
+- 23 - RL - Elbow - Walk Up Knee
+- 32 - SW - Elbow - Walk Up Knee
+
+CLASS 23 — Elbow Returns from Cover:
+- Cover 123 - Elbow Return
+- Cover 45 - Elbow Return
+
+CLASS 24 — Scoop + Elbow:
+- (1) Lead & Rear Horizontal/Upward
+- (2) Lead & Rear
+- (3) Dive - Knee - Elbow
+- (4) Dive - Knee - Elbow
+
+CLASS 25 — Clinch: Sweep + Quarter Turn Trip:
+- 12 - Clinch - Knee - Trip - (Fail) Elbow
+- 23 - Clinch - Knee - Trip - (Fail) Elbow
+- Sparring: Open; Good Offense & Defense
+- Fitness: 8 Sets
+
+NOTES FOR WCS USE:
+FFT system uses numeric punch notation (1=jab, 2=cross, 3=lead hook, 4=rear hook, 5=lead uppercut, 6=rear uppercut) and escalating fitness requirements (1 set at white, 8 sets at red). The progression is well-structured: stance → strikes → defense → clinch → elbows. Each belt level covers approximately 5 classes. Fitness test is built into the belt requirement — not just technique demonstration.`
+  },
+  {
+    id: "fft_training_methods",
+    title: "Focused Fightware — Training Methods & Drilling Order",
+    type: "reference",
+    content: `SOURCE: Focused Fightware LLC (FFT) — Training Methods reference sheet
+
+TRAINING FORMATIONS:
+
+Mirror / Classroom Formation (Uniformed — everyone facing same direction):
+- Warm ups / Exercise
+- Footwork
+- Static Techniques — Reps
+- Shadow Boxing: Static / Motion
+
+Line Drills / Down the Deck (DTD):
+- Exercise
+- Footwork
+- Catch & Correct
+- Individual / Multi Techniques
+- Glove Drills / Focus Mitts / Thai Pads
+
+Heavy Bag — Beginner Class Only:
+- 1-4 Students per bag
+
+Partner Training:
+- Partner Shadow Boxing / Stiff Arm Shadow Boxing
+- Reps: 1 for 1 / Catch & Correct
+
+KEY PRINCIPLE: "Systems are only as good as the people trained enough to manage and use them."
+
+STYLES OF TRAINING — DRILLING ORDER:
+Focus Mitts: Static
+Thai Pads: Motion - Circle
+Glove Drills: Motion - Circle - Charge
+Kick Shields: Defense & Return - Preset
+
+HUMAN HEAVY BAG LEVELS (progressive complexity):
+1. Combos — No Hit (Defend)
+2. Level Changes — Defend 1 hit back
+3. Fakes — Defend 2 hit back
+4. Feints — Defend
+
+NOTES FOR WCS USE:
+This is a clean pedagogical framework — formation → drilling order → partner progression. The Human Heavy Bag levels (No Hit → 1 hit back → 2 hit back → full defense) is a useful teaching ladder for introducing sparring contact progressively. The drilling order (Focus Mitts static → Thai Pads motion → Glove Drills charging → Kick Shield with return) maps well to how WCS classes already flow.`
+  },
+  {
+    id: "coach_whillock_curriculum",
+    title: "Coach Whillock (NCA) — Curriculum Maker / Coach in a Box",
+    type: "reference",
+    content: `SOURCE: Coach Whillock, NCA Gym — email Apr 9, 2026
+SUBJECT: Coach in a Box — Curriculum System
+
+THE PROBLEM HE'S SOLVING:
+"Some days you struggle to find a plan, you are frustrated because creativity is lacking, and you feel stale, and you have a class in twenty minutes, not good."
+
+THE SYSTEM:
+
+Step 1 — Build a Numbered Combination System (1-20):
+Write 1-20 combinations that never change. Students can memorize them. These become the permanent vocabulary of the class.
+
+Step 2 — Standardized Counter Combinations:
+Create fixed combinations that are always the response to specific defensive techniques.
+Example: Block the roundhouse → always reply with hook/cross/hook (or whatever you choose). The response never changes — students learn the pairing.
+
+Step 3 — Add-Ons:
+Create add-ons that can be appended to any combo by name.
+Example: "kick" = add a kick after whatever combination you just ran. "Combo 4-kick" means run combo 4 then add the kick. Any add-on works with any combo.
+
+EXAMPLE CLASS STRUCTURE USING THIS SYSTEM:
+Round 1: Combinations 1, 5, 13, 16
+Round 2: Add the kick (add-on)
+Round 3: Defend the counter kick
+Round 4: Counter with hook/cross/hook
+
+RESULT: "You can literally make over a year's worth of classes for beginners with this alone."
+
+KEY INSIGHT ON BUSINESS REALITY:
+"If you want only to do things that make the best fighters in the fastest times, enjoy having precisely no members and precisely zero cash. Beginners love to achieve, so give them that."
+
+Stable repetition builds beginners. The numbered combo system gives them something to memorize and master — achievable milestones that keep them coming back.
+
+NOTES FOR WCS USE:
+This is directly applicable to the T4 curriculum generator. The numbered combo system + standardized counters + add-ons = a combinatorial engine that generates infinite class plans from a fixed vocabulary. The "Coach in a Box" framing is exactly what the curriculum generator should feel like — pull a quality session in under a minute. Worth building the WCS combo numbering system (1-20) as a foundational step before the curriculum generator is built.`
+  }
+,
+  {
+    id: "wcs_kids_10week",
+    title: "WCS Kids Program — Jr/Sr 10-Week Curriculum (Tandi)",
+    type: "lesson",
+    content: `SOURCE: Wasatch Combat Sports Kids Program — Tandi's 10-Week Jr/Sr Curriculum
+FORMAT: 2 classes per week, 10 weeks = 20 classes total. Jr (younger) and Sr (older) run parallel with different progressions.
+STATUS: Weeks 1-4 have content. Weeks 5-10 are framework only (topic assigned, content blank — to be built out).
+
+COLOR BELT PROGRESSION (mapped to topics):
+Yellow — Kicks
+Orange — Punches
+Green — Knees
+Blue — Combos
+Purple — Conditioning
+Brown — Teeps
+Weeks 4-10 — Colors TBD (Head Kicks, Punches, Knees, Combos, Conditioning, Teeps, Defense, Elbows)
+
+WEEK 1 — KICKS (Yellow)
+
+Class 1: Jr
+- 15 min Skill Drill
+- Beginner: Round 1 Kicks in the air 50 each leg | Roundhouse Body Kick on Shields
+- Advanced: Combo to Kick
+- 15 min Bag/Skill Test
+
+Class 1: Sr
+- Beginner: 1-4 & Body kick
+- Advanced: On kick shields | Roundhouse kick back and forth | Combo 1-4 w/ body kick
+
+Class 2: Jr — Punches (Orange)
+- 15 min Skill Drill
+- Beginner: Jabs, Crosses, Jab+Cross Combo | Focus: Keeping hands up
+- Advanced: Jab + Cross + Jab
+- 15 min Bag/Skill Test: 10 Jabs, 10 Crosses, 10 Jab+Cross
+
+Class 2: Sr — Punches (Orange)
+- Beginner: Bag — Jab, Cross, Jab+Cross, Jab+Cross+Jab
+- Advanced: Partner — 25 Jabs, 25 Crosses, 25 Jab+Crosses, 25 Jab+Cross+Jab | Slip the Jab return with Cross | Slip the Cross return with Hook
+
+WEEK 2 — KNEES (Green)
+
+Class 1: Jr
+- Beginner:
+  Round 1 — 3 Right Knees
+  Round 2 — 3 Left Knees
+  Round 3 — 6 Skip Knees
+  Round 4 — 4 Side Knees
+- Bag Strip Test:
+  Round 1 — Grab Bag, Straight Knees & Hurdle Jumps (alt every 20 sec)
+  Round 2 — Burpees & Side Knees (alt every 20 sec)
+
+Class 1: Sr
+- Beginner/Partner:
+  Round 1 — Long knees on Kick Shield
+  Round 2 — Combo 1-4 to Knee
+  Round 3 — Knee to Leg Kick
+  Round 4 — 60 Skip Knees with Partner
+  Round 5 — Teep, Kick, Knee, Left Teep, Kick, Knee
+  Round 6 — Combo 6-8 with Knee
+- Advanced: 6-10 Min Knee (sustained knee round)
+
+Class 2: Jr — Combos (Blue)
+- Beginner:
+  Round 1 — 1-2
+  Round 2 — 1-2 w/ kick
+  Round 3 — 1-2 w/ knee
+  Round 4 — 1-2 w/ teep
+- Advanced:
+  Round 1 — 1-4 & 6-7
+  Round 2 — 1-4 & 6-7 w/ kick
+  Round 3 — 1-4 & 6-7 w/ knee
+  Round 4 — 1-4 & 6-7 w/ teep
+- Bag Test: 1-4 & 6-7 w/ kick, w/ knee (3 rounds)
+
+Class 2: Sr — Combos (Blue)
+- Beginner:
+  Round 1 — 1-2 | Round 2 — 1-4 | Round 3 — 1-4 w/ kick | Round 4 — 1-4 w/ knee
+- Advanced:
+  Round 1 — 1-5 | Round 2 — 1-5 w/ kicks | Round 3 — 6-8 w/ kicks
+  Round 4 — 8-10 w/ kicks | Round 5 — 6-10 w/ knees
+
+WEEK 3 — CONDITIONING (Purple) + TEEPS (Brown)
+
+Class 1: Jr — Conditioning — Tabatas (20 sec on / 10 sec off, 3rd & 4th minute)
+Round 1 — Squats | Round 2 — Punches | Round 3 — Kicks | Round 4 — Push-ups
+Round 5 — Teeps | Round 6 — Knees | Round 7 — Burpees
+Strip Test: TBD
+
+Class 1: Sr — Conditioning — Tabatas
+Round 1 — Wall Balls | Round 2 — Push-ups | Round 3 — Punches | Round 4 — Kicks
+Round 5 — Teeps | Round 6 — Knees | Round 7 — Burpees
+Strip Test: TBD
+
+Class 2: Jr — Teeps (Brown)
+- Beginner:
+  Round 1 — 5 Right Teeps | Round 2 — 5 Left Teeps
+  Round 3 — 6 Alt Teeps | Round 4 — Teeps to Knee
+- Strip Test: Round 5 — Teeps to Bags | Round 6 — Teeps to Kick
+
+Class 2: Sr — Teeps (Brown) — Partner
+Round 1-2 — Kick Shields Teeps (switch) | Round 3-4 — Teep to Kick (switch)
+Round 5-6 — Teep to Knee (switch) | Round 7 — Combo to Teep on bag
+
+WEEK 4 — HEAD KICKS + PUNCHES
+
+Class 1: Jr — Head Kicks
+- 80 Kicks in the air (10R/10L)
+- Round 1 — 4 Right Head Kicks | Round 2 — 4 Left Head Kicks
+- Round 3 — Combo 1 Right Head Kick | Round 4 — Combo 2 Left Head Kick
+- Round 5 — Bags: Cross + Left Head Kick
+
+Class 1: Sr — Head Kicks
+- 10R/10L — 100 touch the shin air kicks
+- Round 1: Right (content incomplete)
+
+Class 2: Jr — Punches
+- Beginner:
+  Round 1 — Shadow box hooks and uppercuts
+  Round 2 — Pad work: 4 left hooks + hurdle jumps
+  Round 3 — Pad work: Cross + hook
+  Round 4 — Right Uppercut + Left Hook
+
+WEEKS 5-10 — FRAMEWORK (Content to be built):
+Week 5: Knees + Combos
+Week 6: Conditioning + Teeps
+Week 7: Defense + Elbows
+Week 8: Defense + Elbows
+Week 9: Defense + Elbows
+Week 10: Defense + Elbows
+
+NOTES FOR WCS USE:
+This is WCS's own kids curriculum framework — Tandi's structure. The topic rotation pattern is clear: Kicks → Punches → Knees → Combos → Conditioning → Teeps → Head Kicks → Defense → Elbows. Weeks 5-10 need content built out — this is a direct build target for the curriculum generator. The Jr/Sr split (same topic, different complexity) is a strong teaching model. The "Strip Test" at the end of each skill segment is the kids belt strip progression. Tabata format for conditioning weeks is already established.`
+  }
+,
+  {
+    id: "knees_bodywork_class",
+    title: "WCS Class Plan — Knees + Body Work Focus (Andy Souwer / Juan Cervantes)",
+    type: "lesson",
+    content: `SOURCE: WCS class plan — techniques inspired by Andy Souwer and Juan Cervantes
+FORMAT: 4-drill progression, partner-based, ~1 hour
+
+DRILL 1 — Warm-Up Partner Flow (Source: Andy Souwer):
+Both partners in guard facing each other.
+Partner A throws light, smooth hand combos while Partner B stays in high guard (11 guard).
+
+Set 1: Throw any hand combo at a steady 10-count pace. End with a front leg skipping knee.
+Set 2: Throw hand combo at a steady 5-count pace. End with a front leg skipping knee.
+Do 3 sets, then switch roles.
+Repeat for 2 total rounds (1 round each).
+
+DRILL 2 — Body Shot and Step-In Knee (Source: Juan Cervantes):
+One partner wears belly pad.
+Attack sequence:
+- Jab to body
+- Cross to body
+- Jab-Cross to body
+- Show a body shot → step into switch stance → throw rear knee to body
+
+Repeat for 1 round each, then switch partners.
+
+DRILL 3 — Free Flow Round (Integration):
+Students freestyle the two drills above. Mix combos, knees, and movement as they see fit.
+Switch partners after 1 round. 2 rounds total.
+
+DRILL 4 — One-Step Sparring:
+Light, playful sparring. Take turns — one move at a time. Light touch, good control.
+Advanced students: mix in extra techniques.
+Emphasis on creativity, safety, and fun. 1 round.
+
+NOTES: The 10-count → 5-count pace reduction in Drill 1 is a smart progressive intensity tool. Starting slow builds form, speeding up tests retention under pressure.`
+  },
+  {
+    id: "open_stance_padwork",
+    title: "Open Stance Padwork Notes — Lead Hand, Ludwig Teep, Liam Nolan Combo",
+    type: "lesson",
+    content: `SOURCE: Ben's open stance padwork notes
+CONTEXT: Southpaw vs Orthodox (open stance) specific tactics
+
+1. LEAD HAND CONTROL & DISTANCE:
+- Play lead hand control while moving in and out
+- Control the lead to set up inside straight punches
+- "Get on top" with hand play — touch and occupy space
+- Drill frequently
+- Alternate: control the lead hand, then jab over the top
+
+2. LEAD HAND DRILL 2:
+- Use lead hand control to draw opponent's rear cross
+- Fade back and lean
+- Counter with rear cross over the top, then lead hook
+
+3. LIAM NOLAN COMBO:
+- One-two
+- Lead-rear body shot
+- Lead-rear uppercut
+- Lead-rear hook
+- Finish with rear roundhouse kick
+
+3a. Liam Nolan Combo Setup:
+- Lead-rear body shot
+- Power straight rear cross
+
+3b. Liam Step:
+- Check lead hand
+- Check lead hand
+- On third check: step around
+- Rear roundhouse → Lead hook → Rear roundhouse
+
+4. LUDWIG TEEP TIMING:
+- Put rear leg under hip
+- Lean back
+- Teep to counter and time rear leg roundhouse
+
+5. ATTACK THE LEAD LEG:
+- Rear cross
+- Pendulum step outside
+- Lead hook (to bring guard down)
+- Finish with lead leg kick to opponent's lead leg (outside)
+
+NOTE A — BUG SQUASH PIVOT:
+When closing distance, step out and "squash a bug."
+Pivot hard on dead side. Rear leg swings out to angle.
+
+ADDITIONAL TACTICS:
+- Work rear teep to counter opponent's rear roundhouse
+- Use long guard to counter their lead cross`
+  },
+  {
+    id: "ludwig_dillashaw_combos",
+    title: "Ludwig Combos — Dillashaw, Tyson, Bas, Ramon Dekkers",
+    type: "reference",
+    content: `SOURCE: Ludwig combinations — inspired by elite fighters
+CONTEXT: Bas Rutten / Ludwig system combo references
+
+LUDWIG WITH DJ DILLASHAW:
+1. Jab
+2. Body right (reload)
+3. Right uppercut
+4. Left hook
+5. Left liver
+6. Rear high kick
+
+TYSON COMBO:
+1. Rear body
+2. Rear uppercut
+3. Lead head
+4. Hook lead liver
+5. Can finish with high kick
+
+BAS COMBO 2:
+1. Lead hook to head
+2. Rear low kick
+3. Lead hook to head
+4. Straight cross to body
+5. Lead head kick
+
+BASIC LIVER:
+1. Jab, slide step into
+2. Right cross
+3. Left uppercut into liver
+4. Left hook into head
+
+BASIC LIVER 2:
+1. Jab, slide step into
+2. Right cross
+3. Left uppercut into liver
+4. Straight right to head
+
+BASIC LIVER 3 — BAS CALLS IT "DÉJÀ VU":
+1. Jab
+2. Cross
+3. Left uppercut liver
+4. Left head hook
+5. Right head hook
+6. Left uppercut liver
+
+RAMON DEKKERS COMBO (Ludwig with Bas):
+1. Jab
+2. Right cross (reload)
+3. Right cross
+4. Hook (reload)
+5. Cross
+6. Hook
+7. Left hook body
+8. Right hook body
+9. Rear uppercut
+10. Left hook head
+11. Cross
+12-13. Double kick
+
+NOTES: These are Dutch-style combinations — heavy on body-head alternation and reload mechanics. The liver combos are high percentage finishers. The Déjà Vu combo is named for returning to the liver shot after setting it up once. Ramon Dekkers combo is a full extended Dutch kickboxing chain.`
+  },
+  {
+    id: "draft_teep_day",
+    title: "Draft Teep Day — Class Structure Outline",
+    type: "lesson",
+    content: `SOURCE: WCS draft class plan — Teep focus day
+
+CLASS STRUCTURE (6 steps):
+Step 1: Warm up. No teeps yet.
+Step 2: Ladder hop drills.
+Step 3: Standing balance drills. Patty cake. Partner drills.
+Step 4: Partner drills with set pattern, change-a-pattern drills.
+Step 5: Play or light free flow sparring drills.
+Step 6: Burnout and muscle fatigue exercise.
+
+VIDEO REFERENCES:
+https://www.instagram.com/reel/DI1hAU6yA3w/
+https://www.instagram.com/reel/DGpvXGiJq0S/
+
+NOTES: The structure here is pedagogically sound — build the athletic base (balance, ladder, coordination) before introducing the technique. Steps 3-4 use pattern drilling with variation, Step 5 applies under light pressure, Step 6 burns it in under fatigue. This 6-step arc is a reusable template for any technique-focused class day.`
+  },
+  {
+    id: "evolve_combos",
+    title: "Evolve Combos — Defense Cross, Setup Body Shots, Head Kick Setups",
+    type: "reference",
+    content: `SOURCE: Evolve MMA combo reference
+
+DEFENSE CROSS (counters):
+- Parry down, sidestep, knee x2
+- Outside parry, sidestep, hook
+- Outside parry, sidestep, high kick
+- Step back cross
+- Figure 4 block (same side as cross) + elbow
+
+COMBOS:
+- Jab, cross, slip, right elbow
+- Jab, slip, left knee, right elbow
+- Jab, cross, slip, hook, right kick
+- Jab, cross, slip, uppercut, right knee, push off, right kick
+- Slip, low kick, hook, cross, left kick
+
+SETUP BODY SHOTS:
+- Jab, cross, uppercut, jab x2, cross, cross to body
+- Jab x2, cross, slip, cross to body
+- Jab, lead hook and turn, cross to body
+
+OVERHAND SETUPS:
+- Jab, jab x2, overhand right
+- Jab, cross, hook, overhand
+- Jab, jab x2, cross to body, overhand
+
+HEAD KICK SETUPS:
+- Jab x2, inside leg kick, high kick
+- Jab, fake push, kick, pivot right, high kick
+- Jab, cross, low kick, high kick
+- Jab, cross, outside leg kick, other leg high kick
+
+NOTES: Head kick setups all follow the same principle — distract/damage the low line first, then go high. The leg kick before the head kick is the most reliable setup in this system.`
+  },
+  {
+    id: "muay_thai_combos_catchwork",
+    title: "Muay Thai Combos — Catch Round Kick, Evade, Counter Drills",
+    type: "lesson",
+    content: `SOURCE: WCS drill notes — catch, evade, counter work
+
+CATCH ROUND KICK OPTIONS:
+- Catch kicking leg, hold, step in, kick support leg thigh → head kick
+- Throw kicking leg → head or body kick
+- Catch leg, move leg across body, hop-sweep
+- Curl attacking leg to totally scoop and sweep support leg
+- Catch leg, move leg across body, hook
+- Left VS right (Coakley VS Singdam) — cross body catch, body upper, face upper
+- Catch with lead hand, use same hand to throw uppercuts
+
+ESCAPE FROM CAUGHT LEG:
+- Turn pointed knee toward opponent at waist
+
+EVADE:
+- Lean back from head kick
+- Scoot hips back from body kick
+- Evade and counter to pads
+- Knee up counter
+
+COUNTER:
+- Block and return leg kick
+- Watch for counter, slip to side and evade
+
+HANDS:
+- Slip jabs with back of foot against ropes/fence
+
+BURNOUT:
+- Block kick on shin and arms, return same side kick to pads
+
+WARM-UP PARTNER DRILL:
+A: Cross + hook → kick the leg
+B: Leg that was kicked counter-kicks into body
+A: Cross → lead leg kick
+B: Cross + hook → kick the leg
+
+NOTES: The Coakley VS Singdam cross-body catch reference is a high-level technique — catching with the lead hand and throwing the same-hand uppercut is a Namsaknoi-style counter. The warm-up partner drill is a clean reciprocal flow drill.`
+  },
+  {
+    id: "muay_thai_drills_2",
+    title: "Muay Thai Drills — Shoulder Roll, Body Shots, Belly Pad Work",
+    type: "lesson",
+    content: `SOURCE: WCS drill notes — body shot and defensive mechanics
+
+SHOULDER ROLL:
+- Lead hand covering belly
+- Rear hand by chin and shoulder
+- Roll (slip/roll the punch using shoulder)
+
+BODY SHOTS — One partner wearing belly pad:
+1. Lead hand hard straight to body
+2. Cross to head
+3. Lead hook
+
+BODY RIPS COMBO:
+1. Jab, jab
+2. Rear hook to body
+3. Rear uppercut to head
+4. Lead hook to head
+5. Lead hook to body
+
+CATCH DRILLS:
+- Catch teep → body shot
+- Catch roundhouse → body shot
+
+FINISHING TOOLS:
+- Uppercut and hooks (as follow-up after catches)
+
+NOTES: The body rips combo is a classic Dutch sequence — double jab to set up, then work the body-head-body arc. The belly pad catch drills (teep catch → body shot, roundhouse catch → body shot) teach students to convert defensive actions immediately into offense.`
+  },
+  {
+    id: "fight_science_vimeo",
+    title: "Fight Science TV — Kru Robert Vimeo Links (7 Videos)",
+    type: "reference",
+    content: `SOURCE: FightScience.tv — Kru Robert video series
+PLATFORM: Vimeo (login-gated — Chrome DevTools MCP required to access)
+NOTE: These are T4 pipeline targets — transcription and technique extraction candidates
+
+Video 1: https://player.vimeo.com/video/237848420
+Video 2: https://player.vimeo.com/video/237845775
+Video 3: https://player.vimeo.com/video/237899467
+Video 4: https://player.vimeo.com/video/237850661
+Video 5: https://player.vimeo.com/video/237848537
+Video 6: https://player.vimeo.com/video/237902249
+Video 7: https://player.vimeo.com/video/237900064
+
+NOTES: These are the FightScience.tv Vimeo embeds previously identified as a T4 scraping target via Chrome DevTools MCP. Kru Robert is a legitimate source — extracting transcripts and technique data from these 7 videos would add a non-Sylvie source tier to the T4 database. This is a Phase 2 ingestion target once the Sylvie corpus extraction pipeline is stable.`
+  }
+];
+
+function getTypeLabel(type) {
+  return type === 'lesson' ? 'Lesson Plan' : type === 'reference' ? 'Reference / Template' : 'Session Notes';
+}
+
+function buildSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  sidebar.innerHTML = docs.map((doc, i) => `
+    <div class="doc-item" data-id="${doc.id}" data-type="${doc.type}" onclick="showDoc(${i})">
+      <div class="doc-title">${doc.title}</div>
+      <div class="doc-type">${getTypeLabel(doc.type)}</div>
+    </div>
+  `).join('');
+}
+
+function showDoc(idx) {
+  const doc = docs[idx];
+  document.querySelectorAll('.doc-item').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.doc-item')[idx].classList.add('active');
+  document.getElementById('content').innerHTML = `
+    <h2>${doc.title}</h2>
+    <div class="meta">
+      <span class="tag ${doc.type}">${getTypeLabel(doc.type)}</span>
+    </div>
+    <div class="body">${doc.content}</div>
+  `;
+}
+
+function filterDocs() {
+  const q = document.getElementById('search').value.toLowerCase();
+  const type = document.getElementById('typeFilter').value;
+  let visible = 0;
+  document.querySelectorAll('.doc-item').forEach((el, i) => {
+    const doc = docs[i];
+    const matchText = doc.title.toLowerCase().includes(q) || doc.content.toLowerCase().includes(q);
+    const matchType = !type || doc.type === type;
+    const show = matchText && matchType;
+    el.classList.toggle('hidden', !show);
+    if (show) visible++;
+  });
+  document.getElementById('visibleCount').textContent = `${visible} documents`;
+}
+
+buildSidebar();
+</script>
+</body>
+</html>
