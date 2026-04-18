@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM Product Guide — April 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Karla:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0c;
+    --surface: #111116;
+    --border: #1e1e26;
+    --text: #e8e8f0;
+    --muted: #666680;
+    --accent-anthropic: #d4a574;
+    --accent-openai: #74c4d4;
+    --accent-google: #d4c474;
+    --accent-xai: #d474a0;
+    --accent-meta: #748ad4;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Karla', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.6;
+  }
+
+  /* Header */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 3rem 4rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    animation: fadeDown 0.7s ease both;
+  }
+
+  .header-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    line-height: 1.1;
+    font-weight: 400;
+    max-width: 700px;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--muted);
+  }
+
+  .header-meta {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    max-width: 600px;
+    font-weight: 400;
+  }
+
+  /* Quick consensus bar */
+  .consensus {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 4rem;
+    display: flex;
+    gap: 3rem;
+    overflow-x: auto;
+    animation: fadeDown 0.8s 0.1s ease both;
+    opacity: 0;
+  }
+
+  .consensus-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 180px;
+  }
+
+  .consensus-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+  }
+
+  .consensus-value {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  /* Main layout */
+  main {
+    padding: 3rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  /* Company section */
+  .company {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0 3rem;
+    animation: fadeUp 0.6s ease both;
+    opacity: 0;
+  }
+
+  .company:nth-child(1) { animation-delay: 0.15s; }
+  .company:nth-child(2) { animation-delay: 0.25s; }
+  .company:nth-child(3) { animation-delay: 0.35s; }
+  .company:nth-child(4) { animation-delay: 0.45s; }
+  .company:nth-child(5) { animation-delay: 0.55s; }
+
+  .company-sidebar {
+    border-top: 2px solid currentColor;
+    padding-top: 1.2rem;
+    position: sticky;
+    top: 2rem;
+    align-self: start;
+  }
+
+  .company-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .company-parent {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 1rem;
+  }
+
+  .company-link {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    text-decoration: none;
+    border: 1px solid currentColor;
+    padding: 0.35rem 0.75rem;
+    letter-spacing: 0.08em;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .company-link:hover { opacity: 1; }
+
+  .company-strength {
+    margin-top: 1.2rem;
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  /* Anthropic */
+  .anthropic .company-sidebar { color: var(--accent-anthropic); }
+  .anthropic .company-link { color: var(--accent-anthropic); border-color: var(--accent-anthropic); }
+
+  /* OpenAI */
+  .openai .company-sidebar { color: var(--accent-openai); }
+  .openai .company-link { color: var(--accent-openai); border-color: var(--accent-openai); }
+
+  /* Google */
+  .google .company-sidebar { color: var(--accent-google); }
+  .google .company-link { color: var(--accent-google); border-color: var(--accent-google); }
+
+  /* xAI */
+  .xai .company-sidebar { color: var(--accent-xai); }
+  .xai .company-link { color: var(--accent-xai); border-color: var(--accent-xai); }
+
+  /* Meta */
+  .meta .company-sidebar { color: var(--accent-meta); }
+  .meta .company-link { color: var(--accent-meta); border-color: var(--accent-meta); }
+
+  /* Products grid */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .product-card {
+    background: var(--bg);
+    padding: 1.4rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: background 0.2s;
+    position: relative;
+  }
+
+  .product-card:hover {
+    background: var(--surface);
+  }
+
+  .product-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 0;
+    background: currentColor;
+    transition: height 0.25s ease;
+  }
+
+  .product-card:hover::after {
+    height: 100%;
+  }
+
+  .anthropic .product-card { color: var(--accent-anthropic); }
+  .openai .product-card { color: var(--accent-openai); }
+  .google .product-card { color: var(--accent-google); }
+  .xai .product-card { color: var(--accent-xai); }
+  .meta .product-card { color: var(--accent-meta); }
+
+  .product-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.01em;
+    color: var(--text);
+  }
+
+  .product-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .product-use {
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-weight: 400;
+    line-height: 1.55;
+    margin-top: 0.2rem;
+  }
+
+  .product-use strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* Divider */
+  .section-divider {
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Animations */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Responsive */
+  @media (max-width: 800px) {
+    header, .consensus, main, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .company { grid-template-columns: 1fr; }
+    .company-sidebar { position: static; margin-bottom: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-eyebrow">Master Reference — April 2026</div>
+  <h1>The LLM Product<br><em>Landscape</em></h1>
+  <p class="header-meta">A corrected, consolidated guide to major AI products, surfaces, and best use cases across Anthropic, OpenAI, Google, xAI, and Meta. Focused on actual interfaces and workspaces — not just raw model versions.</p>
+</header>
+
+<div class="consensus">
+  <div class="consensus-item">
+    <span class="consensus-label">Best Autonomous Coding</span>
+    <span class="consensus-value">Claude Code + Projects</span>
+  </div>
+  <div class="consensus-item">
+    <span class="consensus-label">Best All-Rounder Daily Driver</span>
+    <span class="consensus-value">ChatGPT + Codex</span>
+  </div>
+  <div class="consensus-item">
+    <span class="consensus-label">Best Multimodal Speed</span>
+    <span class="consensus-value">Gemini + Canvas</span>
+  </div>
+  <div class="consensus-item">
+    <span class="consensus-label">Best Real-Time + Domain</span>
+    <span class="consensus-value">Grok</span>
+  </div>
+  <div class="consensus-item">
+    <span class="consensus-label">Best Self-Hosted</span>
+    <span class="consensus-value">Llama 4 Maverick</span>
+  </div>
+  <div class="consensus-item">
+    <span class="consensus-label">Best Source-Grounded Research</span>
+    <span class="consensus-value">NotebookLM</span>
+  </div>
+</div>
+
+<main>
+
+  <!-- ANTHROPIC -->
+  <div class="company anthropic">
+    <div class="company-sidebar">
+      <div class="company-name">Claude</div>
+      <div class="company-parent">Anthropic</div>
+      <a class="company-link" href="https://claude.ai" target="_blank" rel="noopener">→ claude.ai</a>
+      <p class="company-strength">Strongest for structured, agentic workspaces. The Projects + Artifacts + Code stack is the benchmark for autonomous creation workflows.</p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-name">Claude.ai</div>
+        <div class="product-tag">Main Interface</div>
+        <div class="product-use"><strong>Best for:</strong> General problem-solving, writing, research, data analysis, PDF/image analysis. Free tier includes search, file handling, and memory. Pro/Max unlocks extended thinking and heavier models.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Projects</div>
+        <div class="product-tag">Persistent Workspace</div>
+        <div class="product-use"><strong>Best for:</strong> Organizing long-running work with persistent context and custom knowledge bases. Upload style guides, docs, and APIs — every chat in a Project inherits the rules. Ideal for teams, multi-week initiatives, or client separation.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Artifacts</div>
+        <div class="product-tag">Live Output Panel</div>
+        <div class="product-use"><strong>Best for:</strong> Creating and iterating on interactive outputs — code previews, SVG graphics, web pages, charts, and apps — rendered live in a side panel without leaving the chat. Essential for rapid prototyping.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Claude Code</div>
+        <div class="product-tag">Agentic Coding · CLI + IDE</div>
+        <div class="product-use"><strong>Best for:</strong> Autonomous, multi-file software engineering. Reads codebases, plans changes, writes, tests, and debugs iteratively until done. Integrates with VS Code, JetBrains, and terminal. Supports parallel agents and routines.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Claude Cowork</div>
+        <div class="product-tag">Desktop Agent · Research Preview</div>
+        <div class="product-use"><strong>Best for:</strong> Non-technical desktop knowledge work — browser, spreadsheets, file management — via agents. The non-dev counterpart to Claude Code. Sustains workflows across apps without manual hand-holding.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Claude Design</div>
+        <div class="product-tag">Design Agent · Anthropic Labs</div>
+        <div class="product-use"><strong>Best for:</strong> Prototyping slides, one-pagers, and UI from design systems. Turn briefs into visual deliverables fast. Launched April 17, 2026 via Anthropic Labs.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Claude in Chrome</div>
+        <div class="product-tag">Browser Agent · Beta</div>
+        <div class="product-use"><strong>Best for:</strong> AI assistance embedded directly in your browser session — summarizing pages, drafting replies, researching inline without context-switching.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Claude in Excel</div>
+        <div class="product-tag">Spreadsheet Agent · Beta</div>
+        <div class="product-use"><strong>Best for:</strong> Spreadsheet automation, formula generation, data cleaning, and analysis directly inside Excel without leaving the file.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Claude in PowerPoint</div>
+        <div class="product-tag">Slides Agent · Beta</div>
+        <div class="product-use"><strong>Best for:</strong> Drafting, restructuring, and editing presentations from inside PowerPoint. Generates slide content and structure from prompts or existing documents.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Claude for Slack</div>
+        <div class="product-tag">Messaging Integration</div>
+        <div class="product-use"><strong>Best for:</strong> AI assistance directly inside Slack — summarizing threads, drafting replies, and answering questions without leaving the communication layer. Brings Claude into team workflows where decisions actually happen.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Claude for Word</div>
+        <div class="product-tag">Document Agent · Beta</div>
+        <div class="product-use"><strong>Best for:</strong> Drafting, editing, and restructuring documents directly inside Microsoft Word. Part of the same office integration suite as Claude in Excel and Claude in PowerPoint.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- OPENAI -->
+  <div class="company openai">
+    <div class="company-sidebar">
+      <div class="company-name">ChatGPT</div>
+      <div class="company-parent">OpenAI</div>
+      <a class="company-link" href="https://chatgpt.com" target="_blank" rel="noopener">→ chatgpt.com</a>
+      <p class="company-strength">Strongest for ecosystem breadth. The Projects + Deep Research + Codex stack is highly steerable and covers both everyday use and professional agentic workflows. Enterprise connectors make it the default for team deployments.</p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-name">ChatGPT</div>
+        <div class="product-tag">Main Interface</div>
+        <div class="product-use"><strong>Best for:</strong> General writing, research, nuanced language tasks, creative generation, and broad daily use. Supports memory, multimodal input, and custom instructions. The most widely deployed LLM consumer surface.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Projects</div>
+        <div class="product-tag">Persistent Workspace</div>
+        <div class="product-use"><strong>Best for:</strong> Long-running mixed work with files, shared context, custom instructions, and persistent memory across sessions. Direct OpenAI equivalent to Claude's Projects.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Deep Research</div>
+        <div class="product-tag">Agentic Research Workflow</div>
+        <div class="product-use"><strong>Best for:</strong> Citation-heavy web research and synthesis. Runs multi-step research across the web, can use uploaded files and enabled apps, and returns structured reports. Distinct from standard chat — its own agentic loop.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">GPTs</div>
+        <div class="product-tag">Custom Assistants</div>
+        <div class="product-use"><strong>Best for:</strong> Building repeatable custom assistants with specific instructions, knowledge bases, and capabilities. Shareable with teams or the public via the GPT store.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Apps in ChatGPT</div>
+        <div class="product-tag">External Tool Platform</div>
+        <div class="product-use"><strong>Best for:</strong> Turning ChatGPT into a front-end for external tools and specialized workflows. Built via the Apps SDK — a distinct platform from GPTs, enabling richer integrations and interactivity.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Tasks</div>
+        <div class="product-tag">Scheduled Automations</div>
+        <div class="product-use"><strong>Best for:</strong> One-time or recurring scheduled automations inside ChatGPT. Automate repetitive prompts, reminders, or data pulls on a defined cadence.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Codex</div>
+        <div class="product-tag">Agentic Coding · App + CLI</div>
+        <div class="product-use"><strong>Best for:</strong> Parallel coding agents and long-running engineering work. Steerable while running, strong on terminal and OS-level tasks. Pro tier targets heavy dev users. Separate from the deprecated Codex API.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">o-series (o3 / o3-pro)</div>
+        <div class="product-tag">Reasoning Models</div>
+        <div class="product-use"><strong>Best for:</strong> Deep reasoning and reliable high-stakes responses. Extended internal thinking before answering — best for math, logic, scientific analysis, and any task where accuracy outweighs speed.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Apps in ChatGPT</div>
+        <div class="product-tag">Integrations + External Tools</div>
+        <div class="product-use"><strong>Best for:</strong> Connecting ChatGPT to external services — Drive, SharePoint, GitHub, Teams, Gmail, Jira, Confluence — and building specialized workflows via the Apps SDK. OpenAI has unified connectors and apps under this single surface. Core driver of enterprise business value beyond raw chat.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">ChatGPT Desktop + Mobile</div>
+        <div class="product-tag">Native App Surfaces</div>
+        <div class="product-use"><strong>Best for:</strong> Persistent access to ChatGPT outside the browser — desktop app for macOS/Windows with system-level integration, mobile for on-the-go use. Distinct product pages and download flows from OpenAI; relevant for teams evaluating deployment surfaces.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- GOOGLE -->
+  <div class="company google">
+    <div class="company-sidebar">
+      <div class="company-name">Gemini</div>
+      <div class="company-parent">Google</div>
+      <a class="company-link" href="https://gemini.google.com" target="_blank" rel="noopener">→ gemini.google.com</a>
+      <p class="company-strength">Strongest on speed, native multimodality, and Google ecosystem integration. NotebookLM has emerged as a standalone research product with its own user base.</p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-name">Gemini</div>
+        <div class="product-tag">Main Interface</div>
+        <div class="product-use"><strong>Best for:</strong> Multimodal workflows — image, video, and text synthesis at high speed. Integrates natively with YouTube, Google Docs, Drive, and Gmail. Often leads in low-latency scenarios and granular control.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Canvas</div>
+        <div class="product-tag">Interactive Output Builder</div>
+        <div class="product-use"><strong>Best for:</strong> Turning prompts or Deep Research outputs into interactive artifacts — apps, games, quizzes, web pages, and infographics. Fast prototyping from idea to shareable product.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Gems</div>
+        <div class="product-tag">Custom AI Experts</div>
+        <div class="product-use"><strong>Best for:</strong> Building custom repeatable role-based AI assistants within Gemini. Define a persona, instructions, and context — then reuse across conversations. Google's equivalent of GPTs.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Deep Research</div>
+        <div class="product-tag">Agentic Research Workflow</div>
+        <div class="product-use"><strong>Best for:</strong> Multi-step web research with source attribution, used as a dedicated research mode inside Gemini. Produces structured reports with citations, connected directly to Google Search infrastructure.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">NotebookLM</div>
+        <div class="product-tag">Source-Grounded Workspace</div>
+        <div class="product-use"><strong>Best for:</strong> Research, study, and synthesis grounded strictly in your uploaded sources. Supports notebooks, source-based chat, public sharing, Audio Overviews (podcast-style summaries), and Video Overviews. Increasingly integrated with Gemini.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Personal Intelligence</div>
+        <div class="product-tag">Personalized Context Layer</div>
+        <div class="product-use"><strong>Best for:</strong> AI assistance that uses your personal data — calendar, emails, history — for contextually aware help. Useful for scheduling, personal planning, and cross-app synthesis for individual users.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Gemini in Chrome</div>
+        <div class="product-tag">Browser Integration</div>
+        <div class="product-use"><strong>Best for:</strong> Embedded AI assistance directly in the Chrome browser. Summarize pages, draft text, answer questions inline without leaving your current tab.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- xAI -->
+  <div class="company xai">
+    <div class="company-sidebar">
+      <div class="company-name">Grok</div>
+      <div class="company-parent">xAI</div>
+      <a class="company-link" href="https://grok.com" target="_blank" rel="noopener">→ grok.com</a>
+      <p class="company-strength">Strongest on real-time knowledge (X platform integration), domain reliability, and lower censorship. Grok Business adds team governance for enterprise contexts.</p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-name">Grok</div>
+        <div class="product-tag">Main Interface</div>
+        <div class="product-use"><strong>Best for:</strong> Real-time information via X integration, domain expertise (medicine, legal), reasoning + speed, and tasks requiring minimal content filtering. Also accessible via x.com and mobile apps.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Grok Business / Workspaces</div>
+        <div class="product-tag">Team Platform</div>
+        <div class="product-use"><strong>Best for:</strong> Teams that need Grok inside managed, governed collaboration environments. Includes workspace-level controls, team sharing, and admin features for enterprise deployments.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Grok Apps / Connectors</div>
+        <div class="product-tag">External Integrations</div>
+        <div class="product-use"><strong>Best for:</strong> Connecting Grok to external data sources, including Google Drive integration. Enables document-grounded conversations and workflow connections beyond the main chat surface.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Grok Imagine</div>
+        <div class="product-tag">Image & Video Generation</div>
+        <div class="product-use"><strong>Best for:</strong> Image generation and editing within the Grok ecosystem. Relevant if comparing full multimodal product suites rather than text-only capabilities. Video generation available in supported tiers.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- META -->
+  <div class="company meta">
+    <div class="company-sidebar">
+      <div class="company-name">Llama / Meta AI</div>
+      <div class="company-parent">Meta</div>
+      <a class="company-link" href="https://ai.meta.com" target="_blank" rel="noopener">→ ai.meta.com</a>
+      <p class="company-strength">Strongest for self-hosted, customizable deployments where privacy, control, and compute economics matter more than turnkey UX. Meta AI covers the consumer surface across Meta's platforms.</p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-name">Meta AI</div>
+        <div class="product-tag">Consumer Assistant</div>
+        <div class="product-use"><strong>Best for:</strong> General assistance across Meta's consumer platforms — WhatsApp, Instagram, Facebook, Messenger, and web. The consumer product surface, distinct from the open-weight model releases. Widest potential reach of any AI assistant by platform footprint.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Meta AI Studio</div>
+        <div class="product-tag">Creator Platform</div>
+        <div class="product-use"><strong>Best for:</strong> Building and deploying custom AI personas and assistants across Meta's platforms. Distinct from Meta AI — targeted at creators, businesses, and developers who want to build AI-powered presences inside Meta's ecosystem.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Vibes</div>
+        <div class="product-tag">Multimodal Creation · Consumer</div>
+        <div class="product-use"><strong>Best for:</strong> AI-generated images and videos through a dedicated consumer creation surface. Separate from the main Meta AI assistant — functions as Meta's answer to standalone creative generation tools.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Llama 4 Maverick</div>
+        <div class="product-tag">Open-Weight · Large MoE</div>
+        <div class="product-use"><strong>Best for:</strong> General assistant tasks, creative writing, coding, reasoning, multilingual, and multimodal (text + image) when self-hosted. Competitive with closed models on many benchmarks at significantly lower cost at scale. Strong performance-to-cost ratio for orgs with infra.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Llama 4 Scout</div>
+        <div class="product-tag">Open-Weight · Efficient</div>
+        <div class="product-use"><strong>Best for:</strong> Long-context processing (up to 10M tokens), document and codebase summarization, and efficient multimodal on constrained hardware. Fits on a single H100 GPU. Ideal for self-hosted RAG pipelines or massive-input workflows.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Self-Hosted / Fine-Tuned</div>
+        <div class="product-tag">Deployment Approach</div>
+        <div class="product-use"><strong>Best for:</strong> Organizations that need data privacy, domain-specific fine-tuning, zero per-token cost, or full model control. Llama weights are openly available — the right path for SMEs with GPU infrastructure or specialized vertical applications.</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <span>LLM Product Guide — April 2026</span>
+  <span>Sources: Anthropic · OpenAI · Google · xAI · Meta</span>
+</footer>
+
+</body>
+</html>
