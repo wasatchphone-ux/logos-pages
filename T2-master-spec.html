@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T2 · MES Automated Trading — Master Spec</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #07090c;
+  --surface: #0c1018;
+  --surface2: #111820;
+  --border: #1c2a38;
+  --border2: #243344;
+  --green: #00d084;
+  --blue: #2d8cff;
+  --yellow: #f0b800;
+  --red: #e84040;
+  --purple: #9b6dff;
+  --text: #c4d8ec;
+  --sub: #607888;
+  --muted: #334455;
+  --label: #7a99b4;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 13px;
+  line-height: 1.65;
+  display: flex;
+}
+
+/* NAV */
+.nav {
+  width: 220px;
+  min-width: 220px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  padding: 24px 0 40px;
+  flex-shrink: 0;
+}
+.nav-logo {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--green);
+  padding: 0 20px 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+.nav-logo span { display: block; color: var(--sub); font-size: 9px; margin-top: 3px; }
+.nav a {
+  display: block;
+  padding: 6px 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--sub);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.15s;
+  line-height: 1.4;
+}
+.nav a:hover { color: var(--text); }
+.nav a.active { color: var(--green); }
+.nav-group { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
+.nav-group-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  padding: 4px 20px;
+  text-transform: uppercase;
+}
+
+/* MAIN */
+.main { flex: 1; overflow-x: hidden; }
+.page { max-width: 860px; padding: 48px 48px 120px; }
+
+/* SECTION */
+.section { margin-bottom: 72px; }
+.sec-anchor { display: block; height: 1px; margin-top: -60px; padding-top: 60px; }
+
+/* HEADINGS */
+.sec-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 28px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.sec-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  min-width: 36px;
+}
+h2 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: #ddeeff;
+  text-transform: uppercase;
+}
+h3 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--blue);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 28px 0 12px;
+}
+h3.green { color: var(--green); }
+h3.yellow { color: var(--yellow); }
+h3.red { color: var(--red); }
+h3.purple { color: var(--purple); }
+
+/* PROSE */
+p { color: var(--label); margin-bottom: 12px; font-size: 13px; }
+strong { color: var(--text); font-weight: 500; }
+
+/* RULE BLOCK - for strategy specs */
+.rule-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--green);
+  border-radius: 0 3px 3px 0;
+  padding: 18px 20px;
+  margin-bottom: 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  line-height: 2;
+}
+.rule-block.blue { border-left-color: var(--blue); }
+.rule-block.yellow { border-left-color: var(--yellow); }
+.rule-block.red { border-left-color: var(--red); }
+.rule-block.purple { border-left-color: var(--purple); }
+.rule-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0 16px;
+  padding: 2px 0;
+  border-bottom: 1px solid rgba(28,42,56,0.5);
+}
+.rule-row:last-child { border-bottom: none; }
+.rule-key { color: var(--sub); }
+.rule-val { color: var(--text); }
+.rule-val.green { color: var(--green); }
+.rule-val.red { color: var(--red); }
+.rule-val.yellow { color: var(--yellow); }
+.rule-val.blue { color: var(--blue); }
+
+/* TABLE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-size: 12px;
+}
+th {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--sub);
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  text-transform: uppercase;
+}
+td {
+  padding: 9px 12px;
+  border-bottom: 1px solid rgba(28,42,56,0.5);
+  vertical-align: top;
+  color: var(--label);
+}
+td strong { color: var(--text); }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(255,255,255,0.012); }
+.td-pass { color: var(--green); font-family: 'IBM Plex Mono', monospace; font-size: 10px; }
+.td-fail { color: var(--red); font-family: 'IBM Plex Mono', monospace; font-size: 10px; }
+.td-warn { color: var(--yellow); font-family: 'IBM Plex Mono', monospace; font-size: 10px; }
+.td-mono { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text); }
+
+/* CARD */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 18px 20px;
+  margin-bottom: 14px;
+}
+.card-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--blue);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.card-title.green { color: var(--green); }
+.card-title.red { color: var(--red); }
+.card-title.yellow { color: var(--yellow); }
+.card-title.purple { color: var(--purple); }
+
+/* PHASE BOX */
+.phase {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.phase-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+}
+.phase-badge {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  padding: 3px 10px;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+.ph0 { background: rgba(155,109,255,0.1); color: var(--purple); border: 1px solid rgba(155,109,255,0.2); }
+.ph1 { background: rgba(0,208,132,0.1); color: var(--green); border: 1px solid rgba(0,208,132,0.2); }
+.ph2 { background: rgba(45,140,255,0.1); color: var(--blue); border: 1px solid rgba(45,140,255,0.2); }
+.ph3 { background: rgba(240,184,0,0.1); color: var(--yellow); border: 1px solid rgba(240,184,0,0.2); }
+.ph4 { background: rgba(232,64,64,0.1); color: var(--red); border: 1px solid rgba(232,64,64,0.2); }
+.phase-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--text);
+  letter-spacing: 0.06em;
+}
+.phase-body { padding: 14px 18px; }
+.phase-body table { margin: 0; }
+
+/* STEP LIST */
+.step-list { counter-reset: step; }
+.step-item {
+  display: flex;
+  gap: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+.step-item:last-child { border-bottom: none; }
+.step-n {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--green);
+  min-width: 28px;
+  margin-top: 1px;
+}
+.step-text { color: var(--label); font-size: 13px; }
+.step-text strong { color: var(--text); }
+
+/* SCHEMA BLOCK */
+.schema {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 16px 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  line-height: 1.9;
+  color: var(--sub);
+  margin-bottom: 16px;
+}
+.schema .field { color: var(--blue); }
+.schema .type { color: var(--yellow); }
+.schema .comment { color: var(--muted); }
+.schema .table-name { color: var(--green); font-size: 11px; margin-bottom: 6px; display: block; }
+
+/* WARNING / NOTE */
+.warn-box {
+  background: rgba(232,64,64,0.04);
+  border: 1px solid rgba(232,64,64,0.18);
+  border-radius: 3px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  font-size: 12px;
+  color: var(--label);
+}
+.warn-box strong { color: var(--red); }
+.note-box {
+  background: rgba(240,184,0,0.04);
+  border: 1px solid rgba(240,184,0,0.18);
+  border-radius: 3px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  font-size: 12px;
+  color: var(--label);
+}
+.note-box strong { color: var(--yellow); }
+
+/* NEXT ACTIONS */
+.action-list { }
+.action-item {
+  display: flex;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+.action-item:last-child { border-bottom: none; }
+.action-n {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--green);
+  font-weight: 600;
+  min-width: 32px;
+}
+.action-title { font-size: 13px; color: var(--text); font-weight: 500; margin-bottom: 3px; }
+.action-desc { font-size: 12px; color: var(--sub); }
+
+/* GRID */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+
+/* INLINE CODE */
+code {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  color: var(--green);
+  background: rgba(0,208,132,0.07);
+  padding: 1px 5px;
+  border-radius: 2px;
+}
+
+/* FOOTER */
+.doc-footer {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  margin-top: 40px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@media (max-width: 800px) {
+  .nav { display: none; }
+  .page { padding: 24px 20px 80px; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR NAV -->
+<nav class="nav">
+  <div class="nav-logo">T2 · MASTER SPEC<span>MES / U.S. SESSION / V1</span></div>
+  <a href="#s1">01 · Executive Summary</a>
+  <a href="#s2">02 · Phase Roadmap</a>
+  <a href="#s3">03 · V1 Scope</a>
+  <div class="nav-group">
+    <div class="nav-group-label">Strategy Specs</div>
+    <a href="#s4">04 · Strategy Spec</a>
+    <a href="#s4a">— ORB 5-Min</a>
+    <a href="#s4b">— VWAP Reclaim</a>
+    <a href="#s4c">— EMA Pullback</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Engine</div>
+    <a href="#s5">05 · Risk Engine</a>
+    <a href="#s6">06 · Paper Framework</a>
+    <a href="#s7">07 · Logging Schema</a>
+    <a href="#s8">08 · EOD Report</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Evaluation</div>
+    <a href="#s9">09 · Promotion Rules</a>
+    <a href="#s10">10 · Engineering Order</a>
+    <a href="#s11">11 · Failure Modes</a>
+    <a href="#s12">12 · Expansion Path</a>
+  </div>
+  <div class="nav-group">
+    <a href="#actions">⬛ Next 10 Actions</a>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+<div class="page">
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 1 -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <span class="sec-anchor" id="s1"></span>
+  <div class="sec-head">
+    <span class="sec-num">01</span>
+    <h2>Executive Summary</h2>
+  </div>
+
+  <h3 class="green">What We Are Building</h3>
+  <p>A small internal automated trading operation that runs deterministic intraday strategies on MES (Micro E-mini S&P 500) futures during the U.S. session via Tradovate. The system enforces hard risk limits, logs every decision and trade, evaluates strategies in paper mode, and promotes only proven setups to 1-contract live trading. This is not discretionary. There is no AI during v1. There is no human judgment in the trading loop.</p>
+
+  <h3>Why MES U.S. Session First</h3>
+  <p>MES is the most liquid, technically clean, well-documented micro futures instrument. The U.S. session (9:30–4:00 PM ET) has the highest volume, tightest spreads, and most reliable price action. Starting here creates a controlled environment where strategy evaluation is not contaminated by session differences, instrument quirks, or overnight gaps. One instrument. One session. One execution environment. Everything gets proven in this lane before anything is added.</p>
+
+  <h3>Why Scope Is Intentionally Narrow</h3>
+  <p>Multi-market, multi-session, multi-strategy builds fail at the evaluation stage. If three things are changing at once, you cannot determine what is working and what is not. V1 isolates the one variable that matters: whether a deterministic rule-based strategy has real edge on MES during the U.S. session. Every other capability — AI discovery, additional instruments, additional sessions — is blocked until that question is answered by data.</p>
+
+  <h3 class="green">What V1 Success Looks Like</h3>
+  <div class="card">
+    <div class="card-title green">V1 Pass Definition</div>
+    <div class="rule-block green" style="margin-bottom:0;">
+      <div class="rule-row"><span class="rule-key">System runs clean</span><span class="rule-val">30 paper trading days with no critical execution failures</span></div>
+      <div class="rule-row"><span class="rule-key">Risk controls hold</span><span class="rule-val">Daily loss cap never breached. Kill switch fires correctly in simulation.</span></div>
+      <div class="rule-row"><span class="rule-key">At least 1 strategy earns promotion</span><span class="rule-val">Meets all hard criteria defined in Section 9</span></div>
+      <div class="rule-row"><span class="rule-key">Logging works</span><span class="rule-val">Every trade has complete record. No missing fields.</span></div>
+      <div class="rule-row"><span class="rule-key">EOD report delivered</span><span class="rule-val">Telegram report sent every trading day without manual trigger</span></div>
+    </div>
+  </div>
+
+  <div class="note-box"><strong>Business objective:</strong> Generate $100/day net average from automated MES intraday trading. That is approximately $2,000/month. The system gets there by proving edge first, scaling second. No live dollar touches a strategy that has not passed the paper validation gate.</div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 2 -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <span class="sec-anchor" id="s2"></span>
+  <div class="sec-head">
+    <span class="sec-num">02</span>
+    <h2>Phase Roadmap</h2>
+  </div>
+
+  <div class="phase">
+    <div class="phase-header">
+      <span class="phase-badge ph0">PHASE 0</span>
+      <span class="phase-title">Project Setup and Locked Decisions</span>
+    </div>
+    <div class="phase-body">
+      <p><strong>Goal:</strong> Lock every major decision before writing a line of code. No ambiguity entering Phase 1.</p>
+      <table>
+        <tr><th>Deliverable</th><th>Detail</th></tr>
+        <tr><td><strong>Instrument locked</strong></td><td>MES only</td></tr>
+        <tr><td><strong>Session locked</strong></td><td>U.S. session 9:30–3:45 PM ET</td></tr>
+        <tr><td><strong>Broker locked</strong></td><td>Tradovate. Paper account active and tested.</td></tr>
+        <tr><td><strong>Strategy count locked</strong></td><td>3 strategies. No additions during v1.</td></tr>
+        <tr><td><strong>Risk parameters locked</strong></td><td>Per-trade cap, daily cap, kill thresholds — all fixed before Phase 1</td></tr>
+        <tr><td><strong>Evaluation window locked</strong></td><td>30 trading days minimum paper period</td></tr>
+        <tr><td><strong>Repo and file structure</strong></td><td>Claude Code workspace established. CLAUDE.md written.</td></tr>
+      </table>
+      <p><strong>Dependencies:</strong> None. This is first.</p>
+      <p><strong>Pass criteria:</strong> All decisions documented in SPEC.md and committed to repo. No open questions.</p>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-header">
+      <span class="phase-badge ph1">PHASE 1</span>
+      <span class="phase-title">Market Data and Session Foundation</span>
+    </div>
+    <div class="phase-body">
+      <p><strong>Goal:</strong> Reliable MES price data, correct session clock, working indicator engine.</p>
+      <table>
+        <tr><th>Deliverable</th><th>Detail</th></tr>
+        <tr><td><strong>Tradovate WebSocket connection</strong></td><td>Live MES tick data streaming. Reconnect logic included.</td></tr>
+        <tr><td><strong>5-minute candle engine</strong></td><td>Builds OHLCV from ticks. Correct bar boundaries at :00, :05, etc.</td></tr>
+        <tr><td><strong>Session clock</strong></td><td>Tracks session open (9:30 ET), hard cutoff (3:45 ET), no-trade windows</td></tr>
+        <tr><td><strong>VWAP calculator</strong></td><td>Session-anchored from 9:30 ET. Resets daily. Verified against TradingView.</td></tr>
+        <tr><td><strong>EMA engine</strong></td><td>9, 21, 50 EMA on 5-min bars. Correct exponential smoothing.</td></tr>
+        <tr><td><strong>Stale data detector</strong></td><td>Alerts if no tick received in 30 seconds during session</td></tr>
+      </table>
+      <p><strong>Dependencies:</strong> Phase 0 complete. Tradovate account and API access confirmed.</p>
+      <p><strong>Risks:</strong> Tradovate WebSocket reliability. DST handling for ET session boundaries.</p>
+      <p><strong>Pass criteria:</strong> VWAP and EMA values match TradingView on same candles for 5 consecutive sessions.</p>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-header">
+      <span class="phase-badge ph1">PHASE 2</span>
+      <span class="phase-title">Deterministic Strategy Implementation</span>
+    </div>
+    <div class="phase-body">
+      <p><strong>Goal:</strong> All 3 strategies coded exactly as specified in Section 4. No interpretation. No fuzzy logic.</p>
+      <table>
+        <tr><th>Deliverable</th><th>Detail</th></tr>
+        <tr><td><strong>ORB 5-min module</strong></td><td>Opening range capture, breakout detection, signal generation, all filters applied</td></tr>
+        <tr><td><strong>VWAP reclaim/reject module</strong></td><td>Reclaim and reject detection, trigger logic, all no-trade conditions</td></tr>
+        <tr><td><strong>EMA pullback module</strong></td><td>Trend alignment detection, pullback detection, trigger logic</td></tr>
+        <tr><td><strong>Signal validator</strong></td><td>Each signal checked against risk engine before being forwarded to execution</td></tr>
+      </table>
+      <p><strong>Dependencies:</strong> Phase 1 complete. Candle engine, VWAP, and EMA verified.</p>
+      <p><strong>Risks:</strong> Rule ambiguity. Every ambiguous case must be resolved as a hard if/else before code is written, not during.</p>
+      <p><strong>Pass criteria:</strong> Replay 10 known historical sessions. Strategy signals match manual review on all 10.</p>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-header">
+      <span class="phase-badge ph2">PHASE 3</span>
+      <span class="phase-title">Risk Engine</span>
+    </div>
+    <div class="phase-body">
+      <p><strong>Goal:</strong> Risk layer that intercepts every signal before execution and enforces all limits.</p>
+      <table>
+        <tr><th>Deliverable</th><th>Detail</th></tr>
+        <tr><td><strong>Per-trade risk gate</strong></td><td>Blocks any signal where implied stop exceeds $50</td></tr>
+        <tr><td><strong>Daily loss tracker</strong></td><td>Real-time cumulative P&L. Halts all strategies at -$100.</td></tr>
+        <tr><td><strong>Strategy kill switch</strong></td><td>3 consecutive losses in a day suspends that strategy for remainder of session</td></tr>
+        <tr><td><strong>System kill switch</strong></td><td>Combined daily loss -$100 = all strategies halt, Telegram alert sent</td></tr>
+        <tr><td><strong>Position tracker</strong></td><td>Prevents second signal from same strategy while trade is open</td></tr>
+        <tr><td><strong>Session cutoff enforcer</strong></td><td>Forces flat at 3:45 PM ET regardless of open P&L</td></tr>
+        <tr><td><strong>Duplicate order guard</strong></td><td>Checks existing orders before placing. Rejects duplicate.</td></tr>
+      </table>
+      <p><strong>Dependencies:</strong> Strategy modules complete.</p>
+      <p><strong>Pass criteria:</strong> Simulate 20 forced kill scenarios. All fire correctly. No bypasses possible.</p>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-header">
+      <span class="phase-badge ph2">PHASE 4</span>
+      <span class="phase-title">Paper Execution Engine</span>
+    </div>
+    <div class="phase-body">
+      <p><strong>Goal:</strong> All 3 strategies place and manage paper orders via Tradovate paper account.</p>
+      <table>
+        <tr><th>Deliverable</th><th>Detail</th></tr>
+        <tr><td><strong>Order placer</strong></td><td>Sends bracket orders (entry + stop + target) to Tradovate paper API</td></tr>
+        <tr><td><strong>Fill handler</strong></td><td>Receives fill confirmations. Updates P&L. Logs actual vs expected entry.</td></tr>
+        <tr><td><strong>Rejection handler</strong></td><td>Logs rejected orders to incident table. Does not retry automatically.</td></tr>
+        <tr><td><strong>Bracket failure fallback</strong></td><td>If bracket fails, send stop as separate order. Log incident.</td></tr>
+        <tr><td><strong>Order state tracker</strong></td><td>Tracks pending / open / filled / cancelled per strategy. Prevents state desync.</td></tr>
+      </table>
+      <p><strong>Dependencies:</strong> Risk engine complete. Tradovate paper account verified.</p>
+      <p><strong>Pass criteria:</strong> Place 10 manual test orders in paper mode. All fill, stop, and target legs confirmed correctly.</p>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-header">
+      <span class="phase-badge ph3">PHASE 5</span>
+      <span class="phase-title">Logging and Analytics</span>
+    </div>
+    <div class="phase-body">
+      <p><strong>Goal:</strong> Complete SQLite trade log. Every trade, every incident, every daily summary captured.</p>
+      <table>
+        <tr><th>Deliverable</th><th>Detail</th></tr>
+        <tr><td><strong>Trade table</strong></td><td>All fields per Section 7 schema</td></tr>
+        <tr><td><strong>Daily summary table</strong></td><td>Per-strategy and system-level daily roll-up</td></tr>
+        <tr><td><strong>Strategy summary table</strong></td><td>Rolling expectancy, win rate, average R, drawdown per strategy</td></tr>
+        <tr><td><strong>Execution incidents table</strong></td><td>Rejections, disconnects, bracket failures, stale data events</td></tr>
+      </table>
+      <p><strong>Dependencies:</strong> Paper execution engine producing real orders.</p>
+      <p><strong>Pass criteria:</strong> Run 5-day paper session. All trades appear in log with zero missing fields.</p>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-header">
+      <span class="phase-badge ph3">PHASE 6</span>
+      <span class="phase-title">EOD Report</span>
+    </div>
+    <div class="phase-body">
+      <p><strong>Goal:</strong> Automated Telegram report sent at 4:00 PM ET every trading day without manual trigger.</p>
+      <table>
+        <tr><th>Deliverable</th><th>Detail</th></tr>
+        <tr><td><strong>Report builder</strong></td><td>Queries SQLite, formats report per Section 8 spec</td></tr>
+        <tr><td><strong>Telegram push</strong></td><td>Sends to @Benkboxerbot. Confirms delivery.</td></tr>
+        <tr><td><strong>Kill alert</strong></td><td>Separate immediate alert if system or strategy kill fires intraday</td></tr>
+      </table>
+      <p><strong>Dependencies:</strong> Logging complete. Telegram bot confirmed.</p>
+      <p><strong>Pass criteria:</strong> Report received at correct time for 5 consecutive trading days. All fields populated.</p>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-header">
+      <span class="phase-badge ph3">PHASE 7</span>
+      <span class="phase-title">Paper Validation Period</span>
+    </div>
+    <div class="phase-body">
+      <p><strong>Goal:</strong> Run all 3 strategies in parallel for 30 trading days. Rules frozen. No changes.</p>
+      <table>
+        <tr><th>Deliverable</th><th>Detail</th></tr>
+        <tr><td><strong>All 3 strategies active</strong></td><td>Running simultaneously on MES U.S. session paper account</td></tr>
+        <tr><td><strong>Rules frozen</strong></td><td>Zero parameter changes from day 1 to day 30</td></tr>
+        <tr><td><strong>Daily review only</strong></td><td>Read EOD report. No adjustments. Note anomalies only.</td></tr>
+        <tr><td><strong>30-day dataset</strong></td><td>Minimum 30 trade count per strategy before promotion decision</td></tr>
+      </table>
+      <p><strong>Dependencies:</strong> All Phases 1–6 complete and stable.</p>
+      <p><strong>Pass criteria:</strong> 30 trading days completed. No system crashes. Logging clean. Promotion decision possible.</p>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-header">
+      <span class="phase-badge ph4">PHASE 8</span>
+      <span class="phase-title">Promotion Decision</span>
+    </div>
+    <div class="phase-body">
+      <p><strong>Goal:</strong> Apply promotion criteria from Section 9 to each strategy. Promote, hold, demote, or kill.</p>
+      <p><strong>Pass criteria:</strong> At least 1 strategy receives PROMOTE verdict with documented evidence against all criteria.</p>
+      <p><strong>If all 3 fail:</strong> Return to Phase 2. Revise strategy rules. Start paper period over.</p>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-header">
+      <span class="phase-badge ph4">PHASE 9</span>
+      <span class="phase-title">1 Contract Live</span>
+    </div>
+    <div class="phase-body">
+      <p><strong>Goal:</strong> Top approved strategy trading 1 MES contract live. Same risk framework. Same logging. Same EOD report.</p>
+      <table>
+        <tr><th>Deliverable</th><th>Detail</th></tr>
+        <tr><td><strong>Broker switch to live account</strong></td><td>Same Tradovate setup. Live API credentials. 1 contract only.</td></tr>
+        <tr><td><strong>20-day live observation</strong></td><td>Live results must roughly match paper profile before any scaling</td></tr>
+        <tr><td><strong>Expansion gate</strong></td><td>20 live days + positive net + stable execution = eligible for scaling review</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 3 -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <span class="sec-anchor" id="s3"></span>
+  <div class="sec-head">
+    <span class="sec-num">03</span>
+    <h2>V1 Scope</h2>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title green">IN SCOPE</div>
+      <div class="rule-block green" style="margin-bottom:0;padding:12px 16px;">
+        <div class="rule-row"><span class="rule-key">Instrument</span><span class="rule-val green">MES only</span></div>
+        <div class="rule-row"><span class="rule-key">Session</span><span class="rule-val green">U.S. 9:30–3:45 PM ET</span></div>
+        <div class="rule-row"><span class="rule-key">Broker</span><span class="rule-val green">Tradovate</span></div>
+        <div class="rule-row"><span class="rule-key">Strategies</span><span class="rule-val green">3 only (ORB, VWAP, EMA)</span></div>
+        <div class="rule-row"><span class="rule-key">Mode</span><span class="rule-val green">Paper trading only until promotion</span></div>
+        <div class="rule-row"><span class="rule-key">Risk</span><span class="rule-val green">Hard rules, no overrides</span></div>
+        <div class="rule-row"><span class="rule-key">Logging</span><span class="rule-val green">Full SQLite trade log</span></div>
+        <div class="rule-row"><span class="rule-key">Reporting</span><span class="rule-val green">Telegram EOD report daily</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title red">OUT OF SCOPE — V1</div>
+      <div class="rule-block red" style="margin-bottom:0;padding:12px 16px;">
+        <div class="rule-row"><span class="rule-key">Instruments</span><span class="rule-val red">MGC, MCL, MNQ, anything else</span></div>
+        <div class="rule-row"><span class="rule-key">Sessions</span><span class="rule-val red">Europe, Asia, overnight</span></div>
+        <div class="rule-row"><span class="rule-key">AI features</span><span class="rule-val red">No strategy discovery, no ML</span></div>
+        <div class="rule-row"><span class="rule-key">Confluence scoring</span><span class="rule-val red">Not in v1 under any framing</span></div>
+        <div class="rule-row"><span class="rule-key">Multiple brokers</span><span class="rule-val red">Tradovate only</span></div>
+        <div class="rule-row"><span class="rule-key">Dynamic strategy gen</span><span class="rule-val red">Fixed rules only</span></div>
+        <div class="rule-row"><span class="rule-key">Discretionary overrides</span><span class="rule-val red">None. Ever. In v1.</span></div>
+        <div class="rule-row"><span class="rule-key">Dashboard UI</span><span class="rule-val red">Telegram report is sufficient for v1</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 4 -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <span class="sec-anchor" id="s4"></span>
+  <div class="sec-head">
+    <span class="sec-num">04</span>
+    <h2>Strategy Specification</h2>
+  </div>
+
+  <div class="note-box"><strong>Implementation requirement:</strong> Every rule below must be implementable as a hard if/else conditional. If a programmer needs to interpret any rule, the rule is incomplete. These are the final rules for the paper evaluation period. They cannot change once paper trading begins.</div>
+
+  <!-- STRATEGY 1 -->
+  <span class="sec-anchor" id="s4a"></span>
+  <h3 class="green">Strategy 1 — 5-Minute ORB</h3>
+
+  <div class="rule-block green">
+    <div class="rule-row"><span class="rule-key">Instrument</span><span class="rule-val">MES continuous contract</span></div>
+    <div class="rule-row"><span class="rule-key">Timeframe</span><span class="rule-val">5-minute bars</span></div>
+    <div class="rule-row"><span class="rule-key">Opening range window</span><span class="rule-val">9:30:00 to 9:35:00 ET. The single candle that opens at 9:30.</span></div>
+    <div class="rule-row"><span class="rule-key">OR high</span><span class="rule-val">High of the 9:30 candle (closes at 9:35)</span></div>
+    <div class="rule-row"><span class="rule-key">OR low</span><span class="rule-val">Low of the 9:30 candle</span></div>
+    <div class="rule-row"><span class="rule-key">OR range</span><span class="rule-val">OR high minus OR low in points</span></div>
+    <div class="rule-row"><span class="rule-key">Invalid range — skip day</span><span class="rule-val red">If OR range &lt; 2.0 points OR OR range &gt; 25.0 points, no trade today for this strategy</span></div>
+    <div class="rule-row"><span class="rule-key">Long trigger</span><span class="rule-val green">A candle after 9:35 CLOSES above OR high. Must be a full candle close, not a wick.</span></div>
+    <div class="rule-row"><span class="rule-key">Short trigger</span><span class="rule-val red">A candle after 9:35 CLOSES below OR low. Must be a full candle close, not a wick.</span></div>
+    <div class="rule-row"><span class="rule-key">Direction filter</span><span class="rule-val">For long: price must be above session VWAP at trigger candle close. For short: below VWAP.</span></div>
+    <div class="rule-row"><span class="rule-key">Entry</span><span class="rule-val">Market order placed at open of next candle after trigger. Not on the trigger candle itself.</span></div>
+    <div class="rule-row"><span class="rule-key">Stop — long</span><span class="rule-val">OR low. Fixed. Does not trail.</span></div>
+    <div class="rule-row"><span class="rule-key">Stop — short</span><span class="rule-val">OR high. Fixed. Does not trail.</span></div>
+    <div class="rule-row"><span class="rule-key">Target — long</span><span class="rule-val">OR high + OR range. (Entry level + 1× the opening range)</span></div>
+    <div class="rule-row"><span class="rule-key">Target — short</span><span class="rule-val">OR low – OR range. (Entry level – 1× the opening range)</span></div>
+    <div class="rule-row"><span class="rule-key">Invalidation</span><span class="rule-val red">If price closes back inside the OR after triggering, exit at market immediately. Log as invalidation.</span></div>
+    <div class="rule-row"><span class="rule-key">Time-based exit</span><span class="rule-val yellow">If trade still open at 11:30 ET, exit at market. No ORB trades entered after 11:00 ET.</span></div>
+    <div class="rule-row"><span class="rule-key">Max trades per day</span><span class="rule-val">1 trade total. First trigger (long or short) wins. No second entry after first trade closes.</span></div>
+    <div class="rule-row"><span class="rule-key">No-trade conditions</span><span class="rule-val">OR range invalid. No VWAP alignment. Already took trade today. Time past 11:00 ET.</span></div>
+  </div>
+
+  <!-- STRATEGY 2 -->
+  <span class="sec-anchor" id="s4b"></span>
+  <h3 class="blue">Strategy 2 — VWAP Reclaim / Reject</h3>
+
+  <div class="rule-block blue">
+    <div class="rule-row"><span class="rule-key">Instrument</span><span class="rule-val">MES continuous contract</span></div>
+    <div class="rule-row"><span class="rule-key">Timeframe</span><span class="rule-val">5-minute bars</span></div>
+    <div class="rule-row"><span class="rule-key">VWAP definition</span><span class="rule-val">Session-anchored VWAP. Starts at 9:30 ET. Formula: cumulative(((H+L+C)/3) × volume) / cumulative(volume). Resets every session.</span></div>
+    <div class="rule-row"><span class="rule-key">Reclaim condition</span><span class="rule-val green">Price closed BELOW VWAP for minimum 2 consecutive 5-min candles, then closes ABOVE VWAP</span></div>
+    <div class="rule-row"><span class="rule-key">Reject condition</span><span class="rule-val red">Price closed ABOVE VWAP for minimum 2 consecutive 5-min candles, then closes BELOW VWAP</span></div>
+    <div class="rule-row"><span class="rule-key">Long trigger</span><span class="rule-val green">Reclaim condition met. Trigger candle close is the signal.</span></div>
+    <div class="rule-row"><span class="rule-key">Short trigger</span><span class="rule-val red">Reject condition met. Trigger candle close is the signal.</span></div>
+    <div class="rule-row"><span class="rule-key">Minimum cross distance</span><span class="rule-val">Close price must be &gt;= 1.0 point above/below VWAP at trigger. If close is within 1.0 point of VWAP, skip — not a clean cross.</span></div>
+    <div class="rule-row"><span class="rule-key">Entry</span><span class="rule-val">Market order at open of next candle after trigger candle.</span></div>
+    <div class="rule-row"><span class="rule-key">Stop — long</span><span class="rule-val">Low of trigger candle. If distance from entry to stop &lt; 3.0 points, skip trade.</span></div>
+    <div class="rule-row"><span class="rule-key">Stop — short</span><span class="rule-val">High of trigger candle. If distance from entry to stop &lt; 3.0 points, skip trade.</span></div>
+    <div class="rule-row"><span class="rule-key">Target</span><span class="rule-val">1.5 × stop distance from entry. Example: entry 5050, stop 5047 (3 pts), target 5054.5</span></div>
+    <div class="rule-row"><span class="rule-key">Time-based exit</span><span class="rule-val yellow">Any open trade closed at market at 3:45 ET.</span></div>
+    <div class="rule-row"><span class="rule-key">No-trade window — open</span><span class="rule-val">No trades from 9:30 to 9:45 ET. First 15 minutes excluded.</span></div>
+    <div class="rule-row"><span class="rule-key">No-trade window — close</span><span class="rule-val">No new entries after 3:00 ET.</span></div>
+    <div class="rule-row"><span class="rule-key">Max trades per day</span><span class="rule-val">3 total. After 3 trades, strategy is done for the day regardless of outcome.</span></div>
+    <div class="rule-row"><span class="rule-key">No re-entry</span><span class="rule-val">After a trade exits, wait for a fresh reclaim or reject condition to form. No chasing.</span></div>
+  </div>
+
+  <!-- STRATEGY 3 -->
+  <span class="sec-anchor" id="s4c"></span>
+  <h3 class="yellow">Strategy 3 — EMA Pullback in Trend</h3>
+
+  <div class="rule-block yellow">
+    <div class="rule-row"><span class="rule-key">Instrument</span><span class="rule-val">MES continuous contract</span></div>
+    <div class="rule-row"><span class="rule-key">Timeframe</span><span class="rule-val">5-minute bars</span></div>
+    <div class="rule-row"><span class="rule-key">EMA lengths</span><span class="rule-val">9-period EMA, 21-period EMA, 50-period EMA. Standard exponential smoothing. Applied to candle close.</span></div>
+    <div class="rule-row"><span class="rule-key">Bullish trend condition</span><span class="rule-val green">9 EMA &gt; 21 EMA &gt; 50 EMA on current bar close. AND 9 EMA value is higher than it was 5 bars ago. AND 50 EMA value is higher than it was 5 bars ago.</span></div>
+    <div class="rule-row"><span class="rule-key">Bearish trend condition</span><span class="rule-val red">9 EMA &lt; 21 EMA &lt; 50 EMA on current bar close. AND 9 EMA value is lower than it was 5 bars ago. AND 50 EMA value is lower than it was 5 bars ago.</span></div>
+    <div class="rule-row"><span class="rule-key">No-trend condition</span><span class="rule-val">If 9 EMA and 21 EMA are within 1.0 point of each other, trend is not clear. No trade.</span></div>
+    <div class="rule-row"><span class="rule-key">Valid pullback — long</span><span class="rule-val green">Trend is bullish. Current bar CLOSES at or below the 21 EMA. Current bar CLOSES at or above the 50 EMA. This bar is the pullback bar.</span></div>
+    <div class="rule-row"><span class="rule-key">Valid pullback — short</span><span class="rule-val red">Trend is bearish. Current bar CLOSES at or above the 21 EMA. Current bar CLOSES at or below the 50 EMA. This bar is the pullback bar.</span></div>
+    <div class="rule-row"><span class="rule-key">Long trigger</span><span class="rule-val green">The candle immediately after the pullback bar closes ABOVE the high of the pullback bar.</span></div>
+    <div class="rule-row"><span class="rule-key">Short trigger</span><span class="rule-val red">The candle immediately after the pullback bar closes BELOW the low of the pullback bar.</span></div>
+    <div class="rule-row"><span class="rule-key">Trigger window</span><span class="rule-val">Trigger must occur on the candle immediately following the pullback bar. If it does not trigger on the next candle, the setup is void. Wait for a new pullback.</span></div>
+    <div class="rule-row"><span class="rule-key">Entry</span><span class="rule-val">Market order at open of candle following the trigger candle.</span></div>
+    <div class="rule-row"><span class="rule-key">Stop — long</span><span class="rule-val">Low of pullback bar minus 0.5 points.</span></div>
+    <div class="rule-row"><span class="rule-key">Stop — short</span><span class="rule-val">High of pullback bar plus 0.5 points.</span></div>
+    <div class="rule-row"><span class="rule-key">Min stop distance</span><span class="rule-val">If distance from entry to stop &lt; 2.0 points, skip trade.</span></div>
+    <div class="rule-row"><span class="rule-key">Target</span><span class="rule-val">2.0 × stop distance from entry. Fixed target. Does not trail.</span></div>
+    <div class="rule-row"><span class="rule-key">Time-based exit</span><span class="rule-val yellow">No new entries after 2:30 ET. Any open trade closed at 3:45 ET.</span></div>
+    <div class="rule-row"><span class="rule-key">Max trades per day</span><span class="rule-val">2 total per day for this strategy.</span></div>
+    <div class="rule-row"><span class="rule-key">No-trade window — open</span><span class="rule-val">No entries before 9:50 ET. EMAs need at least 4 candles to initialize.</span></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 5 -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <span class="sec-anchor" id="s5"></span>
+  <div class="sec-head">
+    <span class="sec-num">05</span>
+    <h2>Risk Engine Specification</h2>
+  </div>
+
+  <div class="note-box"><strong>MES point value:</strong> $5 per index point. Tick = 0.25 points = $1.25. All dollar values below assume 1 MES contract.</div>
+
+  <h3 class="red">Hard Risk Controls</h3>
+  <div class="rule-block red">
+    <div class="rule-row"><span class="rule-key">Per-trade max risk</span><span class="rule-val">$50 max. If stop distance × $5 &gt; $50, reject the signal. Do not reduce position size — reject the trade.</span></div>
+    <div class="rule-row"><span class="rule-key">Max open positions</span><span class="rule-val">1 per strategy at a time. If strategy has open trade, it cannot take new signal until position closes.</span></div>
+    <div class="rule-row"><span class="rule-key">Daily loss cap — system</span><span class="rule-val red">Combined daily P&L across all strategies hits -$100. All 3 strategies halt immediately. No more trades today.</span></div>
+    <div class="rule-row"><span class="rule-key">Daily loss cap — strategy</span><span class="rule-val">Single strategy combined daily loss hits -$60. That strategy halts for remainder of session. Others continue.</span></div>
+    <div class="rule-row"><span class="rule-key">Consecutive loss kill</span><span class="rule-val">3 consecutive losing trades in a session for one strategy. That strategy suspended for rest of day.</span></div>
+    <div class="rule-row"><span class="rule-key">Daily profit cap</span><span class="rule-val yellow">Optional. If combined daily P&L hits +$100, system halts. All open positions closed.</span></div>
+    <div class="rule-row"><span class="rule-key">Session cutoff</span><span class="rule-val">3:45 PM ET. All open positions closed at market. No exceptions.</span></div>
+    <div class="rule-row"><span class="rule-key">No-entry cutoff</span><span class="rule-val">Each strategy has its own last-entry time (see Section 4). System enforces these hard.</span></div>
+  </div>
+
+  <h3>Execution Safety Rules</h3>
+  <div class="rule-block">
+    <div class="rule-row"><span class="rule-key">Duplicate order prevention</span><span class="rule-val">Before placing any order: check open orders for same strategy + same symbol. If found, reject new order and log incident.</span></div>
+    <div class="rule-row"><span class="rule-key">Rejected order handling</span><span class="rule-val">Log to execution incidents table. Do NOT retry automatically. Wait for next valid signal.</span></div>
+    <div class="rule-row"><span class="rule-key">Stale data handling</span><span class="rule-val">If no tick received in 30 seconds during session hours, pause all 3 strategies. Send immediate Telegram alert. Resume only after live tick confirmed.</span></div>
+    <div class="rule-row"><span class="rule-key">Bracket failure</span><span class="rule-val">If bracket order fails to place stop leg: immediately send stop as separate order. Log as critical incident. Alert Telegram.</span></div>
+    <div class="rule-row"><span class="rule-key">Order state desync</span><span class="rule-val">On startup and every 60 seconds: reconcile internal order state against Tradovate open orders. If mismatch, halt strategy and alert.</span></div>
+    <div class="rule-row"><span class="rule-key">News window</span><span class="rule-val">Preload daily economic calendar. No new entries ±5 minutes around high-impact events (FOMC, CPI, NFP, etc.). Log skipped signals as "news block."</span></div>
+    <div class="rule-row"><span class="rule-key">DST handling</span><span class="rule-val">All session times defined in ET. System must convert correctly during DST transitions. Test explicitly for March and November changeover.</span></div>
+    <div class="rule-row"><span class="rule-key">Holiday calendar</span><span class="rule-val">Preload CME holiday calendar. System must not attempt to connect or trade on CME closure days.</span></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 6 -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <span class="sec-anchor" id="s6"></span>
+  <div class="sec-head">
+    <span class="sec-num">06</span>
+    <h2>Paper Trading Framework</h2>
+  </div>
+
+  <div class="rule-block">
+    <div class="rule-row"><span class="rule-key">Execution mode</span><span class="rule-val">Tradovate paper account. Real API. Real order routing. Simulated fills. Not a local backtest.</span></div>
+    <div class="rule-row"><span class="rule-key">Strategy isolation</span><span class="rule-val">Each strategy is a separate logical instance. Separate order IDs. Separate P&L tracker. Separate kill switches.</span></div>
+    <div class="rule-row"><span class="rule-key">Order conflict prevention</span><span class="rule-val">All 3 strategies share one instrument (MES). Total max concurrent open positions: 3 (one per strategy). No strategy sees another's positions.</span></div>
+    <div class="rule-row"><span class="rule-key">Fair comparison</span><span class="rule-val">All strategies run same session, same data feed, same clock. No strategy gets preferential treatment.</span></div>
+    <div class="rule-row"><span class="rule-key">Rule freeze</span><span class="rule-val red">From day 1 of paper period to promotion decision: zero parameter changes to any strategy rule. Violations invalidate the evaluation window.</span></div>
+    <div class="rule-row"><span class="rule-key">Evaluation period</span><span class="rule-val">30 calendar trading days minimum. Excludes CME holidays.</span></div>
+    <div class="rule-row"><span class="rule-key">Minimum sample</span><span class="rule-val">30 completed trades per strategy before promotion decision is valid. If a strategy has fewer than 30 trades at 30 days, extend evaluation until 30 trades reached.</span></div>
+    <div class="rule-row"><span class="rule-key">Paper slippage model</span><span class="rule-val">Tradovate paper fills at market. Add 0.5 points to reported slippage in analytics to model expected live fill degradation.</span></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 7 -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <span class="sec-anchor" id="s7"></span>
+  <div class="sec-head">
+    <span class="sec-num">07</span>
+    <h2>Logging and Analytics Schema</h2>
+  </div>
+
+  <h3>trades Table</h3>
+  <div class="schema">
+    <span class="table-name">TABLE: trades</span>
+    <span><span class="field">trade_id</span>          <span class="type">TEXT PRIMARY KEY</span>     <span class="comment">-- UUID generated on signal</span></span><br>
+    <span><span class="field">strategy_id</span>       <span class="type">TEXT NOT NULL</span>        <span class="comment">-- 'ORB5' | 'VWAP_RR' | 'EMA_PB'</span></span><br>
+    <span><span class="field">session_date</span>      <span class="type">DATE NOT NULL</span>        <span class="comment">-- Trading day (ET date)</span></span><br>
+    <span><span class="field">direction</span>         <span class="type">TEXT NOT NULL</span>        <span class="comment">-- 'LONG' | 'SHORT'</span></span><br>
+    <span><span class="field">signal_ts</span>         <span class="type">DATETIME NOT NULL</span>    <span class="comment">-- When signal condition was met</span></span><br>
+    <span><span class="field">order_ts</span>          <span class="type">DATETIME</span>             <span class="comment">-- When order was sent to broker</span></span><br>
+    <span><span class="field">fill_ts</span>           <span class="type">DATETIME</span>             <span class="comment">-- When fill confirmation received</span></span><br>
+    <span><span class="field">close_ts</span>          <span class="type">DATETIME</span>             <span class="comment">-- When position closed</span></span><br>
+    <span><span class="field">entry_expected</span>    <span class="type">REAL</span>                 <span class="comment">-- Price at signal time</span></span><br>
+    <span><span class="field">entry_actual</span>      <span class="type">REAL</span>                 <span class="comment">-- Actual fill price</span></span><br>
+    <span><span class="field">slippage_pts</span>      <span class="type">REAL</span>                 <span class="comment">-- entry_actual minus entry_expected</span></span><br>
+    <span><span class="field">stop_price</span>        <span class="type">REAL NOT NULL</span>        <span class="comment">-- Stop loss level</span></span><br>
+    <span><span class="field">target_price</span>      <span class="type">REAL NOT NULL</span>        <span class="comment">-- Profit target level</span></span><br>
+    <span><span class="field">exit_price</span>        <span class="type">REAL</span>                 <span class="comment">-- Actual exit fill</span></span><br>
+    <span><span class="field">exit_reason</span>       <span class="type">TEXT</span>                 <span class="comment">-- 'TARGET' | 'STOP' | 'TIME_EXIT' | 'INVALIDATION' | 'KILL_SWITCH' | 'MANUAL'</span></span><br>
+    <span><span class="field">pnl_dollars</span>       <span class="type">REAL</span>                 <span class="comment">-- Net P&L in dollars including commission</span></span><br>
+    <span><span class="field">pnl_r</span>             <span class="type">REAL</span>                 <span class="comment">-- P&L expressed as multiple of initial risk</span></span><br>
+    <span><span class="field">commission</span>        <span class="type">REAL</span>                 <span class="comment">-- Round-trip commission cost</span></span><br>
+    <span><span class="field">entry_reason</span>      <span class="type">TEXT</span>                 <span class="comment">-- Short description of trigger condition</span></span><br>
+    <span><span class="field">session_vwap</span>      <span class="type">REAL</span>                 <span class="comment">-- VWAP value at signal time</span></span><br>
+    <span><span class="field">regime_id</span>         <span class="type">TEXT</span>                 <span class="comment">-- Optional: session regime tag if used later</span></span><br>
+    <span><span class="field">exec_error_flag</span>   <span class="type">INTEGER DEFAULT 0</span>   <span class="comment">-- 1 if any execution issue occurred</span></span><br>
+    <span><span class="field">mode</span>              <span class="type">TEXT NOT NULL</span>        <span class="comment">-- 'PAPER' | 'LIVE'</span></span>
+  </div>
+
+  <h3>daily_summary Table</h3>
+  <div class="schema">
+    <span class="table-name">TABLE: daily_summary</span>
+    <span><span class="field">session_date</span>      <span class="type">DATE NOT NULL</span></span><br>
+    <span><span class="field">strategy_id</span>       <span class="type">TEXT NOT NULL</span></span><br>
+    <span><span class="field">trades_taken</span>      <span class="type">INTEGER</span></span><br>
+    <span><span class="field">signals_generated</span> <span class="type">INTEGER</span>              <span class="comment">-- Includes skipped signals</span></span><br>
+    <span><span class="field">signals_skipped</span>   <span class="type">INTEGER</span>              <span class="comment">-- Risk-gated or rule-blocked</span></span><br>
+    <span><span class="field">wins</span>              <span class="type">INTEGER</span></span><br>
+    <span><span class="field">losses</span>            <span class="type">INTEGER</span></span><br>
+    <span><span class="field">gross_pnl</span>         <span class="type">REAL</span></span><br>
+    <span><span class="field">net_pnl</span>           <span class="type">REAL</span>                 <span class="comment">-- After commissions</span></span><br>
+    <span><span class="field">max_intraday_dd</span>   <span class="type">REAL</span>                 <span class="comment">-- Worst point in day for this strategy</span></span><br>
+    <span><span class="field">kill_triggered</span>    <span class="type">INTEGER DEFAULT 0</span>   <span class="comment">-- 1 if strategy kill fired today</span></span><br>
+    <span><span class="field">exec_incidents</span>    <span class="type">INTEGER DEFAULT 0</span></span><br>
+    <span><span class="field">PRIMARY KEY</span>        <span class="comment">(session_date, strategy_id)</span></span>
+  </div>
+
+  <h3>strategy_summary Table</h3>
+  <div class="schema">
+    <span class="table-name">TABLE: strategy_summary (rolling, recalculated daily)</span>
+    <span><span class="field">strategy_id</span>       <span class="type">TEXT PRIMARY KEY</span></span><br>
+    <span><span class="field">total_trades</span>      <span class="type">INTEGER</span></span><br>
+    <span><span class="field">win_rate</span>          <span class="type">REAL</span>                 <span class="comment">-- wins / total_trades</span></span><br>
+    <span><span class="field">avg_win_r</span>         <span class="type">REAL</span>                 <span class="comment">-- Average R of winning trades</span></span><br>
+    <span><span class="field">avg_loss_r</span>        <span class="type">REAL</span>                 <span class="comment">-- Average R of losing trades (negative)</span></span><br>
+    <span><span class="field">expectancy_r</span>      <span class="type">REAL</span>                 <span class="comment">-- (win_rate × avg_win_r) + (loss_rate × avg_loss_r)</span></span><br>
+    <span><span class="field">total_net_pnl</span>     <span class="type">REAL</span></span><br>
+    <span><span class="field">max_drawdown</span>      <span class="type">REAL</span>                 <span class="comment">-- Largest peak-to-trough over evaluation period</span></span><br>
+    <span><span class="field">exec_incident_ct</span>  <span class="type">INTEGER</span></span><br>
+    <span><span class="field">status</span>            <span class="type">TEXT</span>                 <span class="comment">-- 'ACTIVE' | 'SUSPENDED' | 'KILLED' | 'PROMOTED'</span></span><br>
+    <span><span class="field">last_updated</span>      <span class="type">DATETIME</span></span>
+  </div>
+
+  <h3>execution_incidents Table</h3>
+  <div class="schema">
+    <span class="table-name">TABLE: execution_incidents</span>
+    <span><span class="field">incident_id</span>       <span class="type">TEXT PRIMARY KEY</span></span><br>
+    <span><span class="field">session_date</span>      <span class="type">DATE</span></span><br>
+    <span><span class="field">ts</span>                <span class="type">DATETIME</span></span><br>
+    <span><span class="field">strategy_id</span>       <span class="type">TEXT</span></span><br>
+    <span><span class="field">incident_type</span>     <span class="type">TEXT</span>                 <span class="comment">-- 'REJECTED_ORDER' | 'STALE_DATA' | 'BRACKET_FAILURE' | 'STATE_DESYNC' | 'DUPLICATE_BLOCKED' | 'DISCONNECT'</span></span><br>
+    <span><span class="field">description</span>      <span class="type">TEXT</span></span><br>
+    <span><span class="field">resolved</span>         <span class="type">INTEGER DEFAULT 0</span></span><br>
+    <span><span class="field">severity</span>         <span class="type">TEXT</span>                 <span class="comment">-- 'INFO' | 'WARN' | 'CRITICAL'</span></span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 8 -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <span class="sec-anchor" id="s8"></span>
+  <div class="sec-head">
+    <span class="sec-num">08</span>
+    <h2>End of Day Report</h2>
+  </div>
+
+  <p>Sent to @Benkboxerbot at 4:00 PM ET every trading day. Auto-generated from SQLite. No manual steps.</p>
+
+  <div class="card">
+    <div class="card-title">TELEGRAM EOD REPORT — FORMAT</div>
+    <div class="schema" style="background:var(--bg);">
+      <span style="color:var(--green);">📊 T2 EOD — [DATE] — [PAPER|LIVE]</span><br><br>
+      <span style="color:var(--label);">SYSTEM P&L:  +$XX.XX  |  Daily cap: $100 loss / $100 target</span><br>
+      <span style="color:var(--label);">System status: [ACTIVE | HALTED — reason]</span><br><br>
+      <span style="color:var(--blue);">━━━ STRATEGY RESULTS ━━━</span><br><br>
+      <span style="color:var(--green);">ORB5:</span><br>
+      <span style="color:var(--label);">  Trades: X  |  W/L: X/X  |  P&L: $XX.XX</span><br>
+      <span style="color:var(--label);">  Expectancy: X.XXR  |  Status: [ACTIVE|SUSPENDED|KILLED]</span><br><br>
+      <span style="color:var(--blue);">VWAP_RR:</span><br>
+      <span style="color:var(--label);">  Trades: X  |  W/L: X/X  |  P&L: $XX.XX</span><br>
+      <span style="color:var(--label);">  Expectancy: X.XXR  |  Status: [ACTIVE|SUSPENDED|KILLED]</span><br><br>
+      <span style="color:var(--yellow);">EMA_PB:</span><br>
+      <span style="color:var(--label);">  Trades: X  |  W/L: X/X  |  P&L: $XX.XX</span><br>
+      <span style="color:var(--label);">  Expectancy: X.XXR  |  Status: [ACTIVE|SUSPENDED|KILLED]</span><br><br>
+      <span style="color:var(--blue);">━━━ RISK ━━━</span><br>
+      <span style="color:var(--label);">Max intraday drawdown: $XX.XX</span><br>
+      <span style="color:var(--label);">Kill events today: X</span><br>
+      <span style="color:var(--label);">Execution incidents: X [detail if any]</span><br><br>
+      <span style="color:var(--blue);">━━━ CUMULATIVE (evaluation period) ━━━</span><br>
+      <span style="color:var(--label);">ORB5:    XX trades | X.XXR expectancy | $XXX total</span><br>
+      <span style="color:var(--label);">VWAP_RR: XX trades | X.XXR expectancy | $XXX total</span><br>
+      <span style="color:var(--label);">EMA_PB:  XX trades | X.XXR expectancy | $XXX total</span><br><br>
+      <span style="color:var(--blue);">━━━ TOMORROW ━━━</span><br>
+      <span style="color:var(--label);">ORB5: [ACTIVE|SUSPENDED]</span><br>
+      <span style="color:var(--label);">VWAP_RR: [ACTIVE|SUSPENDED]</span><br>
+      <span style="color:var(--label);">EMA_PB: [ACTIVE|SUSPENDED]</span><br>
+      <span style="color:var(--label);">High-impact news: [list or NONE]</span>
+    </div>
+  </div>
+
+  <div class="warn-box"><strong>Kill alert (separate, immediate):</strong> Sent the moment a system or strategy kill fires intraday. Does not wait for EOD. Message: "⛔ T2 KILL — [strategy or SYSTEM] — [reason] — [time ET] — Daily P&L: $XX.XX"</div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 9 -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <span class="sec-anchor" id="s9"></span>
+  <div class="sec-head">
+    <span class="sec-num">09</span>
+    <h2>Validation and Promotion Framework</h2>
+  </div>
+
+  <div class="note-box"><strong>Rule:</strong> No strategy earns promotion by looking good. Every criterion below must be met simultaneously. One failure = no promotion.</div>
+
+  <h3 class="green">PROMOTE — All 6 Must Pass</h3>
+  <div class="rule-block green">
+    <div class="rule-row"><span class="rule-key">1. Minimum trade count</span><span class="rule-val green">≥ 30 completed trades during evaluation window</span></div>
+    <div class="rule-row"><span class="rule-key">2. Positive expectancy</span><span class="rule-val green">Expectancy &gt; +0.20R. Formula: (win_rate × avg_win_R) + (loss_rate × avg_loss_R) &gt; 0.20</span></div>
+    <div class="rule-row"><span class="rule-key">3. Drawdown ceiling</span><span class="rule-val green">Total paper drawdown for this strategy &lt; $200 over the evaluation period</span></div>
+    <div class="rule-row"><span class="rule-key">4. Execution reliability</span><span class="rule-val green">Fewer than 3 execution incidents attributed to this strategy during evaluation window</span></div>
+    <div class="rule-row"><span class="rule-key">5. Rule freeze</span><span class="rule-val green">Zero parameter changes made to this strategy during evaluation window. Any change resets the clock.</span></div>
+    <div class="rule-row"><span class="rule-key">6. No critical incidents</span><span class="rule-val green">Zero instances of: duplicate fills, runaway position, stuck bracket, state desync causing incorrect position</span></div>
+  </div>
+
+  <h3 class="yellow">HOLD — Inconclusive</h3>
+  <div class="rule-block yellow">
+    <div class="rule-row"><span class="rule-key">Trade count &lt; 30</span><span class="rule-val">Insufficient sample. Extend evaluation. No decision yet.</span></div>
+    <div class="rule-row"><span class="rule-key">Expectancy 0.05R to 0.20R</span><span class="rule-val">Marginal positive. Needs more data. Hold and observe 10 more trades.</span></div>
+    <div class="rule-row"><span class="rule-key">1–2 execution incidents</span><span class="rule-val">Fixable. Address the incident type. Continue evaluation.</span></div>
+  </div>
+
+  <h3>DEMOTE — Borderline Failure</h3>
+  <div class="rule-block">
+    <div class="rule-row"><span class="rule-key">Expectancy -0.30R to 0.05R after 30+ trades</span><span class="rule-val">Weak or marginally negative. Watch 10 more trades. If still below 0.05R, kill.</span></div>
+    <div class="rule-row"><span class="rule-key">Drawdown $150–$200</span><span class="rule-val">Approaching ceiling. Under observation. No new entries increase unless trending positive.</span></div>
+  </div>
+
+  <h3 class="red">KILL — Immediate</h3>
+  <div class="rule-block red">
+    <div class="rule-row"><span class="rule-key">Expectancy &lt; -0.30R after 30+ trades</span><span class="rule-val red">Kill. Log reason. Do not attempt to fix the strategy mid-evaluation.</span></div>
+    <div class="rule-row"><span class="rule-key">Total paper drawdown &gt; $200</span><span class="rule-val red">Kill immediately. Capital preservation.</span></div>
+    <div class="rule-row"><span class="rule-key">Execution incidents ≥ 6</span><span class="rule-val red">System is unreliable on this strategy. Kill until root cause resolved.</span></div>
+    <div class="rule-row"><span class="rule-key">Any critical execution failure</span><span class="rule-val red">Kill immediately. Fix before any re-evaluation.</span></div>
+    <div class="rule-row"><span class="rule-key">Any rule change during evaluation</span><span class="rule-val red">Evaluation window is void. Restart paper period from day 1 with frozen rules.</span></div>
+  </div>
+
+  <div class="note-box"><strong>If all 3 strategies are killed:</strong> Do not add new strategies. Return to Phase 2. Revise exactly one rule per strategy. Restart paper period. Document what changed and why.</div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 10 -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <span class="sec-anchor" id="s10"></span>
+  <div class="sec-head">
+    <span class="sec-num">10</span>
+    <h2>Engineering Roadmap</h2>
+  </div>
+
+  <p>Smallest sensible steps first. Each step has a clear done condition. Do not start the next step until the current step passes.</p>
+
+  <div class="step-list">
+    <div class="step-item"><span class="step-n">E01</span><div class="step-text"><strong>Repo and workspace setup.</strong> Create T2 project folder in Claude Code workspace. Write SPEC.md from this document. Write CLAUDE.md with project context. Commit to GitHub. Done when: repo exists, SPEC.md committed, CLAUDE.md readable by Claude Code.</div></div>
+    <div class="step-item"><span class="step-n">E02</span><div class="step-text"><strong>Tradovate paper account and API access.</strong> Confirm paper account is active. Obtain API credentials. Test WebSocket connection. Test REST order placement. Done when: one manual paper order placed and confirmed via API.</div></div>
+    <div class="step-item"><span class="step-n">E03</span><div class="step-text"><strong>MES live data stream.</strong> Write WebSocket handler. Receive MES ticks. Store in memory buffer. Handle reconnect. Done when: ticks received continuously for 30 minutes with automatic reconnect tested.</div></div>
+    <div class="step-item"><span class="step-n">E04</span><div class="step-text"><strong>5-minute candle engine.</strong> Build OHLCV bar constructor from tick stream. Correct ET bar boundaries. Done when: 10 live bars compared against TradingView MES 5-min chart and match on H/L/O/C.</div></div>
+    <div class="step-item"><span class="step-n">E05</span><div class="step-text"><strong>Session clock and no-trade enforcement.</strong> ET session open/close times. News calendar loader. Session cutoff enforcer. Done when: system correctly identifies session open, session close, and news windows on 3 test days including one with FOMC or CPI.</div></div>
+    <div class="step-item"><span class="step-n">E06</span><div class="step-text"><strong>VWAP and EMA indicator engine.</strong> Session-anchored VWAP. 9/21/50 EMA on 5-min closes. Done when: VWAP and all three EMA values match TradingView on 5 consecutive sessions within 0.05 points.</div></div>
+    <div class="step-item"><span class="step-n">E07</span><div class="step-text"><strong>SQLite database setup.</strong> Create all 4 tables per Section 7 schema. Write/read test. Done when: test trade record inserted and retrieved with all fields correct.</div></div>
+    <div class="step-item"><span class="step-n">E08</span><div class="step-text"><strong>ORB strategy module.</strong> Implement exact rules from Section 4 Strategy 1. Unit test against 10 historical sessions with known signals. Done when: all 10 test sessions produce correct signal/no-signal output.</div></div>
+    <div class="step-item"><span class="step-n">E09</span><div class="step-text"><strong>VWAP reclaim/reject module.</strong> Implement exact rules from Section 4 Strategy 2. Unit test against 10 historical sessions. Done when: all 10 produce correct output.</div></div>
+    <div class="step-item"><span class="step-n">E10</span><div class="step-text"><strong>EMA pullback module.</strong> Implement exact rules from Section 4 Strategy 3. Unit test against 10 historical sessions. Done when: all 10 produce correct output.</div></div>
+    <div class="step-item"><span class="step-n">E11</span><div class="step-text"><strong>Risk engine.</strong> Per-trade gate, daily loss tracker, consecutive loss counter, kill switches, duplicate order guard. Done when: 20 forced kill scenarios all fire correctly in simulation.</div></div>
+    <div class="step-item"><span class="step-n">E12</span><div class="step-text"><strong>Paper execution engine.</strong> Order placer, fill handler, rejection handler, bracket failure fallback. Done when: 10 paper orders placed with correct bracket structure and fills confirmed via Tradovate paper API.</div></div>
+    <div class="step-item"><span class="step-n">E13</span><div class="step-text"><strong>Trade logger.</strong> Write every trade event to trades table and daily_summary. Done when: 5-day paper run produces complete log with zero missing fields.</div></div>
+    <div class="step-item"><span class="step-n">E14</span><div class="step-text"><strong>EOD report builder and Telegram push.</strong> Query SQLite, build report, push to @Benkboxerbot at 4:00 PM ET. Done when: report received on 5 consecutive trading days with correct data.</div></div>
+    <div class="step-item"><span class="step-n">E15</span><div class="step-text"><strong>Full integration test — 5 days.</strong> All 3 strategies live in paper mode simultaneously. Review logs and Telegram reports daily. Fix any runtime errors. Done when: 5 consecutive days run clean with no crashes or missing data.</div></div>
+    <div class="step-item"><span class="step-n">E16</span><div class="step-text"><strong>Start 30-day paper evaluation period.</strong> Freeze all rules. Run system every trading day. Only intervention allowed: system restart if crash. Done when: 30 trading days complete and promotion decision is made per Section 9.</div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 11 -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <span class="sec-anchor" id="s11"></span>
+  <div class="sec-head">
+    <span class="sec-num">11</span>
+    <h2>Failure Modes</h2>
+  </div>
+
+  <table>
+    <tr><th>Failure Mode</th><th>Why It Matters</th><th>How to Detect</th><th>How to Reduce in V1</th></tr>
+    <tr>
+      <td><strong>Bad strategy logic</strong></td>
+      <td>Rules coded incorrectly produce wrong signals</td>
+      <td>Unit test against known historical sessions before paper period</td>
+      <td>Section 10 E08–E10 require signal match on 10 historical sessions</td>
+    </tr>
+    <tr>
+      <td><strong>Overfitting</strong></td>
+      <td>Rules tuned to historical data, fail live</td>
+      <td>Live win rate significantly below paper win rate after 30 live trades</td>
+      <td>Rules are fixed before paper period. No tuning during evaluation.</td>
+    </tr>
+    <tr>
+      <td><strong>Too-short evaluation window</strong></td>
+      <td>30 trades is statistically weak. Short-term luck is indistinguishable from edge.</td>
+      <td>High variance in week-over-week expectancy during paper period</td>
+      <td>30-trade minimum hard floor. Hold decision extends window if sample is small.</td>
+    </tr>
+    <tr>
+      <td><strong>Paper / live mismatch</strong></td>
+      <td>Paper fills at ideal prices. Live fills degrade at entry.</td>
+      <td>Live slippage field in trades table. Compare avg live slippage vs paper.</td>
+      <td>Add 0.5-point slippage model to paper analytics. Thin-edge strategies will fail this test.</td>
+    </tr>
+    <tr>
+      <td><strong>WebSocket disconnects</strong></td>
+      <td>Stale data leads to bad signals or missed exits</td>
+      <td>Stale data detector: no tick in 30 seconds during session</td>
+      <td>Auto-reconnect logic. Halt trading on stale data. Alert immediately.</td>
+    </tr>
+    <tr>
+      <td><strong>Bracket failures</strong></td>
+      <td>Position open with no stop = uncontrolled risk</td>
+      <td>Fill confirmation received but stop leg missing from order state</td>
+      <td>Bracket failure fallback: send stop as separate order. Log critical incident.</td>
+    </tr>
+    <tr>
+      <td><strong>Rejected orders</strong></td>
+      <td>Signal fires but no fill. Missed trade or phantom position assumption.</td>
+      <td>Order status check after placement. No fill confirmation = rejected.</td>
+      <td>Log incident. Do not retry. Wait for next signal. Track frequency.</td>
+    </tr>
+    <tr>
+      <td><strong>Stale data</strong></td>
+      <td>System acts on old price. Signals based on wrong VWAP or EMA.</td>
+      <td>Tick timestamp delta exceeds 30 seconds</td>
+      <td>Halt all strategies. Alert. Resume only after live tick confirmed.</td>
+    </tr>
+    <tr>
+      <td><strong>Strategy overlap conflicts</strong></td>
+      <td>Two strategies simultaneously holding MES in opposite directions. Confusion in P&L tracking.</td>
+      <td>Position tracker: monitor all open positions across strategies</td>
+      <td>Each strategy is independent. System tracks each separately. No cross-strategy netting.</td>
+    </tr>
+    <tr>
+      <td><strong>Selection bias</strong></td>
+      <td>Choosing to promote a strategy because it had a good week, not because it met all criteria.</td>
+      <td>N/A — prevented by structure</td>
+      <td>Section 9 promotion criteria are hard and simultaneous. No partial credit.</td>
+    </tr>
+    <tr>
+      <td><strong>Overtrading</strong></td>
+      <td>Too many trades per strategy per day. Commissions erode edge.</td>
+      <td>trades_taken column in daily_summary exceeds max_trades per strategy</td>
+      <td>Max trades per day enforced hard in strategy modules. Risk engine blocks excess.</td>
+    </tr>
+    <tr>
+      <td><strong>Hidden slippage</strong></td>
+      <td>Slippage consistently 1–2 points beyond expected. Strategy not actually profitable live.</td>
+      <td>slippage_pts field averaged over 30+ trades. If avg &gt; 0.75 points, investigate.</td>
+      <td>Track every fill. Compare expected vs actual. Slippage threshold triggers review.</td>
+    </tr>
+    <tr>
+      <td><strong>Rule drift</strong></td>
+      <td>Small "obvious" parameter tweaks during evaluation invalidate the test.</td>
+      <td>SPEC.md version control. Any change = committed change with timestamp.</td>
+      <td>Rule freeze clause in Section 9. Any change resets evaluation clock.</td>
+    </tr>
+    <tr>
+      <td><strong>False confidence from short results</strong></td>
+      <td>5 wins in a row → decision to go live early</td>
+      <td>N/A — prevented by structure</td>
+      <td>30-trade minimum hard floor. No exceptions. No early promotion.</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 12 -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <span class="sec-anchor" id="s12"></span>
+  <div class="sec-head">
+    <span class="sec-num">12</span>
+    <h2>Expansion Path</h2>
+  </div>
+
+  <div class="warn-box"><strong>Hard gate:</strong> Nothing below starts until MES U.S. session has completed Phase 9 (20 live days, positive net, stable execution).</div>
+
+  <div class="rule-block">
+    <div class="rule-row"><span class="rule-key">Step 1</span><span class="rule-val">Extend MES U.S. session live to 60 days. Confirm edge is durable across market regimes, not just a hot streak.</span></div>
+    <div class="rule-row"><span class="rule-key">Step 2</span><span class="rule-val">Scale MES to 2 contracts on top-performing strategy. Same rules. Same risk caps per contract.</span></div>
+    <div class="rule-row"><span class="rule-key">Step 3</span><span class="rule-val">Add second strategy to live if it passed promotion and is uncorrelated with live strategy. Run 20-day shadow before going live.</span></div>
+    <div class="rule-row"><span class="rule-key">Step 4</span><span class="rule-val">Adapt top MES strategy for Europe session (same instrument, different session hours, different typical range). Full paper validation required. Treat as a new strategy evaluation.</span></div>
+    <div class="rule-row"><span class="rule-key">Step 5</span><span class="rule-val">Add MGC (Micro Gold). Requires building new data pipeline, recalibrating strategy rules for gold behavior. Full Phase 1–9 process. Not a copy-paste from MES.</span></div>
+    <div class="rule-row"><span class="rule-key">Step 6</span><span class="rule-val">Add MCL (Micro Crude Oil). Same full process as MGC. Only after MGC is stable.</span></div>
+    <div class="rule-row"><span class="rule-key">Step 7</span><span class="rule-val">AI strategy discovery layer. Only after live plumbing is stable and profitable. Use as a research pipeline, not a live trading component.</span></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- NEXT 10 ACTIONS -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <span class="sec-anchor" id="actions"></span>
+  <div class="sec-head">
+    <span class="sec-num">⬛</span>
+    <h2>Next 10 Build Tasks — In Order</h2>
+  </div>
+
+  <div class="action-list">
+    <div class="action-item">
+      <span class="action-n">01</span>
+      <div>
+        <div class="action-title">Create T2 project folder and SPEC.md in Claude Code workspace</div>
+        <div class="action-desc">Path: C:\Users\Ben\.openclaw\T2\ — Write SPEC.md from this document. Write CLAUDE.md with project context. Commit to GitHub under wasatchphone-ux.</div>
+      </div>
+    </div>
+    <div class="action-item">
+      <span class="action-n">02</span>
+      <div>
+        <div class="action-title">Confirm Tradovate paper account is active and API accessible</div>
+        <div class="action-desc">Obtain API key and secret. Test WebSocket handshake to Tradovate market data endpoint. Test REST authentication. Document credentials securely.</div>
+      </div>
+    </div>
+    <div class="action-item">
+      <span class="action-n">03</span>
+      <div>
+        <div class="action-title">Build MES WebSocket data handler with reconnect logic</div>
+        <div class="action-desc">Python script. Subscribe to MES tick stream. Auto-reconnect on disconnect. Stale data detector (30-second threshold). Log all ticks to buffer.</div>
+      </div>
+    </div>
+    <div class="action-item">
+      <span class="action-n">04</span>
+      <div>
+        <div class="action-title">Build 5-minute candle engine</div>
+        <div class="action-desc">Consume tick buffer. Build OHLCV bars on correct ET boundaries. Verify against TradingView MES 5-min on 10 live bars. Must match within 0.05 points.</div>
+      </div>
+    </div>
+    <div class="action-item">
+      <span class="action-n">05</span>
+      <div>
+        <div class="action-title">Build session clock and news calendar filter</div>
+        <div class="action-desc">ET session boundaries. CME holiday calendar. High-impact economic event calendar (pull from Forex Factory API or static preload). News window enforcer.</div>
+      </div>
+    </div>
+    <div class="action-item">
+      <span class="action-n">06</span>
+      <div>
+        <div class="action-title">Build VWAP and EMA indicator engine</div>
+        <div class="action-desc">Session-anchored VWAP. 9/21/50 EMA on candle closes. Verify all four values match TradingView on 5 consecutive live sessions within 0.05 points.</div>
+      </div>
+    </div>
+    <div class="action-item">
+      <span class="action-n">07</span>
+      <div>
+        <div class="action-title">Create SQLite database with all 4 tables</div>
+        <div class="action-desc">Path: C:\Users\Ben\.openclaw\T2\db\t2.db — Create trades, daily_summary, strategy_summary, execution_incidents tables per Section 7 schema. Insert/read test record.</div>
+      </div>
+    </div>
+    <div class="action-item">
+      <span class="action-n">08</span>
+      <div>
+        <div class="action-title">Implement ORB strategy module</div>
+        <div class="action-desc">Exact rules from Section 4 Strategy 1. No interpretation. Unit test against 10 historical MES sessions with known ORB setups. All 10 must produce correct signal output.</div>
+      </div>
+    </div>
+    <div class="action-item">
+      <span class="action-n">09</span>
+      <div>
+        <div class="action-title">Implement VWAP reclaim/reject module</div>
+        <div class="action-desc">Exact rules from Section 4 Strategy 2. Unit test against 10 historical sessions. All 10 must produce correct output.</div>
+      </div>
+    </div>
+    <div class="action-item">
+      <span class="action-n">10</span>
+      <div>
+        <div class="action-title">Implement EMA pullback module</div>
+        <div class="action-desc">Exact rules from Section 4 Strategy 3. Unit test against 10 historical sessions. All 10 must produce correct output. After this step: all 3 strategy modules exist and are unit-tested. Next step is the risk engine.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="doc-footer">
+  <span>T2 · MES AUTOMATED TRADING · MASTER SPEC · V1.0</span>
+  <span>LOGOS PROJECT · WASATCH COMBAT SPORTS</span>
+  <span>INSTRUMENT: MES · BROKER: TRADOVATE · SESSION: U.S.</span>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>
