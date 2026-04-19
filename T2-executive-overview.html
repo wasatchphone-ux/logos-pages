@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T2 · Path to $100/Day</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #06090d;
+    --card: #0b1018;
+    --border: #1a2535;
+    --green: #00e5a0;
+    --blue: #3b9eff;
+    --yellow: #f5c400;
+    --red: #ff4d4d;
+    --text: #d0e4f4;
+    --muted: #3d5470;
+    --sub: #6a8ba8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+  }
+  .page { max-width: 960px; margin: 0 auto; padding: 56px 28px 80px; }
+
+  /* ── TOP HERO ── */
+  .hero {
+    text-align: center;
+    padding-bottom: 56px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 56px;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--green);
+    background: rgba(0,229,160,0.07);
+    border: 1px solid rgba(0,229,160,0.18);
+    padding: 5px 14px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(42px, 8vw, 80px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: #fff;
+  }
+  .hero h1 span { color: var(--green); }
+  .hero-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--sub);
+    margin-top: 16px;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── STATS ROW ── */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-bottom: 56px;
+  }
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 24px 20px;
+    text-align: center;
+  }
+  .stat:first-child { border-radius: 4px 0 0 4px; }
+  .stat:last-child { border-radius: 0 4px 4px 0; }
+  .stat-num {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-num.green { color: var(--green); }
+  .stat-num.yellow { color: var(--yellow); }
+  .stat-num.blue { color: var(--blue); }
+  .stat-num.red { color: var(--red); }
+  .stat-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .stat-context {
+    font-size: 11px;
+    color: var(--sub);
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+
+  /* ── SECTION LABEL ── */
+  .sec-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .sec-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── THE INSIGHT BOX ── */
+  .insight {
+    background: rgba(0,229,160,0.04);
+    border: 1px solid rgba(0,229,160,0.15);
+    border-radius: 4px;
+    padding: 28px 32px;
+    margin-bottom: 56px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: center;
+  }
+  .insight-head {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .insight-head span { color: var(--green); }
+  .insight-body {
+    font-size: 14px;
+    color: var(--sub);
+    line-height: 1.7;
+  }
+  .bias-cards { display: flex; flex-direction: column; gap: 10px; }
+  .bias-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .bias-card-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--sub);
+    letter-spacing: 0.08em;
+  }
+  .bias-card-val {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--green);
+  }
+  .bias-card-val.red { color: var(--red); }
+  .bias-bar {
+    height: 4px;
+    border-radius: 2px;
+    background: var(--border);
+    margin-top: 8px;
+    overflow: hidden;
+  }
+  .bias-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: var(--green);
+  }
+  .bias-fill.red { background: var(--red); }
+
+  /* ── HOW IT WORKS ── */
+  .how {
+    margin-bottom: 56px;
+  }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .step {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 22px 20px;
+    position: relative;
+  }
+  .step-num {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--border);
+    margin-bottom: 12px;
+    font-variant-numeric: tabular-nums;
+  }
+  .step-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .step-body {
+    font-size: 12px;
+    color: var(--sub);
+    line-height: 1.7;
+  }
+  .step-tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    padding: 2px 8px;
+    border-radius: 2px;
+    margin-top: 12px;
+  }
+  .tag-green { background: rgba(0,229,160,0.1); color: var(--green); border: 1px solid rgba(0,229,160,0.2); }
+  .tag-blue { background: rgba(59,158,255,0.1); color: var(--blue); border: 1px solid rgba(59,158,255,0.2); }
+  .tag-yellow { background: rgba(245,196,0,0.1); color: var(--yellow); border: 1px solid rgba(245,196,0,0.2); }
+  .tag-red { background: rgba(255,77,77,0.1); color: var(--red); border: 1px solid rgba(255,77,77,0.2); }
+  .step-connector {
+    display: flex;
+    align-items: flex-start;
+    padding-top: 50px;
+    color: var(--muted);
+    font-size: 22px;
+  }
+
+  /* ── THE MATH ── */
+  .math-section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 32px;
+    margin-bottom: 56px;
+  }
+  .math-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 24px;
+  }
+  .math-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 24px 1fr;
+    gap: 0;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .math-item {
+    text-align: center;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+  }
+  .math-item-val {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--green);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .math-item-val.blue { color: var(--blue); }
+  .math-item-val.yellow { color: var(--yellow); }
+  .math-item-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .math-arrow { text-align: center; color: var(--muted); font-size: 18px; }
+  .math-note {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--sub);
+    line-height: 1.8;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+    margin-top: 4px;
+  }
+  .math-note strong { color: var(--green); }
+
+  /* ── ROADMAP ── */
+  .roadmap {
+    margin-bottom: 56px;
+  }
+  .road-items { display: flex; flex-direction: column; gap: 0; }
+  .road-item {
+    display: grid;
+    grid-template-columns: 80px 2px 1fr;
+    gap: 0 20px;
+    align-items: stretch;
+  }
+  .road-phase-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-top: 4px;
+    padding-bottom: 32px;
+  }
+  .road-phase {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 2px;
+    text-align: center;
+  }
+  .road-line-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .road-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 4px;
+    border: 2px solid var(--bg);
+  }
+  .road-vert {
+    flex: 1;
+    width: 2px;
+    background: var(--border);
+  }
+  .road-item:last-child .road-vert { display: none; }
+  .road-content {
+    padding-bottom: 32px;
+    padding-top: 0;
+  }
+  .road-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .road-desc {
+    font-size: 13px;
+    color: var(--sub);
+    line-height: 1.7;
+    max-width: 540px;
+  }
+  .road-exit {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 8px;
+    letter-spacing: 0.06em;
+  }
+  .road-exit span { color: var(--green); }
+
+  .dot-green { background: var(--green); }
+  .dot-blue { background: var(--blue); }
+  .dot-yellow { background: var(--yellow); }
+  .dot-red { background: var(--red); }
+
+  /* ── GUARD RAILS ── */
+  .guards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 56px;
+  }
+  .guard {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px;
+    border-top: 2px solid var(--red);
+  }
+  .guard.green { border-top-color: var(--green); }
+  .guard.yellow { border-top-color: var(--yellow); }
+  .guard-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .guard-body { font-size: 12px; color: var(--sub); line-height: 1.6; }
+  .guard-rule {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--red);
+    font-weight: 500;
+    margin-top: 8px;
+  }
+  .guard-rule.green { color: var(--green); }
+  .guard-rule.yellow { color: var(--yellow); }
+
+  /* ── BOTTOM LINE ── */
+  .bottom-line {
+    text-align: center;
+    padding: 40px 32px;
+    background: rgba(0,229,160,0.03);
+    border: 1px solid rgba(0,229,160,0.12);
+    border-radius: 4px;
+  }
+  .bl-head {
+    font-size: clamp(22px, 4vw, 36px);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .bl-head span { color: var(--green); }
+  .bl-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--sub);
+    letter-spacing: 0.08em;
+    line-height: 1.8;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 650px) {
+    .stats { grid-template-columns: 1fr 1fr; }
+    .steps { grid-template-columns: 1fr; }
+    .insight { grid-template-columns: 1fr; }
+    .math-grid { grid-template-columns: 1fr; }
+    .math-arrow { display: none; }
+    .guards { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">LOGOS · T2 · EXECUTIVE OVERVIEW</div>
+    <h1>$<span>100</span>/DAY<br>ON AUTOPILOT</h1>
+    <div class="hero-sub">// AUTOMATED MICRO FUTURES TRADING · MNQ · NO CRYPTO · NO OVERNIGHT RISK</div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num green">$100</div>
+      <div class="stat-label">Daily Target</div>
+      <div class="stat-context">The system stops when<br>this is hit. Lock the win.</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num red">$100</div>
+      <div class="stat-label">Max Daily Loss</div>
+      <div class="stat-context">Hard kill switch. No<br>overrides. Ever.</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num yellow">$2</div>
+      <div class="stat-label">Per Point on MNQ</div>
+      <div class="stat-context">Need 50 points net<br>to hit the target.</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num blue">55%</div>
+      <div class="stat-label">Required Win Rate</div>
+      <div class="stat-context">Not impressive. That's<br>the point. It's achievable.</div>
+    </div>
+  </div>
+
+  <!-- THE INSIGHT -->
+  <div class="sec-label">The Edge We Already Have</div>
+  <div class="insight">
+    <div>
+      <div class="insight-head">The first 30 minutes<br>tell you the <span>whole day.</span></div>
+      <div class="insight-body">
+        The NQ opening candle has a documented statistical bias. A green first 30-min candle predicts a green close 73% of the time. Red predicts red 67% of the time. This single filter — already in T2 — gives the system a directional bias before a single trade is placed. Most retail traders ignore it. We build everything on top of it.
+      </div>
+    </div>
+    <div class="bias-cards">
+      <div class="bias-card">
+        <div>
+          <div class="bias-card-label">GREEN OPEN CANDLE → LONG BIAS</div>
+          <div class="bias-bar"><div class="bias-fill" style="width:73%"></div></div>
+        </div>
+        <div class="bias-card-val">73%</div>
+      </div>
+      <div class="bias-card">
+        <div>
+          <div class="bias-card-label">RED OPEN CANDLE → SHORT BIAS</div>
+          <div class="bias-bar"><div class="bias-fill red" style="width:67%"></div></div>
+        </div>
+        <div class="bias-card-val red">67%</div>
+      </div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);padding:8px 0;letter-spacing:0.06em;line-height:1.7;">
+        SOURCE: EDGEFUL OPENING CANDLE<br>CONTINUATION REPORT · NQ FUTURES
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="how">
+    <div class="sec-label">How The System Works — 6 Steps, Every Day</div>
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">Pre-Market: Read the Room</div>
+        <div class="step-body">Before the open, the system pulls VIX level, overnight NQ range, and pre-market trend. It classifies the day type — calm, volatile, or dangerous — and sets the initial bias. No trades yet.</div>
+        <div class="step-tag tag-blue">8:00 AM ET</div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Opening 30 Min: Lock the Direction</div>
+        <div class="step-body">System watches the first 30-minute candle form. Green or red. That locks the session bias — Long or Short. The opening range high and low become key levels. No trading during this window.</div>
+        <div class="step-tag tag-yellow">9:30–10:00 AM</div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Strategy Engine: Find the Setup</div>
+        <div class="step-body">Three proven setups run simultaneously: Opening Range Breakout, VWAP reclaim, and EMA fan pullback. A signal only fires when the setup aligns with the session bias. Contra-bias signals are skipped automatically.</div>
+        <div class="step-tag tag-blue">10:00 AM+</div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-title">Risk Gate: Go or No-Go</div>
+        <div class="step-body">Before any order is placed, the risk gate checks: Is daily loss below $100? Is the target already hit? Are we at max trades for the day? If any flag trips, the system stands down. No human needed.</div>
+        <div class="step-tag tag-red">EVERY TRADE</div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-title">Execute and Manage</div>
+        <div class="step-body">Bracket order placed automatically: entry, stop loss, and profit target in one shot. System monitors the fill. No discretion, no second-guessing. When the trade closes, it logs to the database and updates daily P&L.</div>
+        <div class="step-tag tag-green">AUTOMATED</div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">06</div>
+        <div class="step-title">End of Day Report</div>
+        <div class="step-body">All positions flat by 3:45 PM. No overnight holds. Telegram sends a daily summary: P&L, win rate, trade log, drawdown status. The system resets and prepares for tomorrow.</div>
+        <div class="step-tag tag-green">4:00 PM ET</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- THE MATH -->
+  <div class="sec-label">The Math That Makes It Work</div>
+  <div class="math-section">
+    <div class="math-title">Why $100/Day is a Low Bar — Not a High One</div>
+    <div class="math-grid">
+      <div class="math-item">
+        <div class="math-item-val">4</div>
+        <div class="math-item-label">Trades per day</div>
+      </div>
+      <div class="math-arrow">×</div>
+      <div class="math-item">
+        <div class="math-item-val blue">55%</div>
+        <div class="math-item-label">Win rate needed</div>
+      </div>
+      <div class="math-arrow">×</div>
+      <div class="math-item">
+        <div class="math-item-val yellow">1.2:1</div>
+        <div class="math-item-label">Reward / Risk ratio</div>
+      </div>
+    </div>
+    <div class="math-note">
+      At 4 trades/day, <strong>55% win rate</strong>, and a modest 1.2:1 R:R — that's roughly <strong>2.2 winners and 1.8 losers per day</strong>.<br>
+      Each winner targets 15–20 NQ points ($30–40 on 1 MNQ contract). Each loser risks 12–15 points ($24–30).<br>
+      After $10/day in commissions (4 trades × $2.50 round trip): <strong>net expected value approaches $80–120/day</strong>.<br>
+      This does not require genius-level trading. It requires a system that doesn't deviate.
+    </div>
+  </div>
+
+  <!-- ROADMAP -->
+  <div class="roadmap">
+    <div class="sec-label">The Path — Four Phases to Autopilot</div>
+    <div class="road-items">
+
+      <div class="road-item">
+        <div class="road-phase-col">
+          <span class="road-phase tag-green">PHASE 1</span>
+        </div>
+        <div class="road-line-col">
+          <div class="road-dot dot-green"></div>
+          <div class="road-vert"></div>
+        </div>
+        <div class="road-content">
+          <div class="road-title">Prove the Edge Before Risking a Dollar</div>
+          <div class="road-desc">AI research agents scan academic databases and open-source repositories for proven intraday futures strategies. Each candidate gets backtested on real MNQ historical data with realistic commissions and slippage. Debate agents argue against overfitting. Only strategies clearing 55% win rate and 1.2 R:R move forward.</div>
+          <div class="road-exit">EXIT: <span>At least 1 validated strategy. Backtest results documented.</span></div>
+        </div>
+      </div>
+
+      <div class="road-item">
+        <div class="road-phase-col">
+          <span class="road-phase tag-blue">PHASE 2</span>
+        </div>
+        <div class="road-line-col">
+          <div class="road-dot dot-blue"></div>
+          <div class="road-vert"></div>
+        </div>
+        <div class="road-content">
+          <div class="road-title">Build and Connect the Full System</div>
+          <div class="road-desc">Regime filter goes live. Strategy engine built around validated setups. Risk gate coded with hard kill switch. All components connected to Tradovate paper account. System runs for 10 days on paper — every signal, every fill, every kill event logged and reviewed.</div>
+          <div class="road-exit">EXIT: <span>10 paper trading days complete. No system errors. Signals match expected behavior.</span></div>
+        </div>
+      </div>
+
+      <div class="road-item">
+        <div class="road-phase-col">
+          <span class="road-phase tag-yellow">PHASE 3</span>
+        </div>
+        <div class="road-line-col">
+          <div class="road-dot dot-yellow"></div>
+          <div class="road-vert"></div>
+        </div>
+        <div class="road-content">
+          <div class="road-title">Go Live — 1 Contract, 30 Days</div>
+          <div class="road-desc">Real money. 1 MNQ contract only. $2/point. Max daily loss is $100 — one bad day on 1 contract. The goal is not profit at this stage. The goal is proving the system behaves live the same way it behaved in testing. Telegram reports every day. Review weekly.</div>
+          <div class="road-exit">EXIT: <span>30 days live. Win rate ≥ 52%. Net positive or breakeven. No kill switch misfires.</span></div>
+        </div>
+      </div>
+
+      <div class="road-item">
+        <div class="road-phase-col">
+          <span class="road-phase tag-red">PHASE 4</span>
+        </div>
+        <div class="road-line-col">
+          <div class="road-dot dot-red"></div>
+          <div class="road-vert"></div>
+        </div>
+        <div class="road-content">
+          <div class="road-title">Scale to $100/Day — The Brass Ring</div>
+          <div class="road-desc">Increase contract size or add MES alongside MNQ for diversification. System is now running the same logic — just bigger. $100/day becomes achievable at 2–3 MNQ contracts with the same win rate. System is fully automated. Daily involvement: review the Telegram EOD report.</div>
+          <div class="road-exit">EXIT: <span>$100/day average over 60-day window. Drawdown within defined limits. True autopilot.</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GUARDRAILS -->
+  <div class="sec-label">The Rules That Protect Everything</div>
+  <div class="guards">
+    <div class="guard green">
+      <div class="guard-title">Target Lock</div>
+      <div class="guard-body">The moment daily profit hits the target, the system shuts down for the day. No extending. No "one more." Consistency is the product.</div>
+      <div class="guard-rule green">HALT AT +$100 · NO EXCEPTIONS</div>
+    </div>
+    <div class="guard">
+      <div class="guard-title">Kill Switch</div>
+      <div class="guard-body">Daily loss hits $100 and everything stops. No override capability. The worst possible day costs exactly $100 and nothing more.</div>
+      <div class="guard-rule">HALT AT -$100 · HARD CODED</div>
+    </div>
+    <div class="guard yellow">
+      <div class="guard-title">No Overnight Risk</div>
+      <div class="guard-body">All positions closed by 3:45 PM ET every day. Gaps, news events, and overnight moves are someone else's problem.</div>
+      <div class="guard-rule yellow">FLAT BY 15:45 · ALWAYS</div>
+    </div>
+  </div>
+
+  <!-- BOTTOM LINE -->
+  <div class="bottom-line">
+    <div class="bl-head">This is not a trading strategy.<br>It's a <span>repeatable system.</span></div>
+    <div class="bl-sub">
+      The edge is small and real. The math is conservative. The risk rules are non-negotiable.<br>
+      Four phases. Backtest first. Paper second. One contract third. Scale fourth.<br>
+      No shortcuts. No overnight holds. No crypto. No discretion.<br><br>
+      INSTRUMENT: MNQ · RUNTIME: Claude Code · ALERTS: Telegram · DATABASE: SQLite
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T2 — Brass Ring Trading System</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c10;
+    --surface: #0d1318;
+    --surface2: #131a22;
+    --border: #1e2d3d;
+    --accent: #00d4aa;
+    --accent2: #0090ff;
+    --warn: #f0a500;
+    --danger: #e84040;
+    --text: #c8d8e8;
+    --muted: #4a6070;
+    --label: #7a9ab0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .page { max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  /* HEADER */
+  .header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 28px;
+    margin-bottom: 40px;
+  }
+  .header-top {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .project-id {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    background: rgba(0,212,170,0.08);
+    border: 1px solid rgba(0,212,170,0.2);
+    padding: 3px 10px;
+    border-radius: 2px;
+  }
+  h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #e8f4ff;
+    line-height: 1;
+  }
+  .tagline {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    margin-top: 6px;
+  }
+  .kpi-bar {
+    display: flex;
+    gap: 32px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .kpi {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .kpi-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .kpi-value {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .kpi-value.warn { color: var(--warn); }
+  .kpi-value.neutral { color: var(--text); }
+
+  /* SECTION */
+  .section { margin-bottom: 48px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--accent2);
+    letter-spacing: 0.1em;
+    min-width: 28px;
+  }
+  h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #ddeeff;
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 12px;
+  }
+  .card-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .card-title.blue { color: var(--accent2); }
+  .card-title.warn { color: var(--warn); }
+  .card-title.danger { color: var(--danger); }
+
+  /* GRID */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  @media (max-width: 700px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+
+  /* FLOW DIAGRAM */
+  .flow-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 32px 20px;
+    overflow-x: auto;
+  }
+  .flow {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    min-width: 700px;
+    justify-content: center;
+  }
+  .flow-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-width: 120px;
+  }
+  .flow-node {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 10px 12px;
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    line-height: 1.4;
+    width: 108px;
+    color: var(--text);
+    position: relative;
+  }
+  .flow-node.accent { border-color: var(--accent); color: var(--accent); background: rgba(0,212,170,0.05); }
+  .flow-node.blue { border-color: var(--accent2); color: var(--accent2); background: rgba(0,144,255,0.05); }
+  .flow-node.warn { border-color: var(--warn); color: var(--warn); background: rgba(240,165,0,0.05); }
+  .flow-node.danger { border-color: var(--danger); color: var(--danger); background: rgba(232,64,64,0.05); }
+  .flow-node.diamond {
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    border: none;
+    width: 108px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(240,165,0,0.12);
+    color: var(--warn);
+    font-size: 9px;
+  }
+  .flow-arrow {
+    display: flex;
+    align-items: center;
+    padding-top: 28px;
+    color: var(--muted);
+    font-size: 18px;
+  }
+  .flow-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    text-align: center;
+    letter-spacing: 0.08em;
+  }
+  .flow-vline {
+    width: 1px;
+    height: 16px;
+    background: var(--border);
+  }
+
+  /* PHASE TABLE */
+  .phase-table { width: 100%; border-collapse: collapse; }
+  .phase-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .phase-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(30,45,61,0.6);
+    vertical-align: top;
+    font-size: 13px;
+  }
+  .phase-table tr:last-child td { border-bottom: none; }
+  .phase-table tr:hover td { background: rgba(255,255,255,0.015); }
+  .phase-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    padding: 2px 8px;
+    border-radius: 2px;
+  }
+  .p1 { background: rgba(0,212,170,0.1); color: var(--accent); border: 1px solid rgba(0,212,170,0.2); }
+  .p2 { background: rgba(0,144,255,0.1); color: var(--accent2); border: 1px solid rgba(0,144,255,0.2); }
+  .p3 { background: rgba(240,165,0,0.1); color: var(--warn); border: 1px solid rgba(240,165,0,0.2); }
+  .p4 { background: rgba(232,64,64,0.1); color: var(--danger); border: 1px solid rgba(232,64,64,0.2); }
+
+  /* DEPENDENCY LIST */
+  .dep-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .dep-item:last-child { border-bottom: none; }
+  .dep-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+  .dep-dot.blue { background: var(--accent2); }
+  .dep-dot.warn { background: var(--warn); }
+  .dep-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    min-width: 160px;
+  }
+  .dep-name.blue { color: var(--accent2); }
+  .dep-name.warn { color: var(--warn); }
+  .dep-desc { font-size: 13px; color: var(--label); }
+  .dep-status {
+    margin-left: auto;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .status-have { background: rgba(0,212,170,0.1); color: var(--accent); border: 1px solid rgba(0,212,170,0.2); }
+  .status-build { background: rgba(0,144,255,0.1); color: var(--accent2); border: 1px solid rgba(0,144,255,0.2); }
+  .status-decide { background: rgba(240,165,0,0.1); color: var(--warn); border: 1px solid rgba(240,165,0,0.2); }
+
+  /* PSEUDO-LOGIC */
+  .pseudo {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    line-height: 1.9;
+    color: var(--label);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px 24px;
+  }
+  .pseudo .comment { color: var(--muted); }
+  .pseudo .keyword { color: var(--accent2); }
+  .pseudo .value { color: var(--accent); }
+  .pseudo .trigger { color: var(--warn); }
+  .pseudo .kill { color: var(--danger); }
+  .pseudo .indent1 { padding-left: 20px; }
+  .pseudo .indent2 { padding-left: 40px; }
+  .pseudo .indent3 { padding-left: 60px; }
+
+  /* DAILY WORKFLOW */
+  .timeline { position: relative; padding-left: 24px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: var(--border);
+  }
+  .tl-item {
+    position: relative;
+    padding-bottom: 20px;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 6px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 1px solid var(--bg);
+  }
+  .tl-item.blue::before { background: var(--accent2); }
+  .tl-item.warn::before { background: var(--warn); }
+  .tl-item.danger::before { background: var(--danger); }
+  .tl-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 2px;
+  }
+  .tl-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.02em;
+    margin-bottom: 4px;
+  }
+  .tl-desc { font-size: 12px; color: var(--label); }
+
+  /* RISK TABLE */
+  .risk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .risk-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 14px 16px;
+  }
+  .risk-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .risk-rule {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .risk-rule strong { color: var(--warn); }
+
+  /* BLOCKER */
+  .blocker {
+    background: rgba(232,64,64,0.04);
+    border: 1px solid rgba(232,64,64,0.2);
+    border-radius: 4px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+  }
+  .blocker-head {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--danger);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .blocker-desc { font-size: 13px; color: var(--label); }
+
+  /* FOOTER */
+  .doc-footer {
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: gap;
+  }
+  .doc-footer span {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  /* INLINE MONO */
+  code {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    background: rgba(0,212,170,0.07);
+    padding: 1px 5px;
+    border-radius: 2px;
+  }
+  ul { list-style: none; }
+  ul li { padding: 3px 0; font-size: 13px; color: var(--label); }
+  ul li::before { content: '—  '; color: var(--muted); font-family: 'DM Mono', monospace; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <span class="project-id">LOGOS / T2</span>
+      <h1>THE BRASS RING SYSTEM</h1>
+    </div>
+    <div class="tagline">// AUTOMATED MICRO FUTURES TRADING · $100/DAY TARGET · MNQ PRIMARY INSTRUMENT</div>
+    <div class="kpi-bar">
+      <div class="kpi">
+        <span class="kpi-label">Daily Target</span>
+        <span class="kpi-value">$100</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Daily Loss Limit</span>
+        <span class="kpi-value warn">$100</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Max Streak Loss</span>
+        <span class="kpi-value warn">$1,000</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Instrument</span>
+        <span class="kpi-value neutral">MNQ / MES</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Required Win Rate</span>
+        <span class="kpi-value neutral">≥ 55%</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Target R:R</span>
+        <span class="kpi-value neutral">1.2 : 1</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: ARCHITECTURE OVERVIEW -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>System Architecture</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="flow-wrap">
+      <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em;margin-bottom:24px;">// HIGH-LEVEL DATA FLOW</div>
+      <div class="flow">
+
+        <!-- DATA LAYER -->
+        <div class="flow-col">
+          <div class="flow-node accent">DATA<br>LAYER</div>
+          <div class="flow-vline"></div>
+          <div class="flow-node" style="font-size:9px;">Market Feed<br>(Tradovate API)</div>
+          <div class="flow-vline"></div>
+          <div class="flow-node" style="font-size:9px;">Historical<br>SQLite Store</div>
+          <div class="flow-vline"></div>
+          <div class="flow-node" style="font-size:9px;">Pre-market<br>Data Fetch</div>
+          <div class="flow-label" style="margin-top:8px;">INPUTS</div>
+        </div>
+
+        <div class="flow-arrow">→</div>
+
+        <!-- REGIME FILTER -->
+        <div class="flow-col">
+          <div class="flow-node warn">REGIME<br>FILTER</div>
+          <div class="flow-vline"></div>
+          <div class="flow-node" style="font-size:9px;">VIX Bucket<br>Classifier</div>
+          <div class="flow-vline"></div>
+          <div class="flow-node" style="font-size:9px;">First 30-Min<br>Candle Rule</div>
+          <div class="flow-vline"></div>
+          <div class="flow-node" style="font-size:9px;">Session Bias<br>LONG / SHORT</div>
+          <div class="flow-label" style="margin-top:8px;">BIAS LOCK</div>
+        </div>
+
+        <div class="flow-arrow">→</div>
+
+        <!-- STRATEGY ENGINE -->
+        <div class="flow-col">
+          <div class="flow-node blue">STRATEGY<br>ENGINE</div>
+          <div class="flow-vline"></div>
+          <div class="flow-node" style="font-size:9px;">Setup Scanner<br>(3–5 strats)</div>
+          <div class="flow-vline"></div>
+          <div class="flow-node" style="font-size:9px;">Confluence<br>Scorer</div>
+          <div class="flow-vline"></div>
+          <div class="flow-node" style="font-size:9px;">Signal<br>Generator</div>
+          <div class="flow-label" style="margin-top:8px;">SIGNAL</div>
+        </div>
+
+        <div class="flow-arrow">→</div>
+
+        <!-- RISK GATE -->
+        <div class="flow-col">
+          <div class="flow-node danger">RISK<br>GATE</div>
+          <div class="flow-vline"></div>
+          <div class="flow-node" style="font-size:9px;">Daily P&L<br>Tracker</div>
+          <div class="flow-vline"></div>
+          <div class="flow-node" style="font-size:9px;">Kill Switch<br>$100 limit</div>
+          <div class="flow-vline"></div>
+          <div class="flow-node" style="font-size:9px;">Position<br>Sizer</div>
+          <div class="flow-label" style="margin-top:8px;">GO / NO-GO</div>
+        </div>
+
+        <div class="flow-arrow">→</div>
+
+        <!-- EXECUTION -->
+        <div class="flow-col">
+          <div class="flow-node accent">EXECUTION<br>LAYER</div>
+          <div class="flow-vline"></div>
+          <div class="flow-node" style="font-size:9px;">Order Router<br>(Tradovate)</div>
+          <div class="flow-vline"></div>
+          <div class="flow-node" style="font-size:9px;">Entry / Exit<br>Manager</div>
+          <div class="flow-vline"></div>
+          <div class="flow-node" style="font-size:9px;">Fill Logger<br>+ Slippage</div>
+          <div class="flow-label" style="margin-top:8px;">LIVE ORDERS</div>
+        </div>
+
+        <div class="flow-arrow">→</div>
+
+        <!-- MONITORING -->
+        <div class="flow-col">
+          <div class="flow-node" style="border-color:var(--label);color:var(--label);">MONITOR<br>+ REPORT</div>
+          <div class="flow-vline"></div>
+          <div class="flow-node" style="font-size:9px;">Perf<br>Dashboard</div>
+          <div class="flow-vline"></div>
+          <div class="flow-node" style="font-size:9px;">Telegram<br>Alerts</div>
+          <div class="flow-vline"></div>
+          <div class="flow-node" style="font-size:9px;">Daily<br>EOD Report</div>
+          <div class="flow-label" style="margin-top:8px;">FEEDBACK</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- AI STRATEGY DISCOVERY - separate layer -->
+    <div style="margin-top:12px;" class="card">
+      <div class="card-title blue">AI STRATEGY DISCOVERY LAYER — Feeds into Strategy Engine</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:4px;">
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);background:var(--surface2);padding:8px 14px;border-radius:3px;border:1px solid var(--border);">RESEARCH AGENTS<br><span style="color:var(--label);">arXiv · SSRN · GitHub</span></div>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);background:var(--surface2);padding:8px 14px;border-radius:3px;border:1px solid var(--border);">→</div>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);background:var(--surface2);padding:8px 14px;border-radius:3px;border:1px solid var(--border);">EXTRACTION<br><span style="color:var(--label);">Claude API · JSON output</span></div>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);background:var(--surface2);padding:8px 14px;border-radius:3px;border:1px solid var(--border);">→</div>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);background:var(--surface2);padding:8px 14px;border-radius:3px;border:1px solid var(--border);">BACKTEST GEN<br><span style="color:var(--label);">vectorbt scripts</span></div>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);background:var(--surface2);padding:8px 14px;border-radius:3px;border:1px solid var(--border);">→</div>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);background:var(--surface2);padding:8px 14px;border-radius:3px;border:1px solid var(--border);">DEBATE AGENTS<br><span style="color:var(--label);">Argue · Critique · Score</span></div>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);background:var(--surface2);padding:8px 14px;border-radius:3px;border:1px solid var(--border);">→</div>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);background:rgba(0,212,170,0.05);padding:8px 14px;border-radius:3px;border:1px solid rgba(0,212,170,0.2);">VALIDATED<br>STRATEGY SET</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: DAILY OPERATING WORKFLOW -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>Daily Operating Workflow</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="grid-2">
+      <div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-time">08:00 – 09:29 ET · PRE-MARKET</div>
+            <div class="tl-title">Data Fetch + Regime Assessment</div>
+            <div class="tl-desc">Pull overnight NQ data, VIX level, pre-market high/low/trend. Classify VIX bucket (low/normal/elevated/extreme). Set preliminary bias. No trades.</div>
+          </div>
+          <div class="tl-item warn">
+            <div class="tl-time">09:30 – 10:00 ET · OPEN WATCH</div>
+            <div class="tl-title">First 30-Min Candle Formation</div>
+            <div class="tl-desc">Monitor and record first 30-min candle. Green → LONG bias (73% historical). Red → SHORT bias (67% historical). Lock session direction. Mark ORB high/low.</div>
+          </div>
+          <div class="tl-item blue">
+            <div class="tl-time">10:00 – 11:30 ET · PRIME WINDOW</div>
+            <div class="tl-title">Active Trading — Setup Scan</div>
+            <div class="tl-desc">Strategy engine scans for qualifying setups. Confluence check: bias alignment + indicator stack. Risk gate check before every order. Max 3 trades this window.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">11:30 – 13:30 ET · CHOP ZONE</div>
+            <div class="tl-title">Reduced Activity / Monitor Only</div>
+            <div class="tl-desc">Lunch hour. Volatility typically drops. System reduces position size or pauses. Only takes A+ setups. 1 trade max.</div>
+          </div>
+          <div class="tl-item warn">
+            <div class="tl-time">13:30 – 15:00 ET · AFTERNOON</div>
+            <div class="tl-title">Power Hour Reactivation</div>
+            <div class="tl-desc">Volume picks up. System reactivates. VWAP reclaim / reject setups. Max 2 trades. Target hit or daily stop hit → system shuts down for day.</div>
+          </div>
+          <div class="tl-item danger">
+            <div class="tl-time">15:45 ET · HARD CLOSE</div>
+            <div class="tl-title">Force Flat — No Overnight Holds</div>
+            <div class="tl-desc">All positions closed. No exceptions. System logs final P&L.</div>
+          </div>
+          <div class="tl-item" style="padding-bottom:0;">
+            <div class="tl-time">16:00 ET · EOD</div>
+            <div class="tl-title">EOD Report → Telegram</div>
+            <div class="tl-desc">P&L, win rate, trade log, drawdown status, next day prep notes pushed to @Benkboxerbot.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <!-- DECISION TREE -->
+        <div class="card" style="height:100%;">
+          <div class="card-title">TRADE DECISION LOGIC — PSEUDO-FLOW</div>
+          <div class="pseudo" style="background:transparent;border:none;padding:0;font-size:10.5px;">
+            <div><span class="keyword">ON</span> <span class="value">setup_signal_detected</span>:</div>
+            <div class="indent1"><span class="comment">// GATE 1: Regime</span></div>
+            <div class="indent1"><span class="keyword">IF</span> signal_direction != session_bias:</div>
+            <div class="indent2"><span class="kill">SKIP</span> → log "contra-bias, no trade"</div>
+            <div class="indent1"><span class="keyword">END</span></div>
+            <div>&nbsp;</div>
+            <div class="indent1"><span class="comment">// GATE 2: Confluence</span></div>
+            <div class="indent1"><span class="keyword">IF</span> confluence_score &lt; threshold:</div>
+            <div class="indent2"><span class="kill">SKIP</span> → log "low confluence"</div>
+            <div class="indent1"><span class="keyword">END</span></div>
+            <div>&nbsp;</div>
+            <div class="indent1"><span class="comment">// GATE 3: Risk</span></div>
+            <div class="indent1"><span class="keyword">IF</span> daily_pnl &lt;= <span class="kill">-$100</span>:</div>
+            <div class="indent2"><span class="kill">KILL SWITCH</span> → halt all trading</div>
+            <div class="indent1"><span class="keyword">IF</span> daily_pnl >= <span class="value">+$100</span>:</div>
+            <div class="indent2"><span class="value">TARGET HIT</span> → halt, log win day</div>
+            <div class="indent1"><span class="keyword">IF</span> trade_count >= max_daily_trades:</div>
+            <div class="indent2"><span class="kill">SKIP</span> → log "max trades reached"</div>
+            <div>&nbsp;</div>
+            <div class="indent1"><span class="comment">// EXECUTE</span></div>
+            <div class="indent1"><span class="keyword">CALCULATE</span> position_size(account, stop_pts)</div>
+            <div class="indent1"><span class="keyword">SEND</span> limit_order(entry, stop, target)</div>
+            <div class="indent1"><span class="keyword">MONITOR</span> fill → update P&L</div>
+            <div class="indent1"><span class="keyword">ON</span> close: log trade to SQLite</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: COMPONENTS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2>System Components</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">C1 · DATA LAYER</div>
+        <ul>
+          <li>Tradovate WebSocket feed (real-time OHLCV)</li>
+          <li>SQLite historical store (1-min + 2-min bars)</li>
+          <li>Pre-market data fetch on startup</li>
+          <li>VIX level pull (Yahoo Finance API)</li>
+          <li>Data integrity check on load</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">C2 · REGIME FILTER</div>
+        <ul>
+          <li>First 30-min candle classifier</li>
+          <li>VIX bucket assignment (4 levels)</li>
+          <li>Pre-market trend direction</li>
+          <li>Session bias lock (LONG/SHORT/NEUTRAL)</li>
+          <li>Regime override flag (manual)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title blue">C3 · STRATEGY ENGINE</div>
+        <ul>
+          <li>ORB (Opening Range Breakout) scanner</li>
+          <li>VWAP reclaim/reject detector</li>
+          <li>Casey EMA fan pullback (13/48/200)</li>
+          <li>Confluence scorer (0–100)</li>
+          <li>AI-discovered strategy slots (2–3 additional)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title danger">C4 · RISK GATE</div>
+        <ul>
+          <li>Real-time daily P&L tracker</li>
+          <li>Hard kill switch at -$100</li>
+          <li>Target lock at +$100</li>
+          <li>Max trades per day enforcer</li>
+          <li>Position sizer (fixed fractional)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">C5 · EXECUTION LAYER</div>
+        <ul>
+          <li>Tradovate REST API order router</li>
+          <li>Bracket order manager (entry + stop + target)</li>
+          <li>Fill confirmation handler</li>
+          <li>Slippage and commission tracker</li>
+          <li>Emergency manual override</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">C6 · MONITOR + REPORT</div>
+        <ul>
+          <li>Live P&L display (terminal or web dashboard)</li>
+          <li>Telegram push: fills, daily summary, kill events</li>
+          <li>Win rate rolling tracker (20-day window)</li>
+          <li>Drawdown heatmap by day</li>
+          <li>SQLite trade log (full history)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid-2" style="margin-top:12px;">
+      <div class="card">
+        <div class="card-title blue">C7 · AI RESEARCH AGENT</div>
+        <ul>
+          <li>arXiv q-fin.TR scraper (REST API)</li>
+          <li>Semantic Scholar strategy search</li>
+          <li>GitHub open-source strategy harvester</li>
+          <li>Claude API extraction → JSON strategy spec</li>
+          <li>Outputs: instrument, timeframe, indicators, entry/exit logic, reported metrics</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title blue">C8 · BACKTEST + VALIDATION</div>
+        <ul>
+          <li>vectorbt script generator (Claude Code)</li>
+          <li>Realistic commission + slippage model ($2.50 RT)</li>
+          <li>Multi-regime testing (bull/bear/chop)</li>
+          <li>Debate agents: argue overfitting, regime dependency</li>
+          <li>Pass/fail filter: must clear 55% win rate + 1.2 R:R threshold</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: RISK RULES -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2>Risk Rules — Non-Negotiable</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="risk-grid">
+      <div class="risk-item">
+        <div class="risk-label">Daily Loss Limit</div>
+        <div class="risk-rule">System halts all activity at <strong>-$100 net</strong> for the day. No override. No "one more trade." Hard stop.</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-label">Daily Target Lock</div>
+        <div class="risk-rule">System halts at <strong>+$100 net</strong>. Bank the win. No greed extension. Consistency beats home runs.</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-label">Max Trades Per Day</div>
+        <div class="risk-rule">Hard cap at <strong>6 trades per session</strong>. Prevents revenge trading and overexposure in chop.</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-label">No Overnight Holds</div>
+        <div class="risk-rule">All positions flat by <strong>15:45 ET</strong>. Micro futures have overnight gap risk. System is intraday only.</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-label">Contra-Bias Trades</div>
+        <div class="risk-rule">No trades <strong>against session bias</strong> unless confluence score is exceptional (>85). Bias is the filter, not a suggestion.</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-label">Chop Detection</div>
+        <div class="risk-rule">If VWAP cross count exceeds <strong>4 in 30 minutes</strong>, system flags chop mode and reduces to 1-contract max.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: DEPENDENCIES -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2>Dependencies</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="card">
+      <div class="dep-item">
+        <div class="dep-dot"></div>
+        <div class="dep-name">Tradovate API</div>
+        <div class="dep-desc">WebSocket real-time feed + REST order routing. Free with funded account. Primary broker interface.</div>
+        <div class="dep-status status-decide">DECIDE</div>
+      </div>
+      <div class="dep-item">
+        <div class="dep-dot blue"></div>
+        <div class="dep-name blue">Schwab API</div>
+        <div class="dep-desc">Alternative broker. Already in T2 spec. Slower REST, no native WebSocket for futures. Secondary option.</div>
+        <div class="dep-status status-decide">DECIDE</div>
+      </div>
+      <div class="dep-item">
+        <div class="dep-dot"></div>
+        <div class="dep-name">vectorbt</div>
+        <div class="dep-desc">Python backtesting engine. Fast, vectorized. Used for all strategy validation scripts.</div>
+        <div class="dep-status status-build">BUILD</div>
+      </div>
+      <div class="dep-item">
+        <div class="dep-dot"></div>
+        <div class="dep-name">SQLite</div>
+        <div class="dep-desc">Trade log, historical bars, strategy results. Existing T4 pattern. No new infrastructure.</div>
+        <div class="dep-status status-have">HAVE</div>
+      </div>
+      <div class="dep-item">
+        <div class="dep-dot"></div>
+        <div class="dep-name">Claude API</div>
+        <div class="dep-desc">claude-sonnet-4-20250514. Research extraction, backtest code generation, debate agents. Controlled cost per call.</div>
+        <div class="dep-status status-have">HAVE</div>
+      </div>
+      <div class="dep-item">
+        <div class="dep-dot"></div>
+        <div class="dep-name">Telegram Bot</div>
+        <div class="dep-desc">@Benkboxerbot. Already live. Fill alerts, kill switch notifications, EOD report push.</div>
+        <div class="dep-status status-have">HAVE</div>
+      </div>
+      <div class="dep-item">
+        <div class="dep-dot warn"></div>
+        <div class="dep-name warn">Yahoo Finance API</div>
+        <div class="dep-desc">VIX level, pre-market data. Free, no auth. Fragile — have fallback ready (yfinance Python lib).</div>
+        <div class="dep-status status-have">HAVE</div>
+      </div>
+      <div class="dep-item" style="border-bottom:none;">
+        <div class="dep-dot blue"></div>
+        <div class="dep-name blue">Claude Code</div>
+        <div class="dep-desc">Primary agent runtime. All file ops, CLI, backtest runs go through Claude Code. No manual terminal.</div>
+        <div class="dep-status status-have">HAVE</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: BUILD PHASES -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2>Build Phases</h2>
+      <div class="section-line"></div>
+    </div>
+    <table class="phase-table">
+      <thead>
+        <tr>
+          <th>PHASE</th>
+          <th>NAME</th>
+          <th>DELIVERABLE</th>
+          <th>DEPENDENCIES</th>
+          <th>EXIT CRITERIA</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="phase-badge p1">P1</span></td>
+          <td style="color:var(--text);font-weight:500;">Backtest Foundation</td>
+          <td>vectorbt scaffold + 3 baseline strategies coded and tested on historical MNQ data</td>
+          <td>vectorbt installed, historical data in SQLite</td>
+          <td>At least 1 strategy passes 55% win rate + 1.2 R:R over 2022–2024 data with realistic commissions</td>
+        </tr>
+        <tr>
+          <td><span class="phase-badge p1">P1</span></td>
+          <td style="color:var(--text);font-weight:500;">AI Research Pipeline</td>
+          <td>Python script: arXiv + Semantic Scholar → JSON strategy specs via Claude API</td>
+          <td>Claude API, Python requests</td>
+          <td>20+ candidate strategies extracted, structured, and scored by debate agents</td>
+        </tr>
+        <tr>
+          <td><span class="phase-badge p2">P2</span></td>
+          <td style="color:var(--text);font-weight:500;">Regime Filter Module</td>
+          <td>First 30-min candle classifier + VIX bucket + session bias lock — live and backtest modes</td>
+          <td>Market data feed or historical bars</td>
+          <td>Regime classification matches manual review on 50 historical sessions</td>
+        </tr>
+        <tr>
+          <td><span class="phase-badge p2">P2</span></td>
+          <td style="color:var(--text);font-weight:500;">Strategy Engine v1</td>
+          <td>ORB + VWAP reclaim + Casey EMA fan scanners running on live paper feed</td>
+          <td>Tradovate API connection, Regime Filter live</td>
+          <td>Signals generated in paper trading match expected setups over 10-day observation</td>
+        </tr>
+        <tr>
+          <td><span class="phase-badge p3">P3</span></td>
+          <td style="color:var(--text);font-weight:500;">Risk Gate + Execution</td>
+          <td>Kill switch, position sizer, bracket order manager, all wired to Tradovate paper account</td>
+          <td>Tradovate API, Strategy Engine live</td>
+          <td>Kill switch fires correctly in simulation. 20 paper trades logged with accurate P&L.</td>
+        </tr>
+        <tr>
+          <td><span class="phase-badge p3">P3</span></td>
+          <td style="color:var(--text);font-weight:500;">Monitor + Telegram</td>
+          <td>Live dashboard, Telegram push on all events, EOD report automated</td>
+          <td>Telegram bot live (already), SQLite trade log</td>
+          <td>EOD report received every trading day without manual trigger</td>
+        </tr>
+        <tr>
+          <td><span class="phase-badge p4">P4</span></td>
+          <td style="color:var(--text);font-weight:500;">Live Trading — 1 Contract</td>
+          <td>Full system live on 1 MNQ contract. Real money. 30-day observation.</td>
+          <td>All P1–P3 complete, funded Tradovate account</td>
+          <td>30 trading days. Win rate ≥ 52%. No single day > -$100. Net positive after 30 days.</td>
+        </tr>
+        <tr>
+          <td><span class="phase-badge p4">P4</span></td>
+          <td style="color:var(--text);font-weight:500;">Scale Up</td>
+          <td>Increase contract size. Add MES for diversification. Optimize for $100/day consistency.</td>
+          <td>P4 live 30-day pass</td>
+          <td>$100/day average over 60-day window. Drawdown stays within defined limits.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 7: BLOCKERS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2>Known Blockers</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="blocker">
+      <div class="blocker-head">⚠ BROKER API DECISION NOT MADE</div>
+      <div class="blocker-desc">Tradovate vs Schwab must be decided before P2. Tradovate has a native WebSocket and is purpose-built for futures automation. Schwab is already in T2 context but its futures API is less mature. This is the single biggest upstream decision — everything else builds on it.</div>
+    </div>
+    <div class="blocker">
+      <div class="blocker-head">⚠ NO HISTORICAL MNQ DATA IN SQLITE YET</div>
+      <div class="blocker-desc">P1 backtest requires clean 1-min and 2-min OHLCV bars for MNQ. Source: Tradovate historical download, or free alternative via Databento free tier or Polygon.io. Must be resolved before any backtest runs.</div>
+    </div>
+    <div class="blocker">
+      <div class="blocker-head">⚠ BACKTEST OVERFITTING RISK</div>
+      <div class="blocker-desc">Any strategy that shows great numbers on 2020–2021 data will likely fail live. Validation must include regime-separated testing: trending year vs. choppy year vs. crash period. Debate agents must be explicitly prompted to argue against curve-fitting.</div>
+    </div>
+    <div class="blocker">
+      <div class="blocker-head">⚠ COMMISSION + SLIPPAGE KILLS THIN EDGES</div>
+      <div class="blocker-desc">$2.50 round trip per MNQ contract. Any strategy showing <5 points expected value per trade is marginal at best after realistic fills. All backtests must model at least 0.5 point of slippage per fill plus commissions.</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <span>LOGOS / T2 · BRASS RING SYSTEM · REV 1.0</span>
+    <span>WASATCH COMBAT SPORTS · BEN KBOXER</span>
+    <span>BUILD ORDER: P1 FIRST → BACKTEST BEFORE LIVE</span>
+  </div>
+
+</div>
+</body>
+</html>
