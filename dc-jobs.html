@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Utah Data Center Jobs — Targeted Search Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@300;400;600;700&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0f14;
+    --surface: #111720;
+    --border: #1e2d3d;
+    --accent: #00d4ff;
+    --accent-dim: rgba(0, 212, 255, 0.12);
+    --accent-mid: rgba(0, 212, 255, 0.35);
+    --green: #00e676;
+    --green-dim: rgba(0, 230, 118, 0.1);
+    --yellow: #ffd600;
+    --yellow-dim: rgba(255, 214, 0, 0.1);
+    --text: #cdd6e0;
+    --text-muted: #5a7a8a;
+    --text-bright: #e8f4f8;
+    --mono: 'Share Tech Mono', monospace;
+    --sans: 'Barlow', sans-serif;
+    --display: 'Barlow Condensed', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  /* Grid overlay background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* HEADER */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 48px 0 32px;
+    margin-bottom: 48px;
+  }
+
+  .label-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .label-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid var(--accent-mid);
+    padding: 3px 10px;
+    text-transform: uppercase;
+  }
+
+  .pulse {
+    width: 8px;
+    height: 8px;
+    background: var(--green);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(0,230,118,0.4);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0,230,118,0.4); }
+    70% { box-shadow: 0 0 0 8px rgba(0,230,118,0); }
+    100% { box-shadow: 0 0 0 0 rgba(0,230,118,0); }
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(36px, 6vw, 64px);
+    line-height: 1.0;
+    color: var(--text-bright);
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+
+  h1 span {
+    color: var(--accent);
+  }
+
+  .subtitle {
+    color: var(--text-muted);
+    font-size: 15px;
+    font-family: var(--mono);
+    letter-spacing: 0.05em;
+  }
+
+  /* STRATEGY BLOCK */
+  .strategy {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 24px 28px;
+    margin-bottom: 48px;
+  }
+
+  .strategy-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .strategy p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  .strategy p:last-child { margin-bottom: 0; }
+
+  strong { color: var(--text-bright); font-weight: 600; }
+
+  /* SECTION HEADERS */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    margin-top: 48px;
+  }
+
+  .section-header h2 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .section-header::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* COMPANY CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .card:hover {
+    border-color: var(--accent-mid);
+    transform: translateX(3px);
+  }
+
+  .card:hover::before {
+    opacity: 1;
+  }
+
+  .card.priority::before {
+    opacity: 1;
+    background: var(--green);
+  }
+
+  .card.priority {
+    border-color: rgba(0,230,118,0.2);
+  }
+
+  .card-inner {
+    padding: 24px 28px;
+  }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+
+  .company-name {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--text-bright);
+    letter-spacing: 0.02em;
+  }
+
+  .badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    padding: 3px 10px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .badge.start { background: var(--green-dim); color: var(--green); border: 1px solid rgba(0,230,118,0.3); }
+  .badge.bridge { background: var(--yellow-dim); color: var(--yellow); border: 1px solid rgba(255,214,0,0.3); }
+  .badge.target { background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent-mid); }
+  .badge.govt { background: rgba(180,100,255,0.1); color: #c77dff; border: 1px solid rgba(180,100,255,0.3); }
+
+  .location {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+
+  .card-body {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 18px;
+  }
+
+  .why-block {
+    background: rgba(0,212,255,0.04);
+    border-left: 2px solid var(--accent-mid);
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: var(--accent);
+    font-family: var(--mono);
+    letter-spacing: 0.03em;
+  }
+
+  .card-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 1px solid;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .btn-primary {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .btn-primary:hover {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  .btn-secondary {
+    border-color: var(--border);
+    color: var(--text-muted);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--text-muted);
+    color: var(--text);
+  }
+
+  .btn-green {
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  .btn-green:hover {
+    background: var(--green);
+    color: var(--bg);
+  }
+
+  /* PAY RANGE */
+  .pay {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--yellow);
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+
+  /* CERTS SECTION */
+  .cert-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 600px) {
+    .cert-grid { grid-template-columns: 1fr; }
+    .card-top { flex-direction: column; }
+  }
+
+  .cert-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px;
+  }
+
+  .cert-name {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--text-bright);
+    margin-bottom: 6px;
+  }
+
+  .cert-desc {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .cert-priority {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+
+  /* FOOTER */
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* SCAN STAT */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin-bottom: 48px;
+  }
+
+  .stat {
+    background: var(--surface);
+    padding: 20px;
+    text-align: center;
+  }
+
+  .stat-value {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 32px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .agg-links {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    margin-top: 8px;
+  }
+
+  .agg-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .agg-link:last-child { border-bottom: none; }
+  .agg-link:hover .agg-name { color: var(--accent); }
+
+  .agg-name {
+    font-size: 14px;
+    color: var(--text);
+    transition: color 0.2s;
+  }
+
+  .agg-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="label-row">
+      <div class="pulse"></div>
+      <div class="label-tag">Utah County // Active Hiring 2025</div>
+    </div>
+    <h1>Data Center<br><span>Job Targets</span></h1>
+    <div class="subtitle">Eagle Mountain &bull; West Jordan &bull; Bluffdale &bull; Utah County</div>
+  </header>
+
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-value">10</div>
+      <div class="stat-label">Target Companies</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">320+</div>
+      <div class="stat-label">Open Roles (Corridor)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">$18–90k</div>
+      <div class="stat-label">Entry Pay Range</div>
+    </div>
+  </div>
+
+  <div class="strategy">
+    <div class="strategy-title">// Strategy — Read This First</div>
+    <p>Do not mass-apply. A 2-5% response rate on cold applications means 90 apps gets you maybe 2 callbacks. <strong>Pick 5 targets, go deep on each.</strong></p>
+    <p>Your background in <strong>corporate security</strong> is a real differentiator here — data centers care intensely about physical access control, badge management, and surveillance. Lead with that. The Allied Universal entry point below is a direct bridge using skills you already have.</p>
+    <p>Find the recruiter or hiring manager on LinkedIn. Two sentences, direct message. "I'm a corporate security professional transitioning into data center ops — here's why I'm targeting your team specifically." That gets read. Indeed applications mostly don't.</p>
+  </div>
+
+  <!-- PRIORITY TARGETS -->
+  <div class="section-header"><h2>Priority Targets // Eagle Mountain</h2></div>
+
+  <!-- META -->
+  <div class="card priority">
+    <div class="card-inner">
+      <div class="card-top">
+        <div class="company-name">Meta</div>
+        <div class="badge target">Top Target</div>
+      </div>
+      <div class="location">// EAGLE MOUNTAIN, UT — Massive Campus (28 data halls, 300MW)</div>
+      <div class="why-block">WHY: Largest employer in Eagle Mountain. Multiple simultaneous roles. Logistics, ops, facilities, and security all hire separately. Volume = better odds.</div>
+      <div class="pay">Entry: $22–30/hr &nbsp;|&nbsp; Mid-level: $70–90k &nbsp;|&nbsp; Sr. Engineer: $161–225k</div>
+      <div class="card-body">
+        Roles range from logistics specialist (moving hardware in/out of halls) to data center technician to facilities engineer. Logistics roles are the easiest entry point and often promote from within. Meta builds and operates this campus directly — not contracted out.
+      </div>
+      <div class="card-links">
+        <a class="btn btn-primary" href="https://www.metacareers.com/jobs?offices=Utah&teams=Infrastructure" target="_blank">Meta Careers — Utah</a>
+        <a class="btn btn-secondary" href="https://www.indeed.com/q-meta-data-center-l-eagle-mountain,-ut-jobs.html" target="_blank">Indeed: Meta Eagle Mountain</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- QTS -->
+  <div class="card priority">
+    <div class="card-inner">
+      <div class="card-top">
+        <div class="company-name">QTS Data Centers</div>
+        <div class="badge target">Top Target</div>
+      </div>
+      <div class="location">// EAGLE MOUNTAIN, UT — Active Buildout</div>
+      <div class="why-block">WHY: Currently in major expansion phase. Construction + ops roles both available. Early employees during buildout get institutional knowledge advantage long-term.</div>
+      <div class="pay">Critical Ops Tech: $25–35/hr &nbsp;|&nbsp; Sr. Facilities: $70–95k</div>
+      <div class="card-body">
+        QTS operates colocation facilities and is one of the largest data center REITs in the US. Their Eagle Mountain campus is actively hiring for Critical Facilities Technicians and data center ops roles. Shift work, hands-on infrastructure. Internship programs also available.
+      </div>
+      <div class="card-links">
+        <a class="btn btn-primary" href="https://careers.qtsdatacenters.com/us/en/" target="_blank">QTS Careers</a>
+        <a class="btn btn-secondary" href="https://www.indeed.com/q-qts-data-centers-l-eagle-mountain,-ut-jobs.html" target="_blank">QTS on Indeed</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALLIED UNIVERSAL — BRIDGE ROLE -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-top">
+        <div class="company-name">Allied Universal</div>
+        <div class="badge bridge">Bridge Role</div>
+      </div>
+      <div class="location">// EAGLE MOUNTAIN, UT — Data Center Security Patrol</div>
+      <div class="why-block">WHY: Direct translation of your current corporate security job. Gets you inside a live data center campus. Use it as a 12-month bridge while building certs — then lateral into ops.</div>
+      <div class="pay">Starting: $18–24/hr &nbsp;|&nbsp; With DC experience: negotiate up</div>
+      <div class="card-body">
+        Allied Universal is actively hiring Security Officers specifically for data center patrol in Eagle Mountain right now. You'd be on-site at an active hyperscale facility. That's a resume line that reads differently than generic corporate security — it shows you understand mission-critical environments.
+      </div>
+      <div class="card-links">
+        <a class="btn btn-green" href="https://jobs.aus.com/search/?q=data+center&location=Eagle+Mountain%2C+UT" target="_blank">Allied Universal — Apply Now</a>
+        <a class="btn btn-secondary" href="https://www.indeed.com/q-allied-universal-data-center-l-eagle-mountain,-ut-jobs.html" target="_blank">Indeed Listings</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section-header" style="margin-top: 48px;"><h2>Strong Options // Utah County + West Jordan</h2></div>
+
+  <!-- ORACLE -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-top">
+        <div class="company-name">Oracle</div>
+        <div class="badge start">Entry-Friendly</div>
+      </div>
+      <div class="location">// WEST JORDAN, UT — ~20 min from Eagle Mountain</div>
+      <div class="why-block">WHY: High volume of postings, training culture, shift differentials add real money. Easiest company to get an interview without prior DC experience.</div>
+      <div class="pay">DCT I: $20–28/hr &nbsp;|&nbsp; DCT IV+: $65–90k</div>
+      <div class="card-body">
+        Oracle's West Jordan facility runs rotating day/night shifts. Roles cover hardware install, decommission, cabling, and troubleshooting. They hire for attitude and train for skill at the entry level. Multiple postings open at any given time — apply direct on their site, not through aggregators.
+      </div>
+      <div class="card-links">
+        <a class="btn btn-primary" href="https://careers.oracle.com/en/sites/jobsearch/jobs?keyword=Data+Center+Technician&location=Utah" target="_blank">Oracle Careers — Utah</a>
+        <a class="btn btn-secondary" href="https://careers.oracle.com/en/job/322566" target="_blank">DCT4 Direct Listing</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOVVA -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-top">
+        <div class="company-name">NOVVA Data Centers</div>
+        <div class="badge target">Utah-Based</div>
+      </div>
+      <div class="location">// UTAH — Wholesale + Colocation</div>
+      <div class="why-block">WHY: Privately held, Utah-native company. Smaller team means faster growth and broader role scope. Senior roles pay $130k+.</div>
+      <div class="pay">Tech roles: $22–35/hr &nbsp;|&nbsp; Senior: $130k+</div>
+      <div class="card-body">
+        NOVVA operates colocation data centers across Utah, Colorado, and Nevada. Smaller headcount means each tech carries more responsibility — which compresses the time to senior-level compensation. Good fit if he wants to grow fast rather than be one of thousands at a hyperscaler.
+      </div>
+      <div class="card-links">
+        <a class="btn btn-primary" href="https://novva.com/careers/" target="_blank">NOVVA Careers</a>
+        <a class="btn btn-secondary" href="https://www.linkedin.com/company/novva-data-centers/jobs/" target="_blank">LinkedIn Openings</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLUFFDALE -->
+  <div class="section-header" style="margin-top: 48px;"><h2>Bluffdale // NSA Corridor</h2></div>
+
+  <div class="card priority">
+    <div class="card-inner">
+      <div class="card-top">
+        <div class="company-name">Milestone Technologies</div>
+        <div class="badge start">Hiring Now</div>
+      </div>
+      <div class="location">// BLUFFDALE, UT — Active Postings</div>
+      <div class="why-block">WHY: Actively hiring in Bluffdale right now. Logistics and technician roles require no degree. Gets you on-site in the NSA corridor — that proximity matters for cleared roles later.</div>
+      <div class="pay">Logistics/Tech: $17.50–$24/hr</div>
+      <div class="card-body">
+        Milestone staffs data center logistics and technician roles at client facilities — meaning you're working inside major data centers under contract. Hardware movement, rack/stack, asset tracking. Builds real floor knowledge fast. The Bluffdale posting is active right now.
+      </div>
+      <div class="card-links">
+        <a class="btn btn-green" href="https://milestonetechnologies.com/careers/" target="_blank">Milestone Careers</a>
+        <a class="btn btn-secondary" href="https://www.indeed.com/q-milestone-technologies-data-center-l-bluffdale,-ut-jobs.html" target="_blank">Indeed — Bluffdale</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-top">
+        <div class="company-name">NSA Contractor Ecosystem</div>
+        <div class="badge govt">Clearance Required</div>
+      </div>
+      <div class="location">// BLUFFDALE, UT — Intelligence Community Campus</div>
+      <div class="why-block">WHY: Security clearance + Security+ cert = 30–50% pay premium over commercial DC roles at the same experience level. Corporate security background is a genuine advantage for clearance eligibility.</div>
+      <div class="pay">Cleared DCT: $75–120k &nbsp;|&nbsp; Cleared Contractor: $90–185k</div>
+      <div class="card-body">
+        The NSA Utah Data Center doesn't post jobs directly — it's staffed through defense contractors. Leidos, SAIC, Booz Allen, and ManTech all have active Bluffdale and Hill AFB postings. Apply to entry contractor roles now. Clearance investigation takes 6–18 months, so starting that clock early is the move. Corporate security history is a positive clearance indicator.
+      </div>
+      <div class="card-links">
+        <a class="btn btn-primary" href="https://careers.leidos.com/jobs?keywords=data+center&location=utah" target="_blank">Leidos — Utah</a>
+        <a class="btn btn-secondary" href="https://jobs.saic.com/jobs?keywords=data+center&location=utah" target="_blank">SAIC</a>
+        <a class="btn btn-secondary" href="https://careers.boozallen.com/jobs?keywords=data+center&location=utah" target="_blank">Booz Allen</a>
+        <a class="btn btn-secondary" href="https://careers.mantech.com/jobs/search?q=data+center&location=utah" target="_blank">ManTech</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLC -->
+  <div class="section-header" style="margin-top: 48px;"><h2>Salt Lake City // Colocation Cluster</h2></div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-top">
+        <div class="company-name">DataBank</div>
+        <div class="badge target">Active Hiring</div>
+      </div>
+      <div class="location">// SALT LAKE CITY, UT</div>
+      <div class="why-block">WHY: Mid-size colocation with strong internal promotion culture. Smaller team means broader role scope and faster path to senior tech than a hyperscaler.</div>
+      <div class="pay">DCT I: $20–28/hr &nbsp;|&nbsp; Sr. Tech: $65–85k</div>
+      <div class="card-body">
+        DataBank operates colocation and edge data centers across the US. SLC is an active market for them. Critical Facilities Technician roles cover power, cooling, and physical security — hands-on infrastructure that builds a broad skillset quickly.
+      </div>
+      <div class="card-links">
+        <a class="btn btn-primary" href="https://www.databank.com/about/careers/" target="_blank">DataBank Careers</a>
+        <a class="btn btn-secondary" href="https://www.linkedin.com/company/databank-ltd/jobs/" target="_blank">LinkedIn Openings</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-top">
+        <div class="company-name">Aligned Data Centers</div>
+        <div class="badge target">Active Hiring</div>
+      </div>
+      <div class="location">// SALT LAKE CITY / WEST JORDAN, UT</div>
+      <div class="why-block">WHY: Facilities-heavy roles — electrical, mechanical, cooling. If he leans toward the facilities track, Aligned is where that pays out fastest in Utah.</div>
+      <div class="pay">CFT: $24–36/hr &nbsp;|&nbsp; Facilities Lead: $70–95k</div>
+      <div class="card-body">
+        Critical Facilities Technicians at Aligned maintain electrical and mechanical infrastructure — generators, UPS systems, chillers, CRAC units. Higher ceiling than tech/cabling roles and less crowded with applicants. Requires some prior facilities or electrical background.
+      </div>
+      <div class="card-links">
+        <a class="btn btn-primary" href="https://aligneddc.com/careers/" target="_blank">Aligned Careers</a>
+        <a class="btn btn-secondary" href="https://aligneddc.wd12.myworkdayjobs.com/aligneddc" target="_blank">Workday Portal</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-top">
+        <div class="company-name">Flexential</div>
+        <div class="badge start">Entry-Friendly</div>
+      </div>
+      <div class="location">// SALT LAKE CITY, UT</div>
+      <div class="why-block">WHY: 24x7 colocation support means shift work and night differentials. Low entry bar, fast internal mobility because turnover is real.</div>
+      <div class="pay">DCT I: $19–24/hr &nbsp;|&nbsp; Sr. Tech: $55–75k</div>
+      <div class="card-body">
+        DCT I roles cover physical customer support, cross-connects, hardware installs, and monitoring. Lower barrier than pure enterprise roles. People who perform move up fast — colocation operators can't afford to lose institutional knowledge.
+      </div>
+      <div class="card-links">
+        <a class="btn btn-primary" href="https://flexential.wd503.myworkdayjobs.com/flexential_career" target="_blank">Flexential Careers</a>
+        <a class="btn btn-secondary" href="https://www.indeed.com/q-flexential-l-salt-lake-city,-ut-jobs.html" target="_blank">Indeed Listings</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CERTS -->
+  <div class="section-header" style="margin-top: 48px;"><h2>Certs That Move The Needle</h2></div>
+
+  <div class="cert-grid">
+    <div class="cert-card">
+      <div class="cert-priority">Do First</div>
+      <div class="cert-name">CompTIA A+</div>
+      <div class="cert-desc">Hardware fundamentals. Gets past ATS filters at Oracle and Meta. Required or preferred on most DCT1 postings. Two-part exam, 3–4 months self-study.</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-priority">Do Second</div>
+      <div class="cert-name">CompTIA Network+</div>
+      <div class="cert-desc">Networking fundamentals. Opens the systems track inside data centers. Required for most mid-level roles. Pairs well with A+.</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-priority">Security Track</div>
+      <div class="cert-name">CompTIA Security+</div>
+      <div class="cert-desc">DoD 8570 compliant — required for most government-adjacent and cleared contractor roles. Direct path to the NSA contractor ecosystem. Leverages existing security knowledge.</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-priority">After 1 Year In</div>
+      <div class="cert-name">DCCA / DCIE</div>
+      <div class="cert-desc">Data Center Certified Associate (EPI). Shows specialization. Most employers won't require it for entry, but it's a differentiator for promotion to senior tech or facilities lead.</div>
+    </div>
+  </div>
+
+  <!-- AGGREGATORS -->
+  <div class="section-header" style="margin-top: 48px;"><h2>Job Aggregators — Check Weekly</h2></div>
+  <div class="agg-links">
+    <a class="agg-link" href="https://www.indeed.com/q-data-center-l-eagle-mountain,-ut-jobs.html" target="_blank">
+      <span class="agg-name">Indeed — Eagle Mountain Data Center</span>
+      <span class="agg-count">135+ listings</span>
+    </a>
+    <a class="agg-link" href="https://www.indeed.com/q-Data-Center-l-Bluffdale,-UT-jobs.html" target="_blank">
+      <span class="agg-name">Indeed — Bluffdale Data Center</span>
+      <span class="agg-count">92 listings</span>
+    </a>
+    <a class="agg-link" href="https://www.indeed.com/q-data-center-technician-l-utah-jobs.html" target="_blank">
+      <span class="agg-name">Indeed — Utah Data Center Technician</span>
+      <span class="agg-count">Statewide</span>
+    </a>
+    <a class="agg-link" href="https://www.glassdoor.com/Job/salt-lake-city-data-center-jobs-SRCH_IL.0,14_IC1128289_KO15,26.htm" target="_blank">
+      <span class="agg-name">Glassdoor — Salt Lake City Data Center</span>
+      <span class="agg-count">184 listings</span>
+    </a>
+    <a class="agg-link" href="https://www.linkedin.com/jobs/search/?keywords=data+center+technician&location=Utah+County%2C+Utah" target="_blank">
+      <span class="agg-name">LinkedIn — Utah County Data Center</span>
+      <span class="agg-count">Direct recruiter access</span>
+    </a>
+    <a class="agg-link" href="https://www.ziprecruiter.com/Jobs/Data-Center/-in-Eagle-Mountain,UT" target="_blank">
+      <span class="agg-name">ZipRecruiter — Eagle Mountain</span>
+      <span class="agg-count">220+ listings</span>
+    </a>
+  </div>
+
+  <footer>
+    <span>// Utah County Data Center Jobs Guide</span>
+    <span>Updated April 2025 &nbsp;&bull;&nbsp; Apply direct on company sites, not aggregators</span>
+  </footer>
+
+</div>
+</body>
+</html>
