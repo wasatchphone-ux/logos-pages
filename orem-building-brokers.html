@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orem Building — Broker Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0e0e;
+    --surface: #161616;
+    --border: #2a2a2a;
+    --gold: #c9a84c;
+    --gold-dim: #8a6e2f;
+    --text: #d4d4d4;
+    --muted: #666;
+    --white: #f0ede6;
+    --tag-user: #1a3a2a;
+    --tag-user-border: #2d6b47;
+    --tag-nnn: #1a1f3a;
+    --tag-nnn-border: #2d3f8a;
+    --tag-trans: #3a2a1a;
+    --tag-trans-border: #8a5a2d;
+    --tag-all: #2a1a2a;
+    --tag-all-border: #6b2d8a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.4;
+  }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 48px 48px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    top: 0; right: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(ellipse, rgba(201,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.05;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+
+  h1 span {
+    color: var(--gold);
+  }
+
+  .property-meta {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .meta-label {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .meta-value {
+    font-size: 14px;
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  /* Scenario legend */
+  .legend {
+    padding: 24px 48px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .legend-label {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-right: 8px;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border-radius: 2px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid;
+    white-space: nowrap;
+  }
+
+  .tag-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+  }
+
+  .tag-user { background: var(--tag-user); border-color: var(--tag-user-border); color: #5fb886; }
+  .tag-user .tag-dot { background: #5fb886; }
+
+  .tag-nnn { background: var(--tag-nnn); border-color: var(--tag-nnn-border); color: #6b9fff; }
+  .tag-nnn .tag-dot { background: #6b9fff; }
+
+  .tag-trans { background: var(--tag-trans); border-color: var(--tag-trans-border); color: #d4955a; }
+  .tag-trans .tag-dot { background: #d4955a; }
+
+  .tag-all { background: var(--tag-all); border-color: var(--tag-all-border); color: #c06bd4; }
+  .tag-all .tag-dot { background: #c06bd4; }
+
+  /* Main grid */
+  main {
+    padding: 48px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  /* Section dividers */
+  .section-header {
+    padding: 20px 0 12px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2px;
+  }
+
+  .section-title {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  /* Broker card */
+  .broker-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 28px 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 2px;
+  }
+
+  .broker-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--gold);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .broker-card:hover {
+    border-color: var(--gold-dim);
+    background: #1c1c1c;
+  }
+
+  .broker-card:hover::before {
+    opacity: 1;
+  }
+
+  .card-left { min-width: 0; }
+
+  .broker-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+
+  .broker-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .broker-firm {
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-top: 2px;
+  }
+
+  .broker-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+
+  .broker-why {
+    color: var(--text);
+    font-size: 12.5px;
+    line-height: 1.75;
+    margin-bottom: 16px;
+    max-width: 680px;
+  }
+
+  .broker-why strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .contact-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .contact-icon {
+    width: 16px;
+    color: var(--muted);
+    flex-shrink: 0;
+    font-size: 11px;
+    text-align: center;
+  }
+
+  .contact-label {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    width: 50px;
+    flex-shrink: 0;
+  }
+
+  .contact-value {
+    font-size: 12px;
+    color: var(--text);
+  }
+
+  .contact-value a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .contact-value a:hover {
+    color: var(--gold);
+  }
+
+  /* Right column — priority badge */
+  .card-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .priority-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .priority-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--border);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .priority-label {
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .online-pills {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-end;
+  }
+
+  .online-pill {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  .online-pill.active {
+    color: #5fb886;
+    border-color: var(--tag-user-border);
+    background: var(--tag-user);
+  }
+
+  /* Notes section */
+  .key-question {
+    background: #111;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    padding: 18px 24px;
+    margin: 32px 0 0;
+  }
+
+  .kq-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .kq-text {
+    font-size: 12.5px;
+    color: var(--text);
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  /* Action script */
+  .script-block {
+    background: #0a0a0a;
+    border: 1px solid var(--border);
+    padding: 24px 32px;
+    margin-top: 48px;
+  }
+
+  .script-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .script-text {
+    font-size: 12.5px;
+    color: var(--text);
+    line-height: 1.85;
+    border-left: 1px solid var(--border);
+    padding-left: 20px;
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-note {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  .footer-ts {
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  @media (max-width: 700px) {
+    header, main, .legend, footer { padding-left: 20px; padding-right: 20px; }
+    .broker-card { grid-template-columns: 1fr; padding: 20px; }
+    .card-right { flex-direction: row; align-items: center; justify-content: flex-start; }
+    .property-meta { gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">WCS / T1 — Building Exit Reference</div>
+  <h1>Orem Building<br><span>Broker & Advisor Guide</span></h1>
+  <div class="property-meta">
+    <div class="meta-item">
+      <span class="meta-label">Address</span>
+      <span class="meta-value">972 N 1430 W, Orem UT 84057</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Current Lease</span>
+      <span class="meta-value">$7,000 / mo (WCS)</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Target Lease</span>
+      <span class="meta-value">$10–13k / mo</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Cost Basis</span>
+      <span class="meta-value">$1.35M (brother's cost)</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Target Sale</span>
+      <span class="meta-value">$1.7–2.2M</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Orem Avg Cap Rate</span>
+      <span class="meta-value">6.81%</span>
+    </div>
+  </div>
+</header>
+
+<div class="legend">
+  <span class="legend-label">Deal structures:</span>
+  <span class="tag tag-user"><span class="tag-dot"></span>Flat User Sale</span>
+  <span class="tag tag-trans"><span class="tag-dot"></span>Transition / Leaseback</span>
+  <span class="tag tag-nnn"><span class="tag-dot"></span>Cap Rate / 1031 Investor</span>
+  <span class="tag tag-all"><span class="tag-dot"></span>All Three</span>
+</div>
+
+<main>
+
+  <!-- TIER 1 -->
+  <div class="section-header">
+    <div class="section-title">Tier 1 — Start Here</div>
+  </div>
+
+  <!-- CORE Utah -->
+  <div class="broker-card">
+    <div class="card-left">
+      <div class="broker-header">
+        <div>
+          <div class="broker-name">Kevin Ford, CCIM</div>
+          <div class="broker-firm">CORE Utah Real Estate — Orem</div>
+        </div>
+      </div>
+      <div class="broker-tags">
+        <span class="tag tag-user"><span class="tag-dot"></span>Flat User Sale</span>
+        <span class="tag tag-trans"><span class="tag-dot"></span>Transition</span>
+        <span class="tag tag-nnn"><span class="tag-dot"></span>Cap Rate / 1031</span>
+      </div>
+      <div class="broker-why">
+        Hyper-local — office is minutes from your building. 15+ years, 400–1,000+ transactions in Utah County commercial sales and leasing. Firm is privately owned, Orem-based since 2002, and has handled fitness/special-purpose deals (placed Jazzercise in Spanish Fork). Preston Davis on the same team spent 21 years as an industrial and investment specialist at NAI West/Newmark before joining CORE — strong on investment analysis and deal structuring. <strong>Best first call for all three scenarios</strong> because they know every comparable building within a few miles and can model each structure with local comps.
+      </div>
+      <div class="contact-grid">
+        <div class="contact-row">
+          <span class="contact-label">Phone</span>
+          <span class="contact-value"><a href="tel:8014736519">801-473-6519</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Email</span>
+          <span class="contact-value"><a href="mailto:kevin@coreutah.com">kevin@coreutah.com</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Web</span>
+          <span class="contact-value"><a href="https://www.coreutah.com" target="_blank">coreutah.com</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-value"><a href="https://www.linkedin.com/company/core-realty-utah" target="_blank">linkedin.com/company/core-realty-utah</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Social</span>
+          <span class="contact-value">Active LinkedIn + Facebook (deal announcements, market commentary)</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-right">
+      <div class="priority-badge">
+        <span class="priority-num">01</span>
+        <span class="priority-label">Priority</span>
+      </div>
+      <div class="online-pills">
+        <span class="online-pill active">LinkedIn</span>
+        <span class="online-pill active">Facebook</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Jesse Smith -->
+  <div class="broker-card">
+    <div class="card-left">
+      <div class="broker-header">
+        <div>
+          <div class="broker-name">Jesse Smith, CCIM, CPM</div>
+          <div class="broker-firm">Newmark Mountain West (MWCRE) — Utah County</div>
+        </div>
+      </div>
+      <div class="broker-tags">
+        <span class="tag tag-trans"><span class="tag-dot"></span>Transition / Leaseback</span>
+        <span class="tag tag-nnn"><span class="tag-dot"></span>Cap Rate / 1031</span>
+      </div>
+      <div class="broker-why">
+        President of MWCRE's Property Management division — makes him the strongest fit for the transition/leaseback structure where you stay 6–12 months paying rent while the new operator gets their footing. CPM designation means he structures lease-backs and tenant transitions for a living. Also strong on investment sales and connecting to 1031 buyers. MWCRE publishes regular Utah market reports and runs the Mountain West Podcast covering investment strategy and property management. <strong>Best fit if the transition structure is your lead scenario.</strong>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-row">
+          <span class="contact-label">Phone</span>
+          <span class="contact-value"><a href="tel:8012003198">801-200-3198</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Email</span>
+          <span class="contact-value"><a href="mailto:jsmith@newmarkmw.com">jsmith@newmarkmw.com</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Web</span>
+          <span class="contact-value"><a href="https://mwcre.com/agents/jesse-smith-ccim-cpm" target="_blank">mwcre.com/agents/jesse-smith-ccim-cpm</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Podcast</span>
+          <span class="contact-value"><a href="https://mwcre.com" target="_blank">Mountain West Podcast — mwcre.com</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Reports</span>
+          <span class="contact-value">Regular Utah County market reports via mwcre.com</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-right">
+      <div class="priority-badge">
+        <span class="priority-num">02</span>
+        <span class="priority-label">Priority</span>
+      </div>
+      <div class="online-pills">
+        <span class="online-pill active">Podcast</span>
+        <span class="online-pill active">Market Reports</span>
+        <span class="online-pill active">LinkedIn</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIER 2 -->
+  <div class="section-header" style="margin-top:32px;">
+    <div class="section-title">Tier 2 — Investment Sale Specialists</div>
+  </div>
+
+  <!-- Gurpreet Bhatti -->
+  <div class="broker-card">
+    <div class="card-left">
+      <div class="broker-header">
+        <div>
+          <div class="broker-name">Gurpreet Bhatti</div>
+          <div class="broker-firm">GSB Realtor — Utah / Nevada / Wyoming</div>
+        </div>
+      </div>
+      <div class="broker-tags">
+        <span class="tag tag-nnn"><span class="tag-dot"></span>Cap Rate / 1031</span>
+      </div>
+      <div class="broker-why">
+        NNN lease specialist who explicitly covers Orem and Provo. Has stated relationships with 1031 exchange buyers, private equity funds, and local operators. Built free investor tools on his site — cap rate calculator, cash flow projections, debt coverage ratio tool — which signals he thinks in investment math, not just listing fees. <strong>Best single call for the cap rate/investor structure</strong> with Utah County buyer relationships already in place.
+      </div>
+      <div class="contact-grid">
+        <div class="contact-row">
+          <span class="contact-label">Phone</span>
+          <span class="contact-value"><a href="tel:8016358462">801-635-8462</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Web</span>
+          <span class="contact-value"><a href="https://www.gsbrealtor.com/commercial" target="_blank">gsbrealtor.com/commercial</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Tools</span>
+          <span class="contact-value"><a href="https://www.gsbrealtor.com/investor" target="_blank">gsbrealtor.com/investor</a> — free cap rate + cash flow calculators</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-right">
+      <div class="priority-badge">
+        <span class="priority-num">03</span>
+        <span class="priority-label">Priority</span>
+      </div>
+      <div class="online-pills">
+        <span class="online-pill active">Investor Tools</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Austin Williams -->
+  <div class="broker-card">
+    <div class="card-left">
+      <div class="broker-header">
+        <div>
+          <div class="broker-name">Austin Williams</div>
+          <div class="broker-firm">Marcus & Millichap — Salt Lake City</div>
+        </div>
+      </div>
+      <div class="broker-tags">
+        <span class="tag tag-nnn"><span class="tag-dot"></span>Cap Rate / 1031</span>
+      </div>
+      <div class="broker-why">
+        Net lease acquisition and disposition specialist with an MRED from the University of Utah. The Marcus & Millichap platform matters here — they closed nearly 8,000 transactions in 2024 and have the deepest national 1031 exchange buyer database. Out-of-state buyers looking for passive NNN income will find this listing through M&M when they'd never find it locally. Williams is newer, which means he'll work harder for a $1.7M deal than a 20-year veteran will. <strong>Use alongside Gurpreet — national reach he doesn't have.</strong>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-row">
+          <span class="contact-label">Web</span>
+          <span class="contact-value"><a href="https://www.marcusmillichap.com/advisors/austin-williams" target="_blank">marcusmillichap.com/advisors/austin-williams</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Office</span>
+          <span class="contact-value">Marcus & Millichap SLC — <a href="https://www.marcusmillichap.com/about-us/offices/saltlakecity-utah" target="_blank">marcusmillichap.com/about-us/offices/saltlakecity-utah</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Social</span>
+          <span class="contact-value"><a href="https://www.instagram.com/marcusmillichap_slc/" target="_blank">@marcusmillichap_slc on Instagram</a></span>
+        </div>
+      </div>
+    </div>
+    <div class="card-right">
+      <div class="priority-badge">
+        <span class="priority-num">04</span>
+        <span class="priority-label">Priority</span>
+      </div>
+      <div class="online-pills">
+        <span class="online-pill active">Instagram</span>
+        <span class="online-pill active">National DB</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIER 3 -->
+  <div class="section-header" style="margin-top:32px;">
+    <div class="section-title">Tier 3 — Advisory & Flat Sale Specialists</div>
+  </div>
+
+  <!-- Randy Park -->
+  <div class="broker-card">
+    <div class="card-left">
+      <div class="broker-header">
+        <div>
+          <div class="broker-name">Randy R. Park</div>
+          <div class="broker-firm">Park Commercial Group / KW Commercial — Orem</div>
+        </div>
+      </div>
+      <div class="broker-tags">
+        <span class="tag tag-user"><span class="tag-dot"></span>Flat User Sale</span>
+        <span class="tag tag-trans"><span class="tag-dot"></span>Transition</span>
+      </div>
+      <div class="broker-why">
+        40+ years specializing in Utah County commercial. Office at 998 N 1200 W Orem — literally minutes from your building. Deep local buyer network built over decades, which is exactly what you need for a flat user sale to another gym, martial arts school, church, or community-use operator. Less blog/content-heavy than national firms but active in local market commentary. <strong>Best fit if the flat user sale is the priority</strong> and you want someone who knows every local buyer who's been looking at space in that corridor.
+      </div>
+      <div class="contact-grid">
+        <div class="contact-row">
+          <span class="contact-label">Phone</span>
+          <span class="contact-value"><a href="tel:8018505600">801-850-5600</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Web</span>
+          <span class="contact-value"><a href="https://www.parkcommercialgroup.com" target="_blank">parkcommercialgroup.com</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Office</span>
+          <span class="contact-value">998 N 1200 W, Orem UT (minutes from your building)</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-right">
+      <div class="priority-badge">
+        <span class="priority-num">05</span>
+        <span class="priority-label">Priority</span>
+      </div>
+      <div class="online-pills">
+        <span class="online-pill active">LinkedIn</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chris Falk -->
+  <div class="broker-card">
+    <div class="card-left">
+      <div class="broker-header">
+        <div>
+          <div class="broker-name">Chris Falk, CCIM, SIOR</div>
+          <div class="broker-firm">Mountain West Commercial Real Estate — Clearfield, UT</div>
+        </div>
+      </div>
+      <div class="broker-tags">
+        <span class="tag tag-nnn"><span class="tag-dot"></span>Advisory / Pressure Test</span>
+      </div>
+      <div class="broker-why">
+        800+ transactions exceeding $1B, Utah SIOR President, 2023 CCIM Utah Office Broker of the Year. Maintains an active blog at chrisfalk.com covering lease structures, commercial investment, and market trends — worth reading before any calls. His track record is heavy on office and corporate tenant rep, not small investment sales, so he's not your listing agent. <strong>Use him for a paid advisory hour</strong> to pressure-test your deal structure and pricing before you go to market. His credentialing means he'll give you an honest read without a listing commission motive.
+      </div>
+      <div class="contact-grid">
+        <div class="contact-row">
+          <span class="contact-label">Web</span>
+          <span class="contact-value"><a href="https://www.chrisfalk.com" target="_blank">chrisfalk.com</a> — active blog on lease structures + market trends</span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Firm</span>
+          <span class="contact-value"><a href="https://mwcre.com/agents/chris-falk-ccim-sior/" target="_blank">mwcre.com/agents/chris-falk-ccim-sior</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Location</span>
+          <span class="contact-value">Clearfield, UT (Northern Utah / Davis County focus)</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-right">
+      <div class="priority-badge">
+        <span class="priority-num">06</span>
+        <span class="priority-label">Priority</span>
+      </div>
+      <div class="online-pills">
+        <span class="online-pill active">Blog</span>
+        <span class="online-pill active">LinkedIn</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Colliers -->
+  <div class="broker-card">
+    <div class="card-left">
+      <div class="broker-header">
+        <div>
+          <div class="broker-name">Colliers International Utah</div>
+          <div class="broker-firm">Colliers — Salt Lake City (Utah County coverage)</div>
+        </div>
+      </div>
+      <div class="broker-tags">
+        <span class="tag tag-nnn"><span class="tag-dot"></span>Cap Rate / 1031</span>
+      </div>
+      <div class="broker-why">
+        Institutional firm with the strongest published research in the state. Publishes detailed quarterly Utah County market reports — the Q1 2026 report is already out covering cap rates, absorption, and investor activity. YouTube library, active LinkedIn and Instagram. Their investment sales team has deep 1031 exchange buyer relationships nationally. <strong>Best use: pull their free quarterly reports before any broker conversations</strong> to walk in with current market data. Then ask specifically for their Utah County investment specialist, not just whoever answers the phone.
+      </div>
+      <div class="contact-grid">
+        <div class="contact-row">
+          <span class="contact-label">Web</span>
+          <span class="contact-value"><a href="https://www.colliers.com/en/united-states/cities/salt-lake-city" target="_blank">colliers.com — Salt Lake City office</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Reports</span>
+          <span class="contact-value">Quarterly Utah County Market Reports — free, downloadable via Colliers site</span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Social</span>
+          <span class="contact-value">Active LinkedIn, Instagram, YouTube market content</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-right">
+      <div class="priority-badge">
+        <span class="priority-num">07</span>
+        <span class="priority-label">Priority</span>
+      </div>
+      <div class="online-pills">
+        <span class="online-pill active">Reports</span>
+        <span class="online-pill active">YouTube</span>
+        <span class="online-pill active">LinkedIn</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Westwood -->
+  <div class="broker-card">
+    <div class="card-left">
+      <div class="broker-header">
+        <div>
+          <div class="broker-name">Westwood Net Lease Advisors</div>
+          <div class="broker-firm">National Boutique — NNN / 1031 Specialist</div>
+        </div>
+      </div>
+      <div class="broker-tags">
+        <span class="tag tag-nnn"><span class="tag-dot"></span>Cap Rate / 1031</span>
+      </div>
+      <div class="broker-why">
+        Not Utah-specific but one of the most content-rich NNN advisory firms in the country. Active YouTube channel with detailed explanations of tenant credit evaluation, lease structure analysis, and market timing. Published a full NNN investing guide. Cap rate stabilized at 5.5–7% nationally through 2025 per their research. <strong>Use them as an education resource first</strong> — watch 3–4 videos before your broker calls so you're speaking the same language. They also take listings nationwide and have 1031 buyer relationships outside Utah.
+      </div>
+      <div class="contact-grid">
+        <div class="contact-row">
+          <span class="contact-label">Web</span>
+          <span class="contact-value"><a href="https://westwoodnetlease.com" target="_blank">westwoodnetlease.com</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">YouTube</span>
+          <span class="contact-value"><a href="https://westwoodnetlease.com" target="_blank">Active channel — NNN investing education</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Blog</span>
+          <span class="contact-value">Annual NNN market reviews, cap rate trend analysis</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-right">
+      <div class="priority-badge">
+        <span class="priority-num">08</span>
+        <span class="priority-label">Priority</span>
+      </div>
+      <div class="online-pills">
+        <span class="online-pill active">YouTube</span>
+        <span class="online-pill active">Blog</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Key question + script -->
+  <div class="key-question">
+    <div class="kq-label">The Question That Separates Useful From Useless</div>
+    <div class="kq-text">"Have you closed a sale-leaseback or investment sale on a special-purpose property under $3M in Utah County in the last two years?" — Any broker who hesitates or pivots has never done it. Move on.</div>
+  </div>
+
+  <div class="script-block">
+    <div class="script-label">Outreach Script (text or email)</div>
+    <div class="script-text">
+      "Hi [Name] — I own a 8,700 sq ft commercial building at 972 N 1430 W in Orem (currently operating as Wasatch Combat Sports, 11 years in business, 400+ members). I'm exploring three exit structures: flat sale with vacant possession, a 6–12 month seller leaseback while I transition to a new operator, or a cap-rate/1031 investment sale with a new long-term tenant in place. Would you have 20 minutes to share your read on which structure makes sense at current market and what a realistic price range looks like? I saw [your market report / your LinkedIn post / your podcast] and liked your approach."
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <span class="footer-note">WCS T1 Internal Reference · Not for distribution</span>
+  <span class="footer-ts">Updated May 2026</span>
+</footer>
+
+</body>
+</html>
