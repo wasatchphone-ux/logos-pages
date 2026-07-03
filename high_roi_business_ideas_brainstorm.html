@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>High-ROI Business Ideas — Working Brainstorm</title>
+  <style>
+    :root{
+      --bg:#0f1115;
+      --panel:#171a21;
+      --panel2:#1d222b;
+      --text:#eef2f7;
+      --muted:#aab3c2;
+      --line:#2d3440;
+      --accent:#6ea8fe;
+      --good:#49d17d;
+      --warn:#f0b84b;
+      --bad:#ff6b6b;
+      --s:#ffd166;
+      --a:#7bdff2;
+      --b:#b8c0ff;
+      --shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:linear-gradient(180deg,#0f1115 0%,#121620 100%);
+      color:var(--text);
+      line-height:1.55;
+    }
+    .wrap{max-width:1180px;margin:0 auto;padding:28px 20px 60px}
+    .hero{
+      background:
+        radial-gradient(circle at top right,rgba(110,168,254,.20),transparent 34%),
+        linear-gradient(135deg,#171a21,#12161d);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:34px;
+      box-shadow:var(--shadow);
+    }
+    h1{font-size:clamp(30px,5vw,54px);line-height:1.05;margin:0 0 12px}
+    h2{font-size:28px;margin:44px 0 16px}
+    h3{font-size:22px;margin:0 0 8px}
+    h4{font-size:16px;margin:18px 0 6px;color:#fff}
+    p{margin:8px 0 0}
+    .sub{color:var(--muted);font-size:18px;max-width:880px}
+    .tagrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+    .tag{
+      border:1px solid var(--line);
+      background:#11151c;
+      border-radius:999px;
+      padding:7px 11px;
+      font-size:13px;
+      color:#d7deea;
+    }
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+    .card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+    .span-4{grid-column:span 4}
+    .span-6{grid-column:span 6}
+    .span-12{grid-column:span 12}
+    .tier{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-width:48px;height:30px;padding:0 10px;
+      border-radius:999px;font-weight:800;font-size:13px;
+      color:#111;
+    }
+    .tier.s{background:var(--s)}
+    .tier.a{background:var(--a)}
+    .tier.ap{background:#9bf6ff}
+    .score{
+      display:flex;justify-content:space-between;align-items:center;gap:12px;
+      margin-bottom:14px;
+    }
+    .idea-title{display:flex;align-items:center;gap:10px}
+    .muted{color:var(--muted)}
+    .metric{
+      background:var(--panel2);
+      border:1px solid var(--line);
+      border-radius:14px;padding:14px;
+    }
+    .metric strong{display:block;font-size:22px;margin-top:2px}
+    .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+    ul{margin:8px 0 0;padding-left:20px}
+    li{margin:6px 0}
+    .good{color:var(--good)}
+    .warn{color:var(--warn)}
+    .bad{color:var(--bad)}
+    table{width:100%;border-collapse:collapse;margin-top:12px}
+    th,td{padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+    th{color:#dfe7f3;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+    td{color:#d2d9e5}
+    .callout{
+      border-left:4px solid var(--accent);
+      background:#121925;
+      padding:16px 18px;
+      border-radius:12px;
+      margin-top:16px;
+    }
+    .danger{border-left-color:var(--bad);background:#211518}
+    .success{border-left-color:var(--good);background:#122018}
+    .steps{counter-reset:step;display:grid;gap:12px;margin-top:14px}
+    .step{
+      counter-increment:step;
+      display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start;
+      background:var(--panel2);border:1px solid var(--line);padding:14px;border-radius:14px;
+    }
+    .step:before{
+      content:counter(step);
+      width:34px;height:34px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      background:#263249;color:#fff;font-weight:800;
+    }
+    .small{font-size:13px}
+    .footer{
+      color:var(--muted);font-size:13px;margin-top:28px;text-align:center;
+    }
+    .printnote{margin-top:14px;font-size:13px;color:var(--muted)}
+    @media(max-width:900px){
+      .span-4,.span-6{grid-column:span 12}
+      .metrics{grid-template-columns:repeat(2,1fr)}
+    }
+    @media print{
+      body{background:#fff;color:#111}
+      .hero,.card,.metric,.step{box-shadow:none;background:#fff;border-color:#bbb}
+      .muted,.sub,.footer,.printnote{color:#555}
+      .wrap{max-width:none;padding:12px}
+      .card{break-inside:avoid}
+      h2{break-after:avoid}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>High-ROI Business Ideas</h1>
+      <p class="sub">A working executive brief for researching businesses with low capital risk, strong margins, search-driven demand, limited customer acquisition, and the ability to scale without creating a low-paid job.</p>
+      <div class="tagrow">
+        <span class="tag">Low inventory risk</span>
+        <span class="tag">Searchable demand</span>
+        <span class="tag">High margin per unit</span>
+        <span class="tag">Low fulfillment burden</span>
+        <span class="tag">Repeatable systems</span>
+        <span class="tag">Minimal outbound prospecting</span>
+      </div>
+      <p class="printnote">Working brainstorm v1.0 — designed to be shared with other LLMs, operators, and potential partners.</p>
+    </section>
+
+    <h2>Decision Framework</h2>
+    <div class="grid">
+      <div class="card span-4">
+        <h3>What qualifies</h3>
+        <ul>
+          <li>Low fixed startup cost</li>
+          <li>Limited capital trapped in inventory</li>
+          <li>Buyers search by exact model, serial, part number, or problem</li>
+          <li>High gross margin relative to labor</li>
+          <li>Small, cheap, or supplier-direct fulfillment</li>
+          <li>Can be delegated after validation</li>
+        </ul>
+      </div>
+      <div class="card span-4">
+        <h3>Automatic red flags</h3>
+        <ul>
+          <li>Hundreds of low-value customers</li>
+          <li>Heavy local delivery or shipping</li>
+          <li>Generic products with no differentiation</li>
+          <li>High ad spend before product-market fit</li>
+          <li>Large speculative inventory purchases</li>
+          <li>Business depends on constant personal prospecting</li>
+        </ul>
+      </div>
+      <div class="card span-4">
+        <h3>Tier rubric</h3>
+        <ul>
+          <li><strong>S Tier:</strong> Asymmetric upside, low capital risk, repeatable demand</li>
+          <li><strong>A Tier:</strong> Strong opportunity with one meaningful execution risk</li>
+          <li><strong>B Tier:</strong> Viable, but labor-heavy or hard to scale</li>
+          <li><strong>C Tier:</strong> Acceptable only with a special advantage</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Priority Ideas</h2>
+
+    <section class="card">
+      <div class="score">
+        <div class="idea-title">
+          <span class="tier s">S TIER</span>
+          <h3>Obsolete Model-Specific Replacement Parts</h3>
+        </div>
+      </div>
+      <p class="muted">Build a searchable catalog of obscure replacement parts that manufacturers no longer sell. Produce only after the customer orders.</p>
+
+      <div class="metrics">
+        <div class="metric"><span class="small muted">Estimated startup</span><strong>$500–$3,000</strong></div>
+        <div class="metric"><span class="small muted">Target gross margin</span><strong>60%–85%</strong></div>
+        <div class="metric"><span class="small muted">Capital at risk</span><strong>Low</strong></div>
+        <div class="metric"><span class="small muted">Validation speed</span><strong>2–6 weeks</strong></div>
+      </div>
+
+      <div class="grid">
+        <div class="span-6">
+          <h4>Business model</h4>
+          <ul>
+            <li>Find unavailable or overpriced OEM plastic parts.</li>
+            <li>Model the part in CAD or pay a freelancer.</li>
+            <li>3D print, laser cut, or assemble on demand.</li>
+            <li>List by exact manufacturer, model, part number, and failure symptom.</li>
+            <li>Sell through eBay, Etsy, Google, and a Shopify catalog.</li>
+          </ul>
+
+          <h4>Strong product categories</h4>
+          <ul>
+            <li>RV and camper latches, vents, handles, and trim</li>
+            <li>Appliance knobs, rack clips, hinges, and brackets</li>
+            <li>Automotive interior trim and discontinued clips</li>
+            <li>Vintage electronics battery covers and buttons</li>
+            <li>Power tool adapters, dust ports, and guards</li>
+            <li>Control-panel overlays, decals, and legends</li>
+          </ul>
+        </div>
+        <div class="span-6">
+          <h4>Marketing advantage</h4>
+          <ul>
+            <li>Search-driven demand instead of persuasion-based selling</li>
+            <li>Exact model-number listings reduce competition</li>
+            <li>One successful design can sell repeatedly for years</li>
+            <li>Customer-funded custom requests can become permanent SKUs</li>
+          </ul>
+
+          <h4>Competition</h4>
+          <ul>
+            <li>Existing eBay and Etsy niche sellers</li>
+            <li>OEM replacement-part distributors</li>
+            <li>Hobbyist 3D-print shops</li>
+          </ul>
+          <p class="muted">Competition is fragmented. The moat is a larger catalog, better fit verification, clearer listings, faster fulfillment, and reinforced designs.</p>
+        </div>
+      </div>
+
+      <div class="callout success">
+        <strong>Best version:</strong> A “can’t find this part?” service. The first customer pays a design fee, receives the first unit, and funds development of a SKU that can be sold repeatedly.
+      </div>
+
+      <div class="grid" style="margin-top:18px">
+        <div class="span-6">
+          <h4>Primary downsides</h4>
+          <ul>
+            <li>Fitment mistakes can create returns and bad reviews.</li>
+            <li>Some parts appear promising but have almost no search volume.</li>
+            <li>Printing can become a bottleneck if the catalog grows.</li>
+            <li>Weak materials or poor tolerances can damage reputation.</li>
+          </ul>
+        </div>
+        <div class="span-6">
+          <h4>Hidden dangers</h4>
+          <ul>
+            <li>Patent, trademark, and design-right complaints</li>
+            <li>Product liability for safety-critical parts</li>
+            <li>Heat, pressure, electrical, or structural applications</li>
+            <li>Customers ordering the wrong model despite clear warnings</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout danger">
+        <strong>Hard rule:</strong> Avoid brakes, airbags, child-safety products, mains-voltage components, structural load-bearing parts, and anything whose failure could cause injury or major property damage.
+      </div>
+
+      <h4>90-day test</h4>
+      <div class="steps">
+        <div class="step"><div><strong>Identify 25 candidate parts</strong><br><span class="muted">Use sold listings, repair forums, unavailable OEM listings, and repeated customer complaints.</span></div></div>
+        <div class="step"><div><strong>Build 5 prototypes</strong><br><span class="muted">Cap design and testing spend at roughly $200 per SKU.</span></div></div>
+        <div class="step"><div><strong>List on multiple marketplaces</strong><br><span class="muted">Use exact model numbers, compatibility tables, dimensions, and installation photos.</span></div></div>
+        <div class="step"><div><strong>Kill weak SKUs quickly</strong><br><span class="muted">Retain only products that show repeatable sales and low support burden.</span></div></div>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:18px">
+      <div class="score">
+        <div class="idea-title">
+          <span class="tier ap">A+ TIER</span>
+          <h3>Auction Intelligence Platform</h3>
+        </div>
+      </div>
+      <p class="muted">Aggregate fragmented auction listings, normalize the data, estimate landed cost and resale value, and surface only the opportunities that appear mispriced.</p>
+
+      <div class="metrics">
+        <div class="metric"><span class="small muted">Estimated startup</span><strong>$3,000–$25,000</strong></div>
+        <div class="metric"><span class="small muted">Target gross margin</span><strong>80%+</strong></div>
+        <div class="metric"><span class="small muted">Capital at risk</span><strong>Low–Medium</strong></div>
+        <div class="metric"><span class="small muted">Validation speed</span><strong>4–12 weeks</strong></div>
+      </div>
+
+      <div class="grid">
+        <div class="span-6">
+          <h4>Business model</h4>
+          <ul>
+            <li>Collect listings from government, municipal, commercial, and specialty auction sites.</li>
+            <li>Normalize model numbers, categories, location, fees, condition, and closing times.</li>
+            <li>Estimate buyer premium, tax, transport, repair, and realistic resale range.</li>
+            <li>Alert users only when projected spread clears a minimum threshold.</li>
+          </ul>
+
+          <h4>Best initial verticals</h4>
+          <ul>
+            <li>Government and fleet vehicles</li>
+            <li>Trailers and compact equipment</li>
+            <li>Restaurant and commercial kitchen equipment</li>
+            <li>Municipal generators and utility equipment</li>
+            <li>Industrial controls and electronics</li>
+            <li>School and university surplus</li>
+          </ul>
+        </div>
+        <div class="span-6">
+          <h4>Monetization</h4>
+          <ul>
+            <li>$29–$49/month: alerts and saved searches</li>
+            <li>$99–$199/month: comps, landed cost, and bid guidance</li>
+            <li>$20–$50: one-off opportunity reports</li>
+            <li>Dealer, broker, or enterprise accounts</li>
+          </ul>
+
+          <h4>Marketing</h4>
+          <ul>
+            <li>SEO pages for specific models and auction categories</li>
+            <li>Free daily or weekly deal newsletter</li>
+            <li>Partnerships with dealers, transporters, and auction buyers</li>
+            <li>Case studies showing actual purchase and resale spreads</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>Core insight:</strong> A generic listing aggregator is not enough. The valuable product is decision support: “What is this worth, what will it cost me all-in, and what is my maximum safe bid?”
+      </div>
+
+      <div class="grid" style="margin-top:18px">
+        <div class="span-6">
+          <h4>Primary downsides</h4>
+          <ul>
+            <li>Data is messy, inconsistent, and often image-based.</li>
+            <li>Resale comps can be incomplete or misleading.</li>
+            <li>Users may blame the platform for bad purchases.</li>
+            <li>Building a broad national database too early can burn cash.</li>
+          </ul>
+        </div>
+        <div class="span-6">
+          <h4>Hidden dangers</h4>
+          <ul>
+            <li>Scraping restrictions and auction-site terms of service</li>
+            <li>Data licensing and rate limits</li>
+            <li>Duplicate or stale listings</li>
+            <li>Incorrect OCR of model and serial numbers</li>
+            <li>Legal exposure from “recommended bid” language</li>
+          </ul>
+        </div>
+      </div>
+
+      <h4>Lean validation</h4>
+      <div class="steps">
+        <div class="step"><div><strong>Start as a manual newsletter</strong><br><span class="muted">One category, one region, one recurring report.</span></div></div>
+        <div class="step"><div><strong>Charge before building software</strong><br><span class="muted">Sell a paid alert service or weekly opportunity report.</span></div></div>
+        <div class="step"><div><strong>Track realized results</strong><br><span class="muted">Record closing price, landed cost, resale price, and time to sell.</span></div></div>
+        <div class="step"><div><strong>Automate only repeated work</strong><br><span class="muted">Build software after the same research steps recur often enough.</span></div></div>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:18px">
+      <div class="score">
+        <div class="idea-title">
+          <span class="tier a">A TIER</span>
+          <h3>Industrial Dead-Stock Brokerage and Consignment</h3>
+        </div>
+      </div>
+      <p class="muted">Avoid speculative purchases. Sell or source exact industrial components using prepaid orders, consignment inventory, or guaranteed wholesale exits.</p>
+
+      <div class="metrics">
+        <div class="metric"><span class="small muted">Estimated startup</span><strong>$1,000–$7,500</strong></div>
+        <div class="metric"><span class="small muted">Target gross margin</span><strong>20%–50%</strong></div>
+        <div class="metric"><span class="small muted">Capital at risk</span><strong>Low if structured correctly</strong></div>
+        <div class="metric"><span class="small muted">Validation speed</span><strong>3–8 weeks</strong></div>
+      </div>
+
+      <div class="grid">
+        <div class="span-6">
+          <h4>Low-risk versions</h4>
+          <ul>
+            <li><strong>Prepaid sourcing:</strong> Customer pays before the component is purchased.</li>
+            <li><strong>Consignment:</strong> Seller retains ownership until the component sells.</li>
+            <li><strong>Wholesale floor:</strong> Obtain a dealer purchase quote before bidding on a lot.</li>
+            <li><strong>New old stock only:</strong> Favor sealed or clearly unused components.</li>
+          </ul>
+
+          <h4>Best inventory profile</h4>
+          <ul>
+            <li>Exact searchable catalog number</li>
+            <li>Under five pounds</li>
+            <li>Retail value roughly $200–$1,000</li>
+            <li>Acquisition cost roughly $50–$300</li>
+            <li>Confirmed historical sales</li>
+            <li>Simple condition verification</li>
+          </ul>
+        </div>
+        <div class="span-6">
+          <h4>Potential products</h4>
+          <ul>
+            <li>PLC input and output modules</li>
+            <li>Industrial power supplies</li>
+            <li>Communication modules</li>
+            <li>Encoders and photoelectric sensors</li>
+            <li>Relays, contactors, and panel components</li>
+            <li>Operator-interface replacement components</li>
+          </ul>
+
+          <h4>Customer acquisition</h4>
+          <ul>
+            <li>Exact part-number SEO</li>
+            <li>eBay listings for stocked or consigned items</li>
+            <li>“Request a quote” pages for unavailable inventory</li>
+            <li>Relationships with maintenance departments and controls contractors</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout success">
+        <strong>Best version:</strong> A catalog of exact part numbers that generates inbound quote requests. Source only after a customer commits, or sell consigned inventory without purchasing it.
+      </div>
+
+      <div class="grid" style="margin-top:18px">
+        <div class="span-6">
+          <h4>Primary downsides</h4>
+          <ul>
+            <li>Technical buyers expect accuracy and fast answers.</li>
+            <li>Counterfeit or misrepresented parts are common.</li>
+            <li>Returns can be expensive if a customer misdiagnoses a machine.</li>
+            <li>Some equipment requires specialized testing.</li>
+          </ul>
+        </div>
+        <div class="span-6">
+          <h4>Hidden dangers</h4>
+          <ul>
+            <li>Serial-number fraud and counterfeit labels</li>
+            <li>Programmed or locked controllers</li>
+            <li>Export-control restrictions</li>
+            <li>Warranty expectations on obsolete equipment</li>
+            <li>Safety-critical automation components</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout danger">
+        <strong>Avoid:</strong> Large speculative purchases of $5,000 components, untested drives, custom-programmed controllers, safety PLCs, and any lot whose value depends on slow retail sales.
+      </div>
+    </section>
+
+    <h2>Side-by-Side Comparison</h2>
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>Idea</th>
+            <th>Tier</th>
+            <th>Startup Risk</th>
+            <th>Acquisition</th>
+            <th>Fulfillment</th>
+            <th>Scalability</th>
+            <th>Primary Failure Mode</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Obsolete replacement parts</td>
+            <td><strong>S</strong></td>
+            <td>Low</td>
+            <td>Search-driven</td>
+            <td>Small parcel, on demand</td>
+            <td>High</td>
+            <td>Wrong parts and weak demand</td>
+          </tr>
+          <tr>
+            <td>Auction intelligence</td>
+            <td><strong>A+</strong></td>
+            <td>Low–Medium</td>
+            <td>SEO, newsletter, reseller communities</td>
+            <td>Digital</td>
+            <td>Very high</td>
+            <td>Data quality and scraping restrictions</td>
+          </tr>
+          <tr>
+            <td>Industrial dead-stock brokerage</td>
+            <td><strong>A</strong></td>
+            <td>Low if prepaid/consigned</td>
+            <td>Part-number search and relationships</td>
+            <td>Small parcel or supplier direct</td>
+            <td>Medium–High</td>
+            <td>Counterfeit, technical errors, returns</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Research Checklist for Any New Idea</h2>
+    <div class="grid">
+      <div class="card span-6">
+        <h3>Demand and competition</h3>
+        <ul>
+          <li>What exact phrase does the buyer search?</li>
+          <li>Are there confirmed sales, not just active listings?</li>
+          <li>How many credible competitors exist?</li>
+          <li>Can buyers compare prices easily?</li>
+          <li>Is the problem urgent or discretionary?</li>
+        </ul>
+      </div>
+      <div class="card span-6">
+        <h3>Economics and operations</h3>
+        <ul>
+          <li>Gross margin after fees, shipping, refunds, and labor</li>
+          <li>Cash tied up before the first sale</li>
+          <li>Average number of customer interactions per order</li>
+          <li>Time from purchase to cash recovery</li>
+          <li>Can fulfillment be outsourced?</li>
+        </ul>
+      </div>
+      <div class="card span-6">
+        <h3>Legal and hidden risk</h3>
+        <ul>
+          <li>Product liability</li>
+          <li>Licensing or resale restrictions</li>
+          <li>Intellectual-property exposure</li>
+          <li>Platform dependence</li>
+          <li>Fraud, chargebacks, and returns</li>
+        </ul>
+      </div>
+      <div class="card span-6">
+        <h3>Kill criteria</h3>
+        <ul>
+          <li>Requires large speculative inventory</li>
+          <li>Needs paid ads before demand is proven</li>
+          <li>Average gross profit is too low for support burden</li>
+          <li>Too many local pickups, deliveries, or no-shows</li>
+          <li>Cannot be delegated after the process is documented</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Recommended Order of Attack</h2>
+    <div class="card">
+      <ol>
+        <li><strong>Validate obsolete replacement parts first.</strong> Lowest startup cost, fastest proof, and strongest asymmetric upside.</li>
+        <li><strong>Test auction intelligence manually.</strong> Publish one narrow paid report before building software.</li>
+        <li><strong>Explore industrial brokerage without inventory.</strong> Use prepaid sourcing, consignment, or guaranteed wholesale exits only.</li>
+      </ol>
+      <div class="callout">
+        <strong>Operating principle:</strong> Never spend heavily to discover whether demand exists. Let search behavior, customer requests, deposits, or paid subscriptions fund validation.
+      </div>
+    </div>
+
+    <h2>LLM Handoff Summary</h2>
+    <div class="card">
+      <p><strong>Goal:</strong> Identify businesses with high return on time, low capital risk, low inventory exposure, limited customer acquisition, strong margins, and scalable systems.</p>
+      <p><strong>Current rankings:</strong> S Tier — obsolete model-specific replacement parts. A+ Tier — auction intelligence platform. A Tier — industrial dead-stock brokerage using prepaid sourcing, consignment, or guaranteed wholesale exits.</p>
+      <p><strong>Do not recommend:</strong> Generic dropshipping, liquidation pallets, yard-sale flipping, low-value local resale, bulky products, heavy delivery, constant outbound prospecting, or speculative purchases of expensive inventory.</p>
+      <p><strong>Next research:</strong> Find real candidate niches, estimate search demand, identify competitors, model unit economics, identify legal risks, and design a low-cost 30- to 90-day validation plan for each idea.</p>
+    </div>
+
+    <div class="footer">Prepared as a working business-idea research brief. All financial ranges are planning estimates and must be validated before investment.</div>
+  </div>
+</body>
+</html>
