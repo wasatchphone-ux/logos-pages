@@ -1,0 +1,293 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>T4 Curriculum Decisions</title>
+<style>
+:root { color-scheme: light; }
+body { font-family: system-ui, sans-serif; max-width: 980px; margin: 0 auto; padding: 20px 20px 80px 20px; line-height: 1.5; color: #222; }
+h1 { font-size: 23px; margin-bottom: 4px; }
+h2 { font-size: 19px; border-top: 3px solid #333; padding-top: 14px; margin-top: 34px; }
+.note-banner { background: #fdf0d5; border: 1px solid #e0b050; border-radius: 6px; padding: 8px 14px; font-size: 13px; margin-bottom: 18px; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0 20px 0; font-size: 13px; }
+th { background: #e6ede5; text-align: left; padding: 6px 8px; }
+td { border: 1px solid #ddd; padding: 6px 8px; vertical-align: top; }
+.group-required td.group-cell { background: #eaf3ea; }
+.group-optional td.group-cell { background: #eef2fa; }
+.group-deferred td.group-cell { background: #f2f2f2; }
+.radio-group label { display: inline-block; margin-right: 10px; font-size: 12.5px; white-space: nowrap; }
+input[type=text], textarea { font-family: inherit; font-size: 13px; padding: 4px 6px; border: 1px solid #bbb; border-radius: 4px; }
+.comment-input { width: 100%; box-sizing: border-box; margin-top: 4px; }
+.arc-card { border: 1px solid #ccc; border-radius: 6px; padding: 10px 16px; margin-bottom: 12px; background: #fafcf9; }
+.arc-card h3 { margin: 0 0 6px 0; font-size: 15px; }
+.order-input { width: 50px; }
+.notation-box { background: #f7f7f7; border: 1px solid #ddd; border-radius: 6px; padding: 12px 16px; margin: 10px 0; font-size: 13.5px; }
+.field-row { margin: 10px 0; }
+.field-row label { display: block; font-weight: bold; font-size: 13px; margin-bottom: 4px; }
+.open-item { border: 1px solid #ddd; border-radius: 6px; padding: 10px 14px; margin-bottom: 10px; }
+.hidden { display: none; }
+#decision-block { width: 100%; height: 320px; box-sizing: border-box; font-family: monospace; font-size: 12.5px; margin-top: 10px; }
+#generate-btn, #copy-btn { font-size: 14px; padding: 8px 18px; border-radius: 6px; border: 1px solid #333; background: #2a7; color: #fff; cursor: pointer; margin-right: 8px; }
+#copy-btn { background: #369; }
+.status-badge { display: inline-block; border-radius: 8px; padding: 1px 8px; font-size: 11px; color: #fff; background: #666; }
+.no-pending { color: #2a7; font-weight: bold; }
+.mono { font-family: monospace; font-size: 12px; word-break: break-all; }
+</style>
+</head>
+<body>
+<h1>T4 Beginner Curriculum -- Decision Dashboard</h1>
+<div class="note-banner">This page runs entirely offline as a local file. Your answers live only in this
+browser tab's memory -- closing or reloading the page loses everything. Click through, hit "Generate
+decision block" at the bottom, and paste the result back into chat when you're done.</div>
+
+<h2>1. Competency Triage</h2>
+<p>32 competencies total (17 required,
+4 optional, 11 deferred).</p>
+<table>
+<tr><th>Current</th><th>Competency</th><th>Coverage status</th><th>Evidence confidence</th><th>Your call</th><th>Comment</th></tr>
+<tr class="group-required"><td class="group-cell">Required</td><td>Athletic Muay Thai stance</td><td>covered</td><td>high</td><td class="radio-group"><label><input type="radio" name="triage-0" value="keep" checked> Keep</label><label><input type="radio" name="triage-0" value="move_required"> Move: required</label><label><input type="radio" name="triage-0" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-0" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-0" placeholder="optional comment"></td></tr><tr class="group-required"><td class="group-cell">Required</td><td>Basic guard</td><td>covered</td><td>high</td><td class="radio-group"><label><input type="radio" name="triage-1" value="keep" checked> Keep</label><label><input type="radio" name="triage-1" value="move_required"> Move: required</label><label><input type="radio" name="triage-1" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-1" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-1" placeholder="optional comment"></td></tr><tr class="group-required"><td class="group-cell">Required</td><td>Forward / backward / lateral movement + pivot</td><td>covered</td><td>high</td><td class="radio-group"><label><input type="radio" name="triage-2" value="keep" checked> Keep</label><label><input type="radio" name="triage-2" value="move_required"> Move: required</label><label><input type="radio" name="triage-2" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-2" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-2" placeholder="optional comment"></td></tr><tr class="group-required"><td class="group-cell">Required</td><td>Jab, Cross, Jab-Cross</td><td>covered</td><td>high</td><td class="radio-group"><label><input type="radio" name="triage-3" value="keep" checked> Keep</label><label><input type="radio" name="triage-3" value="move_required"> Move: required</label><label><input type="radio" name="triage-3" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-3" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-3" placeholder="optional comment"></td></tr><tr class="group-required"><td class="group-cell">Required</td><td>Lead teep, Rear teep</td><td>covered</td><td>high</td><td class="radio-group"><label><input type="radio" name="triage-4" value="keep" checked> Keep</label><label><input type="radio" name="triage-4" value="move_required"> Move: required</label><label><input type="radio" name="triage-4" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-4" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-4" placeholder="optional comment"></td></tr><tr class="group-required"><td class="group-cell">Required</td><td>Rear round kick</td><td>covered</td><td>high</td><td class="radio-group"><label><input type="radio" name="triage-5" value="keep" checked> Keep</label><label><input type="radio" name="triage-5" value="move_required"> Move: required</label><label><input type="radio" name="triage-5" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-5" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-5" placeholder="optional comment"></td></tr><tr class="group-required"><td class="group-cell">Required</td><td>Step-in rear round kick</td><td>covered</td><td>medium</td><td class="radio-group"><label><input type="radio" name="triage-6" value="keep" checked> Keep</label><label><input type="radio" name="triage-6" value="move_required"> Move: required</label><label><input type="radio" name="triage-6" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-6" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-6" placeholder="optional comment"></td></tr><tr class="group-required"><td class="group-cell">Required</td><td>Basic low kick</td><td>covered</td><td>high</td><td class="radio-group"><label><input type="radio" name="triage-7" value="keep" checked> Keep</label><label><input type="radio" name="triage-7" value="move_required"> Move: required</label><label><input type="radio" name="triage-7" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-7" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-7" placeholder="optional comment"></td></tr><tr class="group-required"><td class="group-cell">Required</td><td>Basic knee (straight / step)</td><td>covered</td><td>high</td><td class="radio-group"><label><input type="radio" name="triage-8" value="keep" checked> Keep</label><label><input type="radio" name="triage-8" value="move_required"> Move: required</label><label><input type="radio" name="triage-8" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-8" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-8" placeholder="optional comment"></td></tr><tr class="group-required"><td class="group-cell">Required</td><td>Basic punch-to-kick combinations</td><td>covered</td><td>high</td><td class="radio-group"><label><input type="radio" name="triage-9" value="keep" checked> Keep</label><label><input type="radio" name="triage-9" value="move_required"> Move: required</label><label><input type="radio" name="triage-9" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-9" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-9" placeholder="optional comment"></td></tr><tr class="group-required"><td class="group-cell">Required</td><td>Basic check (leg check)</td><td>covered</td><td>high</td><td class="radio-group"><label><input type="radio" name="triage-10" value="keep" checked> Keep</label><label><input type="radio" name="triage-10" value="move_required"> Move: required</label><label><input type="radio" name="triage-10" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-10" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-10" placeholder="optional comment"></td></tr><tr class="group-required"><td class="group-cell">Required</td><td>Basic punch defense (parry / block)</td><td>covered</td><td>high</td><td class="radio-group"><label><input type="radio" name="triage-11" value="keep" checked> Keep</label><label><input type="radio" name="triage-11" value="move_required"> Move: required</label><label><input type="radio" name="triage-11" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-11" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-11" placeholder="optional comment"></td></tr><tr class="group-required"><td class="group-cell">Required</td><td>Simple defense-and-return pattern</td><td>covered</td><td>high</td><td class="radio-group"><label><input type="radio" name="triage-12" value="keep" checked> Keep</label><label><input type="radio" name="triage-12" value="move_required"> Move: required</label><label><input type="radio" name="triage-12" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-12" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-12" placeholder="optional comment"></td></tr><tr class="group-required"><td class="group-cell">Required</td><td>Pad-holding fundamentals</td><td>covered</td><td>high</td><td class="radio-group"><label><input type="radio" name="triage-13" value="keep" checked> Keep</label><label><input type="radio" name="triage-13" value="move_required"> Move: required</label><label><input type="radio" name="triage-13" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-13" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-13" placeholder="optional comment"></td></tr><tr class="group-required"><td class="group-cell">Required</td><td>Distance management</td><td>covered</td><td>high</td><td class="radio-group"><label><input type="radio" name="triage-14" value="keep" checked> Keep</label><label><input type="radio" name="triage-14" value="move_required"> Move: required</label><label><input type="radio" name="triage-14" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-14" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-14" placeholder="optional comment"></td></tr><tr class="group-required"><td class="group-cell">Required</td><td>Balance / recovery to stance</td><td>covered</td><td>medium</td><td class="radio-group"><label><input type="radio" name="triage-15" value="keep" checked> Keep</label><label><input type="radio" name="triage-15" value="move_required"> Move: required</label><label><input type="radio" name="triage-15" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-15" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-15" placeholder="optional comment"></td></tr><tr class="group-required"><td class="group-cell">Required</td><td>Controlled partner reaction drills</td><td>covered</td><td>high</td><td class="radio-group"><label><input type="radio" name="triage-16" value="keep" checked> Keep</label><label><input type="radio" name="triage-16" value="move_required"> Move: required</label><label><input type="radio" name="triage-16" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-16" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-16" placeholder="optional comment"></td></tr><tr class="group-optional"><td class="group-cell">Optional exposure</td><td>Lead hook, basic uppercut exposure</td><td>covered</td><td>high</td><td class="radio-group"><label><input type="radio" name="triage-17" value="keep" checked> Keep</label><label><input type="radio" name="triage-17" value="move_required"> Move: required</label><label><input type="radio" name="triage-17" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-17" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-17" placeholder="optional comment"></td></tr><tr class="group-optional"><td class="group-cell">Optional exposure</td><td>Basic lead-leg kick / switch-kick foundation</td><td>covered</td><td>medium</td><td class="radio-group"><label><input type="radio" name="triage-18" value="keep" checked> Keep</label><label><input type="radio" name="triage-18" value="move_required"> Move: required</label><label><input type="radio" name="triage-18" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-18" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-18" placeholder="optional comment"></td></tr><tr class="group-optional"><td class="group-cell">Optional exposure</td><td>Basic teep defense</td><td>covered</td><td>high</td><td class="radio-group"><label><input type="radio" name="triage-19" value="keep" checked> Keep</label><label><input type="radio" name="triage-19" value="move_required"> Move: required</label><label><input type="radio" name="triage-19" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-19" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-19" placeholder="optional comment"></td></tr><tr class="group-optional"><td class="group-cell">Optional exposure</td><td>Feints</td><td>partially_covered</td><td>medium</td><td class="radio-group"><label><input type="radio" name="triage-20" value="keep" checked> Keep</label><label><input type="radio" name="triage-20" value="move_required"> Move: required</label><label><input type="radio" name="triage-20" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-20" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-20" placeholder="optional comment"></td></tr><tr class="group-deferred"><td class="group-cell">Deferred</td><td>Advanced lead-leg kick variations (switch/step/spot/jump, full set)</td><td>deferred</td><td>none</td><td class="radio-group"><label><input type="radio" name="triage-21" value="keep" checked> Keep</label><label><input type="radio" name="triage-21" value="move_required"> Move: required</label><label><input type="radio" name="triage-21" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-21" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-21" placeholder="optional comment"></td></tr><tr class="group-deferred"><td class="group-cell">Deferred</td><td>Jump switches, complex stance switching</td><td>deferred</td><td>none</td><td class="radio-group"><label><input type="radio" name="triage-22" value="keep" checked> Keep</label><label><input type="radio" name="triage-22" value="move_required"> Move: required</label><label><input type="radio" name="triage-22" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-22" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-22" placeholder="optional comment"></td></tr><tr class="group-deferred"><td class="group-cell">Deferred</td><td>Catch-and-trip systems</td><td>deferred</td><td>none</td><td class="radio-group"><label><input type="radio" name="triage-23" value="keep" checked> Keep</label><label><input type="radio" name="triage-23" value="move_required"> Move: required</label><label><input type="radio" name="triage-23" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-23" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-23" placeholder="optional comment"></td></tr><tr class="group-deferred"><td class="group-cell">Deferred</td><td>Sweeps</td><td>deferred</td><td>none</td><td class="radio-group"><label><input type="radio" name="triage-24" value="keep" checked> Keep</label><label><input type="radio" name="triage-24" value="move_required"> Move: required</label><label><input type="radio" name="triage-24" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-24" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-24" placeholder="optional comment"></td></tr><tr class="group-deferred"><td class="group-cell">Deferred</td><td>Elbows as a major beginner unit (Easton has 4 elbow videos -- reserved for post-foundation)</td><td>deferred</td><td>none</td><td class="radio-group"><label><input type="radio" name="triage-25" value="keep" checked> Keep</label><label><input type="radio" name="triage-25" value="move_required"> Move: required</label><label><input type="radio" name="triage-25" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-25" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-25" placeholder="optional comment"></td></tr><tr class="group-deferred"><td class="group-cell">Deferred</td><td>Dirty boxing, advanced clinch (Easton Kickboxing has zero clinch content)</td><td>deferred</td><td>none</td><td class="radio-group"><label><input type="radio" name="triage-26" value="keep" checked> Keep</label><label><input type="radio" name="triage-26" value="move_required"> Move: required</label><label><input type="radio" name="triage-26" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-26" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-26" placeholder="optional comment"></td></tr><tr class="group-deferred"><td class="group-cell">Deferred</td><td>Open sparring</td><td>deferred</td><td>none</td><td class="radio-group"><label><input type="radio" name="triage-27" value="keep" checked> Keep</label><label><input type="radio" name="triage-27" value="move_required"> Move: required</label><label><input type="radio" name="triage-27" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-27" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-27" placeholder="optional comment"></td></tr><tr class="group-deferred"><td class="group-cell">Deferred</td><td>Complex slip and bob-and-weave chains (conflicts with the check-based defense system this foundation teaches)</td><td>deferred</td><td>none</td><td class="radio-group"><label><input type="radio" name="triage-28" value="keep" checked> Keep</label><label><input type="radio" name="triage-28" value="move_required"> Move: required</label><label><input type="radio" name="triage-28" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-28" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-28" placeholder="optional comment"></td></tr><tr class="group-deferred"><td class="group-cell">Deferred</td><td>Advanced kick catches</td><td>deferred</td><td>none</td><td class="radio-group"><label><input type="radio" name="triage-29" value="keep" checked> Keep</label><label><input type="radio" name="triage-29" value="move_required"> Move: required</label><label><input type="radio" name="triage-29" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-29" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-29" placeholder="optional comment"></td></tr><tr class="group-deferred"><td class="group-cell">Deferred</td><td>Complex long combinations</td><td>deferred</td><td>none</td><td class="radio-group"><label><input type="radio" name="triage-30" value="keep" checked> Keep</label><label><input type="radio" name="triage-30" value="move_required"> Move: required</label><label><input type="radio" name="triage-30" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-30" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-30" placeholder="optional comment"></td></tr><tr class="group-deferred"><td class="group-cell">Deferred</td><td>Advanced counter systems</td><td>deferred</td><td>none</td><td class="radio-group"><label><input type="radio" name="triage-31" value="keep" checked> Keep</label><label><input type="radio" name="triage-31" value="move_required"> Move: required</label><label><input type="radio" name="triage-31" value="move_optional"> Move: optional</label><label><input type="radio" name="triage-31" value="move_deferred"> Move: deferred</label></td><td><input type="text" class="comment-input" id="triage-comment-31" placeholder="optional comment"></td></tr>
+</table>
+
+<h2>2. Arc Review</h2>
+<p>Arcs 2-9 (8 arcs). Arc 1 is already built and approved -- not shown here.</p>
+<div class="arc-card">
+        <h3>Jab-Cross Foundation <span class="status-badge">arc-2</span></h3>
+        <p><b>Terminal goal:</b> Throw a clean jab-cross combination while stepping, on pads, both partners rotating.</p>
+        <p><b>Skill summary:</b> New: Jab, Cross, Jab-Cross, Distance management</p>
+        <div class="radio-group">
+          <label><input type="radio" name="arc-0" value="approve" checked onchange="toggleArcComment(0)"> Approve</label>
+          <label><input type="radio" name="arc-0" value="revise" onchange="toggleArcComment(0)"> Revise</label>
+          <label><input type="radio" name="arc-0" value="defer" onchange="toggleArcComment(0)"> Defer</label>
+          Order: <input type="text" class="order-input" id="arc-order-0" value="2"> (Week 2 currently)
+        </div>
+        <textarea class="comment-input hidden" id="arc-comment-0" rows="2" placeholder="what needs revising"></textarea>
+        </div><div class="arc-card">
+        <h3>Teep Foundation <span class="status-badge">arc-3</span></h3>
+        <p><b>Terminal goal:</b> Chain a jab-cross into a teep, on pads, with clean distance control.</p>
+        <p><b>Skill summary:</b> New: Lead teep, Rear teep</p>
+        <div class="radio-group">
+          <label><input type="radio" name="arc-1" value="approve" checked onchange="toggleArcComment(1)"> Approve</label>
+          <label><input type="radio" name="arc-1" value="revise" onchange="toggleArcComment(1)"> Revise</label>
+          <label><input type="radio" name="arc-1" value="defer" onchange="toggleArcComment(1)"> Defer</label>
+          Order: <input type="text" class="order-input" id="arc-order-1" value="3"> (Week 3 currently)
+        </div>
+        <textarea class="comment-input hidden" id="arc-comment-1" rows="2" placeholder="what needs revising"></textarea>
+        </div><div class="arc-card">
+        <h3>Basic Combinations: Punch-to-Kick <span class="status-badge">arc-4</span></h3>
+        <p><b>Terminal goal:</b> Throw jab-cross-rear kick as one connected combination, on pads, at full arc-terminal intensity.</p>
+        <p><b>Skill summary:</b> New: Basic punch-to-kick combinations</p>
+        <div class="radio-group">
+          <label><input type="radio" name="arc-2" value="approve" checked onchange="toggleArcComment(2)"> Approve</label>
+          <label><input type="radio" name="arc-2" value="revise" onchange="toggleArcComment(2)"> Revise</label>
+          <label><input type="radio" name="arc-2" value="defer" onchange="toggleArcComment(2)"> Defer</label>
+          Order: <input type="text" class="order-input" id="arc-order-2" value="4"> (Week 4 currently)
+        </div>
+        <textarea class="comment-input hidden" id="arc-comment-2" rows="2" placeholder="what needs revising"></textarea>
+        </div><div class="arc-card">
+        <h3>Midpoint Integration &amp; Application <span class="status-badge">arc-5</span></h3>
+        <p><b>Terminal goal:</b> Apply the full Weeks 1-4 toolkit live, under light time pressure, at capped power.</p>
+        <p><b>Skill summary:</b> Periodic integration arc -- no new major technique, pure retention and application across everything taught in Weeks 1-4.</p>
+        <div class="radio-group">
+          <label><input type="radio" name="arc-3" value="approve" checked onchange="toggleArcComment(3)"> Approve</label>
+          <label><input type="radio" name="arc-3" value="revise" onchange="toggleArcComment(3)"> Revise</label>
+          <label><input type="radio" name="arc-3" value="defer" onchange="toggleArcComment(3)"> Defer</label>
+          Order: <input type="text" class="order-input" id="arc-order-3" value="5"> (Week 5 currently)
+        </div>
+        <textarea class="comment-input hidden" id="arc-comment-3" rows="2" placeholder="what needs revising"></textarea>
+        </div><div class="arc-card">
+        <h3>Basic Defense Systems: Punch &amp; Kick <span class="status-badge">arc-6</span></h3>
+        <p><b>Terminal goal:</b> Correctly read and defend either a punch or a kick attack, then return fire, on a live (but constrained) partner feed.</p>
+        <p><b>Skill summary:</b> New: Basic punch defense (parry / block)</p>
+        <div class="radio-group">
+          <label><input type="radio" name="arc-4" value="approve" checked onchange="toggleArcComment(4)"> Approve</label>
+          <label><input type="radio" name="arc-4" value="revise" onchange="toggleArcComment(4)"> Revise</label>
+          <label><input type="radio" name="arc-4" value="defer" onchange="toggleArcComment(4)"> Defer</label>
+          Order: <input type="text" class="order-input" id="arc-order-4" value="6"> (Week 6 currently)
+        </div>
+        <textarea class="comment-input hidden" id="arc-comment-4" rows="2" placeholder="what needs revising"></textarea>
+        </div><div class="arc-card">
+        <h3>Basic Knees &amp; Close-Range Introduction <span class="status-badge">arc-7</span></h3>
+        <p><b>Terminal goal:</b> Add a straight knee onto an existing punch combination, live on pads.</p>
+        <p><b>Skill summary:</b> New: Basic knee (straight / step)</p>
+        <div class="radio-group">
+          <label><input type="radio" name="arc-5" value="approve" checked onchange="toggleArcComment(5)"> Approve</label>
+          <label><input type="radio" name="arc-5" value="revise" onchange="toggleArcComment(5)"> Revise</label>
+          <label><input type="radio" name="arc-5" value="defer" onchange="toggleArcComment(5)"> Defer</label>
+          Order: <input type="text" class="order-input" id="arc-order-5" value="7"> (Week 7 currently)
+        </div>
+        <textarea class="comment-input hidden" id="arc-comment-5" rows="2" placeholder="what needs revising"></textarea>
+        </div><div class="arc-card">
+        <h3>Foundation Graduation: Assembled Attack-Defend-Counter <span class="status-badge">arc-8</span></h3>
+        <p><b>Terminal goal:</b> Run a complete attack -&gt; defend -&gt; counter exchange using the full beginner toolkit, live, at capped power.</p>
+        <p><b>Skill summary:</b> Capstone arc -- assembles stance, all four strike families (punch/teep/kick/knee), and the defense-and-return system into the single most complete terminal drill of the whole cycle.</p>
+        <div class="radio-group">
+          <label><input type="radio" name="arc-6" value="approve" checked onchange="toggleArcComment(6)"> Approve</label>
+          <label><input type="radio" name="arc-6" value="revise" onchange="toggleArcComment(6)"> Revise</label>
+          <label><input type="radio" name="arc-6" value="defer" onchange="toggleArcComment(6)"> Defer</label>
+          Order: <input type="text" class="order-input" id="arc-order-6" value="8"> (Week 8 currently)
+        </div>
+        <textarea class="comment-input hidden" id="arc-comment-6" rows="2" placeholder="what needs revising"></textarea>
+        </div><div class="arc-card">
+        <h3>Optional Extension: Lead-Leg Kick &amp; Feint Exposure <span class="status-badge">arc-9</span></h3>
+        <p><b>Terminal goal:</b> Optional exposure only -- no required terminal mastery goal.</p>
+        <p><b>Skill summary:</b> New: Basic lead-leg kick / switch-kick foundation (optional), Feints (optional)</p>
+        <div class="radio-group">
+          <label><input type="radio" name="arc-7" value="approve" checked onchange="toggleArcComment(7)"> Approve</label>
+          <label><input type="radio" name="arc-7" value="revise" onchange="toggleArcComment(7)"> Revise</label>
+          <label><input type="radio" name="arc-7" value="defer" onchange="toggleArcComment(7)"> Defer</label>
+          Order: <input type="text" class="order-input" id="arc-order-7" value="9"> (flexible currently)
+        </div>
+        <textarea class="comment-input hidden" id="arc-comment-7" rows="2" placeholder="what needs revising"></textarea>
+        </div>
+
+<h2>3. Notation Decisions</h2>
+<div class="notation-box">
+<p>Canonical technique IDs stay primary in storage and in generator logic. Numbered notation (e.g. &#x27;1-2-RK&#x27;) exists only as a coach-facing display alias on top of that -- never the source of truth. Combos are stored as structured step arrays (a list of technique_id steps), not as notation strings, so the numbering can be swapped or gym-customized later without touching stored data. This is Option B from the notation proposal.</p>
+<p><b>Example:</b> <span class="mono">{"display": "jab-cross-rear kick", "notation": "1-2-RK", "steps": [{"technique_id": "jab"}, {"technique_id": "cross"}, {"technique_id": "rear_round_kick"}]}</span></p>
+</div>
+<div class="radio-group">
+  <label><input type="radio" name="notation-verdict" value="confirm" checked> Confirm as proposed</label>
+  <label><input type="radio" name="notation-verdict" value="modify" onchange="toggleNotationComment()"> Modify</label>
+</div>
+<textarea class="comment-input hidden" id="notation-comment" rows="2" placeholder="what to modify"></textarea>
+
+<div class="field-row">
+<label for="southpaw-rule">Southpaw handling rule</label>
+<input type="text" class="comment-input" id="southpaw-rule" placeholder="e.g. numbering stays orthodox-relative; southpaw is mirrored at display time only">
+</div>
+<div class="field-row">
+<label for="hook-uppercut-mapping">Hook/uppercut number mapping</label>
+<input type="text" class="comment-input" id="hook-uppercut-mapping" value="3 lead hook / 4 rear hook / 5 lead uppercut / 6 rear uppercut">
+</div>
+
+<h2>4. Open Items (explicitly deferred)</h2>
+<div class="open-item">
+        <p><b>Six weeks or eight weeks as the default public cycle?</b></p>
+        <div class="radio-group">
+          <label><input type="radio" name="open-weeks-6-vs-8" value="leave_open" checked onchange="toggleOpenText('weeks-6-vs-8')"> Leave open</label>
+          <label><input type="radio" name="open-weeks-6-vs-8" value="decide_now" onchange="toggleOpenText('weeks-6-vs-8')"> Decide now</label>
+        </div>
+        <input type="text" class="comment-input hidden" id="open-text-weeks-6-vs-8" placeholder="your decision">
+        </div><div class="open-item">
+        <p><b>Integration-night cadence -- the map proposes one dedicated 3-night integration arc at the midpoint (Week 5) plus lighter touches in every week&#x27;s Night 4/5. Is that the right cadence?</b></p>
+        <div class="radio-group">
+          <label><input type="radio" name="open-integration-cadence" value="leave_open" checked onchange="toggleOpenText('integration-cadence')"> Leave open</label>
+          <label><input type="radio" name="open-integration-cadence" value="decide_now" onchange="toggleOpenText('integration-cadence')"> Decide now</label>
+        </div>
+        <input type="text" class="comment-input hidden" id="open-text-integration-cadence" placeholder="your decision">
+        </div><div class="open-item">
+        <p><b>Feints classification -- currently optional exposure / partially_covered even after the evidence refresh (real content exists but is entangled with deferred elbow/knee follow-ups). Required, optional, or deferred?</b></p>
+        <div class="radio-group">
+          <label><input type="radio" name="open-feints-classification" value="leave_open" checked onchange="toggleOpenText('feints-classification')"> Leave open</label>
+          <label><input type="radio" name="open-feints-classification" value="decide_now" onchange="toggleOpenText('feints-classification')"> Decide now</label>
+        </div>
+        <input type="text" class="comment-input hidden" id="open-text-feints-classification" placeholder="your decision">
+        </div><div class="open-item">
+        <p><b>Do knees (Arc 7) and switch-kick (Arc 9, currently optional) belong in the first cycle, or should either/both be pushed to a second cycle?</b></p>
+        <div class="radio-group">
+          <label><input type="radio" name="open-knees-switchkick-cycle1" value="leave_open" checked onchange="toggleOpenText('knees-switchkick-cycle1')"> Leave open</label>
+          <label><input type="radio" name="open-knees-switchkick-cycle1" value="decide_now" onchange="toggleOpenText('knees-switchkick-cycle1')"> Decide now</label>
+        </div>
+        <input type="text" class="comment-input hidden" id="open-text-knees-switchkick-cycle1" placeholder="your decision">
+        </div>
+
+<h2>5. Plan Scoring</h2>
+<p class="no-pending">No plans are currently pending a verdict -- every generated plan already has a plan_reviews entry.</p>
+
+<h2 style="border-top:none;margin-top:34px;">Generate Decision Block</h2>
+<button id="generate-btn" onclick="generateBlock()">Generate decision block</button>
+<button id="copy-btn" onclick="copyBlock()">Copy to clipboard</button>
+<textarea id="decision-block" readonly placeholder="Click 'Generate decision block' above."></textarea>
+
+<script>
+const DATA = {"competencies": [{"name": "Athletic Muay Thai stance", "group": "required", "current_classification": "Required", "coverage_status": "covered", "evidence_confidence": "high"}, {"name": "Basic guard", "group": "required", "current_classification": "Required", "coverage_status": "covered", "evidence_confidence": "high"}, {"name": "Forward / backward / lateral movement + pivot", "group": "required", "current_classification": "Required", "coverage_status": "covered", "evidence_confidence": "high"}, {"name": "Jab, Cross, Jab-Cross", "group": "required", "current_classification": "Required", "coverage_status": "covered", "evidence_confidence": "high"}, {"name": "Lead teep, Rear teep", "group": "required", "current_classification": "Required", "coverage_status": "covered", "evidence_confidence": "high"}, {"name": "Rear round kick", "group": "required", "current_classification": "Required", "coverage_status": "covered", "evidence_confidence": "high"}, {"name": "Step-in rear round kick", "group": "required", "current_classification": "Required", "coverage_status": "covered", "evidence_confidence": "medium"}, {"name": "Basic low kick", "group": "required", "current_classification": "Required", "coverage_status": "covered", "evidence_confidence": "high"}, {"name": "Basic knee (straight / step)", "group": "required", "current_classification": "Required", "coverage_status": "covered", "evidence_confidence": "high"}, {"name": "Basic punch-to-kick combinations", "group": "required", "current_classification": "Required", "coverage_status": "covered", "evidence_confidence": "high"}, {"name": "Basic check (leg check)", "group": "required", "current_classification": "Required", "coverage_status": "covered", "evidence_confidence": "high"}, {"name": "Basic punch defense (parry / block)", "group": "required", "current_classification": "Required", "coverage_status": "covered", "evidence_confidence": "high"}, {"name": "Simple defense-and-return pattern", "group": "required", "current_classification": "Required", "coverage_status": "covered", "evidence_confidence": "high"}, {"name": "Pad-holding fundamentals", "group": "required", "current_classification": "Required", "coverage_status": "covered", "evidence_confidence": "high"}, {"name": "Distance management", "group": "required", "current_classification": "Required", "coverage_status": "covered", "evidence_confidence": "high"}, {"name": "Balance / recovery to stance", "group": "required", "current_classification": "Required", "coverage_status": "covered", "evidence_confidence": "medium"}, {"name": "Controlled partner reaction drills", "group": "required", "current_classification": "Required", "coverage_status": "covered", "evidence_confidence": "high"}, {"name": "Lead hook, basic uppercut exposure", "group": "optional", "current_classification": "Optional exposure", "coverage_status": "covered", "evidence_confidence": "high"}, {"name": "Basic lead-leg kick / switch-kick foundation", "group": "optional", "current_classification": "Optional exposure", "coverage_status": "covered", "evidence_confidence": "medium"}, {"name": "Basic teep defense", "group": "optional", "current_classification": "Optional exposure", "coverage_status": "covered", "evidence_confidence": "high"}, {"name": "Feints", "group": "optional", "current_classification": "Optional exposure", "coverage_status": "partially_covered", "evidence_confidence": "medium"}, {"name": "Advanced lead-leg kick variations (switch/step/spot/jump, full set)", "group": "deferred", "current_classification": "Deferred", "coverage_status": "deferred", "evidence_confidence": "none"}, {"name": "Jump switches, complex stance switching", "group": "deferred", "current_classification": "Deferred", "coverage_status": "deferred", "evidence_confidence": "none"}, {"name": "Catch-and-trip systems", "group": "deferred", "current_classification": "Deferred", "coverage_status": "deferred", "evidence_confidence": "none"}, {"name": "Sweeps", "group": "deferred", "current_classification": "Deferred", "coverage_status": "deferred", "evidence_confidence": "none"}, {"name": "Elbows as a major beginner unit (Easton has 4 elbow videos -- reserved for post-foundation)", "group": "deferred", "current_classification": "Deferred", "coverage_status": "deferred", "evidence_confidence": "none"}, {"name": "Dirty boxing, advanced clinch (Easton Kickboxing has zero clinch content)", "group": "deferred", "current_classification": "Deferred", "coverage_status": "deferred", "evidence_confidence": "none"}, {"name": "Open sparring", "group": "deferred", "current_classification": "Deferred", "coverage_status": "deferred", "evidence_confidence": "none"}, {"name": "Complex slip and bob-and-weave chains (conflicts with the check-based defense system this foundation teaches)", "group": "deferred", "current_classification": "Deferred", "coverage_status": "deferred", "evidence_confidence": "none"}, {"name": "Advanced kick catches", "group": "deferred", "current_classification": "Deferred", "coverage_status": "deferred", "evidence_confidence": "none"}, {"name": "Complex long combinations", "group": "deferred", "current_classification": "Deferred", "coverage_status": "deferred", "evidence_confidence": "none"}, {"name": "Advanced counter systems", "group": "deferred", "current_classification": "Deferred", "coverage_status": "deferred", "evidence_confidence": "none"}], "arcs": [{"arc_id": "arc-2", "title": "Jab-Cross Foundation", "terminal_goal": "Throw a clean jab-cross combination while stepping, on pads, both partners rotating.", "skill_summary": "New: Jab, Cross, Jab-Cross, Distance management", "order_default": 2, "week_label": "Week 2"}, {"arc_id": "arc-3", "title": "Teep Foundation", "terminal_goal": "Chain a jab-cross into a teep, on pads, with clean distance control.", "skill_summary": "New: Lead teep, Rear teep", "order_default": 3, "week_label": "Week 3"}, {"arc_id": "arc-4", "title": "Basic Combinations: Punch-to-Kick", "terminal_goal": "Throw jab-cross-rear kick as one connected combination, on pads, at full arc-terminal intensity.", "skill_summary": "New: Basic punch-to-kick combinations", "order_default": 4, "week_label": "Week 4"}, {"arc_id": "arc-5", "title": "Midpoint Integration & Application", "terminal_goal": "Apply the full Weeks 1-4 toolkit live, under light time pressure, at capped power.", "skill_summary": "Periodic integration arc -- no new major technique, pure retention and application across everything taught in Weeks 1-4.", "order_default": 5, "week_label": "Week 5"}, {"arc_id": "arc-6", "title": "Basic Defense Systems: Punch & Kick", "terminal_goal": "Correctly read and defend either a punch or a kick attack, then return fire, on a live (but constrained) partner feed.", "skill_summary": "New: Basic punch defense (parry / block)", "order_default": 6, "week_label": "Week 6"}, {"arc_id": "arc-7", "title": "Basic Knees & Close-Range Introduction", "terminal_goal": "Add a straight knee onto an existing punch combination, live on pads.", "skill_summary": "New: Basic knee (straight / step)", "order_default": 7, "week_label": "Week 7"}, {"arc_id": "arc-8", "title": "Foundation Graduation: Assembled Attack-Defend-Counter", "terminal_goal": "Run a complete attack -> defend -> counter exchange using the full beginner toolkit, live, at capped power.", "skill_summary": "Capstone arc -- assembles stance, all four strike families (punch/teep/kick/knee), and the defense-and-return system into the single most complete terminal drill of the whole cycle.", "order_default": 8, "week_label": "Week 8"}, {"arc_id": "arc-9", "title": "Optional Extension: Lead-Leg Kick & Feint Exposure", "terminal_goal": "Optional exposure only -- no required terminal mastery goal.", "skill_summary": "New: Basic lead-leg kick / switch-kick foundation (optional), Feints (optional)", "order_default": 9, "week_label": "flexible"}], "openItems": [{"id": "weeks-6-vs-8", "label": "Six weeks or eight weeks as the default public cycle?"}, {"id": "integration-cadence", "label": "Integration-night cadence -- the map proposes one dedicated 3-night integration arc at the midpoint (Week 5) plus lighter touches in every week's Night 4/5. Is that the right cadence?"}, {"id": "feints-classification", "label": "Feints classification -- currently optional exposure / partially_covered even after the evidence refresh (real content exists but is entangled with deferred elbow/knee follow-ups). Required, optional, or deferred?"}, {"id": "knees-switchkick-cycle1", "label": "Do knees (Arc 7) and switch-kick (Arc 9, currently optional) belong in the first cycle, or should either/both be pushed to a second cycle?"}], "hookUppercutDefault": "3 lead hook / 4 rear hook / 5 lead uppercut / 6 rear uppercut", "pendingPlans": []};
+
+function toggleArcComment(i) {
+  const val = document.querySelector(`input[name="arc-${i}"]:checked`).value;
+  const box = document.getElementById(`arc-comment-${i}`);
+  box.classList.toggle('hidden', val !== 'revise');
+}
+function toggleOpenText(id) {
+  const val = document.querySelector(`input[name="open-${id}"]:checked`).value;
+  const box = document.getElementById(`open-text-${id}`);
+  box.classList.toggle('hidden', val !== 'decide_now');
+}
+function toggleNotationComment() {
+  const val = document.querySelector('input[name="notation-verdict"]:checked').value;
+  document.getElementById('notation-comment').classList.toggle('hidden', val !== 'modify');
+}
+
+function radioVal(name, fallback) {
+  const el = document.querySelector(`input[name="${name}"]:checked`);
+  return el ? el.value : fallback;
+}
+
+function generateBlock() {
+  const lines = [];
+  lines.push('T4 CURRICULUM DECISION BLOCK');
+  lines.push('Generated from decisions.html -- paste as Task 0 input for the next execution prompt.');
+  lines.push('');
+
+  lines.push('1. COMPETENCY TRIAGE');
+  DATA.competencies.forEach((c, i) => {
+    const val = radioVal(`triage-${i}`, 'keep');
+    const comment = document.getElementById(`triage-comment-${i}`).value.trim();
+    const untouched = val === 'keep' ? ' [default: untouched]' : '';
+    lines.push(`- ${c.name} (${c.current_classification}, coverage=${c.coverage_status}, confidence=${c.evidence_confidence}): ${val}${untouched}${comment ? ' -- ' + comment : ''}`);
+  });
+  lines.push('');
+
+  lines.push('2. ARC REVIEW');
+  DATA.arcs.forEach((a, i) => {
+    const val = radioVal(`arc-${i}`, 'approve');
+    const order = document.getElementById(`arc-order-${i}`).value;
+    const comment = document.getElementById(`arc-comment-${i}`).value.trim();
+    const untouched = val === 'approve' ? ' [default: untouched]' : '';
+    lines.push(`- ${a.title} (${a.arc_id}): ${val}${untouched}, order=${order}${comment ? ' -- ' + comment : ''}`);
+  });
+  lines.push('');
+
+  lines.push('3. NOTATION DECISIONS');
+  const notationVal = radioVal('notation-verdict', 'confirm');
+  const notationComment = document.getElementById('notation-comment').value.trim();
+  const notationUntouched = notationVal === 'confirm' ? ' [default: untouched]' : '';
+  lines.push(`- Proposal (Option B: technique IDs primary, numbers as coach alias, structured step arrays): ${notationVal}${notationUntouched}${notationComment ? ' -- ' + notationComment : ''}`);
+  const southpaw = document.getElementById('southpaw-rule').value.trim();
+  lines.push(`- Southpaw handling rule: ${southpaw || '(not specified)'}${southpaw ? '' : ' [default: untouched]'}`);
+  const hookUppercut = document.getElementById('hook-uppercut-mapping').value.trim();
+  const hookDefault = hookUppercut === DATA.hookUppercutDefault ? ' [default: untouched]' : '';
+  lines.push(`- Hook/uppercut number mapping: ${hookUppercut}${hookDefault}`);
+  lines.push('');
+
+  lines.push('4. OPEN ITEMS (explicitly deferred)');
+  DATA.openItems.forEach(item => {
+    const val = radioVal(`open-${item.id}`, 'leave_open');
+    const text = document.getElementById(`open-text-${item.id}`).value.trim();
+    const untouched = val === 'leave_open' ? ' [default: untouched]' : '';
+    lines.push(`- ${item.label}: ${val}${untouched}${text ? ' -- ' + text : ''}`);
+  });
+  lines.push('');
+
+  lines.push('5. PLAN SCORING');
+  if (DATA.pendingPlans.length === 0) {
+    lines.push('- No plans were pending a verdict at build time.');
+  } else {
+    DATA.pendingPlans.forEach((p, i) => {
+      const val = radioVal(`plan-${i}`, 'approve');
+      const reason = document.getElementById(`plan-reason-${i}`).value.trim();
+      lines.push(`- ${p.title} (${p.plan_hash}): ${val}${reason ? ' -- ' + reason : ' -- [NO REASON GIVEN]'}`);
+    });
+  }
+  lines.push('');
+
+  document.getElementById('decision-block').value = lines.join('\n');
+}
+
+function copyBlock() {
+  const ta = document.getElementById('decision-block');
+  ta.select();
+  document.execCommand('copy');
+}
+</script>
+</body>
+</html>

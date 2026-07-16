@@ -1,0 +1,1736 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>FightClub Muay Thai -- Phase 4 Spot Check</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 20px; line-height: 1.4; }
+  h1 { font-size: 22px; }
+  h2 { font-size: 18px; border-top: 3px solid #333; padding-top: 14px; margin-top: 40px; }
+  h2 .meta { font-size: 13px; font-weight: normal; color: #555; }
+  h3 { font-size: 15px; margin-bottom: 6px; }
+  video { max-width: 420px; display: block; margin: 10px 0; background: #000; }
+  table { border-collapse: collapse; width: 100%; margin-bottom: 10px; }
+  table.kv td { border: 1px solid #ddd; padding: 4px 8px; vertical-align: top; }
+  table.kv td:first-child { font-weight: bold; width: 160px; background: #f7f7f7; }
+  table.ost-table th, table.ost-table td { border: 1px solid #ddd; padding: 4px 8px; font-size: 13px; text-align: left; }
+  .storyboard { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .storyboard figure { margin: 0; text-align: center; }
+  .storyboard img { width: 110px; display: block; border: 1px solid #ccc; }
+  .storyboard figcaption { font-size: 11px; color: #666; }
+  .technique { border: 1px solid #ccc; border-radius: 6px; padding: 10px 14px; margin-bottom: 12px; background: #fafafa; }
+  .technique h4 { margin: 0 0 4px 0; }
+  .one-line { font-style: italic; color: #444; }
+  .review-controls { background: #eef6ee; border: 1px solid #b8d8b8; border-radius: 6px; padding: 12px 16px; margin-top: 16px; }
+  .radios label { display: inline-block; margin-right: 16px; }
+  textarea { width: 100%; height: 50px; margin-top: 8px; }
+  #export-bar { position: sticky; top: 0; background: #fff; padding: 10px 0; border-bottom: 2px solid #333; z-index: 10; }
+  #export-btn { font-size: 15px; padding: 8px 18px; cursor: pointer; }
+  #idx-table td, #idx-table th { border: 1px solid #ddd; padding: 6px 8px; font-size: 13px; }
+  #idx-table tr { cursor: pointer; }
+  #idx-table tr:hover { background: #f0f0f0; }
+  .idx-thumb { width: 60px; display: block; }
+  .status-cell { font-weight: bold; }
+  .caption { white-space: pre-wrap; }
+  .hashtags { color: #06c; }
+  #summary-line { font-size: 13px; color: #333; margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<div id="export-bar">
+  <h1>FightClub Muay Thai -- Phase 4 Spot Check (10 clips)</h1>
+  <button id="export-btn" onclick="exportReviews()">Export Reviews</button>
+  <span id="summary-line">0 / 10 reviewed</span>
+</div>
+
+<h2 style="border-top:none;margin-top:20px;">Index</h2>
+<table id="idx-table">
+  <tr><th></th><th>video_id</th><th>duration</th><th>upload date</th><th>#techniques</th><th>why selected</th><th>status</th></tr>
+  
+    <tr onclick="document.getElementById('clip-7313783979323297030').scrollIntoView({behavior:'smooth'})">
+      <td><img class="idx-thumb" src="../data/fightclub/frames/7313783979323297030_text_00.jpg"></td>
+      <td>7313783979323297030</td>
+      <td>11.0s</td>
+      <td>2023-12-18</td>
+      <td>1</td>
+      <td class="reason">single-technique clip (last-150 window)</td>
+      <td id="status-7313783979323297030" class="status-cell">pending</td>
+    </tr>
+    <tr onclick="document.getElementById('clip-7361077091669921041').scrollIntoView({behavior:'smooth'})">
+      <td><img class="idx-thumb" src="../data/fightclub/frames/7361077091669921041_text_00.jpg"></td>
+      <td>7361077091669921041</td>
+      <td>37.0s</td>
+      <td>2024-04-23</td>
+      <td>1</td>
+      <td class="reason">single-technique clip (last-150 window)</td>
+      <td id="status-7361077091669921041" class="status-cell">pending</td>
+    </tr>
+    <tr onclick="document.getElementById('clip-7376666311960841477').scrollIntoView({behavior:'smooth'})">
+      <td><img class="idx-thumb" src="../data/fightclub/frames/7376666311960841477_text_00.jpg"></td>
+      <td>7376666311960841477</td>
+      <td>30.0s</td>
+      <td>2024-06-04</td>
+      <td>1</td>
+      <td class="reason">single-technique clip (last-150 window)</td>
+      <td id="status-7376666311960841477" class="status-cell">pending</td>
+    </tr>
+    <tr onclick="document.getElementById('clip-7555925852098186514').scrollIntoView({behavior:'smooth'})">
+      <td><img class="idx-thumb" src="../data/fightclub/frames/7555925852098186514_text_00.jpg"></td>
+      <td>7555925852098186514</td>
+      <td>58.0s</td>
+      <td>2025-09-30</td>
+      <td>1</td>
+      <td class="reason">duration 58.0s -- longest available in last-150 window (none exceed 60s)</td>
+      <td id="status-7555925852098186514" class="status-cell">pending</td>
+    </tr>
+    <tr onclick="document.getElementById('clip-7350715398523800852').scrollIntoView({behavior:'smooth'})">
+      <td><img class="idx-thumb" src="../data/fightclub/frames/7350715398523800852_text_00.jpg"></td>
+      <td>7350715398523800852</td>
+      <td>57.0s</td>
+      <td>2024-03-26</td>
+      <td>1</td>
+      <td class="reason">duration 57.0s -- longest available in last-150 window (none exceed 60s)</td>
+      <td id="status-7350715398523800852" class="status-cell">pending</td>
+    </tr>
+    <tr onclick="document.getElementById('clip-7317133088339791109').scrollIntoView({behavior:'smooth'})">
+      <td><img class="idx-thumb" src="../data/fightclub/frames/7317133088339791109_text_00.jpg"></td>
+      <td>7317133088339791109</td>
+      <td>24.0s</td>
+      <td>2023-12-27</td>
+      <td>1</td>
+      <td class="reason">24 onscreen-text entries (last-150 window)</td>
+      <td id="status-7317133088339791109" class="status-cell">pending</td>
+    </tr>
+    <tr onclick="document.getElementById('clip-7312006262097546501').scrollIntoView({behavior:'smooth'})">
+      <td><img class="idx-thumb" src="../data/fightclub/frames/7312006262097546501_text_00.jpg"></td>
+      <td>7312006262097546501</td>
+      <td>11.0s</td>
+      <td>2023-12-13</td>
+      <td>1</td>
+      <td class="reason">22 onscreen-text entries (last-150 window)</td>
+      <td id="status-7312006262097546501" class="status-cell">pending</td>
+    </tr>
+    <tr onclick="document.getElementById('clip-7382247835649051910').scrollIntoView({behavior:'smooth'})">
+      <td><img class="idx-thumb" src="../data/fightclub/frames/7382247835649051910_text_00.jpg"></td>
+      <td>7382247835649051910</td>
+      <td>31.0s</td>
+      <td>2024-06-19</td>
+      <td>4</td>
+      <td class="reason">consistency baseline (~200-300 checkpoint window)</td>
+      <td id="status-7382247835649051910" class="status-cell">pending</td>
+    </tr>
+    <tr onclick="document.getElementById('clip-7416755306145008904').scrollIntoView({behavior:'smooth'})">
+      <td><img class="idx-thumb" src="../data/fightclub/frames/7416755306145008904_text_00.jpg"></td>
+      <td>7416755306145008904</td>
+      <td>46.0s</td>
+      <td>2024-09-20</td>
+      <td>6</td>
+      <td class="reason">consistency baseline (~200-300 checkpoint window)</td>
+      <td id="status-7416755306145008904" class="status-cell">pending</td>
+    </tr>
+    <tr onclick="document.getElementById('clip-7481337699501116679').scrollIntoView({behavior:'smooth'})">
+      <td><img class="idx-thumb" src="../data/fightclub/frames/7481337699501116679_text_00.jpg"></td>
+      <td>7481337699501116679</td>
+      <td>43.0s</td>
+      <td>2025-03-13</td>
+      <td>1</td>
+      <td class="reason">consistency baseline (~100-200 checkpoint window)</td>
+      <td id="status-7481337699501116679" class="status-cell">pending</td>
+    </tr>
+</table>
+
+<h2>Date-skew evidence: which end of the catalog processed last</h2>
+<p>The run processes candidates in ascending <code>source_id</code> order, which is descending upload date
+(newest uploads first, oldest last). The tail of the run is the <b>oldest</b> content.</p>
+<div style="display:flex; gap:30px;">
+  <div><b>First 20 processed (run start)</b><table class="kv"><tr><td>7637561251891055893</td><td>2026-05-08</td></tr><tr><td>7653139622373002517</td><td>2026-06-19</td></tr><tr><td>7626795553971539221</td><td>2026-04-09</td></tr><tr><td>7633462549014580501</td><td>2026-04-27</td></tr><tr><td>7612698000145648916</td><td>2026-03-02</td></tr><tr><td>7655734017165151509</td><td>2026-06-26</td></tr><tr><td>7647197610897362197</td><td>2026-06-03</td></tr><tr><td>7639043793408380180</td><td>2026-05-12</td></tr><tr><td>7441243304894680338</td><td>2024-11-25</td></tr><tr><td>7496920465554836754</td><td>2025-04-24</td></tr><tr><td>7660924837086547221</td><td>2026-07-10</td></tr><tr><td>7659819019519724821</td><td>2026-07-07</td></tr><tr><td>7655360129990495508</td><td>2026-06-25</td></tr><tr><td>7652760640435621140</td><td>2026-06-18</td></tr><tr><td>7652384203899833621</td><td>2026-06-17</td></tr><tr><td>7651652250221169941</td><td>2026-06-15</td></tr><tr><td>7647942314781887765</td><td>2026-06-05</td></tr><tr><td>7646818360503651604</td><td>2026-06-02</td></tr><tr><td>7644226719502732565</td><td>2026-05-26</td></tr><tr><td>7641630687904189716</td><td>2026-05-19</td></tr></table></div>
+  <div><b>Last 20 processed (run end)</b><table class="kv"><tr><td>7309832059961216261</td><td>2023-12-07</td></tr><tr><td>7308985327908179206</td><td>2023-12-05</td></tr><tr><td>7307239102607314182</td><td>2023-11-30</td></tr><tr><td>7308598145758416134</td><td>2023-12-04</td></tr><tr><td>7307115026244963589</td><td>2023-11-30</td></tr><tr><td>7306870715188268294</td><td>2023-11-29</td></tr><tr><td>7306760326840716550</td><td>2023-11-29</td></tr><tr><td>7306477482192981254</td><td>2023-11-28</td></tr><tr><td>7306353227514121477</td><td>2023-11-28</td></tr><tr><td>7304869582215351558</td><td>2023-11-24</td></tr><tr><td>7305999646365797638</td><td>2023-11-27</td></tr><tr><td>7304634968188226822</td><td>2023-11-23</td></tr><tr><td>7304513517074337030</td><td>2023-11-23</td></tr><tr><td>7304129327413595397</td><td>2023-11-22</td></tr><tr><td>7303861507316616454</td><td>2023-11-21</td></tr><tr><td>7303770000349728005</td><td>2023-11-21</td></tr><tr><td>7303415551018405125</td><td>2023-11-20</td></tr><tr><td>7303407388353219846</td><td>2023-11-20</td></tr><tr><td>7165865429095746842</td><td>2022-11-14</td></tr><tr><td>7303412160816811270</td><td>2023-11-20</td></tr></table></div>
+</div>
+
+
+    <section class="clip" id="clip-7313783979323297030">
+      <h2>7313783979323297030 <span class="meta">2023-12-18 &middot; 11.0s &middot; rank 515/545 &middot; single-technique clip (last-150 window)</span></h2>
+      <p><a href="https://www.tiktok.com/@fightclubmuaythai/video/7313783979323297030" target="_blank">https://www.tiktok.com/@fightclubmuaythai/video/7313783979323297030</a></p>
+      <video controls preload="metadata" src="../media/source/7313783979323297030.mp4"></video>
+      <p class="caption">Daily Muaythai Drills | Muaythai Combo #muaythaidrills #muaythaitraining #muaythaibasics #Muaythaicombo #muaythai</p>
+      <p class="hashtags">#muaythaidrills #muaythaitraining #muaythaibasics #Muaythaicombo #muaythai</p>
+
+      <h3>12-frame storyboard</h3>
+      <div class="storyboard"><figure><img src="../data/fightclub/frames/7313783979323297030_text_00.jpg"><figcaption>0</figcaption></figure><figure><img src="../data/fightclub/frames/7313783979323297030_text_01.jpg"><figcaption>1</figcaption></figure><figure><img src="../data/fightclub/frames/7313783979323297030_text_02.jpg"><figcaption>2</figcaption></figure><figure><img src="../data/fightclub/frames/7313783979323297030_text_03.jpg"><figcaption>3</figcaption></figure><figure><img src="../data/fightclub/frames/7313783979323297030_text_04.jpg"><figcaption>4</figcaption></figure><figure><img src="../data/fightclub/frames/7313783979323297030_text_05.jpg"><figcaption>5</figcaption></figure><figure><img src="../data/fightclub/frames/7313783979323297030_text_06.jpg"><figcaption>6</figcaption></figure><figure><img src="../data/fightclub/frames/7313783979323297030_text_07.jpg"><figcaption>7</figcaption></figure><figure><img src="../data/fightclub/frames/7313783979323297030_text_08.jpg"><figcaption>8</figcaption></figure><figure><img src="../data/fightclub/frames/7313783979323297030_text_09.jpg"><figcaption>9</figcaption></figure><figure><img src="../data/fightclub/frames/7313783979323297030_text_10.jpg"><figcaption>10</figcaption></figure></div>
+
+      <h3>On-screen text (16)</h3>
+      <table class="ost-table">
+        <tr><th>time</th><th>type</th><th>conf</th><th>uncertain</th><th>text</th></tr>
+        <tr>
+          <td>0.0-1.0s</td>
+          <td>branding</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">Daily
+Muaythai Drills</td>
+        </tr><tr>
+          <td>1.0-2.0s</td>
+          <td>branding</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">Daily
+Muaythai Drills</td>
+        </tr><tr>
+          <td>1.0-2.0s</td>
+          <td>sequence_label</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">Muaythai Combo</td>
+        </tr><tr>
+          <td>2.0-3.0s</td>
+          <td>branding</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">Daily
+Muaythai Drills</td>
+        </tr><tr>
+          <td>2.0-3.0s</td>
+          <td>sequence_label</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">Muaythai Combo</td>
+        </tr><tr>
+          <td>2.0-3.0s</td>
+          <td>technique_label</td>
+          <td>0.8</td>
+          <td>yes</td>
+          <td class="ost-text">Switch Kick + Cro</td>
+        </tr><tr>
+          <td>3.0-4.0s</td>
+          <td>branding</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">Daily
+Muaythai Drills</td>
+        </tr><tr>
+          <td>3.0-4.0s</td>
+          <td>sequence_label</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">Muaythai Combo</td>
+        </tr><tr>
+          <td>3.0-4.0s</td>
+          <td>technique_label</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">Switch Kick + Cross + Hook + Low Kick</td>
+        </tr><tr>
+          <td>4.0-5.0s</td>
+          <td>instruction</td>
+          <td>0.9</td>
+          <td></td>
+          <td class="ost-text">Set up Distance</td>
+        </tr><tr>
+          <td>5.0-6.0s</td>
+          <td>instruction</td>
+          <td>0.9</td>
+          <td></td>
+          <td class="ost-text">Set up Distance</td>
+        </tr><tr>
+          <td>6.0-7.0s</td>
+          <td>instruction</td>
+          <td>0.9</td>
+          <td></td>
+          <td class="ost-text">Set up Distance</td>
+        </tr><tr>
+          <td>7.0-8.0s</td>
+          <td>instruction</td>
+          <td>0.9</td>
+          <td></td>
+          <td class="ost-text">Set up Distance</td>
+        </tr><tr>
+          <td>8.0-9.0s</td>
+          <td>technique_label</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">Switch Kick</td>
+        </tr><tr>
+          <td>9.0-10.0s</td>
+          <td>technique_label</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">Hook</td>
+        </tr><tr>
+          <td>10.0-11.0s</td>
+          <td>engagement_prompt</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">SAVE&amp;SHARE
+✅🤝</td>
+        </tr>
+      </table>
+
+      <h3>Techniques (1)</h3>
+      
+        <div class="technique">
+          <h4>#1: Switch Kick + Cross + Hook + Low Kick Combo</h4>
+          <p class="one-line">Four-strike combo: switch kick, cross, hook, low kick — with emphasis on setting up the correct distance first.</p>
+          <p>A four-strike Muay Thai combination beginning with a switch kick to the body/legs, followed by a cross, a hook, and finishing with a low kick. Demonstrated on pads with a partner in a gym setting. The on-screen text &#x27;Set up Distance&#x27; indicates the importance of establishing proper range before initiating the combo.</p>
+          <table class="kv">
+            <tr><td>body_part</td><td>kick</td></tr>
+            <tr><td>context</td><td>offense</td></tr>
+            <tr><td>tags</td><td>kick, punch, offense, setup, distance, rhythm</td></tr>
+            <tr><td>drill_format</td><td>Pad work with partner holding a body shield and focus mitts</td></tr>
+            <tr><td>stance_context</td><td></td></tr>
+            <tr><td>mechanical_cues</td><td></td></tr>
+            <tr><td>coaching_points</td><td>[&#x27;Set up Distance&#x27;]</td></tr>
+            <tr><td>common_errors</td><td></td></tr>
+            <tr><td>evidence</td><td>caption, hashtags, onscreen_text, visual</td></tr>
+            <tr><td>split_reasoning</td><td>The clip presents a single named combination explicitly labeled &#x27;Muaythai Combo: Switch Kick + Cross + Hook + Low Kick&#x27; in on-screen text. All four strikes are part of one connected sequence and are not presented as independently searchable standalone techniques in this clip. They are kept as a single combination record. The &#x27;Set up Distance&#x27; instruction applies to the combo as a whole and is captured as a coaching point.</td></tr>
+          </table>
+          <details><summary>field confidence</summary>
+            <table class="kv"><tr><td>name</td><td>0.95</td></tr><tr><td>description</td><td>0.9</td></tr><tr><td>body_part</td><td>0.85</td></tr><tr><td>context</td><td>0.9</td></tr><tr><td>category_tag_ids</td><td>0.85</td></tr><tr><td>drill_format</td><td>0.9</td></tr><tr><td>stance_context</td><td></td></tr><tr><td>one_line_description</td><td>0.9</td></tr><tr><td>mechanical_cues</td><td></td></tr><tr><td>coaching_points</td><td>0.9</td></tr><tr><td>common_errors</td><td></td></tr></table>
+          </details>
+        </div>
+
+      <div class="review-controls">
+        <h3>Verdict</h3>
+        <div class="radios"><label><input type="radio" name="verdict-7313783979323297030" value="Approve" onchange="markStatus('7313783979323297030','Approve')"> Approve</label><label><input type="radio" name="verdict-7313783979323297030" value="Over-split" onchange="markStatus('7313783979323297030','Over-split')"> Over-split</label><label><input type="radio" name="verdict-7313783979323297030" value="Under-split" onchange="markStatus('7313783979323297030','Under-split')"> Under-split</label><label><input type="radio" name="verdict-7313783979323297030" value="Unsupported coaching content" onchange="markStatus('7313783979323297030','Unsupported coaching content')"> Unsupported coaching content</label><label><input type="radio" name="verdict-7313783979323297030" value="Wrong tags" onchange="markStatus('7313783979323297030','Wrong tags')"> Wrong tags</label><label><input type="radio" name="verdict-7313783979323297030" value="Other" onchange="markStatus('7313783979323297030','Other')"> Other</label></div>
+        <textarea id="note-7313783979323297030" placeholder="Notes (optional)" oninput="saveNote('7313783979323297030')"></textarea>
+      </div>
+    </section>
+    <section class="clip" id="clip-7361077091669921041">
+      <h2>7361077091669921041 <span class="meta">2024-04-23 &middot; 37.0s &middot; rank 427/545 &middot; single-technique clip (last-150 window)</span></h2>
+      <p><a href="https://www.tiktok.com/@fightclubmuaythai/video/7361077091669921041" target="_blank">https://www.tiktok.com/@fightclubmuaythai/video/7361077091669921041</a></p>
+      <video controls preload="metadata" src="../media/source/7361077091669921041.mp4"></video>
+      <p class="caption">แทงเข่า แล้วฉากออกเปลี่ยนมุมโจมตี เพื่อคู่ต่อสู้ขะตอบโต้ได้ยากขึ้น หรือหลบการโจมตีของคู่ต่อสู้  Knee and change the angle of attack. to make it more difficult for the opponent to respond or dodge an opponent‘s attack. #muaythai #muaythaibasic #muaythaitechniques #muaythaionline #fightclubmuaythaigym #เรียนมวย #เรียนมวยไทยลดน้ำหนัก #เรียนมวยไทยอุดร  #ลดน้ำหนัก #weightloss #muaythaifitness #muaythaiboxing #ออกกำลังกาย #muaythaitraining #muaythaiworkout  #kickboxingworkout</p>
+      <p class="hashtags">#muaythai #muaythaibasic #muaythaitechniques #muaythaionline #fightclubmuaythaigym #เร #เร #เร #ลดน #weightloss #muaythaifitness #muaythaiboxing #ออกกำล #muaythaitraining #muaythaiworkout #kickboxingworkout</p>
+
+      <h3>12-frame storyboard</h3>
+      <div class="storyboard"><figure><img src="../data/fightclub/frames/7361077091669921041_text_00.jpg"><figcaption>0</figcaption></figure><figure><img src="../data/fightclub/frames/7361077091669921041_text_01.jpg"><figcaption>1</figcaption></figure><figure><img src="../data/fightclub/frames/7361077091669921041_text_02.jpg"><figcaption>2</figcaption></figure><figure><img src="../data/fightclub/frames/7361077091669921041_text_03.jpg"><figcaption>3</figcaption></figure><figure><img src="../data/fightclub/frames/7361077091669921041_text_04.jpg"><figcaption>4</figcaption></figure><figure><img src="../data/fightclub/frames/7361077091669921041_text_05.jpg"><figcaption>5</figcaption></figure><figure><img src="../data/fightclub/frames/7361077091669921041_text_06.jpg"><figcaption>6</figcaption></figure><figure><img src="../data/fightclub/frames/7361077091669921041_text_07.jpg"><figcaption>7</figcaption></figure><figure><img src="../data/fightclub/frames/7361077091669921041_text_08.jpg"><figcaption>8</figcaption></figure><figure><img src="../data/fightclub/frames/7361077091669921041_text_09.jpg"><figcaption>9</figcaption></figure><figure><img src="../data/fightclub/frames/7361077091669921041_text_10.jpg"><figcaption>10</figcaption></figure><figure><img src="../data/fightclub/frames/7361077091669921041_text_11.jpg"><figcaption>11</figcaption></figure></div>
+
+      <h3>On-screen text (12)</h3>
+      <table class="ost-table">
+        <tr><th>time</th><th>type</th><th>conf</th><th>uncertain</th><th>text</th></tr>
+        <tr>
+          <td>0.0-3.08s</td>
+          <td>technique_label</td>
+          <td>0.85</td>
+          <td></td>
+          <td class="ost-text">KNEE
+AND</td>
+        </tr><tr>
+          <td>3.08-6.17s</td>
+          <td>technique_label</td>
+          <td>0.9</td>
+          <td></td>
+          <td class="ost-text">KNEE
+AND CHANG ANGLE
+for beginner</td>
+        </tr><tr>
+          <td>6.17-9.25s</td>
+          <td>sequence_label</td>
+          <td>0.8</td>
+          <td>yes</td>
+          <td class="ost-text">STEP 1
+KNEE AN</td>
+        </tr><tr>
+          <td>9.25-12.33s</td>
+          <td>sequence_label</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">STEP 1</td>
+        </tr><tr>
+          <td>12.33-15.42s</td>
+          <td>sequence_label</td>
+          <td>0.8</td>
+          <td>yes</td>
+          <td class="ost-text">STEP 2
+L</td>
+        </tr><tr>
+          <td>15.42-18.5s</td>
+          <td>sequence_label</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">STEP 2
+LAND FORWARD + PIVOT</td>
+        </tr><tr>
+          <td>18.5-21.58s</td>
+          <td>sequence_label</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">STEP 2
+CHANGE ANGLE</td>
+        </tr><tr>
+          <td>21.58-24.67s</td>
+          <td>sequence_label</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">STEP 3
+ATTACKS</td>
+        </tr><tr>
+          <td>24.67-27.75s</td>
+          <td>sequence_label</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">STEP 4
+TRY IN PAD WORK</td>
+        </tr><tr>
+          <td>27.75-30.83s</td>
+          <td>sequence_label</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">STEP 4</td>
+        </tr><tr>
+          <td>30.83-33.92s</td>
+          <td>sequence_label</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">STEP 4</td>
+        </tr><tr>
+          <td>33.92-37.0s</td>
+          <td>engagement_prompt</td>
+          <td>0.98</td>
+          <td></td>
+          <td class="ost-text">SAVE AND TRY
+FOLLOW FOR MORE</td>
+        </tr>
+      </table>
+
+      <h3>Techniques (1)</h3>
+      
+        <div class="technique">
+          <h4>#1: Knee and Change Angle</h4>
+          <p class="one-line">Throw a knee, land forward, pivot to change angle, then attack — a beginner entry-level offensive sequence.</p>
+          <p>A beginner-level Muay Thai sequence: throw a knee strike, land forward, pivot to change the angle of attack, then follow up with attacks. The purpose is to make it harder for the opponent to respond or counter, or to evade the opponent&#x27;s attack. Demonstrated solo (shadow) and in pad work.</p>
+          <table class="kv">
+            <tr><td>body_part</td><td>knee</td></tr>
+            <tr><td>context</td><td>offense</td></tr>
+            <tr><td>tags</td><td>knee, footwork, offense, setup, distance, transition</td></tr>
+            <tr><td>drill_format</td><td>Solo shadow drill followed by pad work with partner</td></tr>
+            <tr><td>stance_context</td><td></td></tr>
+            <tr><td>mechanical_cues</td><td>[&#x27;Knee and landing forward&#x27;, &#x27;Land forward + pivot&#x27;, &#x27;Change angle&#x27;, &#x27;Attacks&#x27;]</td></tr>
+            <tr><td>coaching_points</td><td>[&#x27;Knee and land forward&#x27;, &#x27;After landing, pivot to change angle&#x27;, &#x27;Follow up with attacks from the new angle to make it harder for the opponent to respond&#x27;]</td></tr>
+            <tr><td>common_errors</td><td></td></tr>
+            <tr><td>evidence</td><td>caption, hashtags, onscreen_text, visual</td></tr>
+            <tr><td>split_reasoning</td><td>The clip teaches a single named multi-step sequence (knee + angle change + attack) demonstrated step-by-step with numbered overlays and then in pad work. All steps are part of one connected drill and are not independently searchable as separate techniques, so they are kept as one combination record.</td></tr>
+          </table>
+          <details><summary>field confidence</summary>
+            <table class="kv"><tr><td>name</td><td>0.92</td></tr><tr><td>description</td><td>0.9</td></tr><tr><td>body_part</td><td>0.95</td></tr><tr><td>context</td><td>0.9</td></tr><tr><td>category_tag_ids</td><td>0.85</td></tr><tr><td>drill_format</td><td>0.9</td></tr><tr><td>stance_context</td><td></td></tr><tr><td>one_line_description</td><td>0.9</td></tr><tr><td>mechanical_cues</td><td>0.88</td></tr><tr><td>coaching_points</td><td>0.85</td></tr><tr><td>common_errors</td><td></td></tr></table>
+          </details>
+        </div>
+
+      <div class="review-controls">
+        <h3>Verdict</h3>
+        <div class="radios"><label><input type="radio" name="verdict-7361077091669921041" value="Approve" onchange="markStatus('7361077091669921041','Approve')"> Approve</label><label><input type="radio" name="verdict-7361077091669921041" value="Over-split" onchange="markStatus('7361077091669921041','Over-split')"> Over-split</label><label><input type="radio" name="verdict-7361077091669921041" value="Under-split" onchange="markStatus('7361077091669921041','Under-split')"> Under-split</label><label><input type="radio" name="verdict-7361077091669921041" value="Unsupported coaching content" onchange="markStatus('7361077091669921041','Unsupported coaching content')"> Unsupported coaching content</label><label><input type="radio" name="verdict-7361077091669921041" value="Wrong tags" onchange="markStatus('7361077091669921041','Wrong tags')"> Wrong tags</label><label><input type="radio" name="verdict-7361077091669921041" value="Other" onchange="markStatus('7361077091669921041','Other')"> Other</label></div>
+        <textarea id="note-7361077091669921041" placeholder="Notes (optional)" oninput="saveNote('7361077091669921041')"></textarea>
+      </div>
+    </section>
+    <section class="clip" id="clip-7376666311960841477">
+      <h2>7376666311960841477 <span class="meta">2024-06-04 &middot; 30.0s &middot; rank 399/545 &middot; single-technique clip (last-150 window)</span></h2>
+      <p><a href="https://www.tiktok.com/@fightclubmuaythai/video/7376666311960841477" target="_blank">https://www.tiktok.com/@fightclubmuaythai/video/7376666311960841477</a></p>
+      <video controls preload="metadata" src="../media/source/7376666311960841477.mp4"></video>
+      <p class="caption">Common Mistakes Muaythai Newbies Make |  ❌if you can’t throwing in Muaythai clinch ✅ Watch and try =================== #muaythai #muaythaibasics #muaythaitechniques #muaythaionline  #fightclubmuaythaigym #เรียนมวย #เรียนมวยไทยลดน้ำหนัก #เรียนมวยไทยอุดร  #ลดน้ำหนัก #weightloss #muaythaifitness #muaythaiboxing #ออกกำลังกาย #muaythaitraining #muaythaiworkout  #kickboxingworkout</p>
+      <p class="hashtags">#muaythai #muaythaibasics #muaythaitechniques #muaythaionline #fightclubmuaythaigym #เร #เร #เร #ลดน #weightloss #muaythaifitness #muaythaiboxing #ออกกำล #muaythaitraining #muaythaiworkout #kickboxingworkout</p>
+
+      <h3>12-frame storyboard</h3>
+      <div class="storyboard"><figure><img src="../data/fightclub/frames/7376666311960841477_text_00.jpg"><figcaption>0</figcaption></figure><figure><img src="../data/fightclub/frames/7376666311960841477_text_01.jpg"><figcaption>1</figcaption></figure><figure><img src="../data/fightclub/frames/7376666311960841477_text_02.jpg"><figcaption>2</figcaption></figure><figure><img src="../data/fightclub/frames/7376666311960841477_text_03.jpg"><figcaption>3</figcaption></figure><figure><img src="../data/fightclub/frames/7376666311960841477_text_04.jpg"><figcaption>4</figcaption></figure><figure><img src="../data/fightclub/frames/7376666311960841477_text_05.jpg"><figcaption>5</figcaption></figure><figure><img src="../data/fightclub/frames/7376666311960841477_text_06.jpg"><figcaption>6</figcaption></figure><figure><img src="../data/fightclub/frames/7376666311960841477_text_07.jpg"><figcaption>7</figcaption></figure><figure><img src="../data/fightclub/frames/7376666311960841477_text_08.jpg"><figcaption>8</figcaption></figure><figure><img src="../data/fightclub/frames/7376666311960841477_text_09.jpg"><figcaption>9</figcaption></figure><figure><img src="../data/fightclub/frames/7376666311960841477_text_10.jpg"><figcaption>10</figcaption></figure><figure><img src="../data/fightclub/frames/7376666311960841477_text_11.jpg"><figcaption>11</figcaption></figure></div>
+
+      <h3>On-screen text (8)</h3>
+      <table class="ost-table">
+        <tr><th>time</th><th>type</th><th>conf</th><th>uncertain</th><th>text</th></tr>
+        <tr>
+          <td>0.0-2.5s</td>
+          <td>instruction</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">COMMON MISTAKES
+MUAYTHAI NEWBIES MAKE</td>
+        </tr><tr>
+          <td>0.0-2.5s</td>
+          <td>instruction</td>
+          <td>0.92</td>
+          <td></td>
+          <td class="ost-text">WHO CAN&#x27;T
+THROWING IN CLINCH</td>
+        </tr><tr>
+          <td>2.5-5.0s</td>
+          <td>instruction</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">COMMON MISTAKES
+MUAYTHAI NEWBIES MAKE</td>
+        </tr><tr>
+          <td>2.5-5.0s</td>
+          <td>instruction</td>
+          <td>0.92</td>
+          <td></td>
+          <td class="ost-text">WHO CAN&#x27;T
+THROWING IN CLINCH
+MUST WATCH</td>
+        </tr><tr>
+          <td>5.0-7.5s</td>
+          <td>instruction</td>
+          <td>0.85</td>
+          <td></td>
+          <td class="ost-text">❌</td>
+        </tr><tr>
+          <td>12.5-15.0s</td>
+          <td>instruction</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">PULL</td>
+        </tr><tr>
+          <td>15.0-17.5s</td>
+          <td>instruction</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">TURN BODY</td>
+        </tr><tr>
+          <td>27.5-30.0s</td>
+          <td>engagement_prompt</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">SAVE AND TRY
+FOLLOW FOR MORE</td>
+        </tr>
+      </table>
+
+      <h3>Techniques (1)</h3>
+      
+        <div class="technique">
+          <h4>#1: Clinch Throw / Hip Throw from Muay Thai Clinch</h4>
+          <p class="one-line">How to throw from the Muay Thai clinch using a pull and hip/body turn, correcting common beginner errors.</p>
+          <p>Instructional clip addressing common mistakes beginners make when attempting to throw from the Muay Thai clinch. The clip demonstrates the incorrect version (marked with ❌) and then shows the correct method: using a pulling action on the opponent&#x27;s neck/head combined with a hip/body turn to execute a throw. On-screen cues &#x27;PULL&#x27; and &#x27;TURN BODY&#x27; annotate the key mechanical steps of the correct technique.</p>
+          <table class="kv">
+            <tr><td>body_part</td><td>clinch</td></tr>
+            <tr><td>context</td><td>offense</td></tr>
+            <tr><td>tags</td><td>clinch, sweep, Muay Khao, offense</td></tr>
+            <tr><td>drill_format</td><td>partner demonstration — wrong vs. correct comparison</td></tr>
+            <tr><td>stance_context</td><td>Muay Thai clinch (plum / neck clinch engagement)</td></tr>
+            <tr><td>mechanical_cues</td><td>[&quot;PULL — pull the opponent&#x27;s head/neck downward&quot;, &#x27;TURN BODY — rotate the hips and body to generate the throw&#x27;]</td></tr>
+            <tr><td>coaching_points</td><td>[&quot;Pull the opponent&#x27;s neck/head first before initiating the throw&quot;, &#x27;Turn the body/hips to drive the throw and complete the technique&#x27;]</td></tr>
+            <tr><td>common_errors</td><td>[&quot;Attempting to throw without first pulling the opponent&#x27;s head (shown with ❌ marker)&quot;]</td></tr>
+            <tr><td>evidence</td><td>caption, hashtags, onscreen_text, visual</td></tr>
+            <tr><td>split_reasoning</td><td>The entire clip focuses on a single technique — throwing from the Muay Thai clinch — shown first incorrectly and then correctly with annotated cues. The pull and body turn are sub-steps of the same throw, not independently searchable separate techniques, so this is kept as one record.</td></tr>
+          </table>
+          <details><summary>field confidence</summary>
+            <table class="kv"><tr><td>name</td><td>0.88</td></tr><tr><td>description</td><td>0.87</td></tr><tr><td>body_part</td><td>0.95</td></tr><tr><td>context</td><td>0.88</td></tr><tr><td>category_tag_ids</td><td>0.85</td></tr><tr><td>drill_format</td><td>0.9</td></tr><tr><td>stance_context</td><td>0.92</td></tr><tr><td>one_line_description</td><td>0.9</td></tr><tr><td>mechanical_cues</td><td>0.9</td></tr><tr><td>coaching_points</td><td>0.88</td></tr><tr><td>common_errors</td><td>0.85</td></tr></table>
+          </details>
+        </div>
+
+      <div class="review-controls">
+        <h3>Verdict</h3>
+        <div class="radios"><label><input type="radio" name="verdict-7376666311960841477" value="Approve" onchange="markStatus('7376666311960841477','Approve')"> Approve</label><label><input type="radio" name="verdict-7376666311960841477" value="Over-split" onchange="markStatus('7376666311960841477','Over-split')"> Over-split</label><label><input type="radio" name="verdict-7376666311960841477" value="Under-split" onchange="markStatus('7376666311960841477','Under-split')"> Under-split</label><label><input type="radio" name="verdict-7376666311960841477" value="Unsupported coaching content" onchange="markStatus('7376666311960841477','Unsupported coaching content')"> Unsupported coaching content</label><label><input type="radio" name="verdict-7376666311960841477" value="Wrong tags" onchange="markStatus('7376666311960841477','Wrong tags')"> Wrong tags</label><label><input type="radio" name="verdict-7376666311960841477" value="Other" onchange="markStatus('7376666311960841477','Other')"> Other</label></div>
+        <textarea id="note-7376666311960841477" placeholder="Notes (optional)" oninput="saveNote('7376666311960841477')"></textarea>
+      </div>
+    </section>
+    <section class="clip" id="clip-7555925852098186514">
+      <h2>7555925852098186514 <span class="meta">2025-09-30 &middot; 58.0s &middot; rank 430/545 &middot; duration 58.0s -- longest available in last-150 window (none exceed 60s)</span></h2>
+      <p><a href="https://www.tiktok.com/@fightclubmuaythai/video/7555925852098186514" target="_blank">https://www.tiktok.com/@fightclubmuaythai/video/7555925852098186514</a></p>
+      <video controls preload="metadata" src="../media/source/7555925852098186514.mp4"></video>
+      <p class="caption">One of the most powerful and effective Muaythai’s strikes. Use it in the right situation and at the right timing. ============== #muaythai #muaythaibasics #muaythaitechniques #muaythaionline  #fightclubmuaythaigym</p>
+      <p class="hashtags">#muaythai #muaythaibasics #muaythaitechniques #muaythaionline #fightclubmuaythaigym</p>
+
+      <h3>12-frame storyboard</h3>
+      <div class="storyboard"><figure><img src="../data/fightclub/frames/7555925852098186514_text_00.jpg"><figcaption>0</figcaption></figure><figure><img src="../data/fightclub/frames/7555925852098186514_text_01.jpg"><figcaption>1</figcaption></figure><figure><img src="../data/fightclub/frames/7555925852098186514_text_02.jpg"><figcaption>2</figcaption></figure><figure><img src="../data/fightclub/frames/7555925852098186514_text_03.jpg"><figcaption>3</figcaption></figure><figure><img src="../data/fightclub/frames/7555925852098186514_text_04.jpg"><figcaption>4</figcaption></figure><figure><img src="../data/fightclub/frames/7555925852098186514_text_05.jpg"><figcaption>5</figcaption></figure><figure><img src="../data/fightclub/frames/7555925852098186514_text_06.jpg"><figcaption>6</figcaption></figure><figure><img src="../data/fightclub/frames/7555925852098186514_text_07.jpg"><figcaption>7</figcaption></figure><figure><img src="../data/fightclub/frames/7555925852098186514_text_08.jpg"><figcaption>8</figcaption></figure><figure><img src="../data/fightclub/frames/7555925852098186514_text_09.jpg"><figcaption>9</figcaption></figure><figure><img src="../data/fightclub/frames/7555925852098186514_text_10.jpg"><figcaption>10</figcaption></figure><figure><img src="../data/fightclub/frames/7555925852098186514_text_11.jpg"><figcaption>11</figcaption></figure></div>
+
+      <h3>On-screen text (12)</h3>
+      <table class="ost-table">
+        <tr><th>time</th><th>type</th><th>conf</th><th>uncertain</th><th>text</th></tr>
+        <tr>
+          <td>0.0-4.83s</td>
+          <td>technique_label</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">THE UP ELBOW
+DIRECTIONS AND
+FOOTWORK</td>
+        </tr><tr>
+          <td>4.83-9.67s</td>
+          <td>technique_label</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">THE UP ELBOW
+DIRECTION</td>
+        </tr><tr>
+          <td>9.67-14.5s</td>
+          <td>technique_label</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">THE UP ELBOW
+HAND DRIVE</td>
+        </tr><tr>
+          <td>14.5-19.33s</td>
+          <td>technique_label</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">THE UP ELBOW</td>
+        </tr><tr>
+          <td>19.33-24.17s</td>
+          <td>sequence_label</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">FOOTWORK 1</td>
+        </tr><tr>
+          <td>24.17-29.0s</td>
+          <td>sequence_label</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">FOOTWORK 1</td>
+        </tr><tr>
+          <td>29.0-33.83s</td>
+          <td>sequence_label</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">FOOTWORK 2</td>
+        </tr><tr>
+          <td>33.83-38.67s</td>
+          <td>sequence_label</td>
+          <td>0.9</td>
+          <td></td>
+          <td class="ost-text">FOOTWORK 2
+POWER</td>
+        </tr><tr>
+          <td>38.67-43.5s</td>
+          <td>sequence_label</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">FOOTWORK 2</td>
+        </tr><tr>
+          <td>43.5-48.33s</td>
+          <td>sequence_label</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">FOOTWORK 3</td>
+        </tr><tr>
+          <td>48.33-53.17s</td>
+          <td>sequence_label</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">FOOTWORK 3</td>
+        </tr><tr>
+          <td>53.17-58.0s</td>
+          <td>sequence_label</td>
+          <td>0.9</td>
+          <td></td>
+          <td class="ost-text">FOOTWORK 3
+POWER</td>
+        </tr>
+      </table>
+
+      <h3>Techniques (1)</h3>
+      
+        <div class="technique">
+          <h4>#1: Up Elbow (Sok Ngad) – Directions and Footwork</h4>
+          <p class="one-line">Up elbow technique taught through direction, hand drive, and three progressively structured footwork drills.</p>
+          <p>A comprehensive breakdown of the up elbow strike (Sok Ngad) covering the direction of the strike, the hand drive mechanics, and three footwork variations for solo drilling and partner pad work. The caption notes it is one of the most powerful and effective Muay Thai strikes and should be used at the right timing and situation.</p>
+          <table class="kv">
+            <tr><td>body_part</td><td>elbow</td></tr>
+            <tr><td>context</td><td>offense</td></tr>
+            <tr><td>tags</td><td>elbow, Muay Sok, offense, timing, footwork, power</td></tr>
+            <tr><td>drill_format</td><td>Progressive multi-section solo drill and partner pad work: section 1 covers strike direction (shadowwork with cones), section 2 covers hand drive mechanics (bag work), footwork 1 uses cone markers for step pattern drilling, footwork 2 uses a bamboo pole with kettlebells as a footwork guide, footwork 3 uses the same bamboo/kettlebell setup with a wider step pattern; each footwork variation is also demonstrated on pads with a partner.</td></tr>
+            <tr><td>stance_context</td><td></td></tr>
+            <tr><td>mechanical_cues</td><td>[&#x27;Hand drive powers the up elbow – drive the hand upward to generate elbow force&#x27;]</td></tr>
+            <tr><td>coaching_points</td><td></td></tr>
+            <tr><td>common_errors</td><td></td></tr>
+            <tr><td>evidence</td><td>caption, hashtags, onscreen_text, visual</td></tr>
+            <tr><td>split_reasoning</td><td>All sections of the clip (direction, hand drive, footwork 1-3) are components of a single structured tutorial on the up elbow strike. The footwork variations are not independently searchable as generic footwork drills — they are explicitly framed as footwork for the up elbow. Keeping as one record with drill_format describing the progressive structure is appropriate.</td></tr>
+          </table>
+          <details><summary>field confidence</summary>
+            <table class="kv"><tr><td>name</td><td>0.97</td></tr><tr><td>description</td><td>0.9</td></tr><tr><td>body_part</td><td>0.99</td></tr><tr><td>context</td><td>0.85</td></tr><tr><td>category_tag_ids</td><td>0.88</td></tr><tr><td>drill_format</td><td>0.9</td></tr><tr><td>stance_context</td><td></td></tr><tr><td>one_line_description</td><td>0.92</td></tr><tr><td>mechanical_cues</td><td>0.8</td></tr><tr><td>coaching_points</td><td></td></tr><tr><td>common_errors</td><td></td></tr></table>
+          </details>
+        </div>
+
+      <div class="review-controls">
+        <h3>Verdict</h3>
+        <div class="radios"><label><input type="radio" name="verdict-7555925852098186514" value="Approve" onchange="markStatus('7555925852098186514','Approve')"> Approve</label><label><input type="radio" name="verdict-7555925852098186514" value="Over-split" onchange="markStatus('7555925852098186514','Over-split')"> Over-split</label><label><input type="radio" name="verdict-7555925852098186514" value="Under-split" onchange="markStatus('7555925852098186514','Under-split')"> Under-split</label><label><input type="radio" name="verdict-7555925852098186514" value="Unsupported coaching content" onchange="markStatus('7555925852098186514','Unsupported coaching content')"> Unsupported coaching content</label><label><input type="radio" name="verdict-7555925852098186514" value="Wrong tags" onchange="markStatus('7555925852098186514','Wrong tags')"> Wrong tags</label><label><input type="radio" name="verdict-7555925852098186514" value="Other" onchange="markStatus('7555925852098186514','Other')"> Other</label></div>
+        <textarea id="note-7555925852098186514" placeholder="Notes (optional)" oninput="saveNote('7555925852098186514')"></textarea>
+      </div>
+    </section>
+    <section class="clip" id="clip-7350715398523800852">
+      <h2>7350715398523800852 <span class="meta">2024-03-26 &middot; 57.0s &middot; rank 441/545 &middot; duration 57.0s -- longest available in last-150 window (none exceed 60s)</span></h2>
+      <p><a href="https://www.tiktok.com/@fightclubmuaythai/video/7350715398523800852" target="_blank">https://www.tiktok.com/@fightclubmuaythai/video/7350715398523800852</a></p>
+      <video controls preload="metadata" src="../media/source/7350715398523800852.mp4"></video>
+      <p class="caption">Muaythai Self-defense | #muaythai #muaythaibasics #muaythaitechniques #muaythaiselfdefense  ================= #fightclubmuaythaigym #เรียนมวย #เรียนมวยไทยลดน้ำหนัก #เรียนมวยไทยอุดร  #ลดน้ำหนัก #weightloss #muaythaifitness #muaythaiboxing #ออกกำลังกาย #muaythaitraining #muaythaiworkout  #kickboxingworkout</p>
+      <p class="hashtags">#muaythai #muaythaibasics #muaythaitechniques #muaythaiselfdefense #fightclubmuaythaigym #เร #เร #เร #ลดน #weightloss #muaythaifitness #muaythaiboxing #ออกกำล #muaythaitraining #muaythaiworkout #kickboxingworkout</p>
+
+      <h3>12-frame storyboard</h3>
+      <div class="storyboard"><figure><img src="../data/fightclub/frames/7350715398523800852_text_00.jpg"><figcaption>0</figcaption></figure><figure><img src="../data/fightclub/frames/7350715398523800852_text_01.jpg"><figcaption>1</figcaption></figure><figure><img src="../data/fightclub/frames/7350715398523800852_text_02.jpg"><figcaption>2</figcaption></figure><figure><img src="../data/fightclub/frames/7350715398523800852_text_03.jpg"><figcaption>3</figcaption></figure><figure><img src="../data/fightclub/frames/7350715398523800852_text_04.jpg"><figcaption>4</figcaption></figure><figure><img src="../data/fightclub/frames/7350715398523800852_text_05.jpg"><figcaption>5</figcaption></figure><figure><img src="../data/fightclub/frames/7350715398523800852_text_06.jpg"><figcaption>6</figcaption></figure><figure><img src="../data/fightclub/frames/7350715398523800852_text_07.jpg"><figcaption>7</figcaption></figure><figure><img src="../data/fightclub/frames/7350715398523800852_text_08.jpg"><figcaption>8</figcaption></figure><figure><img src="../data/fightclub/frames/7350715398523800852_text_09.jpg"><figcaption>9</figcaption></figure><figure><img src="../data/fightclub/frames/7350715398523800852_text_10.jpg"><figcaption>10</figcaption></figure><figure><img src="../data/fightclub/frames/7350715398523800852_text_11.jpg"><figcaption>11</figcaption></figure></div>
+
+      <h3>On-screen text (12)</h3>
+      <table class="ost-table">
+        <tr><th>time</th><th>type</th><th>conf</th><th>uncertain</th><th>text</th></tr>
+        <tr>
+          <td>0.0-4.75s</td>
+          <td>branding</td>
+          <td>0.7</td>
+          <td>yes</td>
+          <td class="ost-text">CLUB MUAY
+ROXI STRENGTH CONDI</td>
+        </tr><tr>
+          <td>4.75-9.5s</td>
+          <td>sequence_label</td>
+          <td>0.98</td>
+          <td></td>
+          <td class="ost-text">1</td>
+        </tr><tr>
+          <td>9.5-14.25s</td>
+          <td>sequence_label</td>
+          <td>0.98</td>
+          <td></td>
+          <td class="ost-text">1</td>
+        </tr><tr>
+          <td>14.25-19.0s</td>
+          <td>instruction</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">1
+ELBOW TO
+FACE,EYE,NOSE</td>
+        </tr><tr>
+          <td>19.0-23.75s</td>
+          <td>instruction</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">1
+ELBOW TO HEAD</td>
+        </tr><tr>
+          <td>23.75-28.5s</td>
+          <td>sequence_label</td>
+          <td>0.98</td>
+          <td></td>
+          <td class="ost-text">2</td>
+        </tr><tr>
+          <td>28.5-33.25s</td>
+          <td>sequence_label</td>
+          <td>0.98</td>
+          <td></td>
+          <td class="ost-text">2</td>
+        </tr><tr>
+          <td>33.25-38.0s</td>
+          <td>instruction</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">2
+KNEE AND ELBOW</td>
+        </tr><tr>
+          <td>38.0-42.75s</td>
+          <td>instruction</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">2
+DON&#x27;T STOP
+UNTIL HE&#x27;S ON THE FLOOR.</td>
+        </tr><tr>
+          <td>42.75-47.5s</td>
+          <td>sequence_label</td>
+          <td>0.98</td>
+          <td></td>
+          <td class="ost-text">3</td>
+        </tr><tr>
+          <td>47.5-52.25s</td>
+          <td>instruction</td>
+          <td>0.9</td>
+          <td>yes</td>
+          <td class="ost-text">3
+KNEE TO &quot;&quot;
+</td>
+        </tr><tr>
+          <td>52.25-57.0s</td>
+          <td>instruction</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">3
+KICK TO HEAD</td>
+        </tr>
+      </table>
+
+      <h3>Techniques (1)</h3>
+      
+        <div class="technique">
+          <h4>#1: Muay Thai Self-Defense Combination - Elbow, Knee &amp; Elbow, Knee &amp; Kick</h4>
+          <p class="one-line">Three-part Muay Thai self-defense combination covering elbow attacks, knee-elbow combos, and a finishing kick to a downed opponent.</p>
+          <p>A three-part self-defense scenario drill demonstrated with a partner. Sequence 1: elbow strikes to the face/eye/nose and head. Sequence 2: knee combined with elbow strikes, continuing until the opponent is taken down. Sequence 3: knee to the groin followed by a kick to the head of a downed opponent.</p>
+          <table class="kv">
+            <tr><td>body_part</td><td>elbow</td></tr>
+            <tr><td>context</td><td>other</td></tr>
+            <tr><td>tags</td><td>elbow, knee, kick, defense, offense, Muay Khao</td></tr>
+            <tr><td>drill_format</td><td>Partner self-defense scenario drill with three numbered sequences</td></tr>
+            <tr><td>stance_context</td><td></td></tr>
+            <tr><td>mechanical_cues</td><td>[&#x27;Elbow to face, eye, nose&#x27;, &#x27;Elbow to head&#x27;, &#x27;Knee and elbow&#x27;, &quot;Don&#x27;t stop until he&#x27;s on the floor&quot;, &#x27;Knee to groin&#x27;, &#x27;Kick to head&#x27;]</td></tr>
+            <tr><td>coaching_points</td><td>[&#x27;Target face, eye, and nose with the elbow&#x27;, &#x27;Follow up elbow with a kick to the head&#x27;, &#x27;Combine knee and elbow in sequence 2&#x27;, &#x27;Keep attacking until opponent is on the floor&#x27;, &#x27;Use knee to groin before finishing with a kick to the head&#x27;]</td></tr>
+            <tr><td>common_errors</td><td></td></tr>
+            <tr><td>evidence</td><td>caption, hashtags, onscreen_text, visual</td></tr>
+            <tr><td>split_reasoning</td><td>The clip presents three explicitly numbered sequences (1, 2, 3) as a connected self-defense scenario drill. The sequences are designed to flow together as a scenario (attacker approaches, is struck standing, knocked down, then finished), so they are best kept as a single combination/drill record rather than split into individually searchable standalone techniques. The on-screen labels and instruction text explicitly link them together as a numbered multi-part self-defense drill.</td></tr>
+          </table>
+          <details><summary>field confidence</summary>
+            <table class="kv"><tr><td>name</td><td>0.85</td></tr><tr><td>description</td><td>0.88</td></tr><tr><td>body_part</td><td>0.7</td></tr><tr><td>context</td><td>0.75</td></tr><tr><td>category_tag_ids</td><td>0.85</td></tr><tr><td>drill_format</td><td>0.9</td></tr><tr><td>stance_context</td><td></td></tr><tr><td>one_line_description</td><td>0.88</td></tr><tr><td>mechanical_cues</td><td>0.93</td></tr><tr><td>coaching_points</td><td>0.88</td></tr><tr><td>common_errors</td><td></td></tr></table>
+          </details>
+        </div>
+
+      <div class="review-controls">
+        <h3>Verdict</h3>
+        <div class="radios"><label><input type="radio" name="verdict-7350715398523800852" value="Approve" onchange="markStatus('7350715398523800852','Approve')"> Approve</label><label><input type="radio" name="verdict-7350715398523800852" value="Over-split" onchange="markStatus('7350715398523800852','Over-split')"> Over-split</label><label><input type="radio" name="verdict-7350715398523800852" value="Under-split" onchange="markStatus('7350715398523800852','Under-split')"> Under-split</label><label><input type="radio" name="verdict-7350715398523800852" value="Unsupported coaching content" onchange="markStatus('7350715398523800852','Unsupported coaching content')"> Unsupported coaching content</label><label><input type="radio" name="verdict-7350715398523800852" value="Wrong tags" onchange="markStatus('7350715398523800852','Wrong tags')"> Wrong tags</label><label><input type="radio" name="verdict-7350715398523800852" value="Other" onchange="markStatus('7350715398523800852','Other')"> Other</label></div>
+        <textarea id="note-7350715398523800852" placeholder="Notes (optional)" oninput="saveNote('7350715398523800852')"></textarea>
+      </div>
+    </section>
+    <section class="clip" id="clip-7317133088339791109">
+      <h2>7317133088339791109 <span class="meta">2023-12-27 &middot; 24.0s &middot; rank 510/545 &middot; 24 onscreen-text entries (last-150 window)</span></h2>
+      <p><a href="https://www.tiktok.com/@fightclubmuaythai/video/7317133088339791109" target="_blank">https://www.tiktok.com/@fightclubmuaythai/video/7317133088339791109</a></p>
+      <video controls preload="metadata" src="../media/source/7317133088339791109.mp4"></video>
+      <p class="caption">Muaythai Drills | How to Defense &amp; Elbow Counter #muaythaitraining #muaythaidrills #muaythaibasics #muaythai #muaythaitechniques</p>
+      <p class="hashtags">#muaythaitraining #muaythaidrills #muaythaibasics #muaythai #muaythaitechniques</p>
+
+      <h3>12-frame storyboard</h3>
+      <div class="storyboard"><figure><img src="../data/fightclub/frames/7317133088339791109_text_00.jpg"><figcaption>0</figcaption></figure><figure><img src="../data/fightclub/frames/7317133088339791109_text_01.jpg"><figcaption>1</figcaption></figure><figure><img src="../data/fightclub/frames/7317133088339791109_text_02.jpg"><figcaption>2</figcaption></figure><figure><img src="../data/fightclub/frames/7317133088339791109_text_03.jpg"><figcaption>3</figcaption></figure><figure><img src="../data/fightclub/frames/7317133088339791109_text_04.jpg"><figcaption>4</figcaption></figure><figure><img src="../data/fightclub/frames/7317133088339791109_text_05.jpg"><figcaption>5</figcaption></figure><figure><img src="../data/fightclub/frames/7317133088339791109_text_06.jpg"><figcaption>6</figcaption></figure><figure><img src="../data/fightclub/frames/7317133088339791109_text_07.jpg"><figcaption>7</figcaption></figure><figure><img src="../data/fightclub/frames/7317133088339791109_text_08.jpg"><figcaption>8</figcaption></figure><figure><img src="../data/fightclub/frames/7317133088339791109_text_09.jpg"><figcaption>9</figcaption></figure><figure><img src="../data/fightclub/frames/7317133088339791109_text_10.jpg"><figcaption>10</figcaption></figure><figure><img src="../data/fightclub/frames/7317133088339791109_text_11.jpg"><figcaption>11</figcaption></figure></div>
+
+      <h3>On-screen text (24)</h3>
+      <table class="ost-table">
+        <tr><th>time</th><th>type</th><th>conf</th><th>uncertain</th><th>text</th></tr>
+        <tr>
+          <td>0.0-2.0s</td>
+          <td>branding</td>
+          <td>0.85</td>
+          <td></td>
+          <td class="ost-text">Learn&amp;Practice in Class</td>
+        </tr><tr>
+          <td>0.0-2.0s</td>
+          <td>watermark</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">@natapakhon</td>
+        </tr><tr>
+          <td>2.0-4.0s</td>
+          <td>branding</td>
+          <td>0.85</td>
+          <td></td>
+          <td class="ost-text">Learn&amp;Practice in Class</td>
+        </tr><tr>
+          <td>2.0-4.0s</td>
+          <td>watermark</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">@natapakhon</td>
+        </tr><tr>
+          <td>4.0-6.0s</td>
+          <td>branding</td>
+          <td>0.85</td>
+          <td></td>
+          <td class="ost-text">Learn&amp;Practice in Class</td>
+        </tr><tr>
+          <td>4.0-6.0s</td>
+          <td>watermark</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">@natapakhon</td>
+        </tr><tr>
+          <td>6.0-8.0s</td>
+          <td>branding</td>
+          <td>0.85</td>
+          <td></td>
+          <td class="ost-text">Learn&amp;Practice in Class</td>
+        </tr><tr>
+          <td>6.0-8.0s</td>
+          <td>watermark</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">@natapakhon</td>
+        </tr><tr>
+          <td>8.0-10.0s</td>
+          <td>branding</td>
+          <td>0.85</td>
+          <td></td>
+          <td class="ost-text">Learn&amp;Practice in Class</td>
+        </tr><tr>
+          <td>8.0-10.0s</td>
+          <td>watermark</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">@natapakhon</td>
+        </tr><tr>
+          <td>10.0-12.0s</td>
+          <td>branding</td>
+          <td>0.85</td>
+          <td></td>
+          <td class="ost-text">Learn&amp;Practice in Class</td>
+        </tr><tr>
+          <td>10.0-12.0s</td>
+          <td>watermark</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">@natapakhon</td>
+        </tr><tr>
+          <td>12.0-14.0s</td>
+          <td>branding</td>
+          <td>0.85</td>
+          <td></td>
+          <td class="ost-text">Learn&amp;Practice in Class</td>
+        </tr><tr>
+          <td>12.0-14.0s</td>
+          <td>watermark</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">@natapakhon</td>
+        </tr><tr>
+          <td>14.0-16.0s</td>
+          <td>branding</td>
+          <td>0.85</td>
+          <td></td>
+          <td class="ost-text">Learn&amp;Practice in Class</td>
+        </tr><tr>
+          <td>14.0-16.0s</td>
+          <td>watermark</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">@natapakhon</td>
+        </tr><tr>
+          <td>16.0-18.0s</td>
+          <td>branding</td>
+          <td>0.85</td>
+          <td></td>
+          <td class="ost-text">Learn&amp;Practice in Class</td>
+        </tr><tr>
+          <td>16.0-18.0s</td>
+          <td>watermark</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">@natapakhon</td>
+        </tr><tr>
+          <td>18.0-20.0s</td>
+          <td>branding</td>
+          <td>0.85</td>
+          <td></td>
+          <td class="ost-text">Learn&amp;Practice in Class</td>
+        </tr><tr>
+          <td>18.0-20.0s</td>
+          <td>watermark</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">@natapakhon</td>
+        </tr><tr>
+          <td>20.0-22.0s</td>
+          <td>branding</td>
+          <td>0.85</td>
+          <td></td>
+          <td class="ost-text">Learn&amp;Practice in Class</td>
+        </tr><tr>
+          <td>20.0-22.0s</td>
+          <td>watermark</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">@natapakhon</td>
+        </tr><tr>
+          <td>22.0-24.0s</td>
+          <td>branding</td>
+          <td>0.85</td>
+          <td></td>
+          <td class="ost-text">Learn&amp;Practice in Class</td>
+        </tr><tr>
+          <td>22.0-24.0s</td>
+          <td>watermark</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">@natapakhon</td>
+        </tr>
+      </table>
+
+      <h3>Techniques (1)</h3>
+      
+        <div class="technique">
+          <h4>#1: Defense and Elbow Counter</h4>
+          <p class="one-line">Block an incoming attack then counter immediately with an elbow strike, drilled with a partner holding pads.</p>
+          <p>A partner drill demonstrating how to defend against an incoming attack (using a block or parry with the forearm/guard) and immediately counter with an elbow strike. The drill is practiced with a pad holder and repeated across both sides, shown in a class setting.</p>
+          <table class="kv">
+            <tr><td>body_part</td><td>elbow</td></tr>
+            <tr><td>context</td><td>counter</td></tr>
+            <tr><td>tags</td><td>elbow, block, defense, counter, Muay Sok</td></tr>
+            <tr><td>drill_format</td><td>partner pad drill, repeated reps</td></tr>
+            <tr><td>stance_context</td><td></td></tr>
+            <tr><td>mechanical_cues</td><td></td></tr>
+            <tr><td>coaching_points</td><td></td></tr>
+            <tr><td>common_errors</td><td></td></tr>
+            <tr><td>evidence</td><td>caption, hashtags, visual</td></tr>
+            <tr><td>split_reasoning</td><td>The caption explicitly names this as a combined defense-and-elbow-counter drill. The visual confirms a continuous partner drill pattern: one practitioner receives an attack, blocks/parries it, and counters with an elbow. These two actions (defense + elbow counter) are inseparably linked as a single drill sequence in the clip and are not demonstrated independently, so they are kept as one record. The elbow is the primary offensive weapon of the counter, so body_part=elbow; defense/block is captured via category tags.</td></tr>
+          </table>
+          <details><summary>field confidence</summary>
+            <table class="kv"><tr><td>name</td><td>0.9</td></tr><tr><td>description</td><td>0.82</td></tr><tr><td>body_part</td><td>0.88</td></tr><tr><td>context</td><td>0.88</td></tr><tr><td>category_tag_ids</td><td>0.82</td></tr><tr><td>drill_format</td><td>0.85</td></tr><tr><td>stance_context</td><td></td></tr><tr><td>one_line_description</td><td>0.85</td></tr><tr><td>mechanical_cues</td><td></td></tr><tr><td>coaching_points</td><td></td></tr><tr><td>common_errors</td><td></td></tr></table>
+          </details>
+        </div>
+
+      <div class="review-controls">
+        <h3>Verdict</h3>
+        <div class="radios"><label><input type="radio" name="verdict-7317133088339791109" value="Approve" onchange="markStatus('7317133088339791109','Approve')"> Approve</label><label><input type="radio" name="verdict-7317133088339791109" value="Over-split" onchange="markStatus('7317133088339791109','Over-split')"> Over-split</label><label><input type="radio" name="verdict-7317133088339791109" value="Under-split" onchange="markStatus('7317133088339791109','Under-split')"> Under-split</label><label><input type="radio" name="verdict-7317133088339791109" value="Unsupported coaching content" onchange="markStatus('7317133088339791109','Unsupported coaching content')"> Unsupported coaching content</label><label><input type="radio" name="verdict-7317133088339791109" value="Wrong tags" onchange="markStatus('7317133088339791109','Wrong tags')"> Wrong tags</label><label><input type="radio" name="verdict-7317133088339791109" value="Other" onchange="markStatus('7317133088339791109','Other')"> Other</label></div>
+        <textarea id="note-7317133088339791109" placeholder="Notes (optional)" oninput="saveNote('7317133088339791109')"></textarea>
+      </div>
+    </section>
+    <section class="clip" id="clip-7312006262097546501">
+      <h2>7312006262097546501 <span class="meta">2023-12-13 &middot; 11.0s &middot; rank 521/545 &middot; 22 onscreen-text entries (last-150 window)</span></h2>
+      <p><a href="https://www.tiktok.com/@fightclubmuaythai/video/7312006262097546501" target="_blank">https://www.tiktok.com/@fightclubmuaythai/video/7312006262097546501</a></p>
+      <video controls preload="metadata" src="../media/source/7312006262097546501.mp4"></video>
+      <p class="caption">More learn , more places you will go #boxing #boxingtraining #boxingdrills #boxinglearning</p>
+      <p class="hashtags">#boxing #boxingtraining #boxingdrills #boxinglearning</p>
+
+      <h3>12-frame storyboard</h3>
+      <div class="storyboard"><figure><img src="../data/fightclub/frames/7312006262097546501_text_00.jpg"><figcaption>0</figcaption></figure><figure><img src="../data/fightclub/frames/7312006262097546501_text_01.jpg"><figcaption>1</figcaption></figure><figure><img src="../data/fightclub/frames/7312006262097546501_text_02.jpg"><figcaption>2</figcaption></figure><figure><img src="../data/fightclub/frames/7312006262097546501_text_03.jpg"><figcaption>3</figcaption></figure><figure><img src="../data/fightclub/frames/7312006262097546501_text_04.jpg"><figcaption>4</figcaption></figure><figure><img src="../data/fightclub/frames/7312006262097546501_text_05.jpg"><figcaption>5</figcaption></figure><figure><img src="../data/fightclub/frames/7312006262097546501_text_06.jpg"><figcaption>6</figcaption></figure><figure><img src="../data/fightclub/frames/7312006262097546501_text_07.jpg"><figcaption>7</figcaption></figure><figure><img src="../data/fightclub/frames/7312006262097546501_text_08.jpg"><figcaption>8</figcaption></figure><figure><img src="../data/fightclub/frames/7312006262097546501_text_09.jpg"><figcaption>9</figcaption></figure><figure><img src="../data/fightclub/frames/7312006262097546501_text_10.jpg"><figcaption>10</figcaption></figure></div>
+
+      <h3>On-screen text (22)</h3>
+      <table class="ost-table">
+        <tr><th>time</th><th>type</th><th>conf</th><th>uncertain</th><th>text</th></tr>
+        <tr>
+          <td>0.0-1.0s</td>
+          <td>decorative</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">&quot;The more that you read, the more things you will know. The more that you learn, the more places you&#x27;ll go.&quot;</td>
+        </tr><tr>
+          <td>0.0-1.0s</td>
+          <td>branding</td>
+          <td>0.9</td>
+          <td></td>
+          <td class="ost-text">@mykfcorderwasincorrect
+@natapakhon</td>
+        </tr><tr>
+          <td>1.0-2.0s</td>
+          <td>decorative</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">&quot;The more that you read, the more things you will know. The more that you learn, the more places you&#x27;ll go.&quot;</td>
+        </tr><tr>
+          <td>1.0-2.0s</td>
+          <td>branding</td>
+          <td>0.9</td>
+          <td></td>
+          <td class="ost-text">@mykfcorderwasincorrect
+@natapakhon</td>
+        </tr><tr>
+          <td>2.0-3.0s</td>
+          <td>decorative</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">&quot;The more that you read, the more things you will know. The more that you learn, the more places you&#x27;ll go.&quot;</td>
+        </tr><tr>
+          <td>2.0-3.0s</td>
+          <td>branding</td>
+          <td>0.9</td>
+          <td></td>
+          <td class="ost-text">@mykfcorderwasincorrect
+@natapakhon</td>
+        </tr><tr>
+          <td>3.0-4.0s</td>
+          <td>decorative</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">&quot;The more that you read, the more things you will know. The more that you learn, the more places you&#x27;ll go.&quot;</td>
+        </tr><tr>
+          <td>3.0-4.0s</td>
+          <td>branding</td>
+          <td>0.9</td>
+          <td></td>
+          <td class="ost-text">@mykfcorderwasincorrect
+@natapakhon</td>
+        </tr><tr>
+          <td>4.0-5.0s</td>
+          <td>decorative</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">&quot;The more that you read, the more things you will know. The more that you learn, the more places you&#x27;ll go.&quot;</td>
+        </tr><tr>
+          <td>4.0-5.0s</td>
+          <td>branding</td>
+          <td>0.9</td>
+          <td></td>
+          <td class="ost-text">@mykfcorderwasincorrect
+@natapakhon</td>
+        </tr><tr>
+          <td>5.0-6.0s</td>
+          <td>decorative</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">&quot;The more that you read, the more things you will know. The more that you learn, the more places you&#x27;ll go.&quot;</td>
+        </tr><tr>
+          <td>5.0-6.0s</td>
+          <td>branding</td>
+          <td>0.9</td>
+          <td></td>
+          <td class="ost-text">@mykfcorderwasincorrect
+@natapakhon</td>
+        </tr><tr>
+          <td>6.0-7.0s</td>
+          <td>decorative</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">&quot;The more that you read, the more things you will know. The more that you learn, the more places you&#x27;ll go.&quot;</td>
+        </tr><tr>
+          <td>6.0-7.0s</td>
+          <td>branding</td>
+          <td>0.9</td>
+          <td></td>
+          <td class="ost-text">@mykfcorderwasincorrect
+@natapakhon</td>
+        </tr><tr>
+          <td>7.0-8.0s</td>
+          <td>decorative</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">&quot;The more that you read, the more things you will know. The more that you learn, the more places you&#x27;ll go.&quot;</td>
+        </tr><tr>
+          <td>7.0-8.0s</td>
+          <td>branding</td>
+          <td>0.9</td>
+          <td></td>
+          <td class="ost-text">@mykfcorderwasincorrect
+@natapakhon</td>
+        </tr><tr>
+          <td>8.0-9.0s</td>
+          <td>decorative</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">&quot;The more that you read, the more things you will know. The more that you learn, the more places you&#x27;ll go.&quot;</td>
+        </tr><tr>
+          <td>8.0-9.0s</td>
+          <td>branding</td>
+          <td>0.9</td>
+          <td></td>
+          <td class="ost-text">@mykfcorderwasincorrect
+@natapakhon</td>
+        </tr><tr>
+          <td>9.0-10.0s</td>
+          <td>decorative</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">&quot;The more that you read, the more things you will know. The more that you learn, the more places you&#x27;ll go.&quot;</td>
+        </tr><tr>
+          <td>9.0-10.0s</td>
+          <td>branding</td>
+          <td>0.9</td>
+          <td></td>
+          <td class="ost-text">@mykfcorderwasincorrect
+@natapakhon</td>
+        </tr><tr>
+          <td>10.0-11.0s</td>
+          <td>decorative</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">&quot;The more that you read, the more things you will know. The more that you learn, the more places you&#x27;ll go.&quot;</td>
+        </tr><tr>
+          <td>10.0-11.0s</td>
+          <td>branding</td>
+          <td>0.9</td>
+          <td></td>
+          <td class="ost-text">@mykfcorderwasincorrect
+@natapakhon</td>
+        </tr>
+      </table>
+
+      <h3>Techniques (1)</h3>
+      
+        <div class="technique">
+          <h4>#1: Boxing Pad Work Drill</h4>
+          <p class="one-line">Boxing and Muay Thai pad work combination drill demonstrated in a gym setting.</p>
+          <p>Two practitioners performing a boxing pad work session in a gym setting. One person wears Muay Thai shorts and boxing gloves while the other holds focus mitts/belly pad combination. The drill includes punches and knees to the pad holder, demonstrating a flowing boxing/Muay Thai combination drill. The clip is motivational in nature rather than a step-by-step instructional breakdown.</p>
+          <table class="kv">
+            <tr><td>body_part</td><td>punch</td></tr>
+            <tr><td>context</td><td>other</td></tr>
+            <tr><td>tags</td><td>punch, offense</td></tr>
+            <tr><td>drill_format</td><td>Partner pad work drill with focus mitts and belly pad</td></tr>
+            <tr><td>stance_context</td><td></td></tr>
+            <tr><td>mechanical_cues</td><td></td></tr>
+            <tr><td>coaching_points</td><td></td></tr>
+            <tr><td>common_errors</td><td></td></tr>
+            <tr><td>evidence</td><td>caption, hashtags, visual</td></tr>
+            <tr><td>split_reasoning</td><td>The clip shows a continuous pad work session without distinct named techniques being isolated or labeled. The on-screen text is purely decorative/motivational (Dr. Seuss quote) and provides no instructional breakdown. The caption hashtags reference boxing drills generically. The visual shows a flowing combination including punches and knees on pads, best represented as a single pad work drill record rather than splitting into individual technique rows, as no individual techniques are independently labeled or isolated for instruction.</td></tr>
+          </table>
+          <details><summary>field confidence</summary>
+            <table class="kv"><tr><td>name</td><td>0.6</td></tr><tr><td>description</td><td>0.65</td></tr><tr><td>body_part</td><td>0.55</td></tr><tr><td>context</td><td>0.5</td></tr><tr><td>category_tag_ids</td><td>0.6</td></tr><tr><td>drill_format</td><td>0.75</td></tr><tr><td>stance_context</td><td></td></tr><tr><td>one_line_description</td><td>0.65</td></tr><tr><td>mechanical_cues</td><td></td></tr><tr><td>coaching_points</td><td></td></tr><tr><td>common_errors</td><td></td></tr></table>
+          </details>
+        </div>
+
+      <div class="review-controls">
+        <h3>Verdict</h3>
+        <div class="radios"><label><input type="radio" name="verdict-7312006262097546501" value="Approve" onchange="markStatus('7312006262097546501','Approve')"> Approve</label><label><input type="radio" name="verdict-7312006262097546501" value="Over-split" onchange="markStatus('7312006262097546501','Over-split')"> Over-split</label><label><input type="radio" name="verdict-7312006262097546501" value="Under-split" onchange="markStatus('7312006262097546501','Under-split')"> Under-split</label><label><input type="radio" name="verdict-7312006262097546501" value="Unsupported coaching content" onchange="markStatus('7312006262097546501','Unsupported coaching content')"> Unsupported coaching content</label><label><input type="radio" name="verdict-7312006262097546501" value="Wrong tags" onchange="markStatus('7312006262097546501','Wrong tags')"> Wrong tags</label><label><input type="radio" name="verdict-7312006262097546501" value="Other" onchange="markStatus('7312006262097546501','Other')"> Other</label></div>
+        <textarea id="note-7312006262097546501" placeholder="Notes (optional)" oninput="saveNote('7312006262097546501')"></textarea>
+      </div>
+    </section>
+    <section class="clip" id="clip-7382247835649051910">
+      <h2>7382247835649051910 <span class="meta">2024-06-19 &middot; 31.0s &middot; rank 390/545 &middot; consistency baseline (~200-300 checkpoint window)</span></h2>
+      <p><a href="https://www.tiktok.com/@fightclubmuaythai/video/7382247835649051910" target="_blank">https://www.tiktok.com/@fightclubmuaythai/video/7382247835649051910</a></p>
+      <video controls preload="metadata" src="../media/source/7382247835649051910.mp4"></video>
+      <p class="caption">4 ways sparring with taller guy. | Most of them try to keep their distance by Teep or performing Teep attacks. i ‘ll suggest 1️⃣ Parry + body shot + low kick 2️⃣ Catch + sweep 3️⃣ jump out + low kick 4️⃣ Throw lead side fake for block the teep + knee ================= #muaythai #muaythaibasics #muaythaitechniques #muaythaionline  #fightclubmuaythaigym #เรียนมวย #เรียนมวยไทยลดน้ำหนัก #เรียนมวยไทยอุดร  #ลดน้ำหนัก #weightloss #muaythaifitness #muaythaiboxing #ออกกำลังกาย #muaythaitraining #muaythaiworkout  #kickboxingworkout</p>
+      <p class="hashtags">#muaythai #muaythaibasics #muaythaitechniques #muaythaionline #fightclubmuaythaigym #เร #เร #เร #ลดน #weightloss #muaythaifitness #muaythaiboxing #ออกกำล #muaythaitraining #muaythaiworkout #kickboxingworkout</p>
+
+      <h3>12-frame storyboard</h3>
+      <div class="storyboard"><figure><img src="../data/fightclub/frames/7382247835649051910_text_00.jpg"><figcaption>0</figcaption></figure><figure><img src="../data/fightclub/frames/7382247835649051910_text_01.jpg"><figcaption>1</figcaption></figure><figure><img src="../data/fightclub/frames/7382247835649051910_text_02.jpg"><figcaption>2</figcaption></figure><figure><img src="../data/fightclub/frames/7382247835649051910_text_03.jpg"><figcaption>3</figcaption></figure><figure><img src="../data/fightclub/frames/7382247835649051910_text_04.jpg"><figcaption>4</figcaption></figure><figure><img src="../data/fightclub/frames/7382247835649051910_text_05.jpg"><figcaption>5</figcaption></figure><figure><img src="../data/fightclub/frames/7382247835649051910_text_06.jpg"><figcaption>6</figcaption></figure><figure><img src="../data/fightclub/frames/7382247835649051910_text_07.jpg"><figcaption>7</figcaption></figure><figure><img src="../data/fightclub/frames/7382247835649051910_text_08.jpg"><figcaption>8</figcaption></figure><figure><img src="../data/fightclub/frames/7382247835649051910_text_09.jpg"><figcaption>9</figcaption></figure><figure><img src="../data/fightclub/frames/7382247835649051910_text_10.jpg"><figcaption>10</figcaption></figure><figure><img src="../data/fightclub/frames/7382247835649051910_text_11.jpg"><figcaption>11</figcaption></figure></div>
+
+      <h3>On-screen text (12)</h3>
+      <table class="ost-table">
+        <tr><th>time</th><th>type</th><th>conf</th><th>uncertain</th><th>text</th></tr>
+        <tr>
+          <td>0.0-2.58s</td>
+          <td>instruction</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">4 WAYS
+SPARRING WITH
+TALLER GUY</td>
+        </tr><tr>
+          <td>2.58-5.17s</td>
+          <td>instruction</td>
+          <td>0.9</td>
+          <td></td>
+          <td class="ost-text">MOST OF THEM TRY TO</td>
+        </tr><tr>
+          <td>5.17-7.75s</td>
+          <td>instruction</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">MOST OF THEM TRY TO KEEP
+THEIR DISTANCE BY TEEP
+OR PERFORMING TEEP ATTACKS.</td>
+        </tr><tr>
+          <td>7.75-10.33s</td>
+          <td>sequence_label</td>
+          <td>0.99</td>
+          <td></td>
+          <td class="ost-text">WAY 1</td>
+        </tr><tr>
+          <td>10.33-12.92s</td>
+          <td>sequence_label</td>
+          <td>0.99</td>
+          <td></td>
+          <td class="ost-text">WAY 1
+PARRY TEEP + BODY SHOT + LOW KICK</td>
+        </tr><tr>
+          <td>12.92-15.5s</td>
+          <td>sequence_label</td>
+          <td>0.99</td>
+          <td></td>
+          <td class="ost-text">WAY 2
+IN AND OUT + LOW KICK</td>
+        </tr><tr>
+          <td>15.5-18.08s</td>
+          <td>sequence_label</td>
+          <td>0.99</td>
+          <td></td>
+          <td class="ost-text">WAY 2
+IN AND OUT + LOW KICK</td>
+        </tr><tr>
+          <td>18.08-20.67s</td>
+          <td>sequence_label</td>
+          <td>0.99</td>
+          <td></td>
+          <td class="ost-text">WAY 3
+CATCH + SWEEP</td>
+        </tr><tr>
+          <td>20.67-23.25s</td>
+          <td>sequence_label</td>
+          <td>0.99</td>
+          <td></td>
+          <td class="ost-text">WAY 3
+CATCH + SWEEP</td>
+        </tr><tr>
+          <td>23.25-25.83s</td>
+          <td>sequence_label</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">WAY 4
+THROW LEAD SIDE FOR BLOCK TEEP
+AND KNEE</td>
+        </tr><tr>
+          <td>25.83-28.42s</td>
+          <td>sequence_label</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">WAY 4
+THROW LEAD SIDE FOR BLOCK TEEP
+AND KNEE</td>
+        </tr><tr>
+          <td>28.42-31.0s</td>
+          <td>engagement_prompt</td>
+          <td>0.99</td>
+          <td></td>
+          <td class="ost-text">SAVE AND TRY
+FOLLOW FOR MORE</td>
+        </tr>
+      </table>
+
+      <h3>Techniques (4)</h3>
+      
+        <div class="technique">
+          <h4>#1: Way 1: Parry Teep + Body Shot + Low Kick</h4>
+          <p class="one-line">Parry the taller opponent&#x27;s teep, counter with a body punch, then finish with a low kick.</p>
+          <p>Counter-sequence against a taller opponent who uses the teep to maintain distance. The shorter fighter parries the incoming teep, immediately follows with a body shot, then lands a low kick. Demonstrated in sparring context at Fight Club Muay Thai Gym.</p>
+          <table class="kv">
+            <tr><td>body_part</td><td>kick</td></tr>
+            <tr><td>context</td><td>counter</td></tr>
+            <tr><td>tags</td><td>kick, punch, block, counter, distance, defense, offense</td></tr>
+            <tr><td>drill_format</td><td>sparring demonstration with partner</td></tr>
+            <tr><td>stance_context</td><td>orthodox vs orthodox, shorter fighter vs taller fighter</td></tr>
+            <tr><td>mechanical_cues</td><td></td></tr>
+            <tr><td>coaching_points</td><td></td></tr>
+            <tr><td>common_errors</td><td></td></tr>
+            <tr><td>evidence</td><td>caption, onscreen_text, visual</td></tr>
+            <tr><td>split_reasoning</td><td>Each of the 4 ways is a distinct numbered counter-sequence against the taller fighter&#x27;s teep. Way 1 (Parry + body shot + low kick) is independently searchable as a teep-parry counter combo, so it is split into its own record.</td></tr>
+          </table>
+          <details><summary>field confidence</summary>
+            <table class="kv"><tr><td>name</td><td>0.97</td></tr><tr><td>description</td><td>0.92</td></tr><tr><td>body_part</td><td>0.8</td></tr><tr><td>context</td><td>0.95</td></tr><tr><td>category_tag_ids</td><td>0.88</td></tr><tr><td>drill_format</td><td>0.95</td></tr><tr><td>stance_context</td><td>0.85</td></tr><tr><td>one_line_description</td><td>0.95</td></tr><tr><td>mechanical_cues</td><td></td></tr><tr><td>coaching_points</td><td></td></tr><tr><td>common_errors</td><td></td></tr></table>
+          </details>
+        </div>
+        <div class="technique">
+          <h4>#2: Way 2: In and Out + Low Kick (Jump Out + Low Kick)</h4>
+          <p class="one-line">Use in-and-out footwork to evade the taller opponent&#x27;s teep and counter with a low kick.</p>
+          <p>Counter footwork tactic against a taller opponent&#x27;s teep. The shorter fighter uses in-and-out movement (jumping or stepping out of teep range) then counters immediately with a low kick. Demonstrated in sparring context.</p>
+          <table class="kv">
+            <tr><td>body_part</td><td>kick</td></tr>
+            <tr><td>context</td><td>counter</td></tr>
+            <tr><td>tags</td><td>kick, footwork, counter, distance, timing, rhythm</td></tr>
+            <tr><td>drill_format</td><td>sparring demonstration with partner</td></tr>
+            <tr><td>stance_context</td><td>shorter fighter vs taller fighter</td></tr>
+            <tr><td>mechanical_cues</td><td></td></tr>
+            <tr><td>coaching_points</td><td></td></tr>
+            <tr><td>common_errors</td><td></td></tr>
+            <tr><td>evidence</td><td>caption, onscreen_text, visual</td></tr>
+            <tr><td>split_reasoning</td><td>Way 2 is a distinct numbered entry focused on footwork-based evasion plus low kick counter, independently searchable as a footwork + low kick counter concept.</td></tr>
+          </table>
+          <details><summary>field confidence</summary>
+            <table class="kv"><tr><td>name</td><td>0.95</td></tr><tr><td>description</td><td>0.9</td></tr><tr><td>body_part</td><td>0.9</td></tr><tr><td>context</td><td>0.92</td></tr><tr><td>category_tag_ids</td><td>0.85</td></tr><tr><td>drill_format</td><td>0.95</td></tr><tr><td>stance_context</td><td>0.85</td></tr><tr><td>one_line_description</td><td>0.93</td></tr><tr><td>mechanical_cues</td><td></td></tr><tr><td>coaching_points</td><td></td></tr><tr><td>common_errors</td><td></td></tr></table>
+          </details>
+        </div>
+        <div class="technique">
+          <h4>#3: Way 3: Catch + Sweep</h4>
+          <p class="one-line">Catch the taller opponent&#x27;s teep and immediately sweep them to the ground.</p>
+          <p>Counter against the taller opponent&#x27;s teep: the shorter fighter catches the incoming teep kick and immediately executes a sweep to take the opponent down. Demonstrated with a successful takedown in sparring.</p>
+          <table class="kv">
+            <tr><td>body_part</td><td>sweep</td></tr>
+            <tr><td>context</td><td>counter</td></tr>
+            <tr><td>tags</td><td>sweep, teep, counter, defense, balance</td></tr>
+            <tr><td>drill_format</td><td>sparring demonstration with partner</td></tr>
+            <tr><td>stance_context</td><td>shorter fighter vs taller fighter</td></tr>
+            <tr><td>mechanical_cues</td><td></td></tr>
+            <tr><td>coaching_points</td><td></td></tr>
+            <tr><td>common_errors</td><td></td></tr>
+            <tr><td>evidence</td><td>caption, onscreen_text, visual</td></tr>
+            <tr><td>split_reasoning</td><td>Way 3 is a distinct numbered entry focused on catching the teep and sweeping. The sweep technique against a teep is independently searchable and distinct from the other ways.</td></tr>
+          </table>
+          <details><summary>field confidence</summary>
+            <table class="kv"><tr><td>name</td><td>0.97</td></tr><tr><td>description</td><td>0.93</td></tr><tr><td>body_part</td><td>0.95</td></tr><tr><td>context</td><td>0.95</td></tr><tr><td>category_tag_ids</td><td>0.9</td></tr><tr><td>drill_format</td><td>0.95</td></tr><tr><td>stance_context</td><td>0.85</td></tr><tr><td>one_line_description</td><td>0.95</td></tr><tr><td>mechanical_cues</td><td></td></tr><tr><td>coaching_points</td><td></td></tr><tr><td>common_errors</td><td></td></tr></table>
+          </details>
+        </div>
+        <div class="technique">
+          <h4>#4: Way 4: Throw Lead Side Fake to Block Teep + Knee</h4>
+          <p class="one-line">Throw a lead side fake to draw and block the taller opponent&#x27;s teep, then enter with a knee strike.</p>
+          <p>Counter against the taller opponent&#x27;s teep: the shorter fighter throws a lead side fake to bait the teep, uses the fake to block the teep, then enters and lands a knee strike. Demonstrated in sparring with clinch entry and knee.</p>
+          <table class="kv">
+            <tr><td>body_part</td><td>knee</td></tr>
+            <tr><td>context</td><td>counter</td></tr>
+            <tr><td>tags</td><td>knee, teep, punch, counter, setup, defense</td></tr>
+            <tr><td>drill_format</td><td>sparring demonstration with partner</td></tr>
+            <tr><td>stance_context</td><td>shorter fighter vs taller fighter</td></tr>
+            <tr><td>mechanical_cues</td><td></td></tr>
+            <tr><td>coaching_points</td><td></td></tr>
+            <tr><td>common_errors</td><td></td></tr>
+            <tr><td>evidence</td><td>caption, onscreen_text, visual</td></tr>
+            <tr><td>split_reasoning</td><td>Way 4 is a distinct numbered entry combining a lead fake, teep block, and knee — independently searchable as a fake-to-knee counter versus teep.</td></tr>
+          </table>
+          <details><summary>field confidence</summary>
+            <table class="kv"><tr><td>name</td><td>0.93</td></tr><tr><td>description</td><td>0.9</td></tr><tr><td>body_part</td><td>0.88</td></tr><tr><td>context</td><td>0.92</td></tr><tr><td>category_tag_ids</td><td>0.85</td></tr><tr><td>drill_format</td><td>0.95</td></tr><tr><td>stance_context</td><td>0.85</td></tr><tr><td>one_line_description</td><td>0.92</td></tr><tr><td>mechanical_cues</td><td></td></tr><tr><td>coaching_points</td><td></td></tr><tr><td>common_errors</td><td></td></tr></table>
+          </details>
+        </div>
+
+      <div class="review-controls">
+        <h3>Verdict</h3>
+        <div class="radios"><label><input type="radio" name="verdict-7382247835649051910" value="Approve" onchange="markStatus('7382247835649051910','Approve')"> Approve</label><label><input type="radio" name="verdict-7382247835649051910" value="Over-split" onchange="markStatus('7382247835649051910','Over-split')"> Over-split</label><label><input type="radio" name="verdict-7382247835649051910" value="Under-split" onchange="markStatus('7382247835649051910','Under-split')"> Under-split</label><label><input type="radio" name="verdict-7382247835649051910" value="Unsupported coaching content" onchange="markStatus('7382247835649051910','Unsupported coaching content')"> Unsupported coaching content</label><label><input type="radio" name="verdict-7382247835649051910" value="Wrong tags" onchange="markStatus('7382247835649051910','Wrong tags')"> Wrong tags</label><label><input type="radio" name="verdict-7382247835649051910" value="Other" onchange="markStatus('7382247835649051910','Other')"> Other</label></div>
+        <textarea id="note-7382247835649051910" placeholder="Notes (optional)" oninput="saveNote('7382247835649051910')"></textarea>
+      </div>
+    </section>
+    <section class="clip" id="clip-7416755306145008904">
+      <h2>7416755306145008904 <span class="meta">2024-09-20 &middot; 46.0s &middot; rank 331/545 &middot; consistency baseline (~200-300 checkpoint window)</span></h2>
+      <p><a href="https://www.tiktok.com/@fightclubmuaythai/video/7416755306145008904" target="_blank">https://www.tiktok.com/@fightclubmuaythai/video/7416755306145008904</a></p>
+      <video controls preload="metadata" src="../media/source/7416755306145008904.mp4"></video>
+      <p class="caption">5 Rounds Muaythai Fake Teep Combos for Shadowboxing. ================ #muaythai #muaythaibasics #muaythaitechniques #muaythaionline  #fightclubmuaythaigym #เรียนมวย #เรียนมวยไทยลดน้ำหนัก #เรียนมวยไทยอุดร  #ลดน้ำหนัก #weightloss #muaythaifitness #muaythaiboxing #ออกกำลังกาย #muaythaitraining #muaythaiworkout  #kickboxingworkout</p>
+      <p class="hashtags">#muaythai #muaythaibasics #muaythaitechniques #muaythaionline #fightclubmuaythaigym #เร #เร #เร #ลดน #weightloss #muaythaifitness #muaythaiboxing #ออกกำล #muaythaitraining #muaythaiworkout #kickboxingworkout</p>
+
+      <h3>12-frame storyboard</h3>
+      <div class="storyboard"><figure><img src="../data/fightclub/frames/7416755306145008904_text_00.jpg"><figcaption>0</figcaption></figure><figure><img src="../data/fightclub/frames/7416755306145008904_text_01.jpg"><figcaption>1</figcaption></figure><figure><img src="../data/fightclub/frames/7416755306145008904_text_02.jpg"><figcaption>2</figcaption></figure><figure><img src="../data/fightclub/frames/7416755306145008904_text_03.jpg"><figcaption>3</figcaption></figure><figure><img src="../data/fightclub/frames/7416755306145008904_text_04.jpg"><figcaption>4</figcaption></figure><figure><img src="../data/fightclub/frames/7416755306145008904_text_05.jpg"><figcaption>5</figcaption></figure><figure><img src="../data/fightclub/frames/7416755306145008904_text_06.jpg"><figcaption>6</figcaption></figure><figure><img src="../data/fightclub/frames/7416755306145008904_text_07.jpg"><figcaption>7</figcaption></figure><figure><img src="../data/fightclub/frames/7416755306145008904_text_08.jpg"><figcaption>8</figcaption></figure><figure><img src="../data/fightclub/frames/7416755306145008904_text_09.jpg"><figcaption>9</figcaption></figure><figure><img src="../data/fightclub/frames/7416755306145008904_text_10.jpg"><figcaption>10</figcaption></figure><figure><img src="../data/fightclub/frames/7416755306145008904_text_11.jpg"><figcaption>11</figcaption></figure></div>
+
+      <h3>On-screen text (12)</h3>
+      <table class="ost-table">
+        <tr><th>time</th><th>type</th><th>conf</th><th>uncertain</th><th>text</th></tr>
+        <tr>
+          <td>0.0-3.83s</td>
+          <td>sequence_label</td>
+          <td>0.85</td>
+          <td>yes</td>
+          <td class="ost-text">5 ROUNDS
+MUAUTHAI SHADOW
+FAKE LE</td>
+        </tr><tr>
+          <td>3.83-7.67s</td>
+          <td>technique_label</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">JAB</td>
+        </tr><tr>
+          <td>7.67-11.5s</td>
+          <td>sequence_label</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">JAB + TEEP
+FAKE + 1 + 2</td>
+        </tr><tr>
+          <td>11.5-15.33s</td>
+          <td>sequence_label</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">JAB + TEEP
+FAKE + 1 + 2</td>
+        </tr><tr>
+          <td>15.33-19.17s</td>
+          <td>sequence_label</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">TEEP + FAKE + PIVOT</td>
+        </tr><tr>
+          <td>19.17-23.0s</td>
+          <td>sequence_label</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">TEEP + FAKE + PIVOT
++ KNEE</td>
+        </tr><tr>
+          <td>23.0-26.83s</td>
+          <td>sequence_label</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">TEEP + FAKE + UP ELBOW</td>
+        </tr><tr>
+          <td>26.83-30.67s</td>
+          <td>sequence_label</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">TEEP + FAKE + UP ELBOW</td>
+        </tr><tr>
+          <td>30.67-34.5s</td>
+          <td>sequence_label</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">TEEP + FAKE
++ SWITCH KICK</td>
+        </tr><tr>
+          <td>34.5-38.33s</td>
+          <td>sequence_label</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">TEEP + FAKE
++ SWITCH KICK</td>
+        </tr><tr>
+          <td>38.33-42.17s</td>
+          <td>sequence_label</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">TEEP + FAKE</td>
+        </tr><tr>
+          <td>42.17-46.0s</td>
+          <td>sequence_label</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">TEEP + FAKE
++ JUMP SIDE TEEP</td>
+        </tr>
+      </table>
+
+      <h3>Techniques (6)</h3>
+      
+        <div class="technique">
+          <h4>#1: Fake Lead Teep Combo: Jab + Teep Fake + 1 + 2</h4>
+          <p class="one-line">Jab into a fake teep then 1-2 combo for shadowboxing.</p>
+          <p>Round 1 shadowboxing combo. Throw a jab, follow with a fake lead teep to draw a reaction, then finish with a 1-2 (jab-cross).</p>
+          <table class="kv">
+            <tr><td>body_part</td><td>teep</td></tr>
+            <tr><td>context</td><td>setup</td></tr>
+            <tr><td>tags</td><td>teep, punch, setup, offense</td></tr>
+            <tr><td>drill_format</td><td>shadowboxing, 5-round structured workout</td></tr>
+            <tr><td>stance_context</td><td></td></tr>
+            <tr><td>mechanical_cues</td><td></td></tr>
+            <tr><td>coaching_points</td><td></td></tr>
+            <tr><td>common_errors</td><td></td></tr>
+            <tr><td>evidence</td><td>caption, hashtags, onscreen_text, visual</td></tr>
+            <tr><td>split_reasoning</td><td>Each labeled round presents a distinct combo structure centered on the fake teep concept. Round 1 uses jab + teep fake + 1+2, which is distinct enough from the other rounds to warrant its own record.</td></tr>
+          </table>
+          <details><summary>field confidence</summary>
+            <table class="kv"><tr><td>name</td><td>0.9</td></tr><tr><td>description</td><td>0.9</td></tr><tr><td>body_part</td><td>0.85</td></tr><tr><td>context</td><td>0.8</td></tr><tr><td>category_tag_ids</td><td>0.85</td></tr><tr><td>drill_format</td><td>0.95</td></tr><tr><td>stance_context</td><td></td></tr><tr><td>one_line_description</td><td>0.9</td></tr><tr><td>mechanical_cues</td><td></td></tr><tr><td>coaching_points</td><td></td></tr><tr><td>common_errors</td><td></td></tr></table>
+          </details>
+        </div>
+        <div class="technique">
+          <h4>#2: Fake Lead Teep Combo: Teep + Fake + Pivot</h4>
+          <p class="one-line">Teep into a fake then pivot for shadowboxing.</p>
+          <p>Round 2 shadowboxing combo. Throw a teep, follow with a fake, then execute a pivot to reposition.</p>
+          <table class="kv">
+            <tr><td>body_part</td><td>teep</td></tr>
+            <tr><td>context</td><td>setup</td></tr>
+            <tr><td>tags</td><td>teep, setup, footwork, offense</td></tr>
+            <tr><td>drill_format</td><td>shadowboxing, 5-round structured workout</td></tr>
+            <tr><td>stance_context</td><td></td></tr>
+            <tr><td>mechanical_cues</td><td></td></tr>
+            <tr><td>coaching_points</td><td></td></tr>
+            <tr><td>common_errors</td><td></td></tr>
+            <tr><td>evidence</td><td>caption, hashtags, onscreen_text, visual</td></tr>
+            <tr><td>split_reasoning</td><td>Round 2 introduces a pivot as the finishing element after the fake teep, making it a distinct combo from the other rounds.</td></tr>
+          </table>
+          <details><summary>field confidence</summary>
+            <table class="kv"><tr><td>name</td><td>0.9</td></tr><tr><td>description</td><td>0.9</td></tr><tr><td>body_part</td><td>0.85</td></tr><tr><td>context</td><td>0.8</td></tr><tr><td>category_tag_ids</td><td>0.85</td></tr><tr><td>drill_format</td><td>0.95</td></tr><tr><td>stance_context</td><td></td></tr><tr><td>one_line_description</td><td>0.9</td></tr><tr><td>mechanical_cues</td><td></td></tr><tr><td>coaching_points</td><td></td></tr><tr><td>common_errors</td><td></td></tr></table>
+          </details>
+        </div>
+        <div class="technique">
+          <h4>#3: Fake Lead Teep Combo: Teep + Fake + Pivot + Knee</h4>
+          <p class="one-line">Teep into a fake, pivot, and finish with a knee for shadowboxing.</p>
+          <p>Round 3 shadowboxing combo. Throw a teep, follow with a fake, pivot, then deliver a knee strike.</p>
+          <table class="kv">
+            <tr><td>body_part</td><td>teep</td></tr>
+            <tr><td>context</td><td>setup</td></tr>
+            <tr><td>tags</td><td>teep, knee, setup, offense</td></tr>
+            <tr><td>drill_format</td><td>shadowboxing, 5-round structured workout</td></tr>
+            <tr><td>stance_context</td><td></td></tr>
+            <tr><td>mechanical_cues</td><td></td></tr>
+            <tr><td>coaching_points</td><td></td></tr>
+            <tr><td>common_errors</td><td></td></tr>
+            <tr><td>evidence</td><td>caption, hashtags, onscreen_text, visual</td></tr>
+            <tr><td>split_reasoning</td><td>Round 3 extends Round 2 by adding a knee, making it a separately searchable technique with a distinct finishing weapon.</td></tr>
+          </table>
+          <details><summary>field confidence</summary>
+            <table class="kv"><tr><td>name</td><td>0.9</td></tr><tr><td>description</td><td>0.9</td></tr><tr><td>body_part</td><td>0.85</td></tr><tr><td>context</td><td>0.8</td></tr><tr><td>category_tag_ids</td><td>0.85</td></tr><tr><td>drill_format</td><td>0.95</td></tr><tr><td>stance_context</td><td></td></tr><tr><td>one_line_description</td><td>0.9</td></tr><tr><td>mechanical_cues</td><td></td></tr><tr><td>coaching_points</td><td></td></tr><tr><td>common_errors</td><td></td></tr></table>
+          </details>
+        </div>
+        <div class="technique">
+          <h4>#4: Fake Lead Teep Combo: Teep + Fake + Up Elbow</h4>
+          <p class="one-line">Teep into a fake then finish with an upward elbow for shadowboxing.</p>
+          <p>Round 4 shadowboxing combo. Throw a teep, follow with a fake, then deliver an upward elbow strike.</p>
+          <table class="kv">
+            <tr><td>body_part</td><td>teep</td></tr>
+            <tr><td>context</td><td>setup</td></tr>
+            <tr><td>tags</td><td>teep, elbow, setup, offense</td></tr>
+            <tr><td>drill_format</td><td>shadowboxing, 5-round structured workout</td></tr>
+            <tr><td>stance_context</td><td></td></tr>
+            <tr><td>mechanical_cues</td><td></td></tr>
+            <tr><td>coaching_points</td><td></td></tr>
+            <tr><td>common_errors</td><td></td></tr>
+            <tr><td>evidence</td><td>caption, hashtags, onscreen_text, visual</td></tr>
+            <tr><td>split_reasoning</td><td>Round 4 uses an upward elbow as the finishing weapon after fake teep, distinct from other rounds.</td></tr>
+          </table>
+          <details><summary>field confidence</summary>
+            <table class="kv"><tr><td>name</td><td>0.9</td></tr><tr><td>description</td><td>0.9</td></tr><tr><td>body_part</td><td>0.85</td></tr><tr><td>context</td><td>0.8</td></tr><tr><td>category_tag_ids</td><td>0.85</td></tr><tr><td>drill_format</td><td>0.95</td></tr><tr><td>stance_context</td><td></td></tr><tr><td>one_line_description</td><td>0.9</td></tr><tr><td>mechanical_cues</td><td></td></tr><tr><td>coaching_points</td><td></td></tr><tr><td>common_errors</td><td></td></tr></table>
+          </details>
+        </div>
+        <div class="technique">
+          <h4>#5: Fake Lead Teep Combo: Teep + Fake + Switch Kick</h4>
+          <p class="one-line">Teep into a fake then finish with a switch kick for shadowboxing.</p>
+          <p>Round 4/5 shadowboxing combo. Throw a teep, follow with a fake, then execute a switch kick.</p>
+          <table class="kv">
+            <tr><td>body_part</td><td>teep</td></tr>
+            <tr><td>context</td><td>setup</td></tr>
+            <tr><td>tags</td><td>teep, kick, setup, offense</td></tr>
+            <tr><td>drill_format</td><td>shadowboxing, 5-round structured workout</td></tr>
+            <tr><td>stance_context</td><td></td></tr>
+            <tr><td>mechanical_cues</td><td></td></tr>
+            <tr><td>coaching_points</td><td></td></tr>
+            <tr><td>common_errors</td><td></td></tr>
+            <tr><td>evidence</td><td>caption, hashtags, onscreen_text, visual</td></tr>
+            <tr><td>split_reasoning</td><td>The switch kick as finishing weapon is a unique variation of the fake teep combo structure and independently searchable.</td></tr>
+          </table>
+          <details><summary>field confidence</summary>
+            <table class="kv"><tr><td>name</td><td>0.9</td></tr><tr><td>description</td><td>0.9</td></tr><tr><td>body_part</td><td>0.85</td></tr><tr><td>context</td><td>0.8</td></tr><tr><td>category_tag_ids</td><td>0.85</td></tr><tr><td>drill_format</td><td>0.95</td></tr><tr><td>stance_context</td><td></td></tr><tr><td>one_line_description</td><td>0.9</td></tr><tr><td>mechanical_cues</td><td></td></tr><tr><td>coaching_points</td><td></td></tr><tr><td>common_errors</td><td></td></tr></table>
+          </details>
+        </div>
+        <div class="technique">
+          <h4>#6: Fake Lead Teep Combo: Teep + Fake + Jump Side Teep</h4>
+          <p class="one-line">Teep into a fake then finish with a jumping side teep for shadowboxing.</p>
+          <p>Round 5 shadowboxing combo. Throw a teep, follow with a fake, then execute a jumping side teep.</p>
+          <table class="kv">
+            <tr><td>body_part</td><td>teep</td></tr>
+            <tr><td>context</td><td>setup</td></tr>
+            <tr><td>tags</td><td>teep, setup, offense</td></tr>
+            <tr><td>drill_format</td><td>shadowboxing, 5-round structured workout</td></tr>
+            <tr><td>stance_context</td><td></td></tr>
+            <tr><td>mechanical_cues</td><td></td></tr>
+            <tr><td>coaching_points</td><td></td></tr>
+            <tr><td>common_errors</td><td></td></tr>
+            <tr><td>evidence</td><td>caption, hashtags, onscreen_text, visual</td></tr>
+            <tr><td>split_reasoning</td><td>The jumping side teep is a distinctive athletic finishing technique that is independently searchable and different from all other rounds.</td></tr>
+          </table>
+          <details><summary>field confidence</summary>
+            <table class="kv"><tr><td>name</td><td>0.9</td></tr><tr><td>description</td><td>0.9</td></tr><tr><td>body_part</td><td>0.85</td></tr><tr><td>context</td><td>0.8</td></tr><tr><td>category_tag_ids</td><td>0.85</td></tr><tr><td>drill_format</td><td>0.95</td></tr><tr><td>stance_context</td><td></td></tr><tr><td>one_line_description</td><td>0.9</td></tr><tr><td>mechanical_cues</td><td></td></tr><tr><td>coaching_points</td><td></td></tr><tr><td>common_errors</td><td></td></tr></table>
+          </details>
+        </div>
+
+      <div class="review-controls">
+        <h3>Verdict</h3>
+        <div class="radios"><label><input type="radio" name="verdict-7416755306145008904" value="Approve" onchange="markStatus('7416755306145008904','Approve')"> Approve</label><label><input type="radio" name="verdict-7416755306145008904" value="Over-split" onchange="markStatus('7416755306145008904','Over-split')"> Over-split</label><label><input type="radio" name="verdict-7416755306145008904" value="Under-split" onchange="markStatus('7416755306145008904','Under-split')"> Under-split</label><label><input type="radio" name="verdict-7416755306145008904" value="Unsupported coaching content" onchange="markStatus('7416755306145008904','Unsupported coaching content')"> Unsupported coaching content</label><label><input type="radio" name="verdict-7416755306145008904" value="Wrong tags" onchange="markStatus('7416755306145008904','Wrong tags')"> Wrong tags</label><label><input type="radio" name="verdict-7416755306145008904" value="Other" onchange="markStatus('7416755306145008904','Other')"> Other</label></div>
+        <textarea id="note-7416755306145008904" placeholder="Notes (optional)" oninput="saveNote('7416755306145008904')"></textarea>
+      </div>
+    </section>
+    <section class="clip" id="clip-7481337699501116679">
+      <h2>7481337699501116679 <span class="meta">2025-03-13 &middot; 43.0s &middot; rank 227/545 &middot; consistency baseline (~100-200 checkpoint window)</span></h2>
+      <p><a href="https://www.tiktok.com/@fightclubmuaythai/video/7481337699501116679" target="_blank">https://www.tiktok.com/@fightclubmuaythai/video/7481337699501116679</a></p>
+      <video controls preload="metadata" src="../media/source/7481337699501116679.mp4"></video>
+      <p class="caption">The Switch Kick is a fundamental Muaythai technique that allows you to kick effectively with your non-dominant leg. It’s great for increasing your striking versatility. ================ #muaythai #muaythaibasics #muaythaitechniques #muaythaionline  #fightclubmuaythaigym #เรียนมวย #เรียนมวยไทยลดน้ำหนัก #เรียนมวยไทยอุดร  #ลดน้ำหนัก #weightloss #muaythaifitness #muaythaiboxing #ออกกำลังกาย #muaythaitraining #muaythaiworkout  #kickboxingworkout</p>
+      <p class="hashtags">#muaythai #muaythaibasics #muaythaitechniques #muaythaionline #fightclubmuaythaigym #เร #เร #เร #ลดน #weightloss #muaythaifitness #muaythaiboxing #ออกกำล #muaythaitraining #muaythaiworkout #kickboxingworkout</p>
+
+      <h3>12-frame storyboard</h3>
+      <div class="storyboard"><figure><img src="../data/fightclub/frames/7481337699501116679_text_00.jpg"><figcaption>0</figcaption></figure><figure><img src="../data/fightclub/frames/7481337699501116679_text_01.jpg"><figcaption>1</figcaption></figure><figure><img src="../data/fightclub/frames/7481337699501116679_text_02.jpg"><figcaption>2</figcaption></figure><figure><img src="../data/fightclub/frames/7481337699501116679_text_03.jpg"><figcaption>3</figcaption></figure><figure><img src="../data/fightclub/frames/7481337699501116679_text_04.jpg"><figcaption>4</figcaption></figure><figure><img src="../data/fightclub/frames/7481337699501116679_text_05.jpg"><figcaption>5</figcaption></figure><figure><img src="../data/fightclub/frames/7481337699501116679_text_06.jpg"><figcaption>6</figcaption></figure><figure><img src="../data/fightclub/frames/7481337699501116679_text_07.jpg"><figcaption>7</figcaption></figure><figure><img src="../data/fightclub/frames/7481337699501116679_text_08.jpg"><figcaption>8</figcaption></figure><figure><img src="../data/fightclub/frames/7481337699501116679_text_09.jpg"><figcaption>9</figcaption></figure><figure><img src="../data/fightclub/frames/7481337699501116679_text_10.jpg"><figcaption>10</figcaption></figure><figure><img src="../data/fightclub/frames/7481337699501116679_text_11.jpg"><figcaption>11</figcaption></figure></div>
+
+      <h3>On-screen text (12)</h3>
+      <table class="ost-table">
+        <tr><th>time</th><th>type</th><th>conf</th><th>uncertain</th><th>text</th></tr>
+        <tr>
+          <td>0.0-3.58s</td>
+          <td>sequence_label</td>
+          <td>0.8</td>
+          <td>yes</td>
+          <td class="ost-text">6 STEPS TUTORIAL O</td>
+        </tr><tr>
+          <td>3.58-7.17s</td>
+          <td>sequence_label</td>
+          <td>0.99</td>
+          <td></td>
+          <td class="ost-text">STEP 1</td>
+        </tr><tr>
+          <td>7.17-10.75s</td>
+          <td>sequence_label</td>
+          <td>0.99</td>
+          <td></td>
+          <td class="ost-text">STEP 1</td>
+        </tr><tr>
+          <td>10.75-14.33s</td>
+          <td>sequence_label</td>
+          <td>0.99</td>
+          <td></td>
+          <td class="ost-text">STEP 2</td>
+        </tr><tr>
+          <td>14.33-17.92s</td>
+          <td>instruction</td>
+          <td>0.95</td>
+          <td></td>
+          <td class="ost-text">STEP 2
+UPPER BODY MOVEMENT</td>
+        </tr><tr>
+          <td>17.92-21.5s</td>
+          <td>instruction</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">STEP 3
+PIVOT HEEL</td>
+        </tr><tr>
+          <td>21.5-25.08s</td>
+          <td>instruction</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">STEP 4
+TWIST</td>
+        </tr><tr>
+          <td>25.08-28.67s</td>
+          <td>instruction</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">STEP 5
+ANGLE KICK</td>
+        </tr><tr>
+          <td>28.67-32.25s</td>
+          <td>instruction</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">STEP 5
+ANGLE KICK</td>
+        </tr><tr>
+          <td>32.25-35.83s</td>
+          <td>sequence_label</td>
+          <td>0.99</td>
+          <td></td>
+          <td class="ost-text">STEP 6</td>
+        </tr><tr>
+          <td>35.83-39.42s</td>
+          <td>instruction</td>
+          <td>0.97</td>
+          <td></td>
+          <td class="ost-text">STEP 6
+FOCUS ON THE CLOSER PAD AND KICK WITH THE SHIN.
+PADWORK</td>
+        </tr><tr>
+          <td>39.42-43.0s</td>
+          <td>engagement_prompt</td>
+          <td>0.99</td>
+          <td></td>
+          <td class="ost-text">SAVE AND TRY
+FOLLOW FOR MORE</td>
+        </tr>
+      </table>
+
+      <h3>Techniques (1)</h3>
+      
+        <div class="technique">
+          <h4>#1: Switch Kick</h4>
+          <p class="one-line">Step-by-step breakdown of the switch kick for non-dominant leg striking versatility.</p>
+          <p>A 6-step tutorial breaking down the switch kick — a Muay Thai technique that allows effective kicking with the non-dominant leg. Steps include: stance setup (Step 1), upper body movement/arm swing (Step 2), pivot heel (Step 3), twist of the body (Step 4), angle kick with shin on bag (Step 5), and padwork application focusing on the closer pad and kicking with the shin (Step 6).</p>
+          <table class="kv">
+            <tr><td>body_part</td><td>kick</td></tr>
+            <tr><td>context</td><td>offense</td></tr>
+            <tr><td>tags</td><td>kick, offense, Muay Tae</td></tr>
+            <tr><td>drill_format</td><td>Solo progressive step-by-step breakdown (Steps 1–5 solo/bag work; Step 6 padwork with partner)</td></tr>
+            <tr><td>stance_context</td><td></td></tr>
+            <tr><td>mechanical_cues</td><td>[&#x27;Upper body movement during switch (Step 2)&#x27;, &#x27;Pivot the heel of the lead foot (Step 3)&#x27;, &#x27;Twist the body through the kick (Step 4)&#x27;, &#x27;Kick at an angle (Step 5)&#x27;, &#x27;Focus on the closer pad and kick with the shin (Step 6)&#x27;]</td></tr>
+            <tr><td>coaching_points</td><td>[&#x27;Focus on the closer pad and kick with the shin&#x27;]</td></tr>
+            <tr><td>common_errors</td><td></td></tr>
+            <tr><td>evidence</td><td>caption, hashtags, onscreen_text, visual</td></tr>
+            <tr><td>split_reasoning</td><td>The entire clip is a single 6-step tutorial for one technique — the switch kick. All steps are part of the same connected progressive breakdown. There is no independently searchable separate technique shown; the steps (upper body movement, pivot heel, twist, angle kick, padwork) are all sub-components of executing the switch kick, so this is kept as one technique record.</td></tr>
+          </table>
+          <details><summary>field confidence</summary>
+            <table class="kv"><tr><td>name</td><td>0.99</td></tr><tr><td>description</td><td>0.95</td></tr><tr><td>body_part</td><td>0.99</td></tr><tr><td>context</td><td>0.9</td></tr><tr><td>category_tag_ids</td><td>0.9</td></tr><tr><td>drill_format</td><td>0.95</td></tr><tr><td>stance_context</td><td></td></tr><tr><td>one_line_description</td><td>0.97</td></tr><tr><td>mechanical_cues</td><td>0.92</td></tr><tr><td>coaching_points</td><td>0.95</td></tr><tr><td>common_errors</td><td></td></tr></table>
+          </details>
+        </div>
+
+      <div class="review-controls">
+        <h3>Verdict</h3>
+        <div class="radios"><label><input type="radio" name="verdict-7481337699501116679" value="Approve" onchange="markStatus('7481337699501116679','Approve')"> Approve</label><label><input type="radio" name="verdict-7481337699501116679" value="Over-split" onchange="markStatus('7481337699501116679','Over-split')"> Over-split</label><label><input type="radio" name="verdict-7481337699501116679" value="Under-split" onchange="markStatus('7481337699501116679','Under-split')"> Under-split</label><label><input type="radio" name="verdict-7481337699501116679" value="Unsupported coaching content" onchange="markStatus('7481337699501116679','Unsupported coaching content')"> Unsupported coaching content</label><label><input type="radio" name="verdict-7481337699501116679" value="Wrong tags" onchange="markStatus('7481337699501116679','Wrong tags')"> Wrong tags</label><label><input type="radio" name="verdict-7481337699501116679" value="Other" onchange="markStatus('7481337699501116679','Other')"> Other</label></div>
+        <textarea id="note-7481337699501116679" placeholder="Notes (optional)" oninput="saveNote('7481337699501116679')"></textarea>
+      </div>
+    </section>
+
+<script>
+const VIDEO_IDS = ["7313783979323297030", "7361077091669921041", "7376666311960841477", "7555925852098186514", "7350715398523800852", "7317133088339791109", "7312006262097546501", "7382247835649051910", "7416755306145008904", "7481337699501116679"];
+const verdicts = {};
+const notes = {};
+
+function markStatus(vid, verdict) {
+  verdicts[vid] = verdict;
+  const cell = document.getElementById('status-' + vid);
+  cell.textContent = verdict;
+  cell.style.color = (verdict === 'Approve') ? '#0a0' : '#c00';
+  updateSummary();
+}
+
+function saveNote(vid) {
+  notes[vid] = document.getElementById('note-' + vid).value;
+}
+
+function updateSummary() {
+  const n = Object.keys(verdicts).length;
+  document.getElementById('summary-line').textContent = n + ' / ' + VIDEO_IDS.length + ' reviewed';
+}
+
+function exportReviews() {
+  const out = {
+    exported_at: new Date().toISOString(),
+    reviewer: 'Ben',
+    n_clips: VIDEO_IDS.length,
+    reviews: VIDEO_IDS.map(vid => ({
+      video_id: vid,
+      verdict: verdicts[vid] || null,
+      note: notes[vid] || ''
+    }))
+  };
+  const blob = new Blob([JSON.stringify(out, null, 2)], {type: 'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'spotcheck_verdicts.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+</script>
+</body>
+</html>

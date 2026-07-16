@@ -1,0 +1,846 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Teep Foundation -- Audit View (DRAFT, pending Arc 2 review)</title>
+<style>
+
+body { font-family: system-ui, sans-serif; max-width: 980px; margin: 0 auto; padding: 20px; line-height: 1.45; color: #222; }
+h2 { font-size: 20px; border-top: 3px solid #333; padding-top: 16px; margin-top: 40px; }
+h3 { font-size: 15px; margin: 16px 0 6px 0; }
+.block-min { font-size: 13px; font-weight: normal; color: #666; }
+.folder-note { background: #f4f4f4; border-radius: 6px; padding: 8px 14px; margin: 10px 0; font-size: 13px; }
+.folder-note pre { white-space: pre-wrap; font-size: 12px; }
+#night-nav { margin: 14px 0; }
+#night-nav a { margin-right: 14px; }
+.menu-note { font-size: 12.5px; color: #666; font-style: italic; margin: 2px 0 8px 0; }
+
+.audit-block { border-left: 4px solid #444; padding-left: 14px; margin: 14px 0 20px 0; }
+.audit-item { border: 1px solid #ddd; border-radius: 6px; padding: 10px 14px; margin-bottom: 10px; background: #fafafa; }
+.audit-item-head { display: flex; justify-content: space-between; font-weight: bold; font-size: 14.5px; }
+.audit-min { color: #555; font-size: 13px; }
+.tags { margin: 4px 0 6px 0; }
+.tag { display: inline-block; font-size: 11px; background: #e3e3e3; border-radius: 8px; padding: 1px 7px; margin-right: 4px; }
+.src-line { font-size: 12.5px; margin: 4px 0; }
+.db-note { color: #666; font-style: italic; }
+video { max-width: 320px; display: block; margin: 6px 0; background: #000; }
+.kv-row { margin: 4px 0; font-size: 13px; }
+.kv-row .k { font-weight: bold; margin-right: 6px; }
+.ladder-badge { background: #333; color: #fff; border-radius: 8px; padding: 1px 8px; font-size: 12px; }
+.why-block, .rejected-block, .validation-summary, .warnings-block { background: #f0f5ef; border: 1px solid #cfe0cd; border-radius: 6px; padding: 10px 16px; margin-top: 14px; }
+.rejected-table { border-collapse: collapse; width: 100%; margin-top: 6px; }
+.rejected-table th, .rejected-table td { border: 1px solid #ccc; padding: 5px 8px; font-size: 13px; text-align: left; vertical-align: top; }
+table.kv td { border: 1px solid #ddd; padding: 4px 8px; font-size: 13px; }
+table.kv td:first-child { font-weight: bold; width: 200px; background: #f7f7f7; }
+.mono { font-family: monospace; font-size: 12px; word-break: break-all; }
+.objective-line { font-size: 13.5px; }
+.logistics { background: #eef2fa; border-radius: 6px; padding: 8px 14px; margin-bottom: 14px; font-size: 13.5px; }
+.logi-row { margin: 2px 0; }
+.safety-list { margin: 2px 0 2px 18px; }
+#view-switch { position: sticky; top: 0; background: #fff; padding: 8px 0; border-bottom: 2px solid #333; z-index: 5; }
+.tb-table, .struct-table { border-collapse: collapse; width: 100%; margin: 6px 0; font-size: 12.5px; }
+.tb-table th, .struct-table th { background: #e6ede5; text-align: left; padding: 4px 8px; }
+.tb-table td, .struct-table td { border: 1px solid #ddd; padding: 4px 8px; vertical-align: top; }
+.tb-table td:first-child, .struct-table td:first-child { font-weight: bold; width: 160px; background: #f7f7f7; }
+.constructed-note { background: #fff6e0; border-radius: 4px; padding: 4px 6px; }
+.ranking-block { background: #f0f0f7; border: 1px solid #ccd; border-radius: 6px; padding: 8px 12px; margin-top: 8px; font-size: 12.5px; }
+.ranking-block summary { cursor: pointer; font-weight: bold; color: #336; }
+.ranking-selected { background: #e2f5e2; font-weight: bold; }
+.draft-banner { background: #fdf0d5; border: 1px solid #e0b050; border-radius: 6px; padding: 8px 14px; margin: 10px 0; font-size: 13px; }
+</style>
+</head>
+<body>
+<div id="view-switch">
+  <b>Teep Foundation -- Audit View (DRAFT)</b> &nbsp;|&nbsp; <a href="arc3-coach-view.html">Switch to Coach View</a> &nbsp;|&nbsp; <a href="arc3-review.html">Generation Review</a> &nbsp;|&nbsp; <a href="arc2-audit-view.html">Arc 2 Audit View</a>
+</div>
+<div class="draft-banner"><b>DRAFT -- PENDING ARC 2 REVIEW.</b> This arc has not been approved. It depends on Arc 2 content (the jab-cross combination) which is itself still pending review. Do not use this arc as a basis for generating Arc 4.</div>
+<details class="folder-note"><summary>Video folder requirement (click to expand)</summary><pre>T4/
+  review/
+    coach-view.html
+    audit-view.html
+  media/
+    source/
+      video-file.mp4
+
+These HTML pages and the media/source video directory must keep this relative
+folder relationship (review/ and media/ are siblings under T4/) -- moving one
+without the other breaks every embedded video link. Video paths are local and
+relative in this phase; nothing is hosted. The relative base is a single
+configured constant (t4_paths.VIDEO_SRC_BASE), not scattered strings.</pre></details>
+<p><b>arc_id:</b> <span class="mono">arc-teep-foundation-a8c4be4d3ee6</span> &nbsp; <b>Level:</b> Beginner &nbsp; <b>Theme:</b> Teep: lead mechanics through jab-cross-teep integration</p>
+<p><b>Terminal goal:</b> By the end of Night 3, students can chain a jab-cross into a teep, on shields, with clean distance control.</p>
+<p><b>Progression:</b> Night 1 teaches the lead teep in isolation, connected to its role as a distance-management tool (the &#x27;foot jab&#x27; comparison). Night 2 adds the rear teep and combines both into an alternating rhythm. Night 3 chains the teep onto Arc 2&#x27;s jab-cross combination, assembling all three nights into the arc&#x27;s terminal drill: jab-cross into a teep, on shields, with clean distance control. Each night begins (from Night 2 onward) with a compressed review of the prior terminal skill so a student who missed a night can still participate. Each night runs Warm Up (8) -&gt; New and Exciting (12) -&gt; Muay Thai Curriculum (35) -&gt; Burnout (5): an endorphin sandwich -- energetic open, focused technical teaching, hard effort close.</p>
+<div class="warnings-block"><h3>Generation warnings</h3><ul><li>Night 2: Curriculum uses a 4th item (at the beginner cap).</li></ul></div>
+<nav id="night-nav"><a href="#audit-arc-teep-foundation-a8c4be4d3ee6-night1">Night 1 -- Lead Teep Foundation</a><a href="#audit-arc-teep-foundation-a8c4be4d3ee6-night2">Night 2 -- Rear Teep and Alternating Rhythm</a><a href="#audit-arc-teep-foundation-a8c4be4d3ee6-night3">Night 3 -- Jab-Cross-Teep Integration</a></nav>
+
+    <section class="night" id="audit-arc-teep-foundation-a8c4be4d3ee6-night1">
+      <h2>Night 1 -- Lead Teep Foundation</h2>
+      <p class="objective-line"><b>Learning objective:</b> Throw a clean, balanced lead teep with a controlled return to stance.</p>
+      <div class="logistics"><div class="logi-row"><b>Level:</b> Beginner</div><div class="logi-row"><b>Objective:</b> Throw a clean, balanced lead teep with a controlled return to stance.</div><div class="logi-row"><b>Equipment checklist:</b> 10 kicking shields</div><div class="logi-row"><b>Format:</b> Partner pairs required</div><div class="logi-row"><b>Space:</b> Open floor. 4 rows of 5 for Warm Up and the New and Exciting balance-target relay. 10 partner pairs spread across the floor for the shield terminal drill.</div><div class="logi-row"><b>Safety:</b><ul class="safety-list"><li><b>Lead teep mechanics:</b> Use only the lead-teep mechanics from this source -- the feint and combination-setup content later in this same video is taught in a later night/arc.</li></ul></div></div>
+      
+    <div class="audit-block">
+      <h3>Warm Up <span class="block-min">8 min</span></h3>
+      <p class="menu-note">Warm-up menu: run all items or adjust, combine and skip based on the room.</p>
+      
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Jumping jacks</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Opens the class raising heart rate immediately.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Raise heart rate with a fully generic movement.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General accessible cardio</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>45 seconds continuous</td></tr><tr><td>Sides</td><td>symmetric, no side distinction</td></tr><tr><td>Reset position</td><td>n/a, continuous movement</td></tr><tr><td>Speed power</td><td>steady energetic pace</td></tr><tr><td>Coach watches</td><td>everyone moving, energy in the room</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">High knees in place</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Keeps heart rate up and previews the knee-lift the teep chamber uses.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Drive the knees up at a quick cadence, in place.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General accessible cardio</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>45 seconds continuous</td></tr><tr><td>Sides</td><td>alternating, symmetric</td></tr><tr><td>Reset position</td><td>n/a, continuous</td></tr><tr><td>Speed power</td><td>quick cadence</td></tr><tr><td>Coach watches</td><td>knees driving up</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Fast feet</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Continues raising energy with quick, light footwork.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Quick, light footwork in place.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General accessible cardio</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>45 seconds continuous</td></tr><tr><td>Sides</td><td>symmetric</td></tr><tr><td>Reset position</td><td>n/a, continuous</td></tr><tr><td>Speed power</td><td>quick, light</td></tr><tr><td>Coach watches</td><td>staying on the balls of the feet</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Single-leg balance hold</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Builds the one-leg balance a teep depends on, kept brisk to stay energetic.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Quick alternating single-leg balance holds.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General athletic movement, done briskly for energy</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (mobility)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>8 quick alternating holds, 2 seconds each</td></tr><tr><td>Sides</td><td>both legs</td></tr><tr><td>Reset position</td><td>n/a, continuous</td></tr><tr><td>Speed power</td><td>brisk pace</td></tr><tr><td>Coach watches</td><td>everyone staying upright and moving</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Bodyweight squats</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Adds leg-focused energetic work.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Full bodyweight squats at a steady energetic pace.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General accessible cardio</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>12 reps</td></tr><tr><td>Sides</td><td>symmetric</td></tr><tr><td>Reset position</td><td>standing between reps</td></tr><tr><td>Speed power</td><td>controlled but energetic</td></tr><tr><td>Coach watches</td><td>knees tracking over toes, chest up</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Athletic base and guard recap</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Re-establishes the base tonight&#x27;s teep is thrown from, so a true first-timer can follow without prior weeks.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Find the athletic base and high guard, hold briefly.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General athletic movement, recapping Weeks 1-3 for any first-timer</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">technical (technical)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>3 holds, 5 seconds each</td></tr><tr><td>Sides</td><td>symmetric</td></tr><tr><td>Reset position</td><td>relaxed between holds</td></tr><tr><td>Speed power</td><td>static hold</td></tr><tr><td>Coach watches</td><td>hands at eyebrow height, soft knees</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Single-leg weight-shift priming</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Primes shifting weight fully onto the rear foot, the first phase of the teep chamber, with zero kick thrown yet.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Shift weight fully onto the rear foot until the lead foot is light, hold, return.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General athletic movement -- new tonight, self-contained</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">technical (technical)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>6 slow reps</td></tr><tr><td>Sides</td><td>both legs practiced</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>slow, controlled, no kick</td></tr><tr><td>Coach watches</td><td>weight fully commits to the rear foot</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Knee-chamber priming (no extension)</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Primes the knee-chamber phase Curriculum&#x27;s teep rung will name and refine, with no leg extension yet.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Lift the lead knee toward the chest and hold, no kick thrown.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General athletic movement -- new tonight, self-contained</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">technical (technical)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>6 reps, 2-second holds</td></tr><tr><td>Sides</td><td>lead leg; whichever is the student&#x27;s natural lead</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>slow, controlled</td></tr><tr><td>Coach watches</td><td>knee reaches toward the chest, standing leg stays soft</td></tr></table>
+      
+    </div>
+    </div>
+    <div class="audit-block">
+      <h3>New and Exciting <span class="block-min">12 min</span></h3>
+      
+      
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Balance-hold target relay</span>
+        <span class="audit-min">12 min</span>
+      </div>
+      <div class="tags"><span class="tag">teep</span><span class="tag">balance</span></div>
+      
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">arc_constructed</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Arc-constructed drill (light target-touch balance game; adapted from Easton Kickboxing -- Lead Teep, chamber/balance phase)</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">Turns the one-leg balance the teep depends on into a live partner game with real target feedback and a competitive count.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Light, constrained knee-chamber-and-touch reps into a partner-held kicking shield, counted for a friendly competitive total.</span></div><div class="kv-row"><span class="k">Prerequisites / safety</span><span class="v">Light, constrained contact only -- this previews target awareness and balance, it is not the technical teaching moment for the teep.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Partner drill -- 10 pairs needed.</span></div><div class="kv-row"><span class="k">Equipment</span><span class="v">kicking shield</span></div><div class="kv-row constructed-note"><span class="k">Arc-constructed drill</span><span class="v">No single source contains this complete drill. Component technique_ids: 1770.</span></div><div class="kv-row"><span class="k">Engagement features</span><span class="v">partner_interaction, equipment, timing, competition, target_work, immediate_feedback</span></div>
+      
+      <table class="struct-table"><tr><th colspan="2">Exact drill structure</th></tr><tr><td>Partner a</td><td>Does light, constrained knee-lift-and-touch reps into the kicking shield Partner B holds -- a tap/touch, not a full-power strike -- for a timed 30-second round, counting reps out loud.</td></tr><tr><td>Partner b</td><td>Holds a kicking shield at body height, braced, calling out the running count with Partner A.</td></tr><tr><td>Equipment</td><td>1 kicking shield per pair (10 shields for a class of 20).</td></tr><tr><td>Contact level</td><td>Light touch/tap only, constrained movement -- full-power technique is taught later in Curriculum.</td></tr><tr><td>Reps</td><td>3 rounds of 30 seconds per role</td></tr><tr><td>Rounds</td><td>3</td></tr><tr><td>Switch point</td><td>After each 30-second round, partners switch immediately: holder becomes toucher, toucher becomes holder.</td></tr><tr><td>Reset condition</td><td>Reset to athletic base between individual touches; full reset to starting position at the top of each new round.</td></tr><tr><td>Coaching pace</td><td>Coach starts/stops each 30-second round on a visible clock and calls out the switch.</td></tr><tr><td>Safety limits</td><td>Touch/tap contact only -- shield holder must brace before each round begins; no full-power strikes.</td></tr></table>
+      
+      
+    </div>
+    </div>
+    <div class="audit-block">
+      <h3>Muay Thai Curriculum <span class="block-min">35 min</span></h3>
+      
+      
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Lead teep mechanics</span>
+        <span class="audit-min">12 min</span>
+      </div>
+      <div class="tags"><span class="tag">teep</span><span class="tag">offense</span></div>
+      <div class="src-line"><span class="db-note">No external link — source material is on file in the T4 database.</span></div>
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">Easton Kickboxing — technique_id [1770], source_id 215</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Easton Kickboxing -- Lead Teep</span></div><div class="kv-row"><span class="k">Ladder role</span><span class="v ladder-badge">Rung</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">Chunk A -- the arc&#x27;s first and most important technique, taught from the richest available breakdown of the four-part teep motion.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Shift weight to the rear foot, chamber the lead knee high, drive the hips forward, extend and strike with the ball of the foot, control the return to stance.</span></div><div class="kv-row"><span class="k">Prerequisites / safety</span><span class="v">Use only the lead-teep mechanics from this source -- the feint and combination-setup content later in this same video is taught in a later night/arc.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison, coach circulates and corrects.</span></div>
+      <table class="tb-table"><tr><th colspan="2">Time breakdown (12 min total)</th></tr><tr><td>Demo</td><td>2.5 min</td></tr><tr><td>Setup</td><td>0.5 min</td></tr><tr><td>Working</td><td>9 min</td></tr></table>
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>5 sets of 6 teeps, reset to stance between every teep</td></tr><tr><td>Sides</td><td>lead leg teeps only; whichever stance is the student&#x27;s natural one (orthodox or southpaw) -- no switching mid-arc</td></tr><tr><td>Reset position</td><td>full stance reset after each teep</td></tr><tr><td>Speed power</td><td>controlled, technical focus, coach corrects between sets</td></tr><tr><td>Coach watches</td><td>weight-shift timing, knee-chamber height, controlled return</td></tr></table>
+      
+    <details class="ranking-block">
+      <summary>Source ranking (easton_kickboxing, tier 1, evidence high)</summary>
+      <table class="tb-table">
+        <tr><th>Candidate</th><th>Source type</th><th>Tier</th><th>Evidence strength</th><th>Score</th><th></th></tr>
+        <tr class="ranking-selected"><td>Easton Kickboxing - Lead Teep</td><td>easton_kickboxing</td><td>1</td><td>high</td><td>45</td><td>SELECTED</td></tr><tr class=""><td>Easton Fundamentals - Teep Variations</td><td>easton_fundamentals</td><td>1</td><td>high</td><td>45</td><td></td></tr>
+      </table>
+      <p><b>Why it won:</b> Both sources are tier 1 with high-confidence coaching detail, so this rung came down to content depth rather than tier: Kickboxing&#x27;s Lead Teep video breaks the kick into an explicit four-phase sequence (up, out, in, down) with 8 mechanical cues and 12 coaching points including balance-specific guidance, while Fundamentals&#x27; Teep Variations entry covers the same technique with 6 cues in a shorter, more general form. This is a genuine specificity tiebreak between two equally-trusted tier-1 sources, not a preference for the older pool.</p>
+      <p><b>Fundamentals surfaced naturally?</b> in pool, did not win this rung</p>
+      <p><b>Weaker source beat a stronger candidate?</b> no -- the top-scored candidate was selected</p>
+    </details>
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Teep as a range tool -- the foot jab comparison</span>
+        <span class="audit-min">8 min</span>
+      </div>
+      <div class="tags"><span class="tag">teep</span><span class="tag">distance</span></div>
+      <div class="src-line"><span class="db-note">No external link — source material is on file in the T4 database.</span></div>
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">easton_fundamentals — technique_id [3435], source_id 893</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Easton Fundamentals -- Teep Variations</span></div><div class="kv-row"><span class="k">Ladder role</span><span class="v ladder-badge">Rung</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">Chunk B -- connects tonight&#x27;s teep to this arc&#x27;s distance-management purpose, comparing it directly to the jab students already know from Week 2.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Throw the teep as a distance-control tool, comparing its purpose directly to the jab.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div>
+      <table class="tb-table"><tr><th colspan="2">Time breakdown (8 min total)</th></tr><tr><td>Demo</td><td>1.5 min</td></tr><tr><td>Setup</td><td>0.5 min</td></tr><tr><td>Working</td><td>6 min</td></tr></table>
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>4 sets of 6 teeps, focused on range/timing rather than power</td></tr><tr><td>Sides</td><td>lead leg</td></tr><tr><td>Reset position</td><td>full stance reset after each teep</td></tr><tr><td>Speed power</td><td>controlled</td></tr><tr><td>Coach watches</td><td>teep thrown at jab-equivalent range, not overcommitted</td></tr></table>
+      
+    <details class="ranking-block">
+      <summary>Source ranking (easton_fundamentals, tier 1, evidence high)</summary>
+      <table class="tb-table">
+        <tr><th>Candidate</th><th>Source type</th><th>Tier</th><th>Evidence strength</th><th>Score</th><th></th></tr>
+        <tr class="ranking-selected"><td>Easton Fundamentals - Teep Variations</td><td>easton_fundamentals</td><td>1</td><td>high</td><td>45</td><td>SELECTED</td></tr><tr class=""><td>Easton Kickboxing - Lead Teep</td><td>easton_kickboxing</td><td>1</td><td>high</td><td>45</td><td></td></tr>
+      </table>
+      <p><b>Why it won:</b> Fundamentals&#x27; Teep Variations entry is the only source that explicitly frames the teep as a distance-management tool via the &#x27;foot jab&#x27; comparison -- directly reinforcing this night&#x27;s purpose and this arc&#x27;s link back to Arc 2&#x27;s jab. Kickboxing&#x27;s Lead Teep video also makes a similar range comparison in passing, but its primary content is mechanics (already used for the prior rung); using it again here would be redundant rather than additive.</p>
+      <p><b>Fundamentals surfaced naturally?</b> yes -- a Fundamentals candidate was in the pool and won this rung</p>
+      <p><b>Weaker source beat a stronger candidate?</b> no -- the top-scored candidate was selected</p>
+    </details>
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Terminal shield drill -- lead teep on kicking shields, 10 pairs</span>
+        <span class="audit-min">15 min</span>
+      </div>
+      <div class="tags"><span class="tag">teep</span><span class="tag">offense</span></div>
+      <div class="src-line"><span class="db-note">No external link — source material is on file in the T4 database.</span></div>
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">arc_constructed — technique_id [1770]</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Arc-constructed drill -- kicking-shield application of tonight&#x27;s lead teep mechanics (Easton Kickboxing Lead Teep). No single catalog source contains a complete kicking-shield-holding structure for the plain lead teep alone.</span></div><div class="kv-row"><span class="k">Ladder role</span><span class="v ladder-badge">Terminal</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">The assembled application of tonight&#x27;s ladder -- a plain lead teep on a kicking shield, no combination, matching the night&#x27;s single-technique scope.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Repeated lead teeps into a held kicking shield, holding the mechanics just taught, with a real feedback loop.</span></div><div class="kv-row"><span class="k">Prerequisites / safety</span><span class="v">Requires the lead teep mechanics taught earlier tonight.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Partner shield-holder drill -- 10 pairs needed.</span></div><div class="kv-row constructed-note"><span class="k">Arc-constructed drill</span><span class="v">No single source contains this complete drill. Component technique_ids: 1770.</span></div>
+      <table class="tb-table"><tr><th colspan="2">Time breakdown (15 min total)</th></tr><tr><td>Demo</td><td>1.5 min</td></tr><tr><td>Setup</td><td>1 min</td></tr><tr><td>Working</td><td>11 min</td></tr><tr><td>Switch</td><td>1.5 min</td></tr></table>
+      <table class="struct-table"><tr><th colspan="2">Exact drill structure</th></tr><tr><td>Partner a</td><td>Strikes first. Throws a lead teep into the kicking shield Partner B holds. Resets to full stance after every single teep before throwing the next.</td></tr><tr><td>Partner b</td><td>Holds one kicking shield at body height with both hands, braced on the back leg. Calls &#x27;ready&#x27; before each rep.</td></tr><tr><td>Equipment</td><td>1 kicking shield per pair (10 shields total for a class of 20)</td></tr><tr><td>Contact level</td><td>50% power, controlled, technical focus</td></tr><tr><td>Reps</td><td>2 rounds of 8 teeps per student (16 teeps per student total)</td></tr><tr><td>Rounds</td><td>2</td></tr><tr><td>Switch point</td><td>After Partner A completes round 1 (8 teeps), partners switch immediately: B becomes striker, A becomes holder, for B&#x27;s round 1. Repeat for round 2.</td></tr><tr><td>Reset condition</td><td>Striker resets to full stance after every individual teep; pair resets to neutral facing position before each new round.</td></tr><tr><td>Coaching pace</td><td>Coach calls out round start/stop and circulates correcting mechanics between reps.</td></tr><tr><td>Safety limits</td><td>50% power cap; shield holder must call &#x27;ready&#x27; before each rep so the striker never teeps a target that isn&#x27;t set.</td></tr></table>
+      
+      
+    </div>
+    </div>
+    <div class="audit-block">
+      <h3>Burnout <span class="block-min">5 min</span></h3>
+      
+      
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Teep-volume shield burst</span>
+        <span class="audit-min">5 min</span>
+      </div>
+      <div class="tags"><span class="tag">teep</span></div>
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">A balance-and-endurance finisher using tonight&#x27;s exact technique (lead teep) at maximum volume, closing the class at high effort.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Hard-effort lead-teep-volume finisher on the kicking shields already in use tonight.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Partner drill -- 10 pairs, same shields as New and Exciting.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">burnout</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General Muay Thai conditioning (WCS Burnout pool -- shield bursts/kick-count rounds)</span></div><div class="kv-row"><span class="k">Exact Burnout format</span><span class="v">4 rounds of 75 seconds, exactly 5 minutes. Each round: Partner A teeps the shield for 30s max controlled volume, quick 7-second switch, Partner B teeps the shield for 30s max controlled volume, quick 8-second switch/reset, next round begins immediately.</span></div><div class="kv-row"><span class="k">Coach call structure</span><span class="v">Coach runs a repeating 75-second timer, calls &#x27;SWITCH&#x27; at each interval, counts down the last 10 seconds of the final round.</span></div><div class="kv-row"><span class="k">Scaling option</span><span class="v">Scale from full-speed teeps to a slower, fully-controlled balance-focused pace for students whose balance fatigues early.</span></div><div class="kv-row"><span class="k">Safety limit</span><span class="v">Teeps stay technically controlled even at speed -- no wild, off-balance kicks. Shield holder must brace fully every rep.</span></div>
+      
+      <table class="struct-table"><tr><th colspan="2">Exact drill structure</th></tr><tr><td>Partner a</td><td>Teeps the kicking shield Partner B holds for 30 seconds of maximum controlled volume each round.</td></tr><tr><td>Partner b</td><td>Holds the shield braced for Partner A&#x27;s 30-second work interval, then the roles switch.</td></tr><tr><td>Equipment</td><td>1 kicking shield per pair (the same shields used in tonight&#x27;s New and Exciting drill).</td></tr><tr><td>Contact level</td><td>Full controlled power -- this is the effort finisher, unlike the light-touch work earlier tonight.</td></tr><tr><td>Reps</td><td>4 rounds x 30s work per role</td></tr><tr><td>Rounds</td><td>4</td></tr><tr><td>Switch point</td><td>Every 30 seconds, immediate switch (7-8 second transition).</td></tr><tr><td>Reset condition</td><td>n/a -- continuous work within each round, full stop only at the end of the 5 minutes.</td></tr><tr><td>Equal work note</td><td>Both partners get exactly 30 seconds of teeping work in every round -- work is equal by construction.</td></tr><tr><td>Coaching pace</td><td>Coach runs the interval timer and calls switches.</td></tr><tr><td>Safety limits</td><td>Controlled technical teeps even under fatigue; shield holder braces every rep.</td></tr></table>
+      
+      
+    </div>
+    </div>
+      <div class="why-block">
+        <h3>Why these sources were selected</h3>
+        <p>Easton Kickboxing&#x27;s Lead Teep video carries the core mechanics because its four-phase breakdown is the richest single-technique teep source in the catalog, tied on tier with Fundamentals but ahead on content depth. Easton Fundamentals&#x27; Teep Variations entry carries the range/distance-framing rung because it makes the jab comparison this arc&#x27;s own design leans on. Warm Up, New and Exciting, and Burnout are arc-constructed to open and close the class at high energy.</p>
+      </div>
+      
+    <div class="rejected-block">
+      <h3>Deferred / excluded candidates</h3>
+      <table class="rejected-table">
+        <tr><th>Considered</th><th>Disposition</th><th>Reason</th></tr>
+        <tr><td>Lead Teep -- feint and combination-setup portions (Easton Kickboxing)</td><td>Deferred to a later night in the arc.</td><td>combination integration is Night 3&#x27;s job; tonight is mechanics only.</td></tr><tr><td>Push Kick / rear teep (Easton Kickboxing, Easton Fundamentals)</td><td>Deferred to a later night in the arc.</td><td>rear teep is Night 2&#x27;s new skill.</td></tr>
+      </table>
+    </div>
+      
+    <div class="validation-summary">
+      <h3>Validation summary</h3>
+      <table class="kv">
+        <tr><td>Class total</td><td>60 / 60 min</td></tr>
+        <tr><td>Curriculum total</td><td>35 / 35 min</td></tr>
+        <tr><td>Curriculum item count</td><td>3 / 4 max</td></tr>
+        <tr><td>Branch count</td><td>0 / 1 max</td></tr>
+        <tr><td>Compressed review present</td><td>n/a (Night 1)</td></tr>
+        <tr><td>Ladder roles</td><td>Lead teep mechanics: rung, Teep as a range tool -- the foot jab comparison: rung, Terminal shield drill -- lead teep on kicking shields, 10 pairs: terminal</td></tr>
+        <tr><td>arc_id</td><td class="mono">arc-teep-foundation-a8c4be4d3ee6</td></tr>
+        <tr><td>plan_id</td><td class="mono">arc-teep-foundation-a8c4be4d3ee6-night1</td></tr>
+        <tr><td>plan_hash</td><td class="mono">4135c3e58914e4e6cadd67e3b5c46c2dd90fb136c183dc230de950b10d28a0ac</td></tr>
+      </table>
+    </div>
+    </section>
+    <section class="night" id="audit-arc-teep-foundation-a8c4be4d3ee6-night2">
+      <h2>Night 2 -- Rear Teep and Alternating Rhythm</h2>
+      <p class="objective-line"><b>Learning objective:</b> Add the rear teep and combine it with the lead teep into an alternating rhythm.</p>
+      <div class="logistics"><div class="logi-row"><b>Level:</b> Beginner</div><div class="logi-row"><b>Objective:</b> Add the rear teep and combine it with the lead teep into an alternating rhythm.</div><div class="logi-row"><b>Equipment checklist:</b> 10 kicking shields</div><div class="logi-row"><b>Format:</b> Partner pairs required</div><div class="logi-row"><b>Space:</b> Open floor. 4 rows of 5 for Warm Up. 10 partner pairs with kicking shields for New and Exciting, the compressed review, and all Curriculum rungs.</div><div class="logi-row"><b>Safety:</b><ul class="safety-list"><li><b>Compressed review: lead teep mechanics:</b> None -- this is a full re-teach, not a reminder-only review.</li></ul></div></div>
+      
+    <div class="audit-block">
+      <h3>Warm Up <span class="block-min">8 min</span></h3>
+      <p class="menu-note">Warm-up menu: run all items or adjust, combine and skip based on the room.</p>
+      
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Jumping jacks</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Opens the class raising heart rate immediately.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Raise heart rate with a fully generic movement.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General accessible cardio</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>45 seconds continuous</td></tr><tr><td>Sides</td><td>symmetric, no side distinction</td></tr><tr><td>Reset position</td><td>n/a, continuous movement</td></tr><tr><td>Speed power</td><td>steady energetic pace</td></tr><tr><td>Coach watches</td><td>everyone moving, energy in the room</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Lateral shuffles</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Keeps heart rate up with directional movement.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Shuffle side to side, low and athletic.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General accessible cardio, footwork-adjacent</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>45 seconds continuous</td></tr><tr><td>Sides</td><td>symmetric, both directions</td></tr><tr><td>Reset position</td><td>n/a, continuous</td></tr><tr><td>Speed power</td><td>quick, athletic</td></tr><tr><td>Coach watches</td><td>staying low, not crossing feet</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Mountain climbers</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Adds full-body energetic work.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Alternating knee drives from a plank position.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General accessible cardio</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>45 seconds continuous</td></tr><tr><td>Sides</td><td>alternating, symmetric</td></tr><tr><td>Reset position</td><td>n/a, continuous</td></tr><tr><td>Speed power</td><td>quick, controlled</td></tr><tr><td>Coach watches</td><td>hips staying level</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Fast feet</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Continues raising energy with quick, light footwork.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Quick, light footwork in place.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General accessible cardio</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>45 seconds continuous</td></tr><tr><td>Sides</td><td>symmetric</td></tr><tr><td>Reset position</td><td>n/a, continuous</td></tr><tr><td>Speed power</td><td>quick, light</td></tr><tr><td>Coach watches</td><td>staying on the balls of the feet</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Line touches</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Closes the energetic segment with directional movement.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Jog or shuffle forward to a floor line, touch it, return.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General accessible cardio</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>4 out-and-backs</td></tr><tr><td>Sides</td><td>symmetric</td></tr><tr><td>Reset position</td><td>start line</td></tr><tr><td>Speed power</td><td>energetic jog/shuffle</td></tr><tr><td>Coach watches</td><td>full effort each rep</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Lead teep recap (no target)</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Re-establishes the lead teep before the rear teep is added.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Throw a lead teep in place, no target.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General athletic movement, recapping Night 1</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">technical (technical)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>6 slow reps</td></tr><tr><td>Sides</td><td>lead leg</td></tr><tr><td>Reset position</td><td>stance between reps</td></tr><tr><td>Speed power</td><td>slow, controlled</td></tr><tr><td>Coach watches</td><td>controlled return to stance</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Rear-leg weight-shift priming</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Primes the forward weight-lean the rear-leg teep chamber uses, with zero kick thrown yet.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Lean weight forward onto the lead leg until the rear foot is light, hold, return.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General athletic movement -- new tonight, self-contained</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">technical (technical)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>6 slow reps</td></tr><tr><td>Sides</td><td>symmetric</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>slow, controlled, no kick</td></tr><tr><td>Coach watches</td><td>weight commits forward without overreaching</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Alternating knee-chamber rhythm (no extension)</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Primes the alternating-leg rhythm tonight&#x27;s footwork rung will name and refine, with no leg extension yet.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Alternate lifting each knee toward the chest at a steady rhythm, no kick thrown.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General athletic movement, recapping and extending Night 1&#x27;s chamber priming</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">technical (technical)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>10 alternating lifts</td></tr><tr><td>Sides</td><td>both legs, alternating</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>steady rhythm, no strike</td></tr><tr><td>Coach watches</td><td>consistent rhythm, square stance maintained</td></tr></table>
+      
+    </div>
+    </div>
+    <div class="audit-block">
+      <h3>New and Exciting <span class="block-min">12 min</span></h3>
+      
+      
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Alternating teep rhythm relay</span>
+        <span class="audit-min">12 min</span>
+      </div>
+      <div class="tags"><span class="tag">teep</span><span class="tag">footwork</span></div>
+      
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">arc_constructed</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Arc-constructed drill (rhythm-and-count partner game; adapted from Easton Kickboxing -- Alternating Teeps)</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">Turns the alternating-leg rhythm into a live partner game with real target feedback and a competitive count, previewing tonight&#x27;s footwork rung.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Light, constrained alternating teep touches into a partner-held kicking shield, counted for a friendly competitive total.</span></div><div class="kv-row"><span class="k">Prerequisites / safety</span><span class="v">Light, constrained contact only -- this previews rhythm, it is not the technical teaching moment for the rear teep.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Partner drill -- 10 pairs needed.</span></div><div class="kv-row"><span class="k">Equipment</span><span class="v">kicking shield</span></div><div class="kv-row constructed-note"><span class="k">Arc-constructed drill</span><span class="v">No single source contains this complete drill. Component technique_ids: 1753.</span></div><div class="kv-row"><span class="k">Engagement features</span><span class="v">partner_interaction, equipment, timing, competition, target_work, immediate_feedback</span></div>
+      
+      <table class="struct-table"><tr><th colspan="2">Exact drill structure</th></tr><tr><td>Partner a</td><td>Does light, constrained alternating-leg touches into the kicking shield Partner B holds, counting reps out loud.</td></tr><tr><td>Partner b</td><td>Holds a kicking shield at body height, braced, calling out the running count with Partner A.</td></tr><tr><td>Equipment</td><td>1 kicking shield per pair (10 shields for a class of 20).</td></tr><tr><td>Contact level</td><td>Light touch/tap only, constrained movement -- full-power technique is taught later in Curriculum.</td></tr><tr><td>Reps</td><td>3 rounds of 30 seconds per role</td></tr><tr><td>Rounds</td><td>3</td></tr><tr><td>Switch point</td><td>After each 30-second round, partners switch immediately: holder becomes toucher, toucher becomes holder.</td></tr><tr><td>Reset condition</td><td>Reset to athletic base between individual touches; full reset to starting position at the top of each new round.</td></tr><tr><td>Coaching pace</td><td>Coach starts/stops each 30-second round on a visible clock and calls out the switch.</td></tr><tr><td>Safety limits</td><td>Touch/tap contact only -- shield holder must brace before each round begins.</td></tr></table>
+      
+      
+    </div>
+    </div>
+    <div class="audit-block">
+      <h3>Muay Thai Curriculum <span class="block-min">35 min</span></h3>
+      
+      
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Compressed review: lead teep mechanics</span>
+        <span class="audit-min">5 min</span>
+      </div>
+      <div class="tags"><span class="tag">teep</span><span class="tag">offense</span></div>
+      <div class="src-line"><span class="db-note">No external link — source material is on file in the T4 database.</span></div>
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">Easton Kickboxing — technique_id [1770], source_id 215</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Easton Kickboxing -- Lead Teep</span></div><div class="kv-row"><span class="k">Ladder role</span><span class="v ladder-badge">Compressed review</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">Required from Night 2 onward -- a full re-teach of the lead teep so a first-timer tonight can still follow.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Re-establish the lead teep: weight shift, knee chamber, hip drive, controlled return.</span></div><div class="kv-row"><span class="k">Prerequisites / safety</span><span class="v">None -- this is a full re-teach, not a reminder-only review.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div>
+      <table class="tb-table"><tr><th colspan="2">Time breakdown (5 min total)</th></tr><tr><td>Demo</td><td>1.5 min</td></tr><tr><td>Setup</td><td>0.5 min</td></tr><tr><td>Working</td><td>3 min</td></tr></table>
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>2 sets of 6 teeps</td></tr><tr><td>Sides</td><td>lead leg</td></tr><tr><td>Reset position</td><td>stance between reps</td></tr><tr><td>Speed power</td><td>controlled</td></tr><tr><td>Coach watches</td><td>weight-shift timing, controlled return</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Rear teep (push kick) mechanics</span>
+        <span class="audit-min">8 min</span>
+      </div>
+      <div class="tags"><span class="tag">teep</span><span class="tag">offense</span></div>
+      <div class="src-line"><span class="db-note">No external link — source material is on file in the T4 database.</span></div>
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">Easton Kickboxing — technique_id [1782], source_id 227</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Easton Kickboxing -- Push Kick</span></div><div class="kv-row"><span class="k">Ladder role</span><span class="v ladder-badge">Rung</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">Chunk B -- the arc&#x27;s second technique, taught from the source with the most explicit range/exit-timing guidance.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Lean weight onto the lead leg, chamber the rear leg, extend and strike with the ball of the foot, retract along the same path.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison, coach circulates and corrects.</span></div>
+      <table class="tb-table"><tr><th colspan="2">Time breakdown (8 min total)</th></tr><tr><td>Demo</td><td>1.5 min</td></tr><tr><td>Setup</td><td>0.5 min</td></tr><tr><td>Working</td><td>6 min</td></tr></table>
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>5 sets of 6 rear teeps, reset to stance between every rep</td></tr><tr><td>Sides</td><td>rear leg teeps only; whichever stance is the student&#x27;s natural one</td></tr><tr><td>Reset position</td><td>full stance reset after each teep</td></tr><tr><td>Speed power</td><td>controlled, technical focus</td></tr><tr><td>Coach watches</td><td>weight-lean timing, exit-range discipline</td></tr></table>
+      
+    <details class="ranking-block">
+      <summary>Source ranking (easton_kickboxing, tier 1, evidence high)</summary>
+      <table class="tb-table">
+        <tr><th>Candidate</th><th>Source type</th><th>Tier</th><th>Evidence strength</th><th>Score</th><th></th></tr>
+        <tr class="ranking-selected"><td>Easton Kickboxing - Push Kick</td><td>easton_kickboxing</td><td>1</td><td>high</td><td>45</td><td>SELECTED</td></tr><tr class=""><td>Easton Fundamentals - Teep Variations</td><td>easton_fundamentals</td><td>1</td><td>high</td><td>45</td><td></td></tr>
+      </table>
+      <p><b>Why it won:</b> Both sources are tier 1, but Kickboxing&#x27;s Push Kick video is the only one that documents range/zone management explicitly (must exit punching range before throwing, step back into range after) -- directly relevant to this arc&#x27;s distance-control purpose. Fundamentals&#x27; rear-push-kick entry teaches the same mechanics correctly but more briefly, with no range guidance. Kickboxing wins on content depth for this specific rung, the same way it did in Night 1 -- not a blanket preference for either pool.</p>
+      <p><b>Fundamentals surfaced naturally?</b> in pool, did not win this rung</p>
+      <p><b>Weaker source beat a stronger candidate?</b> no -- the top-scored candidate was selected</p>
+    </details>
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Alternating teep footwork and rhythm</span>
+        <span class="audit-min">8 min</span>
+      </div>
+      <div class="tags"><span class="tag">teep</span><span class="tag">footwork</span></div>
+      <div class="src-line"><span class="db-note">No external link — source material is on file in the T4 database.</span></div>
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">Easton Kickboxing — technique_id [1753], source_id 198</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Easton Kickboxing -- Alternating Teeps</span></div><div class="kv-row"><span class="k">Ladder role</span><span class="v ladder-badge">Rung</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">Chunk C -- connects both teeps just taught into an alternating rhythm, matching this arc&#x27;s own catalog-cited Easton sources.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Alternate lead and rear teeps in a square stance, keeping a light, consistent rhythm rather than maximum power.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div>
+      <table class="tb-table"><tr><th colspan="2">Time breakdown (8 min total)</th></tr><tr><td>Demo</td><td>1.5 min</td></tr><tr><td>Setup</td><td>0.5 min</td></tr><tr><td>Working</td><td>6 min</td></tr></table>
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>4 sets of 8 alternating teeps (lead-rear-lead-rear)</td></tr><tr><td>Sides</td><td>both legs, alternating</td></tr><tr><td>Reset position</td><td>square stance between sets</td></tr><tr><td>Speed power</td><td>light, rhythmic, not maximum power</td></tr><tr><td>Coach watches</td><td>consistent rhythm, light touch, no staggered stance</td></tr></table>
+      
+    <details class="ranking-block">
+      <summary>Source ranking (easton_kickboxing, tier 1, evidence high)</summary>
+      <table class="tb-table">
+        <tr><th>Candidate</th><th>Source type</th><th>Tier</th><th>Evidence strength</th><th>Score</th><th></th></tr>
+        <tr class="ranking-selected"><td>Easton Kickboxing - Alternating Teeps</td><td>easton_kickboxing</td><td>1</td><td>high</td><td>45</td><td>SELECTED</td></tr><tr class=""><td>Easton Fundamentals - Stacking Teeps: Lead Teep + Push Kick</td><td>easton_fundamentals</td><td>1</td><td>high</td><td>45</td><td></td></tr>
+      </table>
+      <p><b>Why it won:</b> Easton Kickboxing&#x27;s Alternating Teeps video is a dedicated rhythm-and-volume drill for exactly this night&#x27;s footwork purpose, and is this arc&#x27;s own cited catalog source in the curriculum map. Fundamentals&#x27; Stacking Teeps entry is also tier 1 and high confidence, but it teaches a combat application (teep to create space, then a second kick as the opponent returns) rather than a rhythm-building drill -- a strong candidate for a later application-focused arc, but a weaker fit for tonight&#x27;s specific footwork rung.</p>
+      <p><b>Fundamentals surfaced naturally?</b> in pool, did not win this rung</p>
+      <p><b>Weaker source beat a stronger candidate?</b> no -- the top-scored candidate was selected</p>
+    </details>
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Terminal shield drill -- alternating lead and rear teep, 10 pairs</span>
+        <span class="audit-min">14 min</span>
+      </div>
+      <div class="tags"><span class="tag">teep</span><span class="tag">offense</span><span class="tag">footwork</span></div>
+      <div class="src-line"><span class="db-note">No external link — source material is on file in the T4 database.</span></div>
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">arc_constructed — technique_id [1770, 1782, 1753]</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Arc-constructed drill -- shield application combining tonight&#x27;s rear teep mechanics and both nights&#x27; alternating rhythm. No single source contains this complete shield-application sequence.</span></div><div class="kv-row"><span class="k">Ladder role</span><span class="v ladder-badge">Terminal</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">The assembled application of both nights&#x27; ladder -- lead and rear teep alternating on a shield, holding the rhythm just taught.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Alternate lead and rear teeps into the held kicking shield, keeping rhythm and control, resetting to stance after each teep.</span></div><div class="kv-row"><span class="k">Prerequisites / safety</span><span class="v">Requires the lead teep, rear teep, and alternating rhythm taught earlier tonight and in Night 1.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Partner shield-holder drill -- 10 pairs needed.</span></div><div class="kv-row constructed-note"><span class="k">Arc-constructed drill</span><span class="v">No single source contains this complete drill. Component technique_ids: 1770, 1782, 1753.</span></div>
+      <table class="tb-table"><tr><th colspan="2">Time breakdown (14 min total)</th></tr><tr><td>Demo</td><td>1.5 min</td></tr><tr><td>Setup</td><td>1 min</td></tr><tr><td>Working</td><td>10 min</td></tr><tr><td>Switch</td><td>1.5 min</td></tr></table>
+      <table class="struct-table"><tr><th colspan="2">Exact drill structure</th></tr><tr><td>Partner a</td><td>Strikes first. Alternates lead and rear teeps into the kicking shield Partner B holds. Resets to full stance after every teep.</td></tr><tr><td>Partner b</td><td>Holds one kicking shield at body height with both hands, braced. Calls &#x27;ready&#x27; before each rep.</td></tr><tr><td>Equipment</td><td>1 kicking shield per pair (10 shields total for a class of 20)</td></tr><tr><td>Contact level</td><td>50% power, controlled, technical focus</td></tr><tr><td>Reps</td><td>2 rounds of 8 alternating teeps per student (16 total)</td></tr><tr><td>Rounds</td><td>2</td></tr><tr><td>Switch point</td><td>After Partner A completes round 1 (8 teeps), partners switch immediately. Repeat for round 2.</td></tr><tr><td>Reset condition</td><td>Striker resets to full stance after every teep; pair resets to neutral facing position before each new round.</td></tr><tr><td>Coaching pace</td><td>Coach calls out round start/stop and circulates correcting mechanics between reps.</td></tr><tr><td>Safety limits</td><td>50% power cap; shield holder must call &#x27;ready&#x27; before each rep.</td></tr></table>
+      
+      
+    </div>
+    </div>
+    <div class="audit-block">
+      <h3>Burnout <span class="block-min">5 min</span></h3>
+      
+      
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Single-leg balance squat + high-knee interval</span>
+        <span class="audit-min">5 min</span>
+      </div>
+      <div class="tags"><span class="tag">teep</span></div>
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Deliberately a different format from Night 1 and Night 3&#x27;s partner-target bursts, per the standing decision that Burnout formats do not repeat on consecutive nights -- a solo bodyweight interval closes the class at high effort while still training the single-leg balance this arc depends on.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Hard-effort solo interval finisher, no equipment, no partner, with a balance component that stays on-theme for a teep arc.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison, everyone on the same clock -- no shields needed.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">burnout</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General bodyweight conditioning (WCS Burnout pool -- plyometrics/bodyweight; syllabus Section 9 bodyweight-conditioning menu)</span></div><div class="kv-row"><span class="k">Exact Burnout format</span><span class="v">5 rounds of 40 seconds work / 20 seconds rest, exactly 5 minutes. Rounds 1, 3, 5: bodyweight squats. Rounds 2, 4: alternating high knees at maximum controlled cadence.</span></div><div class="kv-row"><span class="k">Coach call structure</span><span class="v">Coach runs a visible 40/20 interval timer, calls &#x27;GO&#x27; at the start of each work interval and &#x27;REST&#x27; at each rest interval, counts down the last 5 seconds of the final round.</span></div><div class="kv-row"><span class="k">Scaling option</span><span class="v">Squats scale down to a shallower range of motion for students with knee sensitivity; high knees scale down to a slower marching cadence for students whose balance fatigues early.</span></div><div class="kv-row"><span class="k">Safety limit</span><span class="v">Land softly with soft knees; self-pace intensity; stop and reset balance if wobbling rather than forcing through it.</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>5 rounds x 40s work (self-paced effort each interval)</td></tr><tr><td>Sides</td><td>high-knee rounds alternate legs symmetrically, no side distinction</td></tr><tr><td>Reset position</td><td>standing between rounds</td></tr><tr><td>Speed power</td><td>maximum controlled effort during work intervals</td></tr><tr><td>Coach watches</td><td>squat depth and knee tracking, high-knee balance holding up under fatigue</td></tr></table>
+      
+    </div>
+    </div>
+      <div class="why-block">
+        <h3>Why these sources were selected</h3>
+        <p>Easton Kickboxing carries the rear teep, alternating rhythm, and review anchor because it was the richest content-depth source for each of these specific rungs -- see each rung&#x27;s ranking block in the Audit View. Fundamentals candidates were genuinely in the pool for both rungs and lost on fit or depth, not tier. Warm Up, New and Exciting, and Burnout are arc-constructed to open and close the class at high energy.</p>
+      </div>
+      
+    <div class="rejected-block">
+      <h3>Deferred / excluded candidates</h3>
+      <table class="rejected-table">
+        <tr><th>Considered</th><th>Disposition</th><th>Reason</th></tr>
+        <tr><td>Stacking Teeps -- double teep/push kick combination (Easton Fundamentals)</td><td>Deferred to a future arc.</td><td>a genuine combat application of stacked teeps; stronger fit for a future application-focused arc than tonight&#x27;s rhythm-building rung.</td></tr><tr><td>Switch teep (Easton Kickboxing, Easton Fundamentals)</td><td>Excluded — wrong difficulty level for this class</td><td>stance-switching variant, deferred alongside switch kick to a future arc (optional extension).</td></tr>
+      </table>
+    </div>
+      
+    <div class="validation-summary">
+      <h3>Validation summary</h3>
+      <table class="kv">
+        <tr><td>Class total</td><td>60 / 60 min</td></tr>
+        <tr><td>Curriculum total</td><td>35 / 35 min</td></tr>
+        <tr><td>Curriculum item count</td><td>4 / 4 max</td></tr>
+        <tr><td>Branch count</td><td>0 / 1 max</td></tr>
+        <tr><td>Compressed review present</td><td>yes</td></tr>
+        <tr><td>Ladder roles</td><td>Compressed review: lead teep mechanics: compressed_review, Rear teep (push kick) mechanics: rung, Alternating teep footwork and rhythm: rung, Terminal shield drill -- alternating lead and rear teep, 10 pairs: terminal</td></tr>
+        <tr><td>arc_id</td><td class="mono">arc-teep-foundation-a8c4be4d3ee6</td></tr>
+        <tr><td>plan_id</td><td class="mono">arc-teep-foundation-a8c4be4d3ee6-night2</td></tr>
+        <tr><td>plan_hash</td><td class="mono">0b84400d4f95222d41bcef67cf12b531f42ac84472acf843d425bb97e4eccab6</td></tr>
+      </table>
+    </div>
+    </section>
+    <section class="night" id="audit-arc-teep-foundation-a8c4be4d3ee6-night3">
+      <h2>Night 3 -- Jab-Cross-Teep Integration</h2>
+      <p class="objective-line"><b>Learning objective:</b> Chain a jab-cross into a teep, on shields, with clean distance control.</p>
+      <div class="logistics"><div class="logi-row"><b>Level:</b> Beginner</div><div class="logi-row"><b>Objective:</b> Chain a jab-cross into a teep, on shields, with clean distance control.</div><div class="logi-row"><b>Equipment checklist:</b> 10 focus mitts, 10 kicking shields, Boxing gloves (required for the striking partner in this night&#x27;s jab-cross portions)</div><div class="logi-row"><b>Format:</b> Partner pairs required</div><div class="logi-row"><b>Space:</b> Open floor. 4 rows of 5 for Warm Up. 10 partner pairs with mitts and kicking shields for New and Exciting and all Curriculum rungs.</div><div class="logi-row"><b>Safety:</b><ul class="safety-list"><li><b>Teep as a combination finisher:</b> Use only the jab-teep combination-practice guidance from this source -- its other content (rear teep mechanics, alternating rhythm) was already taught in Nights 1-2.</li><li><b>Terminal shield drill -- jab-cross-teep, on shields, 10 pairs:</b> Constructed terminal drill -- no single source contains this complete sequence; component sources are cited above and only their beginner-appropriate portions are used.</li></ul></div></div>
+      
+    <div class="audit-block">
+      <h3>Warm Up <span class="block-min">8 min</span></h3>
+      <p class="menu-note">Warm-up menu: run all items or adjust, combine and skip based on the room.</p>
+      
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Jumping jacks</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Opens the class raising heart rate immediately.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Raise heart rate with a fully generic movement.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General accessible cardio</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>45 seconds continuous</td></tr><tr><td>Sides</td><td>symmetric, no side distinction</td></tr><tr><td>Reset position</td><td>n/a, continuous movement</td></tr><tr><td>Speed power</td><td>steady energetic pace</td></tr><tr><td>Coach watches</td><td>everyone moving, energy in the room</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">High knees in place</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Keeps heart rate up.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Drive the knees up at a quick cadence, in place.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General accessible cardio</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>45 seconds continuous</td></tr><tr><td>Sides</td><td>alternating, symmetric</td></tr><tr><td>Reset position</td><td>n/a, continuous</td></tr><tr><td>Speed power</td><td>quick cadence</td></tr><tr><td>Coach watches</td><td>knees driving up</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Reverse lunges</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Leg-focused energetic work, general and safe.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Step back into a reverse lunge, alternating legs.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General accessible cardio</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>10 total, alternating legs</td></tr><tr><td>Sides</td><td>both legs, alternating</td></tr><tr><td>Reset position</td><td>standing between reps</td></tr><tr><td>Speed power</td><td>controlled but energetic</td></tr><tr><td>Coach watches</td><td>front knee tracking over toes</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Fast feet</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Continues raising energy with quick, light footwork.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Quick, light footwork in place.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General accessible cardio</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>45 seconds continuous</td></tr><tr><td>Sides</td><td>symmetric</td></tr><tr><td>Reset position</td><td>n/a, continuous</td></tr><tr><td>Speed power</td><td>quick, light</td></tr><tr><td>Coach watches</td><td>staying on the balls of the feet</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Coach-call reaction game</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Energetic AND lightly reaction-based, previewing tonight&#x27;s integration theme.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">React quickly to the coach&#x27;s call, then reset.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class reacting to the coach together.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General reaction game (no MT knowledge required)</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>8-10 calls</td></tr><tr><td>Sides</td><td>symmetric</td></tr><tr><td>Reset position</td><td>athletic stance between calls</td></tr><tr><td>Speed power</td><td>quick reaction each call</td></tr><tr><td>Coach watches</td><td>genuine quick reactions, not anticipating the call</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Jab-cross recap (no target)</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Re-establishes the hand combination before the teep is chained onto it.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Throw a jab-cross combination in place, no target.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General athletic movement, recapping Week 2</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">technical (technical)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>6 slow combinations</td></tr><tr><td>Sides</td><td>jab lead hand, cross rear hand</td></tr><tr><td>Reset position</td><td>guard between reps</td></tr><tr><td>Speed power</td><td>slow, controlled</td></tr><tr><td>Coach watches</td><td>no pause between jab and cross</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Teep recap (no target)</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Re-establishes the teep before it&#x27;s chained onto the jab-cross.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Throw a lead teep in place, no target.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General athletic movement, recapping Nights 1-2</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">technical (technical)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>6 slow reps</td></tr><tr><td>Sides</td><td>lead leg</td></tr><tr><td>Reset position</td><td>stance between reps</td></tr><tr><td>Speed power</td><td>slow, controlled</td></tr><tr><td>Coach watches</td><td>controlled return to stance</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Single-leg balance check</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Tests the balance tonight&#x27;s assembled combination depends on.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Balance on one leg briefly, both legs practiced.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General athletic movement</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">technical (mobility)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>2 holds each leg, 3 seconds each</td></tr><tr><td>Sides</td><td>both legs practiced</td></tr><tr><td>Reset position</td><td>athletic base between holds</td></tr><tr><td>Speed power</td><td>static hold, no movement</td></tr><tr><td>Coach watches</td><td>standing knee stays soft</td></tr></table>
+      
+    </div>
+    </div>
+    <div class="audit-block">
+      <h3>New and Exciting <span class="block-min">12 min</span></h3>
+      
+      
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Combination-call reaction relay</span>
+        <span class="audit-min">12 min</span>
+      </div>
+      <div class="tags"><span class="tag">punch</span><span class="tag">teep</span><span class="tag">timing</span></div>
+      
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">arc_constructed</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Arc-constructed drill (reactive call-and-respond game; adapted from Easton Kickboxing Teeps and Easton Fundamentals Body Cross Pad Round)</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">Turns jab-cross-vs-teep recognition into a live reactive game with a partner and real targets, previewing tonight&#x27;s full integration.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">React to a partner&#x27;s unpredictable &#x27;hands&#x27; or &#x27;teep&#x27; call by throwing the correct light touch into the matching target.</span></div><div class="kv-row"><span class="k">Prerequisites / safety</span><span class="v">Light, constrained contact only -- full technical instruction happens on shields in Curriculum.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Partner drill -- 10 pairs needed.</span></div><div class="kv-row"><span class="k">Equipment</span><span class="v">focus mitt and kicking shield</span></div><div class="kv-row constructed-note"><span class="k">Arc-constructed drill</span><span class="v">No single source contains this complete drill. Component technique_ids: 1803, 3147.</span></div><div class="kv-row"><span class="k">Engagement features</span><span class="v">partner_interaction, reaction, equipment, timing, target_work, immediate_feedback</span></div>
+      
+      <table class="struct-table"><tr><th colspan="2">Exact drill structure</th></tr><tr><td>Partner a</td><td>Reacts. Listens for the call (&#x27;hands&#x27; or &#x27;teep&#x27;, unpredictable order) and throws the correct light touch into the matching target.</td></tr><tr><td>Partner b</td><td>Keeps a focus mitt on one hand and a kicking shield propped ready at their feet, calling &#x27;hands&#x27; or &#x27;teep&#x27; at an unpredictable cadence -- raises the mitt for a &#x27;hands&#x27; call, or drops the mitt hand and scoops the shield up with both hands, bracing it, for a &#x27;teep&#x27; call.</td></tr><tr><td>Equipment</td><td>1 focus mitt and 1 kicking shield per pair (10 of each for a class of 20).</td></tr><tr><td>Contact level</td><td>Light touch/tap only, constrained movement -- full-power technique is taught on shields in Curriculum.</td></tr><tr><td>Reps</td><td>3 rounds of 30 seconds per role</td></tr><tr><td>Rounds</td><td>3</td></tr><tr><td>Switch point</td><td>After each 30-second round, partners switch roles: caller becomes the reactor.</td></tr><tr><td>Reset condition</td><td>Reset to guard/stance after every reaction before the next call.</td></tr><tr><td>Coaching pace</td><td>Coach keeps time on a visible clock; callers set their own unpredictable rhythm within each round.</td></tr><tr><td>Safety limits</td><td>Touch/tap contact only; holder must be set and stable before calling the next target.</td></tr></table>
+      
+      
+    </div>
+    </div>
+    <div class="audit-block">
+      <h3>Muay Thai Curriculum <span class="block-min">35 min</span></h3>
+      
+      
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Compressed review: jab-cross combination</span>
+        <span class="audit-min">6 min</span>
+      </div>
+      <div class="tags"><span class="tag">punch</span><span class="tag">offense</span></div>
+      <div class="src-line"><span class="db-note">No external link — source material is on file in the T4 database.</span></div>
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">easton_fundamentals — technique_id [3147], source_id 802</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Easton Fundamentals -- Body Cross Pad Round</span></div><div class="kv-row"><span class="k">Ladder role</span><span class="v ladder-badge">Compressed review</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">Required from Night 2 onward -- a full re-teach of the jab-cross combination (Arc 2&#x27;s terminal skill) so a student new to this arc can still participate in tonight&#x27;s integration.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Re-establish the jab-cross combination on mitts before the teep is chained onto it.</span></div><div class="kv-row"><span class="k">Prerequisites / safety</span><span class="v">None -- this is a full re-teach, not a reminder-only review.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Partner mitt-holder drill -- 10 pairs needed.</span></div>
+      <table class="tb-table"><tr><th colspan="2">Time breakdown (6 min total)</th></tr><tr><td>Demo</td><td>1.5 min</td></tr><tr><td>Setup</td><td>0.5 min</td></tr><tr><td>Working</td><td>4 min</td></tr></table>
+      <table class="struct-table"><tr><th colspan="2">Exact drill structure</th></tr><tr><td>Partner a</td><td>Throws 6 jab-cross combinations into the mitt Partner B holds, returning to stance after each.</td></tr><tr><td>Partner b</td><td>Holds one focus mitt, calls &#x27;ready&#x27; before each rep.</td></tr><tr><td>Equipment</td><td>1 focus mitt per pair.</td></tr><tr><td>Contact level</td><td>50% power, controlled.</td></tr><tr><td>Reps</td><td>6 combinations per student (A throws 6, switch, B throws 6).</td></tr><tr><td>Rounds</td><td>1</td></tr><tr><td>Switch point</td><td>After A&#x27;s 6 combos, partners switch immediately for B&#x27;s 6.</td></tr><tr><td>Reset condition</td><td>Striker returns to stance after every combination.</td></tr><tr><td>Coaching pace</td><td>Coach re-teaches the mechanics during the demo, then circulates correcting during the reps.</td></tr><tr><td>Safety limits</td><td>50% power cap; mitt holder calls &#x27;ready&#x27; before each rep.</td></tr></table>
+      
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Teep as a combination finisher</span>
+        <span class="audit-min">10 min</span>
+      </div>
+      <div class="tags"><span class="tag">teep</span><span class="tag">setup</span></div>
+      <div class="src-line"><span class="db-note">No external link — source material is on file in the T4 database.</span></div>
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">Easton Kickboxing — technique_id [1803], source_id 248</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Easton Kickboxing -- Teeps</span></div><div class="kv-row"><span class="k">Ladder role</span><span class="v ladder-badge">Rung</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">Chunk C -- the only source that explicitly names jab-and-teep combination practice, directly bridging Arc 2&#x27;s hands to tonight&#x27;s teep.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Throw the jab-cross, then chain a lead teep immediately after to finish the combination and control distance.</span></div><div class="kv-row"><span class="k">Prerequisites / safety</span><span class="v">Use only the jab-teep combination-practice guidance from this source -- its other content (rear teep mechanics, alternating rhythm) was already taught in Nights 1-2.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison, coach circulates and corrects.</span></div>
+      <table class="tb-table"><tr><th colspan="2">Time breakdown (10 min total)</th></tr><tr><td>Demo</td><td>2 min</td></tr><tr><td>Setup</td><td>0.5 min</td></tr><tr><td>Working</td><td>7.5 min</td></tr></table>
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>5 sets of 6 jab-cross-teep combinations</td></tr><tr><td>Sides</td><td>jab lead hand, cross rear hand, teep lead leg, whichever is the student&#x27;s natural stance</td></tr><tr><td>Reset position</td><td>full stance reset after each combination</td></tr><tr><td>Speed power</td><td>controlled</td></tr><tr><td>Coach watches</td><td>no pause between cross and teep, clean return to stance</td></tr></table>
+      
+    <details class="ranking-block">
+      <summary>Source ranking (easton_kickboxing, tier 1, evidence high)</summary>
+      <table class="tb-table">
+        <tr><th>Candidate</th><th>Source type</th><th>Tier</th><th>Evidence strength</th><th>Score</th><th></th></tr>
+        <tr class="ranking-selected"><td>Easton Kickboxing - Teeps</td><td>easton_kickboxing</td><td>1</td><td>high</td><td>45</td><td>SELECTED</td></tr><tr class=""><td>Easton Fundamentals - Stacking Teeps: Lead Teep + Push Kick</td><td>easton_fundamentals</td><td>1</td><td>high</td><td>45</td><td></td></tr>
+      </table>
+      <p><b>Why it won:</b> Kickboxing&#x27;s Teeps video is the only source in the catalog that explicitly instructs practicing jab-and-teep combinations together -- a direct match for tonight&#x27;s integration purpose. Fundamentals&#x27; Stacking Teeps entry teaches a real combination concept (teep, then a second kick as the opponent returns), but it&#x27;s teep-to-teep, not hands-to-teep, so it doesn&#x27;t fit this specific rung despite being a strong tier-1 candidate for a different combination-focused rung.</p>
+      <p><b>Fundamentals surfaced naturally?</b> in pool, did not win this rung</p>
+      <p><b>Weaker source beat a stronger candidate?</b> no -- the top-scored candidate was selected</p>
+    </details>
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Terminal shield drill -- jab-cross-teep, on shields, 10 pairs</span>
+        <span class="audit-min">19 min</span>
+      </div>
+      <div class="tags"><span class="tag">punch</span><span class="tag">teep</span></div>
+      <div class="src-line"><span class="db-note">No external link — source material is on file in the T4 database.</span></div>
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">arc_constructed — technique_id [3147, 3148, 1770, 1803]</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Arc-constructed terminal drill -- no single source contains this complete sequence. Assembled from the jab-cross combination (Easton Fundamentals Body Cross Pad Round), the lead teep mechanics (Easton Kickboxing Lead Teep), and the jab-teep combination-practice guidance (Easton Kickboxing Teeps).</span></div><div class="kv-row"><span class="k">Ladder role</span><span class="v ladder-badge">Terminal</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">The arc&#x27;s terminal goal, assembled from this arc&#x27;s and Arc 2&#x27;s rungs into the exact sequence: jab-cross into a teep, on shields, with clean distance control.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Throw a jab-cross combination into the mitt, then immediately chain a lead teep into the kicking shield the same partner presents, with clean distance control throughout.</span></div><div class="kv-row"><span class="k">Prerequisites / safety</span><span class="v">Constructed terminal drill -- no single source contains this complete sequence; component sources are cited above and only their beginner-appropriate portions are used.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Both partners active, both roles rehearsed -- 10 pairs needed.</span></div><div class="kv-row constructed-note"><span class="k">Arc-constructed drill</span><span class="v">No single source contains this complete drill. Component technique_ids: 3147, 3148, 1770, 1803.</span></div>
+      <table class="tb-table"><tr><th colspan="2">Time breakdown (19 min total)</th></tr><tr><td>Demo</td><td>2.5 min</td></tr><tr><td>Setup</td><td>1 min</td></tr><tr><td>Working</td><td>14 min</td></tr><tr><td>Switch</td><td>1.5 min</td></tr></table>
+      <table class="struct-table"><tr><th colspan="2">Exact drill structure</th></tr><tr><td>Partner a</td><td>Throws a jab-cross combination into the mitt, then immediately chains a lead teep into the kicking shield Partner B presents right after, then recovers to a full, balanced stance.</td></tr><tr><td>Partner b</td><td>Holds a focus mitt for the jab-cross, with a kicking shield propped ready at their feet, then sets the mitt aside and scoops the shield up with both hands, bracing it, for the teep the instant the cross lands, calling &#x27;ready&#x27; before each full sequence.</td></tr><tr><td>Equipment</td><td>1 focus mitt and 1 kicking shield per pair.</td></tr><tr><td>Contact level</td><td>50% power into both targets.</td></tr><tr><td>Return target</td><td>The focus mitt for the jab-cross, then the kicking shield Partner B presents immediately after -- never partner-to-partner.</td></tr><tr><td>Reps</td><td>2 rounds of 6 complete sequences per student as the striker (12 sequences total; 12 more as the target holder).</td></tr><tr><td>Rounds</td><td>2</td></tr><tr><td>Switch point</td><td>After Partner A completes 6 full sequences, partners switch roles for B&#x27;s 6 sequences. Repeat for round 2.</td></tr><tr><td>Reset condition</td><td>Both partners reset to a full, balanced stance after each complete sequence before the next.</td></tr><tr><td>Coaching pace</td><td>Coach demonstrates the full sequence slowly at least twice before pairs begin, then lets pairs run at their own pace.</td></tr><tr><td>Safety limits</td><td>50% power cap into both targets; target holder must be stable and set before each sequence; no speed escalation beyond clean beginner timing.</td></tr></table>
+      
+      
+    </div>
+    </div>
+    <div class="audit-block">
+      <h3>Burnout <span class="block-min">5 min</span></h3>
+      
+      
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Jab-cross-teep volume burst</span>
+        <span class="audit-min">5 min</span>
+      </div>
+      <div class="tags"><span class="tag">punch</span><span class="tag">teep</span></div>
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">A hand-speed-and-balance finisher using tonight&#x27;s exact combination (jab-cross-teep) at maximum volume, closing the class at high effort.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Hard-effort jab-cross-teep volume finisher on the shields already in use tonight.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Partner drill -- 10 pairs, same targets as Curriculum.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">burnout</span></div><div class="kv-row"><span class="k">Source</span><span class="v">General Muay Thai conditioning (WCS Burnout pool -- combination volume rounds)</span></div><div class="kv-row"><span class="k">Exact Burnout format</span><span class="v">4 rounds of 75 seconds, exactly 5 minutes. Each round is split into two 15-second phases so the target holder never has to hold the mitt and the kicking shield at once: Partner A jab-crosses the mitt for 15s max controlled volume, Partner B sets the mitt down and braces the shield with both hands, Partner A teeps the shield for 15s max controlled volume, quick 7-second switch, Partner B repeats both phases for 30s, quick 8-second switch/reset, next round begins immediately.</span></div><div class="kv-row"><span class="k">Coach call structure</span><span class="v">Coach runs a repeating 75-second timer with a mid-round 15-second call for the mitt-to-shield transition, calls &#x27;SWITCH&#x27; at each partner interval, counts down the last 10 seconds of the final round.</span></div><div class="kv-row"><span class="k">Scaling option</span><span class="v">Scale from full-speed combinations to a slower, fully-controlled pace for students whose balance or shoulders fatigue early.</span></div><div class="kv-row"><span class="k">Safety limit</span><span class="v">Combinations stay technically controlled even at speed -- no wild, off-balance strikes. Target holder must brace fully every rep, and must have the shield fully braced with both hands before any teep is thrown at it.</span></div>
+      
+      <table class="struct-table"><tr><th colspan="2">Exact drill structure</th></tr><tr><td>Partner a</td><td>Jab-crosses the mitt Partner B holds for 15 seconds, then teeps the kicking shield Partner B braces for the next 15 seconds, for 30 seconds total of maximum controlled volume each round.</td></tr><tr><td>Partner b</td><td>Holds the mitt for Partner A&#x27;s first 15 seconds, then sets the mitt down and braces the kicking shield with both hands for the next 15 seconds, then the roles switch.</td></tr><tr><td>Equipment</td><td>1 focus mitt and 1 kicking shield per pair (the same targets used throughout tonight&#x27;s Curriculum).</td></tr><tr><td>Contact level</td><td>Full controlled power -- this is the effort finisher, unlike the light-touch work earlier tonight.</td></tr><tr><td>Reps</td><td>4 rounds x 30s work per role</td></tr><tr><td>Rounds</td><td>4</td></tr><tr><td>Switch point</td><td>Every 30 seconds, immediate switch (7-8 second transition).</td></tr><tr><td>Reset condition</td><td>n/a -- continuous work within each round, full stop only at the end of the 5 minutes.</td></tr><tr><td>Equal work note</td><td>Both partners get exactly 30 seconds of work in every round -- work is equal by construction.</td></tr><tr><td>Coaching pace</td><td>Coach runs the interval timer and calls switches.</td></tr><tr><td>Safety limits</td><td>Controlled technical combinations even under fatigue; target holder braces every rep.</td></tr></table>
+      
+      
+    </div>
+    </div>
+      <div class="why-block">
+        <h3>Why these sources were selected</h3>
+        <p>Easton Fundamentals carries the jab-cross review because it was already this combination&#x27;s strongest source in Arc 2. Easton Kickboxing&#x27;s Teeps video carries the integration rung because it is the only source that explicitly instructs practicing jab-and-teep combinations together. The terminal drill is explicitly labeled arc-constructed -- no single source contains it -- assembled from three cited component sources across this arc and Arc 2. Warm Up, New and Exciting, and Burnout are arc-constructed to open and close the class at high energy.</p>
+      </div>
+      
+    <div class="rejected-block">
+      <h3>Deferred / excluded candidates</h3>
+      <table class="rejected-table">
+        <tr><th>Considered</th><th>Disposition</th><th>Reason</th></tr>
+        <tr><td>Stacking Teeps -- teep-to-teep combinations (Easton Fundamentals)</td><td>Deferred to a future arc.</td><td>a genuine teep-combination concept, but teep-to-teep rather than hands-to-teep -- doesn&#x27;t fit tonight&#x27;s integration rung, stronger fit for a future arc.</td></tr><tr><td>Teep feints (Easton Fundamentals)</td><td>Excluded — wrong difficulty level for this class</td><td>feints are explicitly optional-exposure material in this curriculum&#x27;s design, not required for this arc&#x27;s terminal goal.</td></tr>
+      </table>
+    </div>
+      
+    <div class="validation-summary">
+      <h3>Validation summary</h3>
+      <table class="kv">
+        <tr><td>Class total</td><td>60 / 60 min</td></tr>
+        <tr><td>Curriculum total</td><td>35 / 35 min</td></tr>
+        <tr><td>Curriculum item count</td><td>3 / 4 max</td></tr>
+        <tr><td>Branch count</td><td>0 / 1 max</td></tr>
+        <tr><td>Compressed review present</td><td>yes</td></tr>
+        <tr><td>Ladder roles</td><td>Compressed review: jab-cross combination: compressed_review, Teep as a combination finisher: rung, Terminal shield drill -- jab-cross-teep, on shields, 10 pairs: terminal</td></tr>
+        <tr><td>arc_id</td><td class="mono">arc-teep-foundation-a8c4be4d3ee6</td></tr>
+        <tr><td>plan_id</td><td class="mono">arc-teep-foundation-a8c4be4d3ee6-night3</td></tr>
+        <tr><td>plan_hash</td><td class="mono">5a13264a3d0e94ed11dcb261e87c72917db46aafa3c6be067e6077b90240c603</td></tr>
+      </table>
+    </div>
+    </section>
+</body>
+</html>

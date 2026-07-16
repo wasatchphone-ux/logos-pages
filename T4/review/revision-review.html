@@ -1,0 +1,785 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Beginner Kicking Arc — Revision Review</title>
+<style>
+body { font-family: system-ui, sans-serif; max-width: 1040px; margin: 0 auto; padding: 20px; line-height: 1.45; color: #222; }
+h1 { font-size: 22px; }
+h2 { font-size: 20px; border-top: 3px solid #333; padding-top: 16px; margin-top: 40px; }
+h3 { font-size: 15px; margin: 18px 0 6px 0; }
+#top-nav { position: sticky; top: 0; background: #fff; padding: 10px 0; border-bottom: 2px solid #333; z-index: 5; margin-bottom: 10px; }
+#top-nav a { margin-right: 14px; font-size: 13.5px; }
+.data-table { border-collapse: collapse; width: 100%; margin: 8px 0 16px 0; font-size: 13px; }
+.data-table th { background: #e6ede5; text-align: left; padding: 5px 8px; }
+.data-table td { border: 1px solid #ddd; padding: 5px 8px; vertical-align: top; }
+table.kv { border-collapse: collapse; width: 100%; margin: 6px 0; font-size: 13px; }
+table.kv td { border: 1px solid #ddd; padding: 4px 8px; vertical-align: top; }
+table.kv td:first-child { font-weight: bold; width: 180px; background: #f7f7f7; }
+.wu-item { border: 1px solid #ddd; border-radius: 6px; padding: 8px 12px; margin-bottom: 8px; background: #fafafa; }
+.wu-head { font-weight: bold; margin-bottom: 4px; }
+.rung-card { border: 1px solid #ccc; border-radius: 6px; padding: 10px 14px; margin-bottom: 12px; background: #fafcf9; }
+.rung-badge { background: #333; color: #fff; border-radius: 8px; padding: 1px 8px; font-size: 12px; margin-right: 8px; }
+.constructed-flag { background: #fff6e0; border-radius: 4px; padding: 4px 8px; font-size: 12.5px; margin: 6px 0; }
+.safety-line { font-size: 13px; color: #a33; }
+.mono { font-family: monospace; font-size: 12px; word-break: break-all; }
+.old-hash { color: #a33; text-decoration: line-through; }
+.new-hash { color: #2a7; font-weight: bold; }
+.hash-table td:first-child { width: 160px; }
+.verdict-badge { background: #d99; border-radius: 8px; padding: 1px 8px; font-size: 12px; }
+.revision-notes-block { background: #eef2fa; border-radius: 6px; padding: 10px 16px; margin-top: 14px; }
+.totals-line { font-size: 13px; color: #444; }
+.objective-line { font-size: 13.5px; }
+details summary { cursor: pointer; font-size: 12.5px; color: #555; }
+.energy-badge { display: inline-block; border-radius: 8px; padding: 1px 8px; font-size: 11px; color: #fff; margin-right: 4px; }
+.energy-energetic { background: #c93; }
+.energy-technical { background: #369; }
+.cat-tag { font-size: 11px; color: #888; font-weight: normal; }
+</style>
+</head>
+<body>
+<h1>Beginner Kicking Arc — Revision Review</h1>
+<nav id="top-nav">
+  <a href="#summary">Summary</a><a href="#night1">Night 1</a><a href="#night2">Night 2</a><a href="#night3">Night 3</a>
+  <a href="#validation">Validation</a><a href="#db-reviews">Database reviews</a><a href="#modified-files">Modified files</a>
+  &nbsp;|&nbsp; <a href="coach-view.html">Coach View</a><a href="audit-view.html">Audit View</a>
+</nav>
+
+    <section id="summary">
+      <h2>Summary</h2>
+      <p>Revision pass driven by the completed coaching review. Old plans were recorded as <code>verdict='revise'</code>
+      in <code>plan_reviews</code> before any new content was generated. arc_id and every plan_id stayed stable;
+      every plan_hash changed because the finalized instructional content changed.</p>
+      <table class="data-table">
+        <tr><th>Night</th><th>Title</th><th>Old plan_hash</th><th>New plan_hash</th></tr>
+        <tr><td>1</td><td>Night 1 — Base Rear Round Kick</td><td class='mono'>9420a6bde0f6a43a…</td><td class='mono'>fd695674e38358be…</td></tr><tr><td>2</td><td>Night 2 — Step-In Rear Round Kick</td><td class='mono'>510cc4a00d2090d2…</td><td class='mono'>fd76a59d9838d9e9…</td></tr><tr><td>3</td><td>Night 3 — Check and Return</td><td class='mono'>d5de897355ac84c5…</td><td class='mono'>b171f0ce33787316…</td></tr>
+      </table>
+      <p>Full detail: <a href="#night1">Night 1</a>, <a href="#night2">Night 2</a>, <a href="#night3">Night 3</a>,
+      <a href="#validation">Validation</a>, <a href="#db-reviews">Database reviews</a>, <a href="#modified-files">Modified files</a>.</p>
+      <p>Related pages: <a href="coach-view.html">Coach View</a> &middot; <a href="audit-view.html">Audit View</a></p>
+    </section>
+
+    <section id="night1">
+      <h2>Night 1: Base Rear Round Kick</h2>
+      <p class="objective-line"><b>Class objective:</b> Perform a balanced rear round kick with recognizable mechanics.</p>
+      <table class="kv hash-table">
+        <tr><td>plan_id (stable)</td><td class="mono">arc-beginner-kicking-94b252e5236b-night1</td></tr>
+        <tr><td>Old plan_hash</td><td class="mono old-hash">9420a6bde0f6a43a9bc325cc393c70f6c797b39505faf8304910a01a2f62383b</td></tr>
+        <tr><td>New plan_hash</td><td class="mono new-hash">fd695674e38358bef887b385b0dd2ff26b54aad4c039cb1c9360a2772451701d</td></tr>
+        <tr><td>Hash changed?</td><td>yes</td></tr>
+      </table>
+
+      <h3>Exact 60-minute timeline</h3>
+      
+    <table class="data-table">
+      <tr><th>Block</th><th>Minutes</th><th>Drill</th><th>What students are doing</th></tr>
+      <tr><td>Warm Up</td><td>1.0</td><td>Jumping jacks</td><td>Raise heart rate with a fully generic, universally known movement.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>High knees in place</td><td>Drive the knees up at a quick cadence, in place.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Fast feet</td><td>Quick, light footwork in place.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Bodyweight squats</td><td>Full bodyweight squats at a steady energetic pace.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Line touches</td><td>Jog or shuffle forward to a floor line, touch it, return.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Athletic base + weight shift</td><td>Find a balanced athletic base and shift weight smoothly, front foot to back foot.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Step angle + knee lift + hip rotation flow</td><td>Lead foot steps out to an angled point, rear-side knee lifts and hip rotates slightly, return to base.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Single-leg balance check</td><td>Balance on the rear-side leg for a short count, both legs practiced.</td></tr><tr><td>New and Exciting</td><td>12</td><td>Partner shield touch-count relay</td><td>Light, constrained knee-lift-and-touch reps into a partner-held shield, counted for a friendly competitive total.</td></tr><tr><td>Muay Thai Curriculum</td><td>10</td><td>Stance, weight shift and step angle</td><td>Shoulder-width stance, half-step-back rear side, soft knees, high guard, continuous weight-shift rhythm, step angle.</td></tr><tr><td>Muay Thai Curriculum</td><td>12</td><td>Round Kick — base mechanics only</td><td>Step to 2 o&#x27;clock, pull the opposite arm across as counterbalance, rotate the hip, strike with the shin above the elbow/tricep line.</td></tr><tr><td>Muay Thai Curriculum</td><td>13</td><td>Terminal pad drill — rear kick, 10 pairs</td><td>Repeated rear round kicks into a held pad, holding the mechanics just taught, with a real feedback loop.</td></tr><tr><td>Burnout</td><td>5</td><td>Squat-jump + mountain-climber intervals</td><td>Hard-effort interval finisher using two universally known bodyweight movements.</td></tr>
+    </table>
+    <p class="totals-line">Warm Up 8 + New and Exciting 12 +
+    Curriculum 35 + Burnout 5 = <b>60/60 min</b></p>
+
+      <h3>Warm-up structure</h3>
+      <p class="totals-line">Energetic: 5.0 min &middot; Technical: 3.0 min (of 8 min total -- endorphin-sandwich open)</p>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Jumping jacks</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Raise heart rate with a fully generic, universally known movement.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>45 seconds continuous</td></tr>
+          <tr><td>Sides</td><td>symmetric, no side distinction</td></tr>
+          <tr><td>Reset position</td><td>n/a, continuous movement</td></tr>
+          <tr><td>Speed/power</td><td>steady energetic pace</td></tr>
+          <tr><td>Coach watches</td><td>everyone moving, energy in the room</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>High knees in place</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Drive the knees up at a quick cadence, in place.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>45 seconds continuous</td></tr>
+          <tr><td>Sides</td><td>alternating, symmetric</td></tr>
+          <tr><td>Reset position</td><td>n/a, continuous</td></tr>
+          <tr><td>Speed/power</td><td>quick cadence</td></tr>
+          <tr><td>Coach watches</td><td>knees driving up, arms pumping</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Fast feet</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Quick, light footwork in place.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>45 seconds continuous</td></tr>
+          <tr><td>Sides</td><td>symmetric</td></tr>
+          <tr><td>Reset position</td><td>n/a, continuous</td></tr>
+          <tr><td>Speed/power</td><td>quick, light</td></tr>
+          <tr><td>Coach watches</td><td>staying on the balls of the feet</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Bodyweight squats</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Full bodyweight squats at a steady energetic pace.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>12 reps</td></tr>
+          <tr><td>Sides</td><td>symmetric</td></tr>
+          <tr><td>Reset position</td><td>standing between reps</td></tr>
+          <tr><td>Speed/power</td><td>controlled but energetic</td></tr>
+          <tr><td>Coach watches</td><td>knees tracking over toes, chest up</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Line touches</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Jog or shuffle forward to a floor line, touch it, return.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>4 out-and-backs</td></tr>
+          <tr><td>Sides</td><td>symmetric</td></tr>
+          <tr><td>Reset position</td><td>start line</td></tr>
+          <tr><td>Speed/power</td><td>energetic jog/shuffle</td></tr>
+          <tr><td>Coach watches</td><td>full effort each rep</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-technical">technical</span> 1.0 min — <b>Athletic base + weight shift</b> <span class="cat-tag">[technical]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Find a balanced athletic base and shift weight smoothly, front foot to back foot.</td></tr>
+          <tr><td>Skills used</td><td>athletic_base, weight_shift</td></tr>
+          <tr><td>Skills taught here</td><td>athletic_base, weight_shift</td></tr>
+          <tr><td>Reps</td><td>10 weight shifts, front-to-back</td></tr>
+          <tr><td>Sides</td><td>symmetric weight shift, no stepping side involved</td></tr>
+          <tr><td>Reset position</td><td>feet shoulder-width, knees soft, hands loosely up</td></tr>
+          <tr><td>Speed/power</td><td>slow, controlled, no strikes</td></tr>
+          <tr><td>Coach watches</td><td>knees stay soft, weight travels smoothly, no bouncing</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-technical">technical</span> 1.0 min — <b>Step angle + knee lift + hip rotation flow</b> <span class="cat-tag">[technical]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Lead foot steps out to an angled point, rear-side knee lifts and hip rotates slightly, return to base.</td></tr>
+          <tr><td>Skills used</td><td>athletic_base, step_angle, knee_lift_hip_rotation</td></tr>
+          <tr><td>Skills taught here</td><td>step_angle, knee_lift_hip_rotation</td></tr>
+          <tr><td>Reps</td><td>6 full sequences</td></tr>
+          <tr><td>Sides</td><td>lead foot steps out; rear-side knee lifts and hip rotates (no kick thrown this rung)</td></tr>
+          <tr><td>Reset position</td><td>athletic base between reps</td></tr>
+          <tr><td>Speed/power</td><td>slow, walked pace, no strike</td></tr>
+          <tr><td>Coach watches</td><td>foot lands at an angle not straight forward; hip rotates with the knee</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-technical">technical</span> 1.0 min — <b>Single-leg balance check</b> <span class="cat-tag">[mobility]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Balance on the rear-side leg for a short count, both legs practiced.</td></tr>
+          <tr><td>Skills used</td><td>athletic_base, single_leg_balance</td></tr>
+          <tr><td>Skills taught here</td><td>single_leg_balance</td></tr>
+          <tr><td>Reps</td><td>2 holds each leg, 3 seconds each</td></tr>
+          <tr><td>Sides</td><td>both legs practiced, one at a time</td></tr>
+          <tr><td>Reset position</td><td>athletic base between holds</td></tr>
+          <tr><td>Speed/power</td><td>static hold, no movement</td></tr>
+          <tr><td>Coach watches</td><td>standing knee stays soft, no wobbling arms for balance</td></tr></table>
+        </div>
+
+      <h3>New and Exciting structure</h3>
+      <div class="wu-item"><div class="wu-head">12 min — <b>Partner shield touch-count relay</b></div>
+      <table class="kv"><tr><td>Objective</td><td>Light, constrained knee-lift-and-touch reps into a partner-held shield, counted for a friendly competitive total.</td></tr>
+      <tr><td>Why it fits tonight</td><td>Reinforces step angle, hip turn, balance and target awareness with real partner feedback and a competitive count, so it feels different from the technical Warm Up and doesn&#x27;t front-run Curriculum&#x27;s full-power pad drill.</td></tr>
+      <tr><td>Engagement features</td><td>partner_interaction, equipment, timing, competition, target_work, immediate_feedback</td></tr>
+      <tr><td>Station formation</td><td>10 pairs, spaced across the open floor, all working simultaneously</td></tr>
+      <tr><td>Throughput justification</td><td>Every pair works simultaneously with its own shield; no shared equipment, no line to wait in.</td></tr>
+      <tr><td>Conflicts with Curriculum?</td><td>none</td></tr></table><table class="kv"><tr><td>Partner a</td><td>Does light, constrained knee-lift-and-touch reps into the shield Partner B holds -- a tap/touch, not a full-power strike -- for a timed 30-second round, counting reps out loud.</td></tr><tr><td>Partner b</td><td>Holds a kicking shield low at hip/thigh height, braced, calling out the running count with Partner A.</td></tr><tr><td>Equipment</td><td>1 kicking shield per pair (10 shields for a class of 20).</td></tr><tr><td>Contact level</td><td>Light touch/tap only, constrained movement -- not a full-power strike. Full-power technique is taught later in Curriculum.</td></tr><tr><td>Reps</td><td>3 rounds of 30 seconds per role (touches counted each round)</td></tr><tr><td>Rounds</td><td>3</td></tr><tr><td>Switch point</td><td>After each 30-second round, partners switch immediately: holder becomes toucher, toucher becomes holder.</td></tr><tr><td>Reset condition</td><td>Reset to athletic base between individual touches; full reset to starting position at the top of each new round.</td></tr><tr><td>Coaching pace</td><td>Coach starts/stops each 30-second round on a visible clock and calls out the switch.</td></tr><tr><td>Safety limits</td><td>Touch/tap contact only -- shield holder must brace before each round begins; no full-power strikes.</td></tr></table></div>
+
+      <h3>Curriculum ladder</h3>
+      
+        <div class="rung-card">
+          <div class="rung-head"><span class="rung-badge">Rung</span>
+          10 min — <b>Stance, weight shift and step angle</b></div>
+          
+          <p><b>Objective:</b> Shoulder-width stance, half-step-back rear side, soft knees, high guard, continuous weight-shift rhythm, step angle.</p>
+          <p><b>Time breakdown:</b> demo=2m, setup=1m, working=7m (sums to 10 min)</p>
+          <p><b>Reps:</b> 3 rounds of (10 weight shifts + 8 lead-foot step-outs)</p>
+          <table class="kv"><tr><td>Reps</td><td>3 rounds of (10 weight shifts + 8 lead-foot step-outs)</td></tr><tr><td>Sides</td><td>lead foot steps out; rear leg stays planted (no kick this rung)</td></tr><tr><td>Reset position</td><td>athletic base between rounds</td></tr><tr><td>Speed power</td><td>slow, controlled</td></tr><tr><td>Coach watches</td><td>square hips, soft knees, continuous rhythm, correct step angle</td></tr></table>
+          
+          <details><summary>Source evidence</summary>
+          <table class="kv">
+            <tr><td>source_type</td><td>easton_kickboxing</td></tr>
+            <tr><td>technique_ids</td><td>[1796]</td></tr>
+            <tr><td>source_title</td><td>Easton Kickboxing — Stance</td></tr>
+            <tr><td>tags</td><td>balance, rhythm</td></tr>
+            <tr><td>Why it belongs</td><td>Chunk A — every later rung depends on a square stance, continuous weight-shift rhythm, and the step angle used by the kick.</td></tr>
+          </table></details>
+        </div>
+        <div class="rung-card">
+          <div class="rung-head"><span class="rung-badge">Rung</span>
+          12 min — <b>Round Kick — base mechanics only</b></div>
+          
+          <p><b>Objective:</b> Step to 2 o&#x27;clock, pull the opposite arm across as counterbalance, rotate the hip, strike with the shin above the elbow/tricep line.</p>
+          <p><b>Time breakdown:</b> demo=2.5m, setup=0.5m, working=9m (sums to 12 min)</p>
+          <p><b>Reps:</b> 5 sets of 6 kicks, reset to stance between every kick</p>
+          <table class="kv"><tr><td>Reps</td><td>5 sets of 6 kicks, reset to stance between every kick</td></tr><tr><td>Sides</td><td>rear leg kicks; lead foot steps to open the angle; whichever stance is the student&#x27;s natural one (orthodox or southpaw) -- no switching mid-arc</td></tr><tr><td>Reset position</td><td>full stance reset after each kick</td></tr><tr><td>Speed power</td><td>controlled, technical focus, coach corrects between sets</td></tr><tr><td>Coach watches</td><td>shin contact point, hip rotation, arm counterbalance, clean reset</td></tr></table>
+          <p class="safety-line"><b>Prerequisites/safety:</b> This source also teaches a switch-kick extension. STOP after the base rear-kick mechanics for this beginner night — do not teach the switch-stance portion.</p>
+          <details><summary>Source evidence</summary>
+          <table class="kv">
+            <tr><td>source_type</td><td>easton_kickboxing</td></tr>
+            <tr><td>technique_ids</td><td>[1789]</td></tr>
+            <tr><td>source_title</td><td>Easton Kickboxing — Round Kicks</td></tr>
+            <tr><td>tags</td><td>kick, footwork, offense</td></tr>
+            <tr><td>Why it belongs</td><td>Chunk A+B — the core technique of the whole arc, built directly on the stance just taught.</td></tr>
+          </table></details>
+        </div>
+        <div class="rung-card">
+          <div class="rung-head"><span class="rung-badge">Terminal</span>
+          13 min — <b>Terminal pad drill — rear kick, 10 pairs</b></div>
+          
+          <p><b>Objective:</b> Repeated rear round kicks into a held pad, holding the mechanics just taught, with a real feedback loop.</p>
+          <p><b>Time breakdown:</b> demo=1.5m, setup=1m, working=10m, switch=0.5m (sums to 13 min)</p>
+          <p><b>Reps:</b> 2 rounds of 8 rear-leg kicks per student (16 kicks per student total)</p>
+          <table class="kv"><tr><td>Partner a</td><td>Strikes first. Throws a rear round kick into the pad Partner B holds. Resets to full stance after every single kick before throwing the next.</td></tr><tr><td>Partner b</td><td>Holds one Thai pad at rib height with both hands, elbows in, weight braced on the back leg. Calls &#x27;ready&#x27; before each rep. Resets pad position between reps.</td></tr><tr><td>Equipment</td><td>1 Thai pad per pair (10 pads total for a class of 20)</td></tr><tr><td>Contact level</td><td>50% power, controlled, technical focus</td></tr><tr><td>Reps</td><td>2 rounds of 8 rear-leg kicks per student (16 kicks per student total)</td></tr><tr><td>Rounds</td><td>2</td></tr><tr><td>Switch point</td><td>After Partner A completes round 1 (8 kicks), partners switch immediately: B becomes striker, A becomes holder, for B&#x27;s round 1 (8 kicks). Repeat for round 2.</td></tr><tr><td>Reset condition</td><td>Striker resets to full stance after every individual kick; pair resets to neutral facing position before each new round.</td></tr><tr><td>Coaching pace</td><td>Coach calls out round start/stop and circulates correcting mechanics between reps.</td></tr><tr><td>Safety limits</td><td>50% power cap; pad holder must call &#x27;ready&#x27; before each rep so the striker never kicks a target that isn&#x27;t set.</td></tr></table>
+          <p class="safety-line"><b>Prerequisites/safety:</b> Requires the stance and base kick mechanics taught earlier tonight.</p>
+          <details><summary>Source evidence</summary>
+          <table class="kv">
+            <tr><td>source_type</td><td>fightclub_tiktok</td></tr>
+            <tr><td>technique_ids</td><td>[1968]</td></tr>
+            <tr><td>source_title</td><td>Correct, proper, clear, and safe — the foundation of effective training</td></tr>
+            <tr><td>tags</td><td>kick, offense</td></tr>
+            <tr><td>Why it belongs</td><td>The assembled application of tonight&#x27;s ladder — a plain rear round kick on pads, no entry footwork, no combination, matching the night&#x27;s single-technique scope.</td></tr>
+          </table></details>
+        </div>
+
+      <h3>Expected repetitions per student</h3>
+      <table class="data-table">
+      <tr><th>Rung</th><th>Ladder role</th><th>Minutes</th><th>Expected reps per student</th></tr>
+      <tr><td>Stance, weight shift and step angle</td><td>Rung</td><td>10</td><td>3 rounds of (10 weight shifts + 8 lead-foot step-outs)</td></tr><tr><td>Round Kick — base mechanics only</td><td>Rung</td><td>12</td><td>5 sets of 6 kicks, reset to stance between every kick</td></tr><tr><td>Terminal pad drill — rear kick, 10 pairs</td><td>Terminal</td><td>13</td><td>2 rounds of 8 rear-leg kicks per student (16 kicks per student total)</td></tr>
+    </table>
+
+      <h3>Partner and equipment logistics for 20 students</h3>
+      <table class="kv">
+      <tr><td>Class level</td><td>Beginner</td></tr>
+      <tr><td>Primary objective</td><td>Perform a balanced rear round kick with recognizable mechanics.</td></tr>
+      <tr><td>Equipment checklist</td><td>10 kicking shields, 10 Thai pads</td></tr>
+      <tr><td>Format</td><td>Partner pairs required</td></tr>
+      <tr><td>Pairs assumed</td><td>10 pairs (class of 20)</td></tr>
+      <tr><td>Space</td><td>Open floor. 4 rows of 5 for Warm Up and the New and Exciting shield-touch relay. 10 partner pairs spread across the floor for the pad terminal drill.</td></tr>
+      <tr><td>Safety requirements</td><td><ul><li><b>Round Kick — base mechanics only:</b> This source also teaches a switch-kick extension. STOP after the base rear-kick mechanics for this beginner night — do not teach the switch-stance portion.</li></ul></td></tr>
+    </table>
+
+      <h3>Burnout (final 5 minutes)</h3>
+      
+        <div class="rung-card">
+          <div class="rung-head">5 min — <b>Squat-jump + mountain-climber intervals</b>
+          <span class="rung-badge">solo</span></div>
+          <table class="kv">
+            <tr><td>Why (this class)</td><td>A simple, scalable, beginner-safe leg-and-cardio finisher that closes the class at high effort, no new technical skill.</td></tr>
+            <tr><td>Exact format</td><td>5 rounds of 40 seconds work / 20 seconds rest, exactly 5 minutes. Rounds 1, 3, 5: squat jumps. Rounds 2, 4: mountain climbers.</td></tr>
+            <tr><td>Coach call structure</td><td>Coach runs a visible 40/20 interval timer, calls &#x27;GO&#x27; at the start of each work interval and &#x27;REST&#x27; at each rest interval, counts down the last 5 seconds of the final round.</td></tr>
+            <tr><td>Scaling option</td><td>Squat jumps scale down to bodyweight squats (no jump) for lower-impact students; mountain climbers scale down to slow alternating knee-to-chest taps.</td></tr>
+            <tr><td>Safety limit</td><td>Land softly with soft knees on every jump; self-pace intensity; stop and walk in place if dizzy or short of breath.</td></tr>
+            <tr><td>Equal work / switching</td><td>n/a (solo)</td></tr>
+            <tr><td>block_role</td><td>burnout</td></tr>
+            <tr><td>Genuinely low intensity?</td><td>no (hard effort, as required)</td></tr>
+          </table>
+          <table class="kv"><tr><td>Reps</td><td>5 rounds x 40s work (roughly 15-20 reps per work interval at a self-paced effort)</td></tr><tr><td>Sides</td><td>symmetric, no side distinction</td></tr><tr><td>Reset position</td><td>standing between rounds</td></tr><tr><td>Speed power</td><td>maximum controlled effort during work intervals</td></tr><tr><td>Coach watches</td><td>landing mechanics, effort level, signs of overheating</td></tr></table>
+        </div>
+
+      <div class="revision-notes-block">
+        <h3>What changed this revision</h3>
+        <p>Renamed the fixed closing block from Cool Down to Burnout per the clarified WCS template and replaced the two static stretches with a genuine 5-minute interval finisher (squat jumps / mountain climbers). Restructured Warm Up to 5 min energetic + 3 min technical (was entirely technical). Replaced the no-contact grid pathway rehearsal in New and Exciting with a partner shield-touch-count relay with real target feedback and competition. Fixed ambiguous &#x27;lead side&#x27; terminology throughout to explicitly distinguish the stepping foot from the striking leg. Added equipment_checklist and an accurate space_description derived from the actual drills.</p>
+      </div>
+    </section>
+    <section id="night2">
+      <h2>Night 2: Step-In Rear Round Kick</h2>
+      <p class="objective-line"><b>Class objective:</b> Cover distance with a step-in entry and kick without losing stance.</p>
+      <table class="kv hash-table">
+        <tr><td>plan_id (stable)</td><td class="mono">arc-beginner-kicking-94b252e5236b-night2</td></tr>
+        <tr><td>Old plan_hash</td><td class="mono old-hash">510cc4a00d2090d2310c46ec955193f111423478dbb5c0daf6d47f1d9f703b58</td></tr>
+        <tr><td>New plan_hash</td><td class="mono new-hash">fd76a59d9838d9e96b3a87a12ea35ca4fb0b09befdb4b7c065c5c15307c4d2bb</td></tr>
+        <tr><td>Hash changed?</td><td>yes</td></tr>
+      </table>
+
+      <h3>Exact 60-minute timeline</h3>
+      
+    <table class="data-table">
+      <tr><th>Block</th><th>Minutes</th><th>Drill</th><th>What students are doing</th></tr>
+      <tr><td>Warm Up</td><td>1.0</td><td>Jumping jacks</td><td>Raise heart rate with a fully generic movement.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Lateral shuffles</td><td>Shuffle side to side, low and athletic.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Reverse lunges</td><td>Step back into a reverse lunge, alternating legs.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Fast feet</td><td>Quick, light footwork in place.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Line touches (forward emphasis)</td><td>Jog or shuffle forward to a floor line, touch it, return.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Stance + weight shift recap</td><td>Find the athletic base and shift weight smoothly.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Forward step + balance hold</td><td>Lead foot steps forward, land in stance, hold balance briefly, step back.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Knee lift + hip rotate recap</td><td>Rear-side knee lifts and hip rotates under control.</td></tr><tr><td>New and Exciting</td><td>12</td><td>Step-to-target reaction drill</td><td>React to a partner stepping back by closing the new distance and lightly touching the shield.</td></tr><tr><td>Muay Thai Curriculum</td><td>6</td><td>Compressed review: base rear round kick (partner pads)</td><td>Re-establish the base rear kick mechanics: shin strike, hip rotation, counterbalance arm.</td></tr><tr><td>Muay Thai Curriculum</td><td>12</td><td>Step-in entry mechanics</td><td>Advance with a full forward step while maintaining stance integrity.</td></tr><tr><td>Muay Thai Curriculum</td><td>17</td><td>Terminal pad drill — step-in rear round kick, 10 pairs</td><td>Step forward to launch the kick, then recover to stance without losing balance.</td></tr><tr><td>Burnout</td><td>5</td><td>Shield rear-kick interval sprint</td><td>Hard-effort rear-kick volume finisher on the shields already in use tonight.</td></tr>
+    </table>
+    <p class="totals-line">Warm Up 8 + New and Exciting 12 +
+    Curriculum 35 + Burnout 5 = <b>60/60 min</b></p>
+
+      <h3>Warm-up structure</h3>
+      <p class="totals-line">Energetic: 5.0 min &middot; Technical: 3.0 min (of 8 min total -- endorphin-sandwich open)</p>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Jumping jacks</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Raise heart rate with a fully generic movement.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>45 seconds continuous</td></tr>
+          <tr><td>Sides</td><td>symmetric, no side distinction</td></tr>
+          <tr><td>Reset position</td><td>n/a, continuous movement</td></tr>
+          <tr><td>Speed/power</td><td>steady energetic pace</td></tr>
+          <tr><td>Coach watches</td><td>everyone moving, energy in the room</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Lateral shuffles</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Shuffle side to side, low and athletic.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>45 seconds continuous</td></tr>
+          <tr><td>Sides</td><td>symmetric, both directions</td></tr>
+          <tr><td>Reset position</td><td>n/a, continuous</td></tr>
+          <tr><td>Speed/power</td><td>quick, athletic</td></tr>
+          <tr><td>Coach watches</td><td>staying low, not crossing feet</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Reverse lunges</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Step back into a reverse lunge, alternating legs.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>10 total, alternating legs</td></tr>
+          <tr><td>Sides</td><td>both legs, alternating</td></tr>
+          <tr><td>Reset position</td><td>standing between reps</td></tr>
+          <tr><td>Speed/power</td><td>controlled but energetic</td></tr>
+          <tr><td>Coach watches</td><td>front knee tracking over toes</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Fast feet</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Quick, light footwork in place.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>45 seconds continuous</td></tr>
+          <tr><td>Sides</td><td>symmetric</td></tr>
+          <tr><td>Reset position</td><td>n/a, continuous</td></tr>
+          <tr><td>Speed/power</td><td>quick, light</td></tr>
+          <tr><td>Coach watches</td><td>staying on the balls of the feet</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Line touches (forward emphasis)</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Jog or shuffle forward to a floor line, touch it, return.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>4 out-and-backs</td></tr>
+          <tr><td>Sides</td><td>symmetric</td></tr>
+          <tr><td>Reset position</td><td>start line</td></tr>
+          <tr><td>Speed/power</td><td>energetic jog/shuffle</td></tr>
+          <tr><td>Coach watches</td><td>full effort each rep</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-technical">technical</span> 1.0 min — <b>Stance + weight shift recap</b> <span class="cat-tag">[technical]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Find the athletic base and shift weight smoothly.</td></tr>
+          <tr><td>Skills used</td><td>athletic_base, weight_shift</td></tr>
+          <tr><td>Skills taught here</td><td>athletic_base, weight_shift</td></tr>
+          <tr><td>Reps</td><td>8 weight shifts, both directions</td></tr>
+          <tr><td>Sides</td><td>symmetric weight shift</td></tr>
+          <tr><td>Reset position</td><td>athletic base</td></tr>
+          <tr><td>Speed/power</td><td>slow, controlled</td></tr>
+          <tr><td>Coach watches</td><td>soft knees, square stance</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-technical">technical</span> 1.0 min — <b>Forward step + balance hold</b> <span class="cat-tag">[technical]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Lead foot steps forward, land in stance, hold balance briefly, step back.</td></tr>
+          <tr><td>Skills used</td><td>athletic_base, forward_step_and_land</td></tr>
+          <tr><td>Skills taught here</td><td>forward_step_and_land</td></tr>
+          <tr><td>Reps</td><td>6 forward steps with a 2-second balance hold on landing</td></tr>
+          <tr><td>Sides</td><td>lead foot steps forward; rear leg trails and resets (no kick this rung)</td></tr>
+          <tr><td>Reset position</td><td>step back to start position between reps</td></tr>
+          <tr><td>Speed/power</td><td>slow, deliberate</td></tr>
+          <tr><td>Coach watches</td><td>lands in full stance, not standing tall; balance holds without wobbling</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-technical">technical</span> 1.0 min — <b>Knee lift + hip rotate recap</b> <span class="cat-tag">[technical]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Rear-side knee lifts and hip rotates under control.</td></tr>
+          <tr><td>Skills used</td><td>athletic_base, knee_lift_hip_rotation</td></tr>
+          <tr><td>Skills taught here</td><td>knee_lift_hip_rotation</td></tr>
+          <tr><td>Reps</td><td>8 knee lifts, alternating legs</td></tr>
+          <tr><td>Sides</td><td>both legs practiced, alternating</td></tr>
+          <tr><td>Reset position</td><td>athletic base</td></tr>
+          <tr><td>Speed/power</td><td>slow, no strike</td></tr>
+          <tr><td>Coach watches</td><td>hip rotates with the knee</td></tr></table>
+        </div>
+
+      <h3>New and Exciting structure</h3>
+      <div class="wu-item"><div class="wu-head">12 min — <b>Step-to-target reaction drill</b></div>
+      <table class="kv"><tr><td>Objective</td><td>React to a partner stepping back by closing the new distance and lightly touching the shield.</td></tr>
+      <tr><td>Why it fits tonight</td><td>Turns forward entry into a live reactive game with a partner and a real target -- distance changes unpredictably, so students must actually react and connect the step to a touch, which is exactly tonight&#x27;s theme, but with real feedback instead of solo rehearsal.</td></tr>
+      <tr><td>Engagement features</td><td>partner_interaction, reaction, equipment, timing, target_work, immediate_feedback</td></tr>
+      <tr><td>Station formation</td><td>10 pairs, spaced across the open floor, all working simultaneously</td></tr>
+      <tr><td>Throughput justification</td><td>Every pair works simultaneously with its own shield; no shared equipment, no line to wait in.</td></tr>
+      <tr><td>Conflicts with Curriculum?</td><td>none</td></tr></table><table class="kv"><tr><td>Partner a</td><td>Reacts. On the coach&#x27;s call, steps in with the lead foot to close the new distance and lightly touches the shield with a knee-lift-to-target (light touch, not a full kick).</td></tr><tr><td>Partner b</td><td>Holds a kicking shield and, on the coach&#x27;s call, takes one step back to open the distance, then holds still for Partner A&#x27;s reaction.</td></tr><tr><td>Equipment</td><td>1 kicking shield per pair (10 shields for a class of 20).</td></tr><tr><td>Contact level</td><td>Light touch/tap only, constrained movement -- full-power technique is taught on pads in Curriculum.</td></tr><tr><td>Reps</td><td>3 rounds of 8 reactions per role</td></tr><tr><td>Rounds</td><td>3</td></tr><tr><td>Switch point</td><td>After 8 reactions, partners switch roles: holder becomes the reactor, reactor becomes the holder.</td></tr><tr><td>Reset condition</td><td>Full reset to starting distance after each reaction before the next call.</td></tr><tr><td>Coaching pace</td><td>Coach calls &#x27;ready... STEP&#x27; at an unpredictable cadence to keep the reaction genuine.</td></tr><tr><td>Safety limits</td><td>Touch/tap contact only; shield holder must be set and stable before calling for the next rep.</td></tr></table></div>
+
+      <h3>Curriculum ladder</h3>
+      
+        <div class="rung-card">
+          <div class="rung-head"><span class="rung-badge">Compressed review</span>
+          6 min — <b>Compressed review: base rear round kick (partner pads)</b></div>
+          
+          <p><b>Objective:</b> Re-establish the base rear kick mechanics: shin strike, hip rotation, counterbalance arm.</p>
+          <p><b>Time breakdown:</b> demo=2m, setup=1m, working=2.5m, switch=0.5m (sums to 6 min)</p>
+          <p><b>Reps:</b> 4 kicks per student (Partner A kicks 4, switch, Partner B kicks 4).</p>
+          <table class="kv"><tr><td>Partner a</td><td>Strikes first. Throws a rear round kick into the pad Partner B holds, resetting to full stance after every kick.</td></tr><tr><td>Partner b</td><td>Holds one Thai pad at rib height, braced, calling &#x27;ready&#x27; before each rep -- the same pad this pair will use for the rest of tonight&#x27;s Curriculum.</td></tr><tr><td>Equipment</td><td>1 Thai pad per pair (10 pads for a class of 20).</td></tr><tr><td>Contact level</td><td>50% power, controlled, technical focus.</td></tr><tr><td>Reps</td><td>4 kicks per student (Partner A kicks 4, switch, Partner B kicks 4).</td></tr><tr><td>Rounds</td><td>1</td></tr><tr><td>Switch point</td><td>After Partner A&#x27;s 4 kicks, partners switch immediately for Partner B&#x27;s 4 kicks.</td></tr><tr><td>Reset condition</td><td>Striker resets to full stance after every kick.</td></tr><tr><td>Coaching pace</td><td>Coach re-teaches the mechanics during the demo, then circulates correcting during the reps.</td></tr><tr><td>Safety limits</td><td>50% power cap; pad holder calls &#x27;ready&#x27; before each rep.</td></tr></table>
+          <p class="safety-line"><b>Prerequisites/safety:</b> None — this is a full re-teach, not a reminder-only review.</p>
+          <details><summary>Source evidence</summary>
+          <table class="kv">
+            <tr><td>source_type</td><td>fightclub_tiktok</td></tr>
+            <tr><td>technique_ids</td><td>[1968]</td></tr>
+            <tr><td>source_title</td><td>Correct, proper, clear, and safe — the foundation of effective training</td></tr>
+            <tr><td>tags</td><td>kick, offense</td></tr>
+            <tr><td>Why it belongs</td><td>Required from Night 2 onward — a full re-teach (not just a reminder) of the base kick mechanics, so a student attending for the first time tonight can still follow. Run on partner pads from the start of Curriculum so the same pairs and pads carry through to the terminal drill with no equipment change.</td></tr>
+          </table></details>
+        </div>
+        <div class="rung-card">
+          <div class="rung-head"><span class="rung-badge">Rung</span>
+          12 min — <b>Step-in entry mechanics</b></div>
+          
+          <p><b>Objective:</b> Advance with a full forward step while maintaining stance integrity.</p>
+          <p><b>Time breakdown:</b> demo=2m, setup=1m, working=9m (sums to 12 min)</p>
+          <p><b>Reps:</b> 4 blocks of 8 reps (32 reps total)</p>
+          <table class="kv"><tr><td>Reps</td><td>4 blocks of 8 reps (32 reps total)</td></tr><tr><td>Sides</td><td>lead foot steps forward; rear leg trails and resets (no kick this rung)</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>slow to moderate, controlled</td></tr><tr><td>Coach watches</td><td>circulates the room correcting landing stance and balance</td></tr></table>
+          
+          <details><summary>Source evidence</summary>
+          <table class="kv">
+            <tr><td>source_type</td><td>fightclub_tiktok</td></tr>
+            <tr><td>technique_ids</td><td>[1873]</td></tr>
+            <tr><td>source_title</td><td>Introduction to Muay Thai Footwork</td></tr>
+            <tr><td>tags</td><td>footwork, distance, balance, rhythm</td></tr>
+            <tr><td>Why it belongs</td><td>Chunk B — pure entry footwork, taught alone before it&#x27;s combined with the kick, so students aren&#x27;t asked to learn two things at once. One clear format (solo, floor lines) for the whole rung.</td></tr>
+          </table></details>
+        </div>
+        <div class="rung-card">
+          <div class="rung-head"><span class="rung-badge">Terminal</span>
+          17 min — <b>Terminal pad drill — step-in rear round kick, 10 pairs</b></div>
+          
+          <p><b>Objective:</b> Step forward to launch the kick, then recover to stance without losing balance.</p>
+          <p><b>Time breakdown:</b> demo=2m, setup=1m, working=12.5m, switch=1.5m (sums to 17 min)</p>
+          <p><b>Reps:</b> 2 full rounds of 8 rear-leg kicks per student (16 kicks minimum); a 3rd partial round if time allows.</p>
+          <table class="kv"><tr><td>Partner a</td><td>Strikes first. Steps in and throws a rear round kick into the pad Partner B holds. Recovers to full stance after every kick.</td></tr><tr><td>Partner b</td><td>Holds the same Thai pad from the review rung (already in hand, no equipment change) at rib height, braced. Calls &#x27;ready&#x27; before each rep.</td></tr><tr><td>Equipment</td><td>Same Thai pad per pair used in the compressed review — already in hand, no equipment change between Curriculum rungs.</td></tr><tr><td>Contact level</td><td>60% power — a step adds force, so power is capped slightly higher than Night 1&#x27;s static kick but still controlled.</td></tr><tr><td>Reps</td><td>2 full rounds of 8 rear-leg kicks per student (16 kicks minimum); a 3rd partial round if time allows.</td></tr><tr><td>Rounds</td><td>2</td></tr><tr><td>Switch point</td><td>After Partner A&#x27;s round of 8, partners switch immediately: B strikes, A holds, for 8 kicks. Repeat for round 2.</td></tr><tr><td>Reset condition</td><td>Striker recovers to full stance after every kick; pair resets to starting distance before each new round.</td></tr><tr><td>Coaching pace</td><td>Coach calls round start/stop, circulates correcting the step-to-kick connection.</td></tr><tr><td>Safety limits</td><td>60% power cap; pad holder must call &#x27;ready&#x27; before each rep.</td></tr></table>
+          <p class="safety-line"><b>Prerequisites/safety:</b> Requires the entry footwork and base kick mechanics from earlier tonight and Night 1.</p>
+          <details><summary>Source evidence</summary>
+          <table class="kv">
+            <tr><td>source_type</td><td>fightclub_tiktok</td></tr>
+            <tr><td>technique_ids</td><td>[2214]</td></tr>
+            <tr><td>source_title</td><td>4 Muaythai Kick Drills that go beyond just power</td></tr>
+            <tr><td>tags</td><td>kick, footwork, offense, pressure</td></tr>
+            <tr><td>Why it belongs</td><td>Chunk A+B assembled and applied — the complete step-in rear kick, on pads, with recovery emphasized.</td></tr>
+          </table></details>
+        </div>
+
+      <h3>Expected repetitions per student</h3>
+      <table class="data-table">
+      <tr><th>Rung</th><th>Ladder role</th><th>Minutes</th><th>Expected reps per student</th></tr>
+      <tr><td>Compressed review: base rear round kick (partner pads)</td><td>Compressed review</td><td>6</td><td>4 kicks per student (Partner A kicks 4, switch, Partner B kicks 4).</td></tr><tr><td>Step-in entry mechanics</td><td>Rung</td><td>12</td><td>4 blocks of 8 reps (32 reps total)</td></tr><tr><td>Terminal pad drill — step-in rear round kick, 10 pairs</td><td>Terminal</td><td>17</td><td>2 full rounds of 8 rear-leg kicks per student (16 kicks minimum); a 3rd partial round if time allows.</td></tr>
+    </table>
+
+      <h3>Partner and equipment logistics for 20 students</h3>
+      <table class="kv">
+      <tr><td>Class level</td><td>Beginner</td></tr>
+      <tr><td>Primary objective</td><td>Cover distance with a step-in entry and kick without losing stance.</td></tr>
+      <tr><td>Equipment checklist</td><td>10 kicking shields, 10 Thai pads, floor lines for 10 individual footwork lanes</td></tr>
+      <tr><td>Format</td><td>Partner pairs required</td></tr>
+      <tr><td>Pairs assumed</td><td>10 pairs (class of 20)</td></tr>
+      <tr><td>Space</td><td>Open floor. 4 rows of 5 for Warm Up. 10 partner pairs with shields for New and Exciting. 10 individual floor-line lanes for the entry-footwork rung. 10 partner pairs with pads for the compressed review and terminal drill.</td></tr>
+      <tr><td>Safety requirements</td><td><ul></ul></td></tr>
+    </table>
+
+      <h3>Burnout (final 5 minutes)</h3>
+      
+        <div class="rung-card">
+          <div class="rung-head">5 min — <b>Shield rear-kick interval sprint</b>
+          <span class="rung-badge">partner</span></div>
+          <table class="kv">
+            <tr><td>Why (this class)</td><td>A distance-and-leg-endurance finisher using tonight&#x27;s exact technique (rear kick) at maximum volume, closing the class at high effort.</td></tr>
+            <tr><td>Exact format</td><td>4 rounds of 75 seconds, exactly 5 minutes. Each round: Partner A kicks the shield for 30s max controlled volume, quick 7-second switch, Partner B kicks the shield for 30s max controlled volume, quick 7-second switch, next round begins immediately.</td></tr>
+            <tr><td>Coach call structure</td><td>Coach runs a repeating 75-second timer, calls &#x27;SWITCH&#x27; at each interval, counts down the last 10 seconds of the final round.</td></tr>
+            <tr><td>Scaling option</td><td>Scale from full-power round kicks to teep/push-kick volume for students struggling with balance under fatigue.</td></tr>
+            <tr><td>Safety limit</td><td>Kicks stay technically controlled even at speed -- no wild, off-balance strikes. Shield holder must brace fully every rep; coach can call any student to slow down if form degrades.</td></tr>
+            <tr><td>Equal work / switching</td><td>yes -- Both partners get exactly 30 seconds of kicking work in every round -- work is equal by construction.</td></tr>
+            <tr><td>block_role</td><td>burnout</td></tr>
+            <tr><td>Genuinely low intensity?</td><td>no (hard effort, as required)</td></tr>
+          </table>
+          <table class="kv"><tr><td>Partner a</td><td>Kicks the shield Partner B holds for 30 seconds of maximum controlled volume each round.</td></tr><tr><td>Partner b</td><td>Holds the shield braced for Partner A&#x27;s 30-second work interval, then the roles switch.</td></tr><tr><td>Equipment</td><td>1 kicking shield per pair (the same shields used in tonight&#x27;s New and Exciting drill).</td></tr><tr><td>Contact level</td><td>Full controlled power -- this is the effort finisher, unlike the light-touch work earlier tonight.</td></tr><tr><td>Reps</td><td>4 rounds x 30s work per role (2 minutes of kicking work per student total)</td></tr><tr><td>Rounds</td><td>4</td></tr><tr><td>Switch point</td><td>Every 30 seconds, immediate switch (7-second transition).</td></tr><tr><td>Reset condition</td><td>n/a -- continuous work within each round, full stop only at the end of the 5 minutes.</td></tr><tr><td>Equal work note</td><td>Both partners get exactly 30 seconds of kicking work in every round -- work is equal by construction.</td></tr><tr><td>Coaching pace</td><td>Coach runs the interval timer and calls switches.</td></tr><tr><td>Safety limits</td><td>Controlled technical kicks even under fatigue; shield holder braces every rep.</td></tr></table>
+        </div>
+
+      <div class="revision-notes-block">
+        <h3>What changed this revision</h3>
+        <p>Renamed Cool Down to Burnout and replaced the stretching closer with a genuine shield rear-kick interval sprint. Restructured Warm Up to 5 min energetic + 3 min technical. Replaced the grid step-in rehearsal in New and Exciting with a reactive step-to-target shield game. Resolved the Night 2 seam: the compressed review is now a partner-pad drill (was solo), so its equipment matches the terminal drill&#x27;s claim of continuity -- the same 10 pairs and pads run through both rungs with no change. Fixed ambiguous &#x27;lead side&#x27; terminology throughout.</p>
+      </div>
+    </section>
+    <section id="night3">
+      <h2>Night 3: Check and Return</h2>
+      <p class="objective-line"><b>Class objective:</b> Check a partner&#x27;s controlled counter kick and return immediately with a round kick.</p>
+      <table class="kv hash-table">
+        <tr><td>plan_id (stable)</td><td class="mono">arc-beginner-kicking-94b252e5236b-night3</td></tr>
+        <tr><td>Old plan_hash</td><td class="mono old-hash">d5de897355ac84c525f04fc21d4821e4f16d3db00f3a8b8b1ad6ae24bc70432a</td></tr>
+        <tr><td>New plan_hash</td><td class="mono new-hash">b171f0ce33787316fa1dac3483b21dbdf043d3cdc1003ef92ef0356ae1e44700</td></tr>
+        <tr><td>Hash changed?</td><td>yes</td></tr>
+      </table>
+
+      <h3>Exact 60-minute timeline</h3>
+      
+    <table class="data-table">
+      <tr><th>Block</th><th>Minutes</th><th>Drill</th><th>What students are doing</th></tr>
+      <tr><td>Warm Up</td><td>1.0</td><td>Jumping jacks</td><td>Raise heart rate with a fully generic movement.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>High knees in place</td><td>Drive the knees up at a quick cadence, in place.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Mountain climbers</td><td>Alternating knee drives from a plank position.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Bear crawls (short distance)</td><td>Crawl forward a short distance, hands and feet moving opposite corners.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Coach-call reaction game</td><td>React quickly to the coach&#x27;s call (e.g. a direction or a number), then reset.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Single-leg balance hold</td><td>Balance on the rear-side leg for a short count, both legs practiced.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Knee-to-elbow check position (shape only)</td><td>Rear-side knee lifts to touch the same-side elbow, hold, set the foot back down.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Controlled reset-to-stance cue</td><td>Snap into stance on the coach&#x27;s call, hold, reset.</td></tr><tr><td>New and Exciting</td><td>12</td><td>Check-position reaction challenge</td><td>React fast to a partner&#x27;s visual raise-cue by rising into the check position, then reset -- counted for a friendly competitive total.</td></tr><tr><td>Muay Thai Curriculum</td><td>5</td><td>Compressed review: step-in rear round kick</td><td>Re-establish the step-in rear kick and the recovery-to-stance habit.</td></tr><tr><td>Muay Thai Curriculum</td><td>7</td><td>Check mechanics (live, portion only)</td><td>Rear-side leg lifts, knee-to-elbow at a 45-degree angle, shin up, to check an incoming slow kick with a strong base.</td></tr><tr><td>Muay Thai Curriculum</td><td>8</td><td>Check and return kick</td><td>Check the feed, then immediately return the same rear kick, at scaled (not full) power.</td></tr><tr><td>Muay Thai Curriculum</td><td>15</td><td>Final assembled terminal drill: step-in, recover, check, return</td><td>1) Partner A throws the step-in rear round kick into a pad Partner B holds. 2) Partner B sets the pad down and throws one slow, telegraphed counter kick at Partner A&#x27;s shin. 3) Partner A checks it with the rear-side leg. 4) Partner B immediately raises the pad again and Partner A returns the kick into the pad.</td></tr><tr><td>Burnout</td><td>5</td><td>Check-hold + return-kick burst (pads only)</td><td>Hard-effort finisher combining an isometric check hold with an explosive return-kick burst, pad contact only.</td></tr>
+    </table>
+    <p class="totals-line">Warm Up 8 + New and Exciting 12 +
+    Curriculum 35 + Burnout 5 = <b>60/60 min</b></p>
+
+      <h3>Warm-up structure</h3>
+      <p class="totals-line">Energetic: 5.0 min &middot; Technical: 3.0 min (of 8 min total -- endorphin-sandwich open)</p>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Jumping jacks</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Raise heart rate with a fully generic movement.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>45 seconds continuous</td></tr>
+          <tr><td>Sides</td><td>symmetric, no side distinction</td></tr>
+          <tr><td>Reset position</td><td>n/a, continuous movement</td></tr>
+          <tr><td>Speed/power</td><td>steady energetic pace</td></tr>
+          <tr><td>Coach watches</td><td>everyone moving, energy in the room</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>High knees in place</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Drive the knees up at a quick cadence, in place.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>45 seconds continuous</td></tr>
+          <tr><td>Sides</td><td>alternating, symmetric</td></tr>
+          <tr><td>Reset position</td><td>n/a, continuous</td></tr>
+          <tr><td>Speed/power</td><td>quick cadence</td></tr>
+          <tr><td>Coach watches</td><td>knees driving up</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Mountain climbers</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Alternating knee drives from a plank position.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>45 seconds continuous</td></tr>
+          <tr><td>Sides</td><td>alternating, symmetric</td></tr>
+          <tr><td>Reset position</td><td>n/a, continuous</td></tr>
+          <tr><td>Speed/power</td><td>quick, controlled</td></tr>
+          <tr><td>Coach watches</td><td>hips staying level, hands under shoulders</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Bear crawls (short distance)</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Crawl forward a short distance, hands and feet moving opposite corners.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>2 lengths of the room (or 20 feet)</td></tr>
+          <tr><td>Sides</td><td>symmetric</td></tr>
+          <tr><td>Reset position</td><td>start line</td></tr>
+          <tr><td>Speed/power</td><td>steady, controlled</td></tr>
+          <tr><td>Coach watches</td><td>hips staying low and level</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Coach-call reaction game</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>React quickly to the coach&#x27;s call (e.g. a direction or a number), then reset.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>8-10 calls</td></tr>
+          <tr><td>Sides</td><td>symmetric</td></tr>
+          <tr><td>Reset position</td><td>athletic stance between calls</td></tr>
+          <tr><td>Speed/power</td><td>quick reaction each call</td></tr>
+          <tr><td>Coach watches</td><td>genuine quick reactions, not anticipating the call</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-technical">technical</span> 1.0 min — <b>Single-leg balance hold</b> <span class="cat-tag">[mobility]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Balance on the rear-side leg for a short count, both legs practiced.</td></tr>
+          <tr><td>Skills used</td><td>athletic_base, single_leg_balance</td></tr>
+          <tr><td>Skills taught here</td><td>single_leg_balance</td></tr>
+          <tr><td>Reps</td><td>3 holds each leg, 3 seconds each</td></tr>
+          <tr><td>Sides</td><td>both legs practiced, one at a time</td></tr>
+          <tr><td>Reset position</td><td>athletic base</td></tr>
+          <tr><td>Speed/power</td><td>static hold</td></tr>
+          <tr><td>Coach watches</td><td>standing knee soft, no wobbling</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-technical">technical</span> 1.0 min — <b>Knee-to-elbow check position (shape only)</b> <span class="cat-tag">[technical]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Rear-side knee lifts to touch the same-side elbow, hold, set the foot back down.</td></tr>
+          <tr><td>Skills used</td><td>athletic_base, check_position_shape</td></tr>
+          <tr><td>Skills taught here</td><td>check_position_shape</td></tr>
+          <tr><td>Reps</td><td>6 reps, alternating legs</td></tr>
+          <tr><td>Sides</td><td>both legs practiced, alternating</td></tr>
+          <tr><td>Reset position</td><td>athletic base between reps</td></tr>
+          <tr><td>Speed/power</td><td>slow, controlled, no partner involved</td></tr>
+          <tr><td>Coach watches</td><td>knee reaches toward the elbow, hands stay up, base stays strong</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-technical">technical</span> 1.0 min — <b>Controlled reset-to-stance cue</b> <span class="cat-tag">[reaction]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Snap into stance on the coach&#x27;s call, hold, reset.</td></tr>
+          <tr><td>Skills used</td><td>athletic_base</td></tr>
+          <tr><td>Skills taught here</td><td>(reused from earlier in this warm-up)</td></tr>
+          <tr><td>Reps</td><td>5 calls, hold 2 seconds each</td></tr>
+          <tr><td>Sides</td><td>symmetric</td></tr>
+          <tr><td>Reset position</td><td>relaxed between calls</td></tr>
+          <tr><td>Speed/power</td><td>quick reaction, then hold</td></tr>
+          <tr><td>Coach watches</td><td>clean, balanced stance on the call</td></tr></table>
+        </div>
+
+      <h3>New and Exciting structure</h3>
+      <div class="wu-item"><div class="wu-head">12 min — <b>Check-position reaction challenge</b></div>
+      <table class="kv"><tr><td>Objective</td><td>React fast to a partner&#x27;s visual raise-cue by rising into the check position, then reset -- counted for a friendly competitive total.</td></tr>
+      <tr><td>Why it fits tonight</td><td>Keeps the see-a-cue-then-check concept but makes it fast, competitive and partner-driven -- a real game with unpredictable timing, not a slow walkthrough. Zero live-kick contact, so it doesn&#x27;t front-run Curriculum&#x27;s live check-mechanics rung.</td></tr>
+      <tr><td>Engagement features</td><td>partner_interaction, reaction, timing, competition, equipment, game_structure, immediate_feedback</td></tr>
+      <tr><td>Station formation</td><td>10 pairs, spaced across the open floor, all working simultaneously</td></tr>
+      <tr><td>Throughput justification</td><td>Every pair works simultaneously; no shared or scarce equipment.</td></tr>
+      <tr><td>Conflicts with Curriculum?</td><td>none</td></tr></table><table class="kv"><tr><td>Partner a</td><td>Reacts. The instant Partner B raises the pad, rises fast into the check position (knee to elbow, shin up), then resets to stance -- counting clean, fast reactions out loud.</td></tr><tr><td>Partner b</td><td>Holds a focus mitt at their side and raises it quickly at unpredictable moments (not a steady rhythm) as the visual cue -- no kick is thrown, this is a cue only.</td></tr><tr><td>Equipment</td><td>1 focus mitt per pair (10 for a class of 20).</td></tr><tr><td>Contact level</td><td>Zero contact — visual cue and reaction only, no kick thrown by either partner.</td></tr><tr><td>Reps</td><td>4 rounds of 30 seconds per role, counting clean reactions</td></tr><tr><td>Rounds</td><td>4</td></tr><tr><td>Switch point</td><td>After each 30-second round, partners switch: cue-giver becomes the reactor.</td></tr><tr><td>Reset condition</td><td>Full reset to stance after every reaction before the next cue.</td></tr><tr><td>Coaching pace</td><td>Coach starts/stops each 30-second round and calls out best counts to keep energy competitive.</td></tr><tr><td>Safety limits</td><td>No kicks are thrown in this drill — it is cue-and-reaction only, fully non-contact.</td></tr></table></div>
+
+      <h3>Curriculum ladder</h3>
+      
+        <div class="rung-card">
+          <div class="rung-head"><span class="rung-badge">Compressed review</span>
+          5 min — <b>Compressed review: step-in rear round kick</b></div>
+          
+          <p><b>Objective:</b> Re-establish the step-in rear kick and the recovery-to-stance habit.</p>
+          <p><b>Time breakdown:</b> demo=1.5m, setup=0.5m, working=3m (sums to 5 min)</p>
+          <p><b>Reps:</b> 2 sets of 6 reps</p>
+          <table class="kv"><tr><td>Reps</td><td>2 sets of 6 reps</td></tr><tr><td>Sides</td><td>lead foot steps in; rear leg kicks</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>controlled</td></tr><tr><td>Coach watches</td><td>step-to-kick connection, balanced recovery</td></tr></table>
+          <p class="safety-line"><b>Prerequisites/safety:</b> None — this is a full re-teach, not a reminder-only review.</p>
+          <details><summary>Source evidence</summary>
+          <table class="kv">
+            <tr><td>source_type</td><td>fightclub_tiktok</td></tr>
+            <tr><td>technique_ids</td><td>[2214]</td></tr>
+            <tr><td>source_title</td><td>4 Muaythai Kick Drills that go beyond just power</td></tr>
+            <tr><td>tags</td><td>kick, footwork, offense</td></tr>
+            <tr><td>Why it belongs</td><td>Required from Night 2 onward — a full re-teach of Night 2&#x27;s terminal drill so a student who missed Night 2 can still participate tonight.</td></tr>
+          </table></details>
+        </div>
+        <div class="rung-card">
+          <div class="rung-head"><span class="rung-badge">Rung</span>
+          7 min — <b>Check mechanics (live, portion only)</b></div>
+          
+          <p><b>Objective:</b> Rear-side leg lifts, knee-to-elbow at a 45-degree angle, shin up, to check an incoming slow kick with a strong base.</p>
+          <p><b>Time breakdown:</b> demo=1.5m, setup=1m, working=4.5m (sums to 7 min)</p>
+          <p><b>Reps:</b> 10 checks per student (Partner A checks 10 while B feeds, then switch, B checks 10 while A feeds).</p>
+          <table class="kv"><tr><td>Partner a</td><td>Checks. Stands in stance, watches the feed, checks the incoming kick with a strong base using the rear-side leg, resets to stance.</td></tr><tr><td>Partner b</td><td>Feeds. Throws one slow, telegraphed rear round kick at Partner A&#x27;s lead shin, at 30% power, calling &#x27;kick coming&#x27; before each one.</td></tr><tr><td>Equipment</td><td>Shin guards on both partners for the rest of tonight&#x27;s Curriculum (put on now; stays on through the terminal drill).</td></tr><tr><td>Contact level</td><td>30% power, slow and telegraphed, shin-to-shin only, shin guards required.</td></tr><tr><td>Reps</td><td>10 checks per student (Partner A checks 10 while B feeds, then switch, B checks 10 while A feeds).</td></tr><tr><td>Rounds</td><td>1</td></tr><tr><td>Switch point</td><td>After A completes 10 checks, partners switch immediately for B&#x27;s 10 checks.</td></tr><tr><td>Reset condition</td><td>Both partners reset to full stance after every rep.</td></tr><tr><td>Coaching pace</td><td>Coach circulates checking base strength and shin position; feeder paces off the coach, not their own rhythm.</td></tr><tr><td>Safety limits</td><td>Shin guards mandatory before this rung begins; 30% power cap; feeder must call out before every kick.</td></tr></table>
+          <p class="safety-line"><b>Prerequisites/safety:</b> Use ONLY the check-mechanics portion of this source. It also teaches a switch-kick return, which this beginner arc excludes — the return in this arc is always the straight rear kick already taught.</p>
+          <details><summary>Source evidence</summary>
+          <table class="kv">
+            <tr><td>source_type</td><td>easton_kickboxing</td></tr>
+            <tr><td>technique_ids</td><td>[1755]</td></tr>
+            <tr><td>source_title</td><td>Easton Kickboxing — Checking &amp; Returning</td></tr>
+            <tr><td>tags</td><td>block, defense</td></tr>
+            <tr><td>Why it belongs</td><td>Chunk C — the first LIVE check of the arc: a partner now actually feeds a slow kick, building on the shape already rehearsed solo (tonight&#x27;s warm-up) and the cue-reaction rhythm (tonight&#x27;s New and Exciting).</td></tr>
+          </table></details>
+        </div>
+        <div class="rung-card">
+          <div class="rung-head"><span class="rung-badge">Rung</span>
+          8 min — <b>Check and return kick</b></div>
+          
+          <p><b>Objective:</b> Check the feed, then immediately return the same rear kick, at scaled (not full) power.</p>
+          <p><b>Time breakdown:</b> demo=1m, setup=0.5m, working=6.5m (sums to 8 min)</p>
+          <p><b>Reps:</b> 8 check-and-return combos per student (A checks+returns 8 times while B feeds+holds, then switch, B does 8).</p>
+          <table class="kv"><tr><td>Partner a</td><td>Checks the feed with the rear-side leg, then immediately returns a rear round kick into a pad Partner B raises right after feeding.</td></tr><tr><td>Partner b</td><td>Feeds one slow kick at 30% power (shin guards), then immediately raises a Thai pad at rib height for Partner A&#x27;s return kick.</td></tr><tr><td>Equipment</td><td>Shin guards (already on from the prior rung) plus 1 Thai pad per pair, picked up now and kept through the terminal drill.</td></tr><tr><td>Contact level</td><td>Feed kick 30% power shin-to-shin; return kick 50% power into the pad.</td></tr><tr><td>Reps</td><td>8 check-and-return combos per student (A checks+returns 8 times while B feeds+holds, then switch, B does 8).</td></tr><tr><td>Rounds</td><td>1</td></tr><tr><td>Switch point</td><td>After A&#x27;s 8 combos, partners switch for B&#x27;s 8 combos.</td></tr><tr><td>Reset condition</td><td>Both partners reset to full stance after each combo.</td></tr><tr><td>Coaching pace</td><td>Coach circulates checking that the return fires immediately, without a pause after the check.</td></tr><tr><td>Safety limits</td><td>Feed stays at 30% power and telegraphed; return kick is pad-only, never partner-to-partner.</td></tr></table>
+          <p class="safety-line"><b>Prerequisites/safety:</b> Use ONLY the &#x27;Scale&#x27; version of this source&#x27;s Full-vs-Scale pairing — the &#x27;Full&#x27; power version is not appropriate for a beginner class.</p>
+          <details><summary>Source evidence</summary>
+          <table class="kv">
+            <tr><td>source_type</td><td>fightclub_tiktok</td></tr>
+            <tr><td>technique_ids</td><td>[2361]</td></tr>
+            <tr><td>source_title</td><td>Start slow. Stay sharp. Build power. (Scale version only)</td></tr>
+            <tr><td>tags</td><td>kick, block, counter</td></tr>
+            <tr><td>Why it belongs</td><td>Chunk C combined with the return kick — check immediately followed by a return kick, at the source&#x27;s own scaled/control intensity only (its &#x27;Full&#x27; power version is excluded).</td></tr>
+          </table></details>
+        </div>
+        <div class="rung-card">
+          <div class="rung-head"><span class="rung-badge">Terminal</span>
+          15 min — <b>Final assembled terminal drill: step-in, recover, check, return</b></div>
+          <div class="constructed-flag">Arc-constructed drill — no single source contains this. Component technique_ids: 2214, 1755, 2361, 2921.</div>
+          <p><b>Objective:</b> 1) Partner A throws the step-in rear round kick into a pad Partner B holds. 2) Partner B sets the pad down and throws one slow, telegraphed counter kick at Partner A&#x27;s shin. 3) Partner A checks it with the rear-side leg. 4) Partner B immediately raises the pad again and Partner A returns the kick into the pad.</p>
+          <p><b>Time breakdown:</b> demo=3m, setup=1m, working=10m, switch=1m (sums to 15 min)</p>
+          <p><b>Reps:</b> 2 rounds of 6 complete 4-step sequences per student as the checker (12 sequences total as checker; 12 more as the counter-thrower/holder).</p>
+          <table class="kv"><tr><td>Partner a</td><td>Step 1: throws the step-in rear round kick into the pad B is holding, recovers to stance. Step 3: checks B&#x27;s slow counter kick with the rear-side leg. Step 4: the instant B raises the pad again, returns a rear round kick into it, then recovers to stance.</td></tr><tr><td>Partner b</td><td>Step 1: holds the Thai pad at rib height for A&#x27;s step-in kick. Step 2: sets the pad down at their feet in one practiced motion (modeled slowly by the coach first) and throws ONE slow, telegraphed rear kick at A&#x27;s shin, calling &#x27;kick coming&#x27; out loud, 30% power, shin guards on. Step 4: immediately picks the pad back up and holds it for A&#x27;s return kick.</td></tr><tr><td>Equipment</td><td>Shin guards on both partners (already on) plus 1 Thai pad per pair (already in hand from the prior rung) — no new equipment needed for the terminal drill.</td></tr><tr><td>Contact level</td><td>Step-in kick and return kick: pad only, 50% power. Counter kick: shin-to-shin, 30% power, slow and telegraphed, shin guards mandatory.</td></tr><tr><td>Return kick target</td><td>The Thai pad Partner B raises immediately after throwing the counter kick — never partner-to-partner for the return.</td></tr><tr><td>Reps</td><td>2 rounds of 6 complete 4-step sequences per student as the checker (12 sequences total as checker; 12 more as the counter-thrower/holder).</td></tr><tr><td>Rounds</td><td>2</td></tr><tr><td>Switch point</td><td>After Partner A completes 6 full sequences as the checker, partners switch roles for B&#x27;s 6 sequences. Repeat for round 2.</td></tr><tr><td>Reset condition</td><td>Both partners reset to full stance after each complete 4-step sequence before the next one begins.</td></tr><tr><td>Coaching pace</td><td>Coach demonstrates the full 4-step choreography slowly at least twice before pairs begin, then calls out each step number during the first round to keep pairs synchronized, then lets pairs run at their own pace for round 2.</td></tr><tr><td>Safety limits</td><td>Shin guards required for both partners for the entire drill. Counter kick is always slow, telegraphed, and capped at 30% power — this is a timing drill, not sparring. No switch-kick variation. No speed escalation beyond clean beginner timing. Coach paces the room and can hold any pair at a slower step if the choreography isn&#x27;t clean yet.</td></tr></table>
+          <p class="safety-line"><b>Prerequisites/safety:</b> Constructed terminal drill — no single source contains this complete sequence; component sources are cited above and only their beginner-appropriate portions are used (FightClub #2921&#x27;s Level 1 only; its Level 2/3 switch-kick variants are explicitly excluded from this beginner arc).</p>
+          <details><summary>Source evidence</summary>
+          <table class="kv">
+            <tr><td>source_type</td><td>arc_constructed</td></tr>
+            <tr><td>technique_ids</td><td>[2214, 1755, 2361, 2921]</td></tr>
+            <tr><td>source_title</td><td>Arc-constructed terminal drill — no single source contains this complete sequence. Assembled from the step-in kick (FightClub #2214), the check mechanics (Easton — Checking &amp; Returning), the check-and-return pairing (FightClub #2361, Scale version), and the closest available leveled reference for a check-then-counter sequence (FightClub #2921, Level 1 &#x27;Land &amp; Step&#x27; portion only — Levels 2-3 require a switch-kick response and are explicitly excluded from this beginner arc).</td></tr>
+            <tr><td>tags</td><td>kick, block, counter</td></tr>
+            <tr><td>Why it belongs</td><td>The arc&#x27;s terminal goal, assembled from tonight&#x27;s and prior nights&#x27; rungs into the exact 4-step sequence.</td></tr>
+          </table></details>
+        </div>
+
+      <h3>Expected repetitions per student</h3>
+      <table class="data-table">
+      <tr><th>Rung</th><th>Ladder role</th><th>Minutes</th><th>Expected reps per student</th></tr>
+      <tr><td>Compressed review: step-in rear round kick</td><td>Compressed review</td><td>5</td><td>2 sets of 6 reps</td></tr><tr><td>Check mechanics (live, portion only)</td><td>Rung</td><td>7</td><td>10 checks per student (Partner A checks 10 while B feeds, then switch, B checks 10 while A feeds).</td></tr><tr><td>Check and return kick</td><td>Rung</td><td>8</td><td>8 check-and-return combos per student (A checks+returns 8 times while B feeds+holds, then switch, B does 8).</td></tr><tr><td>Final assembled terminal drill: step-in, recover, check, return</td><td>Terminal</td><td>15</td><td>2 rounds of 6 complete 4-step sequences per student as the checker (12 sequences total as checker; 12 more as the counter-thrower/holder).</td></tr>
+    </table>
+
+      <h3>Partner and equipment logistics for 20 students</h3>
+      <table class="kv">
+      <tr><td>Class level</td><td>Beginner</td></tr>
+      <tr><td>Primary objective</td><td>Check a partner&#x27;s controlled counter kick and return immediately with a round kick.</td></tr>
+      <tr><td>Equipment checklist</td><td>shin guards for all 20 students, 10 Thai pads, 10 focus mitts (visual cue)</td></tr>
+      <tr><td>Format</td><td>Partner pairs required</td></tr>
+      <tr><td>Pairs assumed</td><td>10 pairs (class of 20)</td></tr>
+      <tr><td>Space</td><td>Open floor. 4 rows of 5 for Warm Up. 10 partner pairs for New and Exciting and all partner Curriculum rungs. A clear kicking lane per pair for the live check-and-return work.</td></tr>
+      <tr><td>Safety requirements</td><td><ul><li><b>Check mechanics (live, portion only):</b> Use ONLY the check-mechanics portion of this source. It also teaches a switch-kick return, which this beginner arc excludes — the return in this arc is always the straight rear kick already taught.</li><li><b>Check and return kick:</b> Use ONLY the &#x27;Scale&#x27; version of this source&#x27;s Full-vs-Scale pairing — the &#x27;Full&#x27; power version is not appropriate for a beginner class.</li><li><b>Final assembled terminal drill: step-in, recover, check, return:</b> Constructed terminal drill — no single source contains this complete sequence; component sources are cited above and only their beginner-appropriate portions are used (FightClub #2921&#x27;s Level 1 only; its Level 2/3 switch-kick variants are explicitly excluded from this beginner arc).</li></ul></td></tr>
+    </table>
+
+      <h3>Burnout (final 5 minutes)</h3>
+      
+        <div class="rung-card">
+          <div class="rung-head">5 min — <b>Check-hold + return-kick burst (pads only)</b>
+          <span class="rung-badge">partner</span></div>
+          <table class="kv">
+            <tr><td>Why (this class)</td><td>A finisher built directly from tonight&#x27;s taught skills (check position, return kick) at high effort, using pads only so fatigue never creates unsafe live shin-to-shin contact.</td></tr>
+            <tr><td>Exact format</td><td>4 rounds of 75 seconds, exactly 5 minutes. Each round: Partner A holds the check position for 15s, then explodes into a 20-second max-effort burst of return kicks into the pad Partner B holds, then a 5-second switch; Partner B does the same 15s hold + 20s burst; next round begins immediately.</td></tr>
+            <tr><td>Coach call structure</td><td>Coach calls &#x27;HOLD&#x27;, then &#x27;BURST&#x27;, then &#x27;SWITCH&#x27; every round on a repeating 75-second timer.</td></tr>
+            <tr><td>Scaling option</td><td>Shorten the check hold to 10 seconds and/or reduce burst kick power for students whose balance is compromised by fatigue.</td></tr>
+            <tr><td>Safety limit</td><td>Pad-only contact for the entire Burnout — no shin-to-shin contact under fatigue. Pad holder must brace fully before every burst; kicks stay technically controlled even at speed.</td></tr>
+            <tr><td>Equal work / switching</td><td>yes -- Both partners get an identical 15s hold + 20s burst in every round -- work is equal by construction.</td></tr>
+            <tr><td>block_role</td><td>burnout</td></tr>
+            <tr><td>Genuinely low intensity?</td><td>no (hard effort, as required)</td></tr>
+          </table>
+          <table class="kv"><tr><td>Partner a</td><td>Holds the check position (knee-to-elbow) for 15 seconds, then explodes into 20 seconds of max-effort return kicks into the pad Partner B holds.</td></tr><tr><td>Partner b</td><td>Holds the pad steady during Partner A&#x27;s 15-second check hold, then braces for the 20-second kick burst.</td></tr><tr><td>Equipment</td><td>1 Thai pad per pair (already available from tonight&#x27;s Curriculum).</td></tr><tr><td>Contact level</td><td>Pad only — zero shin-to-shin contact in this Burnout.</td></tr><tr><td>Reps</td><td>4 rounds x (15s hold + 20s burst) per role -- roughly 60-90 seconds of kicking work per student total, depending on pace.</td></tr><tr><td>Rounds</td><td>4</td></tr><tr><td>Switch point</td><td>After each 35-second hold+burst sequence, a 5-second switch, then the other partner repeats the sequence.</td></tr><tr><td>Reset condition</td><td>Full reset to stance at the top of each new round.</td></tr><tr><td>Equal work note</td><td>Both partners get an identical 15s hold + 20s burst in every round -- work is equal by construction.</td></tr><tr><td>Coaching pace</td><td>Coach calls HOLD/BURST/SWITCH on the repeating timer.</td></tr><tr><td>Safety limits</td><td>Pad-only contact; no shin-to-shin under fatigue; pad holder braces fully every rep.</td></tr></table>
+        </div>
+
+      <div class="revision-notes-block">
+        <h3>What changed this revision</h3>
+        <p>Renamed Cool Down to Burnout and replaced the seated-stretch closer with a pad-only check-hold + return-kick-burst finisher (deliberately NOT live-contact, per the explicit safety note against fatigued partner shin contact). Restructured Warm Up to 5 min energetic + 3 min technical. Replaced the no-contact grid check-position drill in New and Exciting with a fast, competitive partner reaction game (still zero live-kick contact, but genuinely engaging). Fixed ambiguous &#x27;lead side&#x27; terminology throughout to distinguish the checking/rear leg from the stepping foot. Added equipment_checklist and an accurate space_description with no unsupported &#x27;sweep&#x27; boilerplate.</p>
+      </div>
+    </section>
+
+    <section id="validation">
+      <h2>Validation</h2>
+      <table class="data-table">
+        <tr><th>Night</th><th>Class total</th><th>Curriculum total</th><th>Items</th><th>Branches</th>
+        <th>Review rung</th><th>URL check</th><th>Video check</th><th>Burnout role check</th><th>plan_id</th><th>plan_hash (short)</th></tr>
+        <tr>
+          <td>1</td><td>60/60</td><td>35/35</td><td>3/4</td>
+          <td>0/1</td><td>n/a (Night 1)</td>
+          <td>pass</td><td>pass</td><td>pass</td>
+          <td class="mono">arc-beginner-kicking-94b252e5236b-night1</td>
+          <td class="mono">fd695674e38358be…</td>
+        </tr><tr>
+          <td>2</td><td>60/60</td><td>35/35</td><td>3/4</td>
+          <td>0/1</td><td>yes</td>
+          <td>pass</td><td>pass</td><td>pass</td>
+          <td class="mono">arc-beginner-kicking-94b252e5236b-night2</td>
+          <td class="mono">fd76a59d9838d9e9…</td>
+        </tr><tr>
+          <td>3</td><td>60/60</td><td>35/35</td><td>4/4</td>
+          <td>0/1</td><td>yes</td>
+          <td>pass</td><td>pass</td><td>pass</td>
+          <td class="mono">arc-beginner-kicking-94b252e5236b-night3</td>
+          <td class="mono">b171f0ce33787316…</td>
+        </tr>
+      </table>
+      <h3>Warnings (non-blocking)</h3>
+      <ul><li>Night 3: Curriculum uses a 4th item (at the beginner cap).</li><li>Night 3: rung &#x27;Check mechanics (live, portion only)&#x27; has only 7 min -- unusually little repetition time for a primary stage.</li></ul>
+      <p>All hard-fail rules passed for all 3 nights: 60-minute totals, 35-minute Curriculum, 4-item cap, 1-branch cap,
+      every Curriculum item has a ladder_role, Night 2/3 compressed-review presence, no malformed URLs, no malformed
+      video paths (0 missing files), the final block is named Burnout and is exactly 5 minutes with block_role
+      burnout/either only, every Burnout item states an exact format/scaling option/safety limit/coach-call
+      structure and is NOT marked low intensity, partner Burnouts have an explicit switch point or equal-work
+      statement, arc_id/plan_id/plan_hash all present, Coach View and Audit View built from the same finalized
+      arc object, no revised plan_hash matches its prior version, no 'shadowbox' term anywhere, no warm-up item
+      uses an untaught skill, at least half of every Warm Up is tagged energetic, every New-and-Exciting item has
+      engagement features and does not conflict with its night's Curriculum objective, every partner drill has
+      Partner A/B/switch/reset/reps, every Curriculum rung's time breakdown sums to its allocated minutes, the
+      night-level equipment_checklist covers every drill's stated equipment, Night 3's return-kick target is
+      specified, and Night 2's compressed-review rung no longer contradicts the terminal drill's equipment-continuity claim.</p>
+    </section>
+
+    <section id="db-reviews">
+      <h2>Database reviews (plan_reviews rows inserted this pass)</h2>
+      <p>Recorded against the OLD plan_hash values before any revision content was generated. No rows were
+      updated or deleted; no rows were inserted for the new (revised) plans.</p>
+      <table class="data-table">
+        <tr><th>id</th><th>plan_id</th><th>plan_hash</th><th>night</th><th>class_title</th><th>verdict</th><th>reason</th><th>reviewed_at</th></tr>
+        <tr><td>1</td><td class='mono'>arc-beginner-kicking-94b252e5236b-night1</td><td class='mono'>3653f3b089eb47c1…</td><td>1</td><td>Night 1 — Base Rear Round Kick</td><td><span class='verdict-badge'>revise</span></td><td>Beginner warm-up assumes untaught kicking skill; ladder logistics and partner repetition structure are incomplete.</td><td>2026-07-12 23:31:12</td></tr><tr><td>2</td><td class='mono'>arc-beginner-kicking-94b252e5236b-night2</td><td class='mono'>2043064f0998535d…</td><td>2</td><td>Night 2 — Step-In Rear Round Kick</td><td><span class='verdict-badge'>revise</span></td><td>Warm-up introduces an untaught jab and open-ended kicking; partner, station and repetition structure are incomplete.</td><td>2026-07-12 23:31:12</td></tr><tr><td>3</td><td class='mono'>arc-beginner-kicking-94b252e5236b-night3</td><td class='mono'>64d7e40f724a1b12…</td><td>3</td><td>Night 3 — Check and Return</td><td><span class='verdict-badge'>revise</span></td><td>Warm-up and New and Exciting teach unrelated evasion; final check-and-return sequence is too compressed and underspecified.</td><td>2026-07-12 23:31:12</td></tr><tr><td>4</td><td class='mono'>arc-beginner-kicking-94b252e5236b-night1</td><td class='mono'>9420a6bde0f6a43a…</td><td>1</td><td>Night 1 — Base Rear Round Kick</td><td><span class='verdict-badge'>revise</span></td><td>Warm Up and New and Exciting are too low-energy; final block is recovery instead of WCS Burnout.</td><td>2026-07-13 01:07:48</td></tr><tr><td>5</td><td class='mono'>arc-beginner-kicking-94b252e5236b-night2</td><td class='mono'>510cc4a00d2090d2…</td><td>2</td><td>Night 2 — Step-In Rear Round Kick</td><td><span class='verdict-badge'>revise</span></td><td>Warm Up and New and Exciting are too low-energy; review-rung pad logistics conflict; final block is recovery instead of Burnout.</td><td>2026-07-13 01:07:48</td></tr><tr><td>6</td><td class='mono'>arc-beginner-kicking-94b252e5236b-night3</td><td class='mono'>d5de897355ac84c5…</td><td>3</td><td>Night 3 — Check and Return</td><td><span class='verdict-badge'>revise</span></td><td>Warm Up and New and Exciting need more energy; final block is recovery instead of Burnout; equipment and space summaries are inaccurate.</td><td>2026-07-13 01:07:48</td></tr>
+      </table>
+    </section>
+
+    <section id="modified-files">
+      <h2>Modified / created files</h2>
+      <table class="data-table"><tr><th>File</th><th>What changed</th></tr><tr><td class='mono'>db\t4.db</td><td>Schema unchanged this pass. 3 more rows inserted into plan_reviews (verdict=&#x27;revise&#x27; on the prior-pass plan hashes, reasons: low-energy Warm Up/New and Exciting + recovery-not-Burnout final block). No plan/arc content written. plan_reviews now holds 6 rows total across both revision passes.</td></tr><tr><td class='mono'>arc_lib.py</td><td>Renamed the fixed closing block from Cool Down to Burnout throughout validation (block-name check, block_role restricted to burnout/either). Added: Burnout hard-fail checks (exact 5 min, not low-intensity, exact_format/scaling_option/safety_limit/coach_call_structure required, partner Burnout needs switch_point or equal_work_note, no vague labels), warm-up energy-ratio check (&gt;=half of Warm Up minutes tagged energetic), New-and-Exciting engagement-features requirement, equipment-checklist-vs-drill-equipment consistency check (word-overlap matching), space_description boilerplate ban (&#x27;controlled sweep area&#x27; without sweep content), Night 2 equipment-continuity contradiction check (searches backward for the most recent partner rung), side-terminology warning for bare &#x27;lead side&#x27;.</td></tr><tr><td class='mono'>beginner_kicking_arc.py</td><td>Full content revision: rebuilt all 3 Warm Ups to ~5 min energetic + ~3 min technical (endorphin-sandwich open), rebuilt all 3 New and Exciting drills as engaging partner/target/reaction games instead of slow grid rehearsal, renamed Cool Down to Burnout and replaced all 3 recovery closers with genuine 5-minute structured Burnouts (different format each night), fixed the Night 2 seam by making the compressed-review rung a partner-pad drill (was solo) so it matches the terminal drill&#x27;s equipment-continuity claim, fixed ambiguous &#x27;lead side&#x27; terminology throughout to distinguish stepping foot from striking leg, added equipment_checklist and space_description per night, added warmup_menu_note. Curriculum spine (technique selection, ladder roles, timing except the Night 2 review rung) unchanged.</td></tr><tr><td class='mono'>render_views.py</td><td>Renamed Cool Down references to Burnout (propagates automatically from block name, but logistics rendering and CSS updated). Added rendering for exact_format/coach_call_structure/scaling_option/safety_limit (Burnout), energy_level/category (Warm Up), engagement_features (New and Exciting), and the warm-up-menu note in both Coach and Audit views. Fixed render_logistics to use the new single space_description field instead of the removed stations/space_needs fields.</td></tr><tr><td class='mono'>logistics.py</td><td>Rewritten: equipment and space are now read directly from the night&#x27;s own equipment_checklist/space_description fields (arc_lib validates these against every drill&#x27;s actual equipment) instead of being re-derived from fragile text heuristics. Removed the unconditional &#x27;controlled sweep area&#x27; boilerplate.</td></tr><tr><td class='mono'>build_revision_review.py</td><td>Updated for this pass: new OLD_HASHES, renamed Cool Down to Burnout throughout, added a dedicated Burnout section (exact format/scaling/safety/coach-calls) replacing the old cooldown-verification section, added energy/engagement detail to the warm-up and New-and-Exciting sections.</td></tr><tr><td class='mono'>insert_burnout_revision_reviews.py</td><td>New file -- one-time script that inserted the 3 prior-pass &#x27;revise&#x27; rows into plan_reviews before this pass&#x27;s content changes.</td></tr><tr><td class='mono'>C:\Users\Ben\Videos\FightClubMT\review\coach-view.html</td><td>Regenerated from the revised arc object.</td></tr><tr><td class='mono'>C:\Users\Ben\Videos\FightClubMT\review\audit-view.html</td><td>Regenerated from the revised arc object.</td></tr><tr><td class='mono'>C:\Users\Ben\Videos\FightClubMT\review\revision-review.html</td><td>Regenerated for this pass.</td></tr></table>
+    </section>
+</body>
+</html>

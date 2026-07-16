@@ -1,0 +1,763 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<title>Week 7 Combination Building and Basic Straight Knees -- Audit View</title>
+<style>
+body { font-family: system-ui, sans-serif; max-width: 980px; margin: 0 auto; padding: 20px; line-height: 1.45; color: #222; }
+h2 { font-size: 20px; border-top: 3px solid #333; padding-top: 16px; margin-top: 40px; }
+h3 { font-size: 15px; margin: 16px 0 6px 0; }
+.block-min { font-size: 13px; font-weight: normal; color: #666; }
+.folder-note { background: #f4f4f4; border-radius: 6px; padding: 8px 14px; margin: 10px 0; font-size: 13px; }
+.folder-note pre { white-space: pre-wrap; font-size: 12px; }
+#night-nav { margin: 14px 0; }
+#night-nav a { margin-right: 14px; }
+.menu-note { font-size: 12.5px; color: #666; font-style: italic; margin: 2px 0 8px 0; }
+
+.audit-block { border-left: 4px solid #444; padding-left: 14px; margin: 14px 0 20px 0; }
+.audit-item { border: 1px solid #ddd; border-radius: 6px; padding: 10px 14px; margin-bottom: 10px; background: #fafafa; }
+.audit-item-head { display: flex; justify-content: space-between; font-weight: bold; font-size: 14.5px; }
+.audit-min { color: #555; font-size: 13px; }
+.tags { margin: 4px 0 6px 0; }
+.tag { display: inline-block; font-size: 11px; background: #e3e3e3; border-radius: 8px; padding: 1px 7px; margin-right: 4px; }
+.src-line { font-size: 12.5px; margin: 4px 0; }
+.db-note { color: #666; font-style: italic; }
+video { max-width: 320px; display: block; margin: 6px 0; background: #000; }
+.kv-row { margin: 4px 0; font-size: 13px; }
+.kv-row .k { font-weight: bold; margin-right: 6px; }
+.ladder-badge { background: #333; color: #fff; border-radius: 8px; padding: 1px 8px; font-size: 12px; }
+.why-block, .rejected-block, .validation-summary, .warnings-block { background: #f0f5ef; border: 1px solid #cfe0cd; border-radius: 6px; padding: 10px 16px; margin-top: 14px; }
+.rejected-table { border-collapse: collapse; width: 100%; margin-top: 6px; }
+.rejected-table th, .rejected-table td { border: 1px solid #ccc; padding: 5px 8px; font-size: 13px; text-align: left; vertical-align: top; }
+table.kv td { border: 1px solid #ddd; padding: 4px 8px; font-size: 13px; }
+table.kv td:first-child { font-weight: bold; width: 200px; background: #f7f7f7; }
+.mono { font-family: monospace; font-size: 12px; word-break: break-all; }
+.objective-line { font-size: 13.5px; }
+.logistics { background: #eef2fa; border-radius: 6px; padding: 8px 14px; margin-bottom: 14px; font-size: 13.5px; }
+.logi-row { margin: 2px 0; }
+.safety-list { margin: 2px 0 2px 18px; }
+#view-switch { position: sticky; top: 0; background: #fff; padding: 8px 0; border-bottom: 2px solid #333; z-index: 5; }
+.tb-table, .struct-table { border-collapse: collapse; width: 100%; margin: 6px 0; font-size: 12.5px; }
+.tb-table th, .struct-table th { background: #e6ede5; text-align: left; padding: 4px 8px; }
+.tb-table td, .struct-table td { border: 1px solid #ddd; padding: 4px 8px; vertical-align: top; }
+.tb-table td:first-child, .struct-table td:first-child { font-weight: bold; width: 160px; background: #f7f7f7; }
+.constructed-note { background: #fff6e0; border-radius: 4px; padding: 4px 6px; }
+</style></head>
+<body>
+<div id="view-switch"><b>Week 7 Combination Building and Basic Straight Knees -- Audit View</b> &nbsp;|&nbsp; <a href="week7-combination-building-knees-coach-view.html">Switch to Coach View</a> &nbsp;|&nbsp; <a href="week7-combination-building-knees-review.html">Generation Review</a> &nbsp;|&nbsp; <a href="index.html">Review Index</a></div>
+<details class="folder-note"><summary>Video folder requirement (click to expand)</summary><pre>T4/
+  review/
+    coach-view.html
+    audit-view.html
+  media/
+    source/
+      video-file.mp4
+
+These HTML pages and the media/source video directory must keep this relative
+folder relationship (review/ and media/ are siblings under T4/) -- moving one
+without the other breaks every embedded video link. Video paths are local and
+relative in this phase; nothing is hosted. The relative base is a single
+configured constant (t4_paths.VIDEO_SRC_BASE), not scattered strings.</pre></details>
+<p><b>arc_id:</b> <span class="mono">arc-week-7-combination-building-and-basic-straight-knees-b2d12cb7bdec</span> &nbsp; <b>Level:</b> Beginner &nbsp; <b>Theme:</b> Short multi-tool combinations plus straight-knee foundation</p>
+<p><b>Terminal goal:</b> By the end of Night 3, students can build a short punch/kick-or-teep/knee chain on targets.</p>
+<p><b>Progression:</b> Night 1 builds punch-to-kick. Night 2 adds marching and straight knees. Night 3 integrates three tools without turning into clinch.</p>
+<div class="warnings-block"><h3>Generation warnings</h3><ul><li>Night 2: Curriculum uses a 4th item (at the beginner cap).</li></ul></div>
+<nav id="night-nav"><a href="#audit-arc-week-7-combination-building-and-basic-straight-knees-b2d12cb7bdec-night1">Night 1 -- Punch-to-Kick Combinations</a><a href="#audit-arc-week-7-combination-building-and-basic-straight-knees-b2d12cb7bdec-night2">Night 2 -- Basic Straight Knees</a><a href="#audit-arc-week-7-combination-building-and-basic-straight-knees-b2d12cb7bdec-night3">Night 3 -- Combination to Knee Integration</a></nav>
+
+    <section class="night" id="audit-arc-week-7-combination-building-and-basic-straight-knees-b2d12cb7bdec-night1">
+      <h2>Night 1 -- Punch-to-Kick Combinations</h2>
+      <p class="objective-line"><b>Learning objective:</b> Connect punches to kicks without overlong combinations.</p>
+      <div class="logistics"><div class="logi-row"><b>Level:</b> Beginner</div><div class="logi-row"><b>Objective:</b> Connect punches to kicks without overlong combinations.</div><div class="logi-row"><b>Equipment checklist:</b> 10 focus mitts, 10 kicking shields, Boxing gloves</div><div class="logi-row"><b>Format:</b> Partner pairs required</div><div class="logi-row"><b>Space:</b> 10 pairs with mitt and shield per pair.</div></div>
+      
+    <div class="audit-block">
+      <h3>Warm Up <span class="block-min">8 min</span></h3>
+      <p class="menu-note">Warm-up menu: use these six-plus options, combine or trim based on the room while keeping the block exactly 8 minutes.</p>
+      
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Jumping jacks</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Raise heart rate quickly.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Raise heart rate quickly.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 warm-up menu plus sourced Curriculum mechanics for the technical primer.</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>45 seconds continuous</td></tr><tr><td>Sides</td><td>symmetric unless the coach assigns stance side</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>brisk but controlled</td></tr><tr><td>Coach watches</td><td>posture, balance and clean reset</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">High knees in place</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Build heat and knee drive.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Build heat and knee drive.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 warm-up menu plus sourced Curriculum mechanics for the technical primer.</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>45 seconds continuous</td></tr><tr><td>Sides</td><td>symmetric unless the coach assigns stance side</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>brisk but controlled</td></tr><tr><td>Coach watches</td><td>posture, balance and clean reset</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Fast feet</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Prime light feet.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Prime light feet.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 warm-up menu plus sourced Curriculum mechanics for the technical primer.</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>45 seconds continuous</td></tr><tr><td>Sides</td><td>symmetric unless the coach assigns stance side</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>brisk but controlled</td></tr><tr><td>Coach watches</td><td>posture, balance and clean reset</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Bodyweight squats</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Warm hips and legs.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Warm hips and legs.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 warm-up menu plus sourced Curriculum mechanics for the technical primer.</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>12 controlled reps</td></tr><tr><td>Sides</td><td>symmetric unless the coach assigns stance side</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>brisk but controlled</td></tr><tr><td>Coach watches</td><td>posture, balance and clean reset</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Line hops</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Add direction changes without technique load.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Add direction changes without technique load.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 warm-up menu plus sourced Curriculum mechanics for the technical primer.</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>30 seconds forward/back, 30 seconds lateral</td></tr><tr><td>Sides</td><td>symmetric unless the coach assigns stance side</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>brisk but controlled</td></tr><tr><td>Coach watches</td><td>posture, balance and clean reset</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Combination base check</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Find stance, guard and balance before class-specific work.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Find stance, guard and balance before class-specific work.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 warm-up menu plus sourced Curriculum mechanics for the technical primer.</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">technical (technical)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>3 holds of 5 seconds</td></tr><tr><td>Sides</td><td>symmetric unless the coach assigns stance side</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>slow and technical</td></tr><tr><td>Coach watches</td><td>posture, balance and clean reset</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Combination movement primer</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Preview the movement path used in Curriculum.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Preview the movement path used in Curriculum.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 warm-up menu plus sourced Curriculum mechanics for the technical primer.</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">technical (technical)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>8 slow reps</td></tr><tr><td>Sides</td><td>symmetric unless the coach assigns stance side</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>slow and technical</td></tr><tr><td>Coach watches</td><td>posture, balance and clean reset</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Reset-to-stance check</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Make recovery to stance automatic.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Make recovery to stance automatic.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 warm-up menu plus sourced Curriculum mechanics for the technical primer.</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">technical (technical)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>6 resets on coach clap</td></tr><tr><td>Sides</td><td>symmetric unless the coach assigns stance side</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>slow and technical</td></tr><tr><td>Coach watches</td><td>posture, balance and clean reset</td></tr></table>
+      
+    </div>
+    </div>
+    <div class="audit-block">
+      <h3>New and Exciting <span class="block-min">12 min</span></h3>
+      
+      
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Coach-call two-tool combo game</span>
+        <span class="audit-min">12 min</span>
+      </div>
+      <div class="tags"><span class="tag">punch</span><span class="tag">kick</span><span class="tag">timing</span></div>
+      
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">arc_constructed</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Arc-constructed New and Exciting drill using the cited source mechanics.</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">Coach calls hands or kick finish; pair builds the called two-tool combo.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Coach calls hands or kick finish; pair builds the called two-tool combo.</span></div><div class="kv-row"><span class="k">Prerequisites / safety</span><span class="v">Beginner-safe reaction game; the full technical standard is taught in Curriculum.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Partner drill -- 10 pairs needed.</span></div><div class="kv-row"><span class="k">Equipment</span><span class="v">Boxing gloves, 1 focus mitt and 1 kicking shield per pair</span></div><div class="kv-row constructed-note"><span class="k">Arc-constructed drill</span><span class="v">No single source contains this complete drill. Component technique_ids: 3127, 3191.</span></div><div class="kv-row"><span class="k">Engagement features</span><span class="v">partner_interaction, reaction, timing, target_work, immediate_feedback</span></div>
+      
+      <table class="struct-table"><tr><th colspan="2">Exact drill structure</th></tr><tr><td>Partner a</td><td>Works the reaction task at light contact or no contact, staying inside the night&#x27;s skill limit.</td></tr><tr><td>Partner b</td><td>Feeds the visual cue, target, or distance change exactly as coached, then holds still for the response.</td></tr><tr><td>Equipment</td><td>Boxing gloves, 1 focus mitt and 1 kicking shield per pair</td></tr><tr><td>Contact level</td><td>Light touch or no contact only.</td></tr><tr><td>Reps</td><td>3 rounds of 30 seconds per role</td></tr><tr><td>Rounds</td><td>3</td></tr><tr><td>Switch point</td><td>After each 30-second round, partners switch roles.</td></tr><tr><td>Reset condition</td><td>Reset to full stance after each cue before the next cue.</td></tr><tr><td>Coaching pace</td><td>Coach starts and stops each round, then calls quick corrections between rounds.</td></tr><tr><td>Safety limits</td><td>No surprise full-power contact; the feeder must be set before the response.</td></tr></table>
+      
+      
+    </div>
+    </div>
+    <div class="audit-block">
+      <h3>Muay Thai Curriculum <span class="block-min">35 min</span></h3>
+      
+      
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Compressed review: jab-cross-teep or kick</span>
+        <span class="audit-min">5 min</span>
+      </div>
+      <div class="tags"><span class="tag">punch</span><span class="tag">kick</span><span class="tag">transition</span></div>
+      <div class="src-line"><span class="db-note">No external link — source material is on file in the T4 database.</span></div>
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">easton_fundamentals — technique_id [3127], source_id 795</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Easton Fundamentals - 2 Punches + Kick (Both Sides)</span></div><div class="kv-row"><span class="k">Ladder role</span><span class="v ladder-badge">Compressed review</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">Re-teach two punches into one kick.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Re-teach two punches into one kick.</span></div><div class="kv-row"><span class="k">Prerequisites / safety</span><span class="v">Use only the beginner-appropriate portion named in this rung.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Partner drill -- 10 pairs needed.</span></div>
+      <table class="tb-table"><tr><th colspan="2">Time breakdown (5 min total)</th></tr><tr><td>Demo</td><td>1.5 min</td></tr><tr><td>Setup</td><td>0.5 min</td></tr><tr><td>Working</td><td>3 min</td></tr></table>
+      <table class="struct-table"><tr><th colspan="2">Exact drill structure</th></tr><tr><td>Partner a</td><td>Performs the active skill sequence, then resets to stance before the next rep.</td></tr><tr><td>Partner b</td><td>Feeds or holds the target exactly as assigned, then resets before the next rep.</td></tr><tr><td>Equipment</td><td>Boxing gloves, 1 focus mitt and 1 kicking shield per pair</td></tr><tr><td>Contact level</td><td>50% power, controlled</td></tr><tr><td>Reps</td><td>2 rounds of 6-8 clean reps per student, adjusted by coach pace</td></tr><tr><td>Rounds</td><td>2</td></tr><tr><td>Switch point</td><td>After Partner A finishes the assigned reps, partners switch roles; repeat for round 2.</td></tr><tr><td>Reset condition</td><td>Both partners reset to full stance after every rep or exchange.</td></tr><tr><td>Coaching pace</td><td>Coach demonstrates slowly, starts the room together, then circulates and holds pairs at a slower pace when needed.</td></tr><tr><td>Safety limits</td><td>Beginner pace only; no escalation beyond clean, controlled timing.</td></tr></table>
+      
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Two punches into kick</span>
+        <span class="audit-min">12 min</span>
+      </div>
+      <div class="tags"><span class="tag">punch</span><span class="tag">kick</span><span class="tag">transition</span></div>
+      <div class="src-line"><span class="db-note">No external link — source material is on file in the T4 database.</span></div>
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">easton_fundamentals — technique_id [3127, 3128], source_id 795</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Easton Fundamentals - 2 Punches + Kick (Both Sides)</span></div><div class="kv-row"><span class="k">Ladder role</span><span class="v ladder-badge">Rung</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">Build two-punch-to-kick rhythm.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Build two-punch-to-kick rhythm.</span></div><div class="kv-row"><span class="k">Prerequisites / safety</span><span class="v">Use only the beginner-appropriate portion named in this rung.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Partner drill -- 10 pairs needed.</span></div>
+      <table class="tb-table"><tr><th colspan="2">Time breakdown (12 min total)</th></tr><tr><td>Demo</td><td>2 min</td></tr><tr><td>Setup</td><td>1 min</td></tr><tr><td>Working</td><td>9 min</td></tr></table>
+      <table class="struct-table"><tr><th colspan="2">Exact drill structure</th></tr><tr><td>Partner a</td><td>Performs the active skill sequence, then resets to stance before the next rep.</td></tr><tr><td>Partner b</td><td>Feeds or holds the target exactly as assigned, then resets before the next rep.</td></tr><tr><td>Equipment</td><td>Boxing gloves, 1 focus mitt and 1 kicking shield per pair</td></tr><tr><td>Contact level</td><td>50% power, controlled</td></tr><tr><td>Reps</td><td>2 rounds of 6-8 clean reps per student, adjusted by coach pace</td></tr><tr><td>Rounds</td><td>2</td></tr><tr><td>Switch point</td><td>After Partner A finishes the assigned reps, partners switch roles; repeat for round 2.</td></tr><tr><td>Reset condition</td><td>Both partners reset to full stance after every rep or exchange.</td></tr><tr><td>Coaching pace</td><td>Coach demonstrates slowly, starts the room together, then circulates and holds pairs at a slower pace when needed.</td></tr><tr><td>Safety limits</td><td>Beginner pace only; no escalation beyond clean, controlled timing.</td></tr></table>
+      
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Terminal jab-cross-kick combination</span>
+        <span class="audit-min">18 min</span>
+      </div>
+      <div class="tags"><span class="tag">punch</span><span class="tag">kick</span><span class="tag">transition</span></div>
+      <div class="src-line"><span class="db-note">No external link — source material is on file in the T4 database.</span></div>
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">easton_fundamentals — technique_id [3319], source_id 859</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Easton Fundamentals - Punches + Middle Kick</span></div><div class="kv-row"><span class="k">Ladder role</span><span class="v ladder-badge">Terminal</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">Run jab-cross into a shielded kick as a clean three-part chain.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Run jab-cross into a shielded kick as a clean three-part chain.</span></div><div class="kv-row"><span class="k">Prerequisites / safety</span><span class="v">Use only the beginner-appropriate portion named in this rung.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Partner drill -- 10 pairs needed.</span></div>
+      <table class="tb-table"><tr><th colspan="2">Time breakdown (18 min total)</th></tr><tr><td>Demo</td><td>2 min</td></tr><tr><td>Setup</td><td>1 min</td></tr><tr><td>Working</td><td>15 min</td></tr></table>
+      <table class="struct-table"><tr><th colspan="2">Exact drill structure</th></tr><tr><td>Partner a</td><td>Performs the active skill sequence, then resets to stance before the next rep.</td></tr><tr><td>Partner b</td><td>Feeds or holds the target exactly as assigned, then resets before the next rep.</td></tr><tr><td>Equipment</td><td>Boxing gloves, 1 focus mitt and 1 kicking shield per pair</td></tr><tr><td>Contact level</td><td>50% power, controlled</td></tr><tr><td>Reps</td><td>2 rounds of 6-8 clean reps per student, adjusted by coach pace</td></tr><tr><td>Rounds</td><td>2</td></tr><tr><td>Switch point</td><td>After Partner A finishes the assigned reps, partners switch roles; repeat for round 2.</td></tr><tr><td>Reset condition</td><td>Both partners reset to full stance after every rep or exchange.</td></tr><tr><td>Coaching pace</td><td>Coach demonstrates slowly, starts the room together, then circulates and holds pairs at a slower pace when needed.</td></tr><tr><td>Safety limits</td><td>Beginner pace only; no escalation beyond clean, controlled timing.</td></tr><tr><td>Return target</td><td>Focus mitts for punches, kicking shield for the kick.</td></tr></table>
+      
+      
+    </div>
+    </div>
+    <div class="audit-block">
+      <h3>Burnout <span class="block-min">5 min</span></h3>
+      
+      
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Solo bodyweight leg drive</span>
+        <span class="audit-min">5 min</span>
+      </div>
+      <div class="tags"><span class="tag">power</span></div>
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Hard-effort finisher using no new technique.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Close class with controlled high intensity.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">burnout</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 high-intensity Burnout menu plus tonight&#x27;s already-taught skills.</span></div><div class="kv-row"><span class="k">Exact Burnout format</span><span class="v">5 rounds of 40 seconds work / 20 seconds rest, alternating jump squats and mountain climbers.</span></div><div class="kv-row"><span class="k">Coach call structure</span><span class="v">Coach runs the clock, calls every work/rest/switch interval, and counts down the final 10 seconds.</span></div><div class="kv-row"><span class="k">Scaling option</span><span class="v">Reduce speed, remove jumps, or shorten the strike burst while keeping the same interval structure.</span></div><div class="kv-row"><span class="k">Safety limit</span><span class="v">Technique stays controlled under fatigue; students stop if dizzy or unable to hold form.</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>5 rounds of 40 seconds work / 20 seconds rest, alternating jump squats and mountain climbers.</td></tr><tr><td>Sides</td><td>symmetric</td></tr><tr><td>Reset position</td><td>standing during rests</td></tr><tr><td>Speed power</td><td>maximum controlled effort</td></tr><tr><td>Coach watches</td><td>effort, breathing and safe mechanics</td></tr></table>
+      
+    </div>
+    </div>
+      <div class="why-block">
+        <h3>Why these sources were selected</h3>
+        <p>Combination length is capped at three parts; no long combo chains.</p>
+      </div>
+      
+      
+    <div class="validation-summary">
+      <h3>Validation summary</h3>
+      <table class="kv">
+        <tr><td>Class total</td><td>60 / 60 min</td></tr>
+        <tr><td>Curriculum total</td><td>35 / 35 min</td></tr>
+        <tr><td>Curriculum item count</td><td>3 / 4 max</td></tr>
+        <tr><td>Branch count</td><td>0 / 1 max</td></tr>
+        <tr><td>Compressed review present</td><td>yes</td></tr>
+        <tr><td>Ladder roles</td><td>Compressed review: jab-cross-teep or kick: compressed_review, Two punches into kick: rung, Terminal jab-cross-kick combination: terminal</td></tr>
+        <tr><td>arc_id</td><td class="mono">arc-week-7-combination-building-and-basic-straight-knees-b2d12cb7bdec</td></tr>
+        <tr><td>plan_id</td><td class="mono">arc-week-7-combination-building-and-basic-straight-knees-b2d12cb7bdec-night1</td></tr>
+        <tr><td>plan_hash</td><td class="mono">16cbf2fd7197ac12b3cfd2c55a0679b629d78cfe69d5df06e522d0ffd9fbae6f</td></tr>
+      </table>
+    </div>
+    </section>
+    <section class="night" id="audit-arc-week-7-combination-building-and-basic-straight-knees-b2d12cb7bdec-night2">
+      <h2>Night 2 -- Basic Straight Knees</h2>
+      <p class="objective-line"><b>Learning objective:</b> Add marching and straight-knee mechanics without opening a clinch unit.</p>
+      <div class="logistics"><div class="logi-row"><b>Level:</b> Beginner</div><div class="logi-row"><b>Objective:</b> Add marching and straight-knee mechanics without opening a clinch unit.</div><div class="logi-row"><b>Equipment checklist:</b> 10 kicking shields, 10 focus mitts, Boxing gloves</div><div class="logi-row"><b>Format:</b> Partner pairs required</div><div class="logi-row"><b>Space:</b> 10 pairs with shields; no clinch control required.</div><div class="logi-row"><b>Safety:</b><ul class="safety-list"><li><b>Straight knee to shield:</b> Thin-evidence flag: source includes clinch context; this rung uses only the straight-knee power cue and excludes clinch control.</li><li><b>Terminal jab-cross-straight-knee:</b> Thin-evidence flag: no single source contains this exact no-clinch beginner sequence.</li></ul></div></div>
+      
+    <div class="audit-block">
+      <h3>Warm Up <span class="block-min">8 min</span></h3>
+      <p class="menu-note">Warm-up menu: use these six-plus options, combine or trim based on the room while keeping the block exactly 8 minutes.</p>
+      
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Jumping jacks</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Raise heart rate quickly.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Raise heart rate quickly.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 warm-up menu plus sourced Curriculum mechanics for the technical primer.</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>45 seconds continuous</td></tr><tr><td>Sides</td><td>symmetric unless the coach assigns stance side</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>brisk but controlled</td></tr><tr><td>Coach watches</td><td>posture, balance and clean reset</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">High knees in place</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Build heat and knee drive.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Build heat and knee drive.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 warm-up menu plus sourced Curriculum mechanics for the technical primer.</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>45 seconds continuous</td></tr><tr><td>Sides</td><td>symmetric unless the coach assigns stance side</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>brisk but controlled</td></tr><tr><td>Coach watches</td><td>posture, balance and clean reset</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Fast feet</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Prime light feet.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Prime light feet.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 warm-up menu plus sourced Curriculum mechanics for the technical primer.</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>45 seconds continuous</td></tr><tr><td>Sides</td><td>symmetric unless the coach assigns stance side</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>brisk but controlled</td></tr><tr><td>Coach watches</td><td>posture, balance and clean reset</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Bodyweight squats</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Warm hips and legs.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Warm hips and legs.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 warm-up menu plus sourced Curriculum mechanics for the technical primer.</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>12 controlled reps</td></tr><tr><td>Sides</td><td>symmetric unless the coach assigns stance side</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>brisk but controlled</td></tr><tr><td>Coach watches</td><td>posture, balance and clean reset</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Line hops</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Add direction changes without technique load.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Add direction changes without technique load.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 warm-up menu plus sourced Curriculum mechanics for the technical primer.</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>30 seconds forward/back, 30 seconds lateral</td></tr><tr><td>Sides</td><td>symmetric unless the coach assigns stance side</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>brisk but controlled</td></tr><tr><td>Coach watches</td><td>posture, balance and clean reset</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Knee base check</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Find stance, guard and balance before class-specific work.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Find stance, guard and balance before class-specific work.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 warm-up menu plus sourced Curriculum mechanics for the technical primer.</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">technical (technical)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>3 holds of 5 seconds</td></tr><tr><td>Sides</td><td>symmetric unless the coach assigns stance side</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>slow and technical</td></tr><tr><td>Coach watches</td><td>posture, balance and clean reset</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Knee movement primer</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Preview the movement path used in Curriculum.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Preview the movement path used in Curriculum.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 warm-up menu plus sourced Curriculum mechanics for the technical primer.</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">technical (technical)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>8 slow reps</td></tr><tr><td>Sides</td><td>symmetric unless the coach assigns stance side</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>slow and technical</td></tr><tr><td>Coach watches</td><td>posture, balance and clean reset</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Reset-to-stance check</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Make recovery to stance automatic.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Make recovery to stance automatic.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 warm-up menu plus sourced Curriculum mechanics for the technical primer.</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">technical (technical)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>6 resets on coach clap</td></tr><tr><td>Sides</td><td>symmetric unless the coach assigns stance side</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>slow and technical</td></tr><tr><td>Coach watches</td><td>posture, balance and clean reset</td></tr></table>
+      
+    </div>
+    </div>
+    <div class="audit-block">
+      <h3>New and Exciting <span class="block-min">12 min</span></h3>
+      
+      
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Marching-knee count relay</span>
+        <span class="audit-min">12 min</span>
+      </div>
+      <div class="tags"><span class="tag">knee</span><span class="tag">balance</span><span class="tag">rhythm</span></div>
+      
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">arc_constructed</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Arc-constructed New and Exciting drill using the cited source mechanics.</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">Partner holds shield; striker alternates marching knee drives for a count.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Partner holds shield; striker alternates marching knee drives for a count.</span></div><div class="kv-row"><span class="k">Prerequisites / safety</span><span class="v">Beginner-safe reaction game; the full technical standard is taught in Curriculum.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Partner drill -- 10 pairs needed.</span></div><div class="kv-row"><span class="k">Equipment</span><span class="v">1 kicking shield per pair</span></div><div class="kv-row constructed-note"><span class="k">Arc-constructed drill</span><span class="v">No single source contains this complete drill. Component technique_ids: 1760, 3310.</span></div><div class="kv-row"><span class="k">Engagement features</span><span class="v">partner_interaction, reaction, timing, target_work, immediate_feedback</span></div>
+      
+      <table class="struct-table"><tr><th colspan="2">Exact drill structure</th></tr><tr><td>Partner a</td><td>Works the reaction task at light contact or no contact, staying inside the night&#x27;s skill limit.</td></tr><tr><td>Partner b</td><td>Feeds the visual cue, target, or distance change exactly as coached, then holds still for the response.</td></tr><tr><td>Equipment</td><td>1 kicking shield per pair</td></tr><tr><td>Contact level</td><td>Light touch or no contact only.</td></tr><tr><td>Reps</td><td>3 rounds of 30 seconds per role</td></tr><tr><td>Rounds</td><td>3</td></tr><tr><td>Switch point</td><td>After each 30-second round, partners switch roles.</td></tr><tr><td>Reset condition</td><td>Reset to full stance after each cue before the next cue.</td></tr><tr><td>Coaching pace</td><td>Coach starts and stops each round, then calls quick corrections between rounds.</td></tr><tr><td>Safety limits</td><td>No surprise full-power contact; the feeder must be set before the response.</td></tr></table>
+      
+      
+    </div>
+    </div>
+    <div class="audit-block">
+      <h3>Muay Thai Curriculum <span class="block-min">35 min</span></h3>
+      
+      
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Compressed review: two punches into kick</span>
+        <span class="audit-min">5 min</span>
+      </div>
+      <div class="tags"><span class="tag">punch</span><span class="tag">kick</span></div>
+      <div class="src-line"><span class="db-note">No external link — source material is on file in the T4 database.</span></div>
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">easton_fundamentals — technique_id [3127], source_id 795</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Easton Fundamentals - 2 Punches + Kick (Both Sides)</span></div><div class="kv-row"><span class="k">Ladder role</span><span class="v ladder-badge">Compressed review</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">Re-teach the prior night&#x27;s short combo rhythm.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Re-teach the prior night&#x27;s short combo rhythm.</span></div><div class="kv-row"><span class="k">Prerequisites / safety</span><span class="v">Use only the beginner-appropriate portion named in this rung.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Partner drill -- 10 pairs needed.</span></div>
+      <table class="tb-table"><tr><th colspan="2">Time breakdown (5 min total)</th></tr><tr><td>Demo</td><td>1.5 min</td></tr><tr><td>Setup</td><td>0.5 min</td></tr><tr><td>Working</td><td>3 min</td></tr></table>
+      <table class="struct-table"><tr><th colspan="2">Exact drill structure</th></tr><tr><td>Partner a</td><td>Performs the active skill sequence, then resets to stance before the next rep.</td></tr><tr><td>Partner b</td><td>Feeds or holds the target exactly as assigned, then resets before the next rep.</td></tr><tr><td>Equipment</td><td>Boxing gloves, 1 focus mitt and 1 kicking shield per pair</td></tr><tr><td>Contact level</td><td>50% power, controlled</td></tr><tr><td>Reps</td><td>2 rounds of 6-8 clean reps per student, adjusted by coach pace</td></tr><tr><td>Rounds</td><td>2</td></tr><tr><td>Switch point</td><td>After Partner A finishes the assigned reps, partners switch roles; repeat for round 2.</td></tr><tr><td>Reset condition</td><td>Both partners reset to full stance after every rep or exchange.</td></tr><tr><td>Coaching pace</td><td>Coach demonstrates slowly, starts the room together, then circulates and holds pairs at a slower pace when needed.</td></tr><tr><td>Safety limits</td><td>Beginner pace only; no escalation beyond clean, controlled timing.</td></tr></table>
+      
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Marching knees</span>
+        <span class="audit-min">10 min</span>
+      </div>
+      <div class="tags"><span class="tag">knee</span><span class="tag">rhythm</span><span class="tag">balance</span></div>
+      <div class="src-line"><span class="db-note">No external link — source material is on file in the T4 database.</span></div>
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">Easton Kickboxing — technique_id [1760], source_id 218</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Easton Kickboxing - Marching Knees</span></div><div class="kv-row"><span class="k">Ladder role</span><span class="v ladder-badge">Rung</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">Build alternating knee rhythm and balance.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Build alternating knee rhythm and balance.</span></div><div class="kv-row"><span class="k">Prerequisites / safety</span><span class="v">Self-contained teach; keep only the listed beginner portion of the source.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div>
+      <table class="tb-table"><tr><th colspan="2">Time breakdown (10 min total)</th></tr><tr><td>Demo</td><td>2 min</td></tr><tr><td>Setup</td><td>1 min</td></tr><tr><td>Working</td><td>7 min</td></tr></table>
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>5 sets of 10 alternating knees</td></tr><tr><td>Sides</td><td>natural stance unless otherwise stated</td></tr><tr><td>Reset position</td><td>full stance reset after each rep</td></tr><tr><td>Speed power</td><td>slow to moderate, technical quality first</td></tr><tr><td>Coach watches</td><td>base width, guard return, balance and clean mechanics</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Straight knee to shield</span>
+        <span class="audit-min">10 min</span>
+      </div>
+      <div class="tags"><span class="tag">knee</span><span class="tag">offense</span></div>
+      <div class="src-line"><span class="db-note">No external link — source material is on file in the T4 database.</span></div>
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">easton_fundamentals — technique_id [3310], source_id 856</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Easton Fundamentals - Punches + Clinching Advancing Opponent</span></div><div class="kv-row"><span class="k">Ladder role</span><span class="v ladder-badge">Rung</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">Use the straight knee for power with space, shield-only.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Use the straight knee for power with space, shield-only.</span></div><div class="kv-row"><span class="k">Prerequisites / safety</span><span class="v">Thin-evidence flag: source includes clinch context; this rung uses only the straight-knee power cue and excludes clinch control.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Partner drill -- 10 pairs needed.</span></div>
+      <table class="tb-table"><tr><th colspan="2">Time breakdown (10 min total)</th></tr><tr><td>Demo</td><td>2 min</td></tr><tr><td>Setup</td><td>1 min</td></tr><tr><td>Working</td><td>7 min</td></tr></table>
+      <table class="struct-table"><tr><th colspan="2">Exact drill structure</th></tr><tr><td>Partner a</td><td>Performs the active skill sequence, then resets to stance before the next rep.</td></tr><tr><td>Partner b</td><td>Feeds or holds the target exactly as assigned, then resets before the next rep.</td></tr><tr><td>Equipment</td><td>1 kicking shield per pair</td></tr><tr><td>Contact level</td><td>50% shield-only knee contact</td></tr><tr><td>Reps</td><td>2 rounds of 6-8 clean reps per student, adjusted by coach pace</td></tr><tr><td>Rounds</td><td>2</td></tr><tr><td>Switch point</td><td>After Partner A finishes the assigned reps, partners switch roles; repeat for round 2.</td></tr><tr><td>Reset condition</td><td>Both partners reset to full stance after every rep or exchange.</td></tr><tr><td>Coaching pace</td><td>Coach demonstrates slowly, starts the room together, then circulates and holds pairs at a slower pace when needed.</td></tr><tr><td>Safety limits</td><td>Beginner pace only; no escalation beyond clean, controlled timing.</td></tr></table>
+      
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Terminal jab-cross-straight-knee</span>
+        <span class="audit-min">10 min</span>
+      </div>
+      <div class="tags"><span class="tag">punch</span><span class="tag">knee</span><span class="tag">transition</span></div>
+      <div class="src-line"><span class="db-note">No external link — source material is on file in the T4 database.</span></div>
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">arc_constructed — technique_id [3147, 3148, 3310]</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Arc-constructed terminal drill from jab-cross and straight-knee sources</span></div><div class="kv-row"><span class="k">Ladder role</span><span class="v ladder-badge">Terminal</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">Jab-cross to mitt, step to shield, straight knee, reset.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Jab-cross to mitt, step to shield, straight knee, reset.</span></div><div class="kv-row"><span class="k">Prerequisites / safety</span><span class="v">Thin-evidence flag: no single source contains this exact no-clinch beginner sequence.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Partner drill -- 10 pairs needed.</span></div><div class="kv-row constructed-note"><span class="k">Arc-constructed drill</span><span class="v">No single source contains this complete drill. Component technique_ids: 3147, 3148, 3310.</span></div>
+      <table class="tb-table"><tr><th colspan="2">Time breakdown (10 min total)</th></tr><tr><td>Demo</td><td>2 min</td></tr><tr><td>Setup</td><td>1 min</td></tr><tr><td>Working</td><td>7 min</td></tr></table>
+      <table class="struct-table"><tr><th colspan="2">Exact drill structure</th></tr><tr><td>Partner a</td><td>Performs the active skill sequence, then resets to stance before the next rep.</td></tr><tr><td>Partner b</td><td>Feeds or holds the target exactly as assigned, then resets before the next rep.</td></tr><tr><td>Equipment</td><td>Boxing gloves, 1 focus mitt and 1 kicking shield per pair</td></tr><tr><td>Contact level</td><td>50% power, controlled</td></tr><tr><td>Reps</td><td>2 rounds of 6-8 clean reps per student, adjusted by coach pace</td></tr><tr><td>Rounds</td><td>2</td></tr><tr><td>Switch point</td><td>After Partner A finishes the assigned reps, partners switch roles; repeat for round 2.</td></tr><tr><td>Reset condition</td><td>Both partners reset to full stance after every rep or exchange.</td></tr><tr><td>Coaching pace</td><td>Coach demonstrates slowly, starts the room together, then circulates and holds pairs at a slower pace when needed.</td></tr><tr><td>Safety limits</td><td>Beginner pace only; no escalation beyond clean, controlled timing.</td></tr><tr><td>Return target</td><td>Focus mitt for punches, kicking shield for the knee.</td></tr></table>
+      
+      
+    </div>
+    </div>
+    <div class="audit-block">
+      <h3>Burnout <span class="block-min">5 min</span></h3>
+      
+      
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Shield knee burst</span>
+        <span class="audit-min">5 min</span>
+      </div>
+      <div class="tags"><span class="tag">knee</span><span class="tag">power</span></div>
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Hard-effort finisher using no new technique.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Close class with controlled high intensity.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Partner drill -- 10 pairs.</span></div><div class="kv-row"><span class="k">Equipment</span><span class="v">1 kicking shield per pair</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">burnout</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 high-intensity Burnout menu plus tonight&#x27;s already-taught skills.</span></div><div class="kv-row"><span class="k">Exact Burnout format</span><span class="v">4 rounds of 75 seconds: 30 seconds straight knees to shield, switch, 30 seconds partner knees, reset.</span></div><div class="kv-row"><span class="k">Coach call structure</span><span class="v">Coach runs the clock, calls every work/rest/switch interval, and counts down the final 10 seconds.</span></div><div class="kv-row"><span class="k">Scaling option</span><span class="v">Reduce speed, remove jumps, or shorten the strike burst while keeping the same interval structure.</span></div><div class="kv-row"><span class="k">Safety limit</span><span class="v">Technique stays controlled under fatigue; students stop if dizzy or unable to hold form.</span></div>
+      
+      <table class="struct-table"><tr><th colspan="2">Exact drill structure</th></tr><tr><td>Partner a</td><td>Works during the assigned interval.</td></tr><tr><td>Partner b</td><td>Holds or rests as assigned, then switches.</td></tr><tr><td>Equipment</td><td>1 kicking shield per pair</td></tr><tr><td>Contact level</td><td>Controlled high effort on targets only.</td></tr><tr><td>Reps</td><td>4 rounds of 75 seconds: 30 seconds straight knees to shield, switch, 30 seconds partner knees, reset.</td></tr><tr><td>Rounds</td><td>4</td></tr><tr><td>Switch point</td><td>Switch on the coach call.</td></tr><tr><td>Reset condition</td><td>Reset at each interval boundary.</td></tr><tr><td>Equal work note</td><td>Both partners receive equal work time.</td></tr><tr><td>Coaching pace</td><td>Coach controls the timer.</td></tr><tr><td>Safety limits</td><td>Target holder must be braced before every burst.</td></tr></table>
+      
+      
+    </div>
+    </div>
+      <div class="why-block">
+        <h3>Why these sources were selected</h3>
+        <p>Knees are introduced as straight and marching foundations only, not clinch curriculum.</p>
+      </div>
+      
+      
+    <div class="validation-summary">
+      <h3>Validation summary</h3>
+      <table class="kv">
+        <tr><td>Class total</td><td>60 / 60 min</td></tr>
+        <tr><td>Curriculum total</td><td>35 / 35 min</td></tr>
+        <tr><td>Curriculum item count</td><td>4 / 4 max</td></tr>
+        <tr><td>Branch count</td><td>0 / 1 max</td></tr>
+        <tr><td>Compressed review present</td><td>yes</td></tr>
+        <tr><td>Ladder roles</td><td>Compressed review: two punches into kick: compressed_review, Marching knees: rung, Straight knee to shield: rung, Terminal jab-cross-straight-knee: terminal</td></tr>
+        <tr><td>arc_id</td><td class="mono">arc-week-7-combination-building-and-basic-straight-knees-b2d12cb7bdec</td></tr>
+        <tr><td>plan_id</td><td class="mono">arc-week-7-combination-building-and-basic-straight-knees-b2d12cb7bdec-night2</td></tr>
+        <tr><td>plan_hash</td><td class="mono">501716119a37758c7308ab5d613fac949233e7444b3000dbdca08b268a83bc3a</td></tr>
+      </table>
+    </div>
+    </section>
+    <section class="night" id="audit-arc-week-7-combination-building-and-basic-straight-knees-b2d12cb7bdec-night3">
+      <h2>Night 3 -- Combination to Knee Integration</h2>
+      <p class="objective-line"><b>Learning objective:</b> Combine punches, teep/kick and straight knee in a short connected chain.</p>
+      <div class="logistics"><div class="logi-row"><b>Level:</b> Beginner</div><div class="logi-row"><b>Objective:</b> Combine punches, teep/kick and straight knee in a short connected chain.</div><div class="logi-row"><b>Equipment checklist:</b> 10 focus mitts, 10 kicking shields, Boxing gloves</div><div class="logi-row"><b>Format:</b> Partner pairs required</div><div class="logi-row"><b>Space:</b> 10 pairs with mitt and shield staged per pair.</div><div class="logi-row"><b>Safety:</b><ul class="safety-list"><li><b>Terminal three-tool combination ending knee:</b> Thin-evidence flag: constructed integration sequence; each component is sourced but the exact three-tool chain is authored.</li></ul></div></div>
+      
+    <div class="audit-block">
+      <h3>Warm Up <span class="block-min">8 min</span></h3>
+      <p class="menu-note">Warm-up menu: use these six-plus options, combine or trim based on the room while keeping the block exactly 8 minutes.</p>
+      
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Jumping jacks</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Raise heart rate quickly.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Raise heart rate quickly.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 warm-up menu plus sourced Curriculum mechanics for the technical primer.</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>45 seconds continuous</td></tr><tr><td>Sides</td><td>symmetric unless the coach assigns stance side</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>brisk but controlled</td></tr><tr><td>Coach watches</td><td>posture, balance and clean reset</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">High knees in place</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Build heat and knee drive.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Build heat and knee drive.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 warm-up menu plus sourced Curriculum mechanics for the technical primer.</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>45 seconds continuous</td></tr><tr><td>Sides</td><td>symmetric unless the coach assigns stance side</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>brisk but controlled</td></tr><tr><td>Coach watches</td><td>posture, balance and clean reset</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Fast feet</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Prime light feet.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Prime light feet.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 warm-up menu plus sourced Curriculum mechanics for the technical primer.</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>45 seconds continuous</td></tr><tr><td>Sides</td><td>symmetric unless the coach assigns stance side</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>brisk but controlled</td></tr><tr><td>Coach watches</td><td>posture, balance and clean reset</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Bodyweight squats</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Warm hips and legs.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Warm hips and legs.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 warm-up menu plus sourced Curriculum mechanics for the technical primer.</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>12 controlled reps</td></tr><tr><td>Sides</td><td>symmetric unless the coach assigns stance side</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>brisk but controlled</td></tr><tr><td>Coach watches</td><td>posture, balance and clean reset</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Line hops</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Add direction changes without technique load.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Add direction changes without technique load.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 warm-up menu plus sourced Curriculum mechanics for the technical primer.</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">energetic (energy)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>30 seconds forward/back, 30 seconds lateral</td></tr><tr><td>Sides</td><td>symmetric unless the coach assigns stance side</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>brisk but controlled</td></tr><tr><td>Coach watches</td><td>posture, balance and clean reset</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Combination base check</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Find stance, guard and balance before class-specific work.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Find stance, guard and balance before class-specific work.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 warm-up menu plus sourced Curriculum mechanics for the technical primer.</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">technical (technical)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>3 holds of 5 seconds</td></tr><tr><td>Sides</td><td>symmetric unless the coach assigns stance side</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>slow and technical</td></tr><tr><td>Coach watches</td><td>posture, balance and clean reset</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Combination movement primer</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Preview the movement path used in Curriculum.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Preview the movement path used in Curriculum.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 warm-up menu plus sourced Curriculum mechanics for the technical primer.</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">technical (technical)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>8 slow reps</td></tr><tr><td>Sides</td><td>symmetric unless the coach assigns stance side</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>slow and technical</td></tr><tr><td>Coach watches</td><td>posture, balance and clean reset</td></tr></table>
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Reset-to-stance check</span>
+        <span class="audit-min">1.0 min</span>
+      </div>
+      
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Make recovery to stance automatic.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Make recovery to stance automatic.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Solo, whole class in unison.</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">warmup</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 warm-up menu plus sourced Curriculum mechanics for the technical primer.</span></div><div class="kv-row"><span class="k">Energy level</span><span class="v">technical (technical)</span></div>
+      
+      
+      <table class="struct-table"><tr><th colspan="2">Exact solo structure</th></tr><tr><td>Reps</td><td>6 resets on coach clap</td></tr><tr><td>Sides</td><td>symmetric unless the coach assigns stance side</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>slow and technical</td></tr><tr><td>Coach watches</td><td>posture, balance and clean reset</td></tr></table>
+      
+    </div>
+    </div>
+    <div class="audit-block">
+      <h3>New and Exciting <span class="block-min">12 min</span></h3>
+      
+      
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Three-rung combo call</span>
+        <span class="audit-min">12 min</span>
+      </div>
+      <div class="tags"><span class="tag">punch</span><span class="tag">teep</span><span class="tag">kick</span><span class="tag">knee</span><span class="tag">timing</span></div>
+      
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">arc_constructed</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Arc-constructed New and Exciting drill using the cited source mechanics.</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">Coach calls punch, kick/teep, knee; pairs assemble only the called short chain.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Coach calls punch, kick/teep, knee; pairs assemble only the called short chain.</span></div><div class="kv-row"><span class="k">Prerequisites / safety</span><span class="v">Beginner-safe reaction game; the full technical standard is taught in Curriculum.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Partner drill -- 10 pairs needed.</span></div><div class="kv-row"><span class="k">Equipment</span><span class="v">Boxing gloves, 1 focus mitt and 1 kicking shield per pair</span></div><div class="kv-row constructed-note"><span class="k">Arc-constructed drill</span><span class="v">No single source contains this complete drill. Component technique_ids: 3190, 3191, 3310.</span></div><div class="kv-row"><span class="k">Engagement features</span><span class="v">partner_interaction, reaction, timing, target_work, immediate_feedback</span></div>
+      
+      <table class="struct-table"><tr><th colspan="2">Exact drill structure</th></tr><tr><td>Partner a</td><td>Works the reaction task at light contact or no contact, staying inside the night&#x27;s skill limit.</td></tr><tr><td>Partner b</td><td>Feeds the visual cue, target, or distance change exactly as coached, then holds still for the response.</td></tr><tr><td>Equipment</td><td>Boxing gloves, 1 focus mitt and 1 kicking shield per pair</td></tr><tr><td>Contact level</td><td>Light touch or no contact only.</td></tr><tr><td>Reps</td><td>3 rounds of 30 seconds per role</td></tr><tr><td>Rounds</td><td>3</td></tr><tr><td>Switch point</td><td>After each 30-second round, partners switch roles.</td></tr><tr><td>Reset condition</td><td>Reset to full stance after each cue before the next cue.</td></tr><tr><td>Coaching pace</td><td>Coach starts and stops each round, then calls quick corrections between rounds.</td></tr><tr><td>Safety limits</td><td>No surprise full-power contact; the feeder must be set before the response.</td></tr></table>
+      
+      
+    </div>
+    </div>
+    <div class="audit-block">
+      <h3>Muay Thai Curriculum <span class="block-min">35 min</span></h3>
+      
+      
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Compressed review: straight knee to shield</span>
+        <span class="audit-min">5 min</span>
+      </div>
+      <div class="tags"><span class="tag">knee</span><span class="tag">offense</span></div>
+      <div class="src-line"><span class="db-note">No external link — source material is on file in the T4 database.</span></div>
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">easton_fundamentals — technique_id [3310], source_id 856</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Easton Fundamentals - Punches + Clinching Advancing Opponent</span></div><div class="kv-row"><span class="k">Ladder role</span><span class="v ladder-badge">Compressed review</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">Re-teach shielded straight knee without clinch.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Re-teach shielded straight knee without clinch.</span></div><div class="kv-row"><span class="k">Prerequisites / safety</span><span class="v">Use only the beginner-appropriate portion named in this rung.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Partner drill -- 10 pairs needed.</span></div>
+      <table class="tb-table"><tr><th colspan="2">Time breakdown (5 min total)</th></tr><tr><td>Demo</td><td>1.5 min</td></tr><tr><td>Setup</td><td>0.5 min</td></tr><tr><td>Working</td><td>3 min</td></tr></table>
+      <table class="struct-table"><tr><th colspan="2">Exact drill structure</th></tr><tr><td>Partner a</td><td>Performs the active skill sequence, then resets to stance before the next rep.</td></tr><tr><td>Partner b</td><td>Feeds or holds the target exactly as assigned, then resets before the next rep.</td></tr><tr><td>Equipment</td><td>1 kicking shield per pair</td></tr><tr><td>Contact level</td><td>50% power, controlled</td></tr><tr><td>Reps</td><td>2 rounds of 6-8 clean reps per student, adjusted by coach pace</td></tr><tr><td>Rounds</td><td>2</td></tr><tr><td>Switch point</td><td>After Partner A finishes the assigned reps, partners switch roles; repeat for round 2.</td></tr><tr><td>Reset condition</td><td>Both partners reset to full stance after every rep or exchange.</td></tr><tr><td>Coaching pace</td><td>Coach demonstrates slowly, starts the room together, then circulates and holds pairs at a slower pace when needed.</td></tr><tr><td>Safety limits</td><td>Beginner pace only; no escalation beyond clean, controlled timing.</td></tr></table>
+      
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Combos plus low kick</span>
+        <span class="audit-min">10 min</span>
+      </div>
+      <div class="tags"><span class="tag">punch</span><span class="tag">kick</span><span class="tag">transition</span></div>
+      <div class="src-line"><span class="db-note">No external link — source material is on file in the T4 database.</span></div>
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">easton_fundamentals — technique_id [3191], source_id 816</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Easton Fundamentals - Combos + Low Kick (Focus Mitt + Kick Shield)</span></div><div class="kv-row"><span class="k">Ladder role</span><span class="v ladder-badge">Rung</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">Connect a short punch combination to a kick target.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Connect a short punch combination to a kick target.</span></div><div class="kv-row"><span class="k">Prerequisites / safety</span><span class="v">Use only the beginner-appropriate portion named in this rung.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Partner drill -- 10 pairs needed.</span></div>
+      <table class="tb-table"><tr><th colspan="2">Time breakdown (10 min total)</th></tr><tr><td>Demo</td><td>2 min</td></tr><tr><td>Setup</td><td>1 min</td></tr><tr><td>Working</td><td>7 min</td></tr></table>
+      <table class="struct-table"><tr><th colspan="2">Exact drill structure</th></tr><tr><td>Partner a</td><td>Performs the active skill sequence, then resets to stance before the next rep.</td></tr><tr><td>Partner b</td><td>Feeds or holds the target exactly as assigned, then resets before the next rep.</td></tr><tr><td>Equipment</td><td>Boxing gloves, 1 focus mitt and 1 kicking shield per pair</td></tr><tr><td>Contact level</td><td>50% power, controlled</td></tr><tr><td>Reps</td><td>2 rounds of 6-8 clean reps per student, adjusted by coach pace</td></tr><tr><td>Rounds</td><td>2</td></tr><tr><td>Switch point</td><td>After Partner A finishes the assigned reps, partners switch roles; repeat for round 2.</td></tr><tr><td>Reset condition</td><td>Both partners reset to full stance after every rep or exchange.</td></tr><tr><td>Coaching pace</td><td>Coach demonstrates slowly, starts the room together, then circulates and holds pairs at a slower pace when needed.</td></tr><tr><td>Safety limits</td><td>Beginner pace only; no escalation beyond clean, controlled timing.</td></tr></table>
+      
+      
+    </div>
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Terminal three-tool combination ending knee</span>
+        <span class="audit-min">20 min</span>
+      </div>
+      <div class="tags"><span class="tag">punch</span><span class="tag">kick</span><span class="tag">knee</span><span class="tag">transition</span></div>
+      <div class="src-line"><span class="db-note">No external link — source material is on file in the T4 database.</span></div>
+      
+      <div class="kv-row"><span class="k">Source</span><span class="v">arc_constructed — technique_id [3191, 3310, 3147, 3148]</span></div><div class="kv-row"><span class="k">Title</span><span class="v">Arc-constructed terminal drill from combination and straight-knee sources</span></div><div class="kv-row"><span class="k">Ladder role</span><span class="v ladder-badge">Terminal</span></div><div class="kv-row"><span class="k">Why it belongs</span><span class="v">Jab-cross, shielded low kick or teep, then straight knee to shield, all capped at beginner speed.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Jab-cross, shielded low kick or teep, then straight knee to shield, all capped at beginner speed.</span></div><div class="kv-row"><span class="k">Prerequisites / safety</span><span class="v">Thin-evidence flag: constructed integration sequence; each component is sourced but the exact three-tool chain is authored.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Partner drill -- 10 pairs needed.</span></div><div class="kv-row constructed-note"><span class="k">Arc-constructed drill</span><span class="v">No single source contains this complete drill. Component technique_ids: 3191, 3310, 3147, 3148.</span></div>
+      <table class="tb-table"><tr><th colspan="2">Time breakdown (20 min total)</th></tr><tr><td>Demo</td><td>2 min</td></tr><tr><td>Setup</td><td>1 min</td></tr><tr><td>Working</td><td>17 min</td></tr></table>
+      <table class="struct-table"><tr><th colspan="2">Exact drill structure</th></tr><tr><td>Partner a</td><td>Performs the active skill sequence, then resets to stance before the next rep.</td></tr><tr><td>Partner b</td><td>Feeds or holds the target exactly as assigned, then resets before the next rep.</td></tr><tr><td>Equipment</td><td>Boxing gloves, 1 focus mitt and 1 kicking shield per pair</td></tr><tr><td>Contact level</td><td>50% power, controlled</td></tr><tr><td>Reps</td><td>2 rounds of 6-8 clean reps per student, adjusted by coach pace</td></tr><tr><td>Rounds</td><td>2</td></tr><tr><td>Switch point</td><td>After Partner A finishes the assigned reps, partners switch roles; repeat for round 2.</td></tr><tr><td>Reset condition</td><td>Both partners reset to full stance after every rep or exchange.</td></tr><tr><td>Coaching pace</td><td>Coach demonstrates slowly, starts the room together, then circulates and holds pairs at a slower pace when needed.</td></tr><tr><td>Safety limits</td><td>Beginner pace only; no escalation beyond clean, controlled timing.</td></tr><tr><td>Return target</td><td>Focus mitt for punches, kicking shield for kick/teep and knee.</td></tr></table>
+      
+      
+    </div>
+    </div>
+    <div class="audit-block">
+      <h3>Burnout <span class="block-min">5 min</span></h3>
+      
+      
+    <div class="audit-item">
+      <div class="audit-item-head">
+        <span class="audit-name">Combo volume burst</span>
+        <span class="audit-min">5 min</span>
+      </div>
+      <div class="tags"><span class="tag">punch</span><span class="tag">kick</span><span class="tag">knee</span><span class="tag">power</span></div>
+      
+      
+      <div class="kv-row"><span class="k">Why it belongs</span><span class="v">Hard-effort finisher using no new technique.</span></div><div class="kv-row"><span class="k">Coaching objective</span><span class="v">Close class with controlled high intensity.</span></div><div class="kv-row"><span class="k">Partner format</span><span class="v">Partner drill -- 10 pairs.</span></div><div class="kv-row"><span class="k">Equipment</span><span class="v">Boxing gloves, 1 focus mitt and 1 kicking shield per pair</span></div><div class="kv-row"><span class="k">block_role</span><span class="v">burnout</span></div><div class="kv-row"><span class="k">Source</span><span class="v">Section 9 high-intensity Burnout menu plus tonight&#x27;s already-taught skills.</span></div><div class="kv-row"><span class="k">Exact Burnout format</span><span class="v">4 rounds of 75 seconds: 15 seconds punches, 15 seconds shield kick/knee, switch, partner repeats.</span></div><div class="kv-row"><span class="k">Coach call structure</span><span class="v">Coach runs the clock, calls every work/rest/switch interval, and counts down the final 10 seconds.</span></div><div class="kv-row"><span class="k">Scaling option</span><span class="v">Reduce speed, remove jumps, or shorten the strike burst while keeping the same interval structure.</span></div><div class="kv-row"><span class="k">Safety limit</span><span class="v">Technique stays controlled under fatigue; students stop if dizzy or unable to hold form.</span></div>
+      
+      <table class="struct-table"><tr><th colspan="2">Exact drill structure</th></tr><tr><td>Partner a</td><td>Works during the assigned interval.</td></tr><tr><td>Partner b</td><td>Holds or rests as assigned, then switches.</td></tr><tr><td>Equipment</td><td>Boxing gloves, 1 focus mitt and 1 kicking shield per pair</td></tr><tr><td>Contact level</td><td>Controlled high effort on targets only.</td></tr><tr><td>Reps</td><td>4 rounds of 75 seconds: 15 seconds punches, 15 seconds shield kick/knee, switch, partner repeats.</td></tr><tr><td>Rounds</td><td>4</td></tr><tr><td>Switch point</td><td>Switch on the coach call.</td></tr><tr><td>Reset condition</td><td>Reset at each interval boundary.</td></tr><tr><td>Equal work note</td><td>Both partners receive equal work time.</td></tr><tr><td>Coaching pace</td><td>Coach controls the timer.</td></tr><tr><td>Safety limits</td><td>Target holder must be braced before every burst.</td></tr></table>
+      
+      
+    </div>
+    </div>
+      <div class="why-block">
+        <h3>Why these sources were selected</h3>
+        <p>Week 7 recombines prior tools and adds only basic straight knees. Clinch and advanced knees are deferred.</p>
+      </div>
+      
+      
+    <div class="validation-summary">
+      <h3>Validation summary</h3>
+      <table class="kv">
+        <tr><td>Class total</td><td>60 / 60 min</td></tr>
+        <tr><td>Curriculum total</td><td>35 / 35 min</td></tr>
+        <tr><td>Curriculum item count</td><td>3 / 4 max</td></tr>
+        <tr><td>Branch count</td><td>0 / 1 max</td></tr>
+        <tr><td>Compressed review present</td><td>yes</td></tr>
+        <tr><td>Ladder roles</td><td>Compressed review: straight knee to shield: compressed_review, Combos plus low kick: rung, Terminal three-tool combination ending knee: terminal</td></tr>
+        <tr><td>arc_id</td><td class="mono">arc-week-7-combination-building-and-basic-straight-knees-b2d12cb7bdec</td></tr>
+        <tr><td>plan_id</td><td class="mono">arc-week-7-combination-building-and-basic-straight-knees-b2d12cb7bdec-night3</td></tr>
+        <tr><td>plan_hash</td><td class="mono">cee8a0a6290e054b6124c9ec6ad3548b36bba213d2f81a99980844c5e91b2293</td></tr>
+      </table>
+    </div>
+    </section>
+</body></html>

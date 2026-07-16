@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>WCS Striking 101 -- Syllabus</title>
+<style>
+  :root { color-scheme: light; }
+  body { font-family: system-ui, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px 20px 80px 20px; line-height: 1.55; color: #222; }
+  h1 { font-size: 24px; margin-bottom: 2px; }
+  .subtitle { color: #555; font-size: 14px; margin-bottom: 18px; }
+  h2 { font-size: 19px; border-top: 3px solid #333; padding-top: 14px; margin-top: 34px; }
+  h3 { font-size: 16px; margin-top: 22px; margin-bottom: 6px; }
+  .shape-bar { display: flex; gap: 8px; margin: 10px 0 20px 0; font-size: 13px; }
+  .shape-bar div { flex: 1; padding: 8px 10px; border-radius: 6px; text-align: center; color: #fff; }
+  .shape-warmup { background: #6b8f6b; }
+  .shape-ne { background: #4a7fa8; }
+  .shape-curriculum { background: #333; flex-grow: 4; }
+  .shape-burnout { background: #b05050; }
+  .week-card { border: 1px solid #ccc; border-radius: 8px; padding: 14px 18px; margin-bottom: 16px; background: #fafcf9; }
+  .week-card h3 { margin-top: 0; }
+  .week-tag { display: inline-block; font-size: 11px; padding: 1px 8px; border-radius: 8px; background: #666; color: #fff; margin-left: 8px; vertical-align: middle; }
+  .field-label { font-weight: bold; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.03em; color: #555; margin-top: 10px; }
+  .field-value { font-size: 14px; margin: 2px 0 0 0; }
+  .summary-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 12px 0; }
+  .summary-col { border-radius: 6px; padding: 10px 14px; font-size: 13.5px; }
+  .col-required { background: #eaf3ea; }
+  .col-optional { background: #eef2fa; }
+  .col-deferred { background: #f2f2f2; }
+  .summary-col h4 { margin: 0 0 8px 0; font-size: 13px; }
+  .summary-col ul { margin: 0; padding-left: 18px; }
+  .note-banner { background: #fdf0d5; border: 1px solid #e0b050; border-radius: 6px; padding: 10px 14px; font-size: 13.5px; margin: 14px 0; }
+  .open-item { border: 1px solid #ddd; border-radius: 6px; padding: 10px 14px; margin-bottom: 10px; font-size: 14px; }
+  .compress-note { border: 1px solid #ccc; border-radius: 6px; padding: 10px 14px; margin-bottom: 10px; background: #f7f9fc; }
+  .arc-map { border: 1px solid #c8d8c8; border-radius: 6px; padding: 10px 14px; font-size: 13.5px; margin: 10px 0 20px 0; background: #f4faf4; }
+  table.source-table { border-collapse: collapse; width: 100%; margin: 10px 0 20px 0; font-size: 13.5px; }
+  table.source-table th { background: #e6ede5; text-align: left; padding: 6px 10px; }
+  table.source-table td { border: 1px solid #ddd; padding: 6px 10px; vertical-align: top; }
+  @media (max-width: 640px) { .summary-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<h1>WCS Striking 101 -- Syllabus</h1>
+<div class="subtitle">The teaching roadmap for the beginner striking cycle. Not a class library, not a database schema -- read once, teach from it.</div>
+
+<div class="shape-bar">
+  <div class="shape-warmup">Warm Up<br>8 min</div>
+  <div class="shape-ne">New &amp; Exciting<br>12 min</div>
+  <div class="shape-curriculum">Curriculum<br>35 min</div>
+  <div class="shape-burnout">Burnout<br>5 min</div>
+</div>
+<p style="font-size:13.5px;color:#555;">Every class runs this same 60-minute shape, every week. WCS has ample space, heavy bags, Thai pads, focus mitts, shields, gloves, and shin guards -- assume that's always available; equipment is only called out below where it materially changes a drill.</p>
+
+<h2>1. Course Purpose</h2>
+<p>Striking 101 builds a genuinely competent beginner striker -- someone who can stand in an athletic stance, move, throw and defend the core Muay Thai tools, and safely apply them with a partner -- without turning the class into a rigid academic sequence. Students join on any given week, not just week one. The class draws on WCS's own approved teaching arcs plus the large FightClub, Ludwig, and Easton libraries for variety, but the sequence and pacing here -- not whatever a source library happens to contain -- controls what gets taught and when.</p>
+
+<h2>2. What Students Should Know By The End</h2>
+<ul>
+  <li>Hold an athletic Muay Thai stance and guard, and move forward, backward, laterally, and pivot without breaking form.</li>
+  <li>Throw jab, cross, jab-cross, lead and rear teep, rear round kick, a basic straight/step knee, and connect any two of these into a short combination.</li>
+  <li>Check a kick, parry or block a punch, and return fire immediately after defending.</li>
+  <li>Hold pads for a partner at a basic level.</li>
+  <li>Recover to stance and reset distance after throwing or defending.</li>
+  <li>Read a live (but constrained) attack from a partner and respond with the correct defense and counter, rather than a rehearsed pattern only.</li>
+</ul>
+
+<h2>3. Eight-Week Syllabus</h2>
+<p style="font-size:13.5px;color:#555;"><strong>Hands-first order (standing decision, supersedes the earlier kick-first draft).</strong> Weeks 1-7 each introduce new technique; Week 8 is the sole no-new-technique week, holding the full-toolkit integration drill and the cycle's one capped, constrained technical round. See "Why this order" at the end of this section.</p>
+<div class="arc-map"><strong>Arc mapping:</strong> Arc 2 (Jab-Cross Foundation) supports Week 2. Arc 3 (Teep Foundation) supports Week 4. Arc 1 (Base Rear Round Kick, approved) supports Week 5, and its check/return material also feeds Week 6. Arcs keep their identities; weeks are the schedule -- an arc's approved or draft status describes the arc, not the week it now sits in. Week 1 has no dedicated arc yet -- see Section 8.</div>
+
+<div class="week-card">
+  <h3>Week 1 -- Stance, Guard, Balance and Movement</h3>
+  <p class="field-label">Main theme</p><p class="field-value">Pure foundation -- athletic stance, guard, and movement, taught as its own entry point before any strike is introduced.</p>
+  <p class="field-label">Core skills</p><p class="field-value">Athletic stance, basic guard, forward/backward/lateral movement, pivot, recovery to stance.</p>
+  <p class="field-label">Review skills</p><p class="field-value">None -- this is every student's entry point.</p>
+  <p class="field-label">Terminal goal</p><p class="field-value">Hold stance and guard through movement and a partner balance-reaction drill without breaking form.</p>
+  <p class="field-label">Example drill categories</p><p class="field-value">Solo stance/footwork drills, partner balance-reaction games, mirror movement drills.</p>
+  <p class="field-label">Example combination categories</p><p class="field-value">None yet -- no strikes are taught this week.</p>
+  <p class="field-label">Beginner-safe application</p><p class="field-value">No striking this week; pure stance, guard, and movement work.</p>
+  <p class="field-label">Deferred</p><p class="field-value">All striking tools.</p>
+</div>
+
+<div class="week-card">
+  <h3>Week 2 -- Jab, Cross and Jab-Cross <span class="week-tag">Arc 2 -- pending review</span></h3>
+  <p class="field-label">Main theme</p><p class="field-value">The core hand tools, drilled from a stable base before movement is added.</p>
+  <p class="field-label">Core skills</p><p class="field-value">Jab, cross, jab-cross, basic punch mechanics and target accuracy.</p>
+  <p class="field-label">Review skills</p><p class="field-value">Stance, guard, balance -- fast recap at the top of Night 1 so a first-timer can follow without having attended Week 1.</p>
+  <p class="field-label">Terminal goal</p><p class="field-value">Throw a clean jab-cross from a stationary stance, on pads, both partners rotating.</p>
+  <p class="field-label">Example drill categories</p><p class="field-value">Mirror shadow boxing, pad-holding basics, target-accuracy reps.</p>
+  <p class="field-label">Example combination categories</p><p class="field-value">Jab-cross.</p>
+  <p class="field-label">Beginner-safe application</p><p class="field-value">Pads only.</p>
+  <p class="field-label">Deferred</p><p class="field-value">Lead hook and uppercut as required/mastered skills, footwork-integrated combinations (Week 3), combinations beyond 2 strikes.</p>
+</div>
+
+<div class="week-card">
+  <h3>Week 3 -- Punching With Movement and Basic Defense</h3>
+  <p class="field-label">Main theme</p><p class="field-value">Connect Week 2's hand tools to real footwork, and introduce the first defensive tools -- parry and block -- against punches.</p>
+  <p class="field-label">Core skills</p><p class="field-value">Distance management, step-with-punch footwork, jab-cross while stepping in/out, basic punch defense (parry, block).</p>
+  <p class="field-label">Review skills</p><p class="field-value">Jab, cross, jab-cross (Week 2) -- quick recap before adding movement and defense.</p>
+  <p class="field-label">Terminal goal</p><p class="field-value">Throw a jab-cross while stepping, then parry or block a partner's return punch, on pads.</p>
+  <p class="field-label">Example drill categories</p><p class="field-value">Footwork ladder drills, step-in/step-out pad rounds, partner parry/block reps.</p>
+  <p class="field-label">Example combination categories</p><p class="field-value">Jab-cross with step-in/step-out.</p>
+  <p class="field-label">Beginner-safe application</p><p class="field-value">Pads only for offense; defense reps are announced, not surprise, for beginners.</p>
+  <p class="field-label">Deferred</p><p class="field-value">Kick defense (Week 6), full defense-and-return system (Week 6), combinations beyond 2 strikes.</p>
+</div>
+
+<div class="week-card">
+  <h3>Week 4 -- Teep and Range Control <span class="week-tag">Arc 3 -- draft</span></h3>
+  <p class="field-label">Main theme</p><p class="field-value">The teep as a spacing and setup tool, built on the stance, guard, and hand tools from Weeks 1-3.</p>
+  <p class="field-label">Core skills</p><p class="field-value">Lead teep, rear teep, alternating-teep footwork.</p>
+  <p class="field-label">Review skills</p><p class="field-value">Stance, guard, jab-cross -- quick recap, needed for the Night 3 terminal chain.</p>
+  <p class="field-label">Terminal goal</p><p class="field-value">Chain a jab-cross into a teep, on pads, with clean distance control.</p>
+  <p class="field-label">Example drill categories</p><p class="field-value">Teep-on-pad reps, partner distance/range games.</p>
+  <p class="field-label">Example combination categories</p><p class="field-value">Jab-cross-teep.</p>
+  <p class="field-label">Beginner-safe application</p><p class="field-value">Teep always lands on pad or shield, never live to a partner's body without a controlled target.</p>
+  <p class="field-label">Deferred</p><p class="field-value">Teep defense as a required skill (moved to optional exposure), advanced teep variants (shuffle, lunging, scissor-hop).</p>
+</div>
+
+<div class="week-card">
+  <h3>Week 5 -- Rear Round Kick Foundation <span class="week-tag">Arc 1 -- approved</span></h3>
+  <p class="field-label">Main theme</p><p class="field-value">The single most identity-defining Muay Thai tool -- the rear round kick -- built on the stance, guard, and hand tools already in place.</p>
+  <p class="field-label">Core skills</p><p class="field-value">Rear round kick, step-in rear kick, basic leg check, recovery to stance.</p>
+  <p class="field-label">Review skills</p><p class="field-value">Stance, guard, jab-cross, teep (Weeks 1-4) -- fast recap so a first-timer can follow without having attended earlier weeks.</p>
+  <p class="field-label">Terminal goal</p><p class="field-value">Step in with a rear kick, recover in balance, check a partner's kick, and return with a kick of your own.</p>
+  <p class="field-label">Example drill categories</p><p class="field-value">Solo kick/footwork drills, single-target pad rounds, partner balance-reaction games.</p>
+  <p class="field-label">Example combination categories</p><p class="field-value">Kick-only reps building toward a check-and-return pattern.</p>
+  <p class="field-label">Beginner-safe application</p><p class="field-value">Pads and shields only -- no live kick exchange this week.</p>
+  <p class="field-label">Deferred</p><p class="field-value">Switch kick, lead-leg kick variants, multi-kick combinations.</p>
+</div>
+
+<div class="week-card">
+  <h3>Week 6 -- Checks, Low Kicks and Returns</h3>
+  <p class="field-label">Main theme</p><p class="field-value">Formalize checking and returning fire into one coherent system, for both kicks and punches -- building on the individual defense taught in Week 3 and the kick from Week 5.</p>
+  <p class="field-label">Core skills</p><p class="field-value">Basic low kick, kick-check reinforcement, defense-and-return (punch and kick), tying Week 3's punch defense into the same system.</p>
+  <p class="field-label">Review skills</p><p class="field-value">Jab-cross, basic punch defense (Week 3), rear kick and basic leg check (Week 5) -- the Night 3 terminal decision drill assumes Weeks 3 and 5 attendance.</p>
+  <p class="field-label">Terminal goal</p><p class="field-value">Correctly read and defend a punch or kick attack, then return fire, on a live but constrained partner feed.</p>
+  <p class="field-label">Example drill categories</p><p class="field-value">Mitt-based block/counter reps, partner feed drills, low-kick pad reps.</p>
+  <p class="field-label">Example combination categories</p><p class="field-value">Defend-then-return (attacker throws punch or kick, defender reads and responds).</p>
+  <p class="field-label">Beginner-safe application</p><p class="field-value">Attacks are announced or constrained -- never full-speed surprise for beginners.</p>
+  <p class="field-label">Deferred</p><p class="field-value">Slips, bob-and-weave, head-movement evasion (kept separate -- conflicts with this check-based system).</p>
+</div>
+
+<div class="week-card">
+  <h3>Week 7 -- Combination Building and Basic Knees</h3>
+  <p class="field-label">Main theme</p><p class="field-value">Recombine every tool taught so far into real combinations, and add the knee as a 4th weapon and a first controlled taste of closer range.</p>
+  <p class="field-label">Core skills</p><p class="field-value">Punch-to-kick combinations, teep-to-punch and punch-to-teep transitions, basic knee (straight/step), knee-to-combination integration.</p>
+  <p class="field-label">Review skills</p><p class="field-value">Weeks 1-6's core tools (stance/guard, jab-cross, teep, kick, checks/returns). This week assumes those tools already exist -- steer a true first-timer to Week 1 instead.</p>
+  <p class="field-label">Terminal goal</p><p class="field-value">Throw a connected multi-tool combination ending in a straight knee, on pads, at full arc-terminal intensity.</p>
+  <p class="field-label">Example drill categories</p><p class="field-value">Pad-holder combo rounds, coach-called combination reps, standing knee mechanics.</p>
+  <p class="field-label">Example combination categories</p><p class="field-value">2-punch-to-kick, teep-to-punch, punch-to-teep, punch combo + knee.</p>
+  <p class="field-label">Beginner-safe application</p><p class="field-value">Pads/shield only; combos are coach-called before any free repetition.</p>
+  <p class="field-label">Deferred</p><p class="field-value">Combinations longer than 3-4 strikes, feint-based combination setups, knees from clinch control, flying/jump knees.</p>
+</div>
+
+<div class="week-card">
+  <h3>Week 8 -- Integration and Controlled Application</h3>
+  <p class="field-label">Main theme</p><p class="field-value">Capstone -- no new technique. Assemble every tool (punch, teep, kick, knee) with the defense-and-return system into the single most complete drill of the cycle, and hold the cycle's one capped, constrained technical round.</p>
+  <p class="field-label">Core skills</p><p class="field-value">None new -- full-toolkit assembly.</p>
+  <p class="field-label">Review skills</p><p class="field-value">Everything from Weeks 1-7. Explicitly a review week -- steer a true first-timer to Week 1.</p>
+  <p class="field-label">Terminal goal</p><p class="field-value">Run a complete attack &rarr; defend &rarr; counter exchange using the full beginner toolkit, live, at capped power, including the cycle's single capped constrained technical round.</p>
+  <p class="field-label">Example drill categories</p><p class="field-value">Broad review sweep across all major tools (the one intentional exception to "not a survey," justified by the graduation context), assembled attack-sequence pad rounds, capped-power constrained technical round.</p>
+  <p class="field-label">Example combination categories</p><p class="field-value">Any combo from Weeks 1-7, chosen by the attacking partner.</p>
+  <p class="field-label">Beginner-safe application</p><p class="field-value">Capped power, coach-refereed, fixed roles (Partner A attacks with a combo, Partner B defends and returns) for the assembly drill; the constrained technical round is likewise capped power and coach-refereed.</p>
+  <p class="field-label">Deferred</p><p class="field-value">Open sparring.</p>
+</div>
+
+<h3>Why this order</h3>
+<p>Week 1 leads with pure stance, guard, and movement -- no strike at all -- so every student's first night is the same low-stakes foundation, regardless of which arc eventually teaches them. Hands (Weeks 2-3) come first among the striking tools because punches are the lowest-barrier, lowest-injury-risk tool to drill from a stationary base, and splitting punching into a stationary week (2) and a movement-plus-defense week (3) lets defense enter early rather than being held until Week 6. The teep (Week 4) follows as a spacing tool that leans on the hand tools already in place. The rear round kick (Week 5) comes after the hands and teep rather than leading, so a beginner's first live partner work is already hand-based and lower-risk before the more injury-sensitive kick is introduced. Checks, low kicks, and returns (Week 6) sit right after the kick because a coherent defensive system needs the kick to already exist to defend against, and this is also where Week 3's punch defense folds into one system alongside kick defense. Combination-building and knees (Week 7) come second-to-last because they require every prior tool, and knees are the one tool that brushes against close-range/clinch territory, which this cycle deliberately avoids opening. Week 8 is the sole no-new-technique week, holding the full-toolkit assembly and the cycle's one capped technical round.</p>
+<p>This reverses the prior kick-first recommendation. Arc 1 (rear round kick) was originally built as the Week 1 entry-point arc, bundling stance/guard/balance with the kick; under hands-first it moves to Week 5, and its stance/guard/balance material is reused for the new Week 1 rather than the kick itself. See Section 8 for the open items this reassignment creates.</p>
+
+<h2>4. Six-Week Compression Notes</h2>
+<p>Weeks 1-5 are unchanged -- stance/guard/movement, the hand tools (split across Weeks 2-3, including basic punch defense), the teep, and the rear round kick are the non-negotiable core sequence and should never be compressed.</p>
+<div class="compress-note"><strong>Compressed Week 6</strong> = current Weeks 6, 7, and 8 merge -- Night 1 runs checks/low-kicks/returns, Night 2 runs combination-building and basic knees, Night 3 runs the full-toolkit integration drill and the capped technical round directly, skipping the dedicated review-sweep pacing the full 8-week version uses.</div>
+<div class="note-banner"><strong>Tradeoff:</strong> this compresses three full weeks of content (checks/returns, combinations/knees, integration) into three nights instead of nine -- a bigger squeeze than the prior kick-first compression scheme carried, because hands-first front-loads more distinct new-content weeks before anything is compressible. Real retention risk. Use it only when class frequency or student patience doesn't support the full 8 weeks -- don't default to it.</div>
+
+<h2>5. Required / Optional / Deferred Summary</h2>
+<div class="summary-grid">
+  <div class="summary-col col-required">
+    <h4>Required</h4>
+    <ul>
+      <li>Stance, guard, balance</li>
+      <li>Forward/backward/lateral movement</li>
+      <li>Jab, cross, jab-cross</li>
+      <li>Rear round kick</li>
+      <li>Lead &amp; rear teep</li>
+      <li>Basic low kick</li>
+      <li>Basic knee</li>
+      <li>Basic check</li>
+      <li>Basic punch defense</li>
+      <li>Simple defense-and-return</li>
+      <li>Distance management</li>
+      <li>Recovery to stance</li>
+      <li>Pad-holding basics</li>
+      <li>Punch-to-kick combinations</li>
+      <li>Controlled partner reaction work</li>
+    </ul>
+  </div>
+  <div class="summary-col col-optional">
+    <h4>Optional</h4>
+    <ul>
+      <li>Lead hook</li>
+      <li>Basic uppercut</li>
+      <li>Basic switch-kick foundation</li>
+      <li>Basic teep defense</li>
+      <li>Simple feints</li>
+    </ul>
+    <p style="font-size:12.5px;color:#555;margin-top:8px;">Use when it fits naturally -- never displaces core material. Can be woven into any week's reinforcement (Night 4) content.</p>
+  </div>
+  <div class="summary-col col-deferred">
+    <h4>Deferred</h4>
+    <ul>
+      <li>Advanced lead-leg kick variations</li>
+      <li>Jump switches, complex stance switching</li>
+      <li>Catch-and-trip systems, sweeps</li>
+      <li>Elbow-focused units</li>
+      <li>Dirty boxing, advanced clinch</li>
+      <li>Open sparring</li>
+      <li>Complex slip / bob-and-weave chains</li>
+      <li>Advanced kick catches</li>
+      <li>Long combinations</li>
+      <li>Advanced counter systems</li>
+    </ul>
+  </div>
+</div>
+
+<h2>6. Rolling-Enrollment Rules</h2>
+<p>The 101 class is not a closed cohort -- students join on any week, not just Week 1.</p>
+<ul>
+  <li>Every night opens with a compressed review of the immediately-prior night's terminal skill -- never assumed, always briefly re-taught, so a walk-in who missed everything before it can still follow.</li>
+  <li>Weeks 1-7 each have a real first-day base version a newcomer can enter on cold -- every one of them introduces something new under this order. Week 8 is a pure integration/review week -- a true first-timer should be steered to Week 1 instead when it's running.</li>
+  <li>A returning student gets the same compressed review as a faster refresher, then moves into the extension version of the terminal drill (more reps, closer to full intensity within the same safety caps) -- same drill, different pace, not a separate track.</li>
+  <li>Stance, guard, balance, and recovery-to-stance are never "graduated past." They show up inside the warm-up or compressed-review rung of every single night, all 8 weeks, not just Week 1.</li>
+  <li>This is not solved by making every week a broad survey. Each night still has one base version, one connected progression, and one constrained extension.</li>
+</ul>
+
+<h2>7. How FightClub, Ludwig, and Easton Content Fits</h2>
+<table class="source-table">
+  <tr><th>Source</th><th>Role</th></tr>
+  <tr><td><strong>Easton Kickboxing</strong> (52 clean, single-technique videos)</td><td>Backbone for first-time mechanics teaching wherever a required skill is introduced -- stance, punches, kicks, teeps, knees, checking/blocking.</td></tr>
+  <tr><td><strong>Easton Fundamentals</strong> (102 multi-technique padwork/drill videos)</td><td>Main source for assembled, connected drills Weeks 6-8 need -- titles like "Combos 1-4 + Check + Return Middle Kick" or "Block Punches + Check + Return Middle Kick" are exactly that terminal-drill format.</td></tr>
+  <tr><td><strong>FightClub</strong> (500+ tagged clips: offense, defense, counters, setups, distance, timing, rhythm)</td><td>New-and-Exciting content, reaction games, partner/target variety inside whatever that week's theme already is. Never introduces a required technique on its own.</td></tr>
+  <tr><td><strong>Ludwig Combos and similar libraries</strong> (e.g. Ludwig, Evolve, Fight Science TV)</td><td>Extra combination variety for Weeks 7+ once the underlying techniques are already taught -- "which order to chain already-known strikes," not new technique.</td></tr>
+</table>
+<div class="note-banner"><strong>Rule of thumb:</strong> these libraries provide variety inside the week's theme. They do not control the sequence. Easton always carries the actual mechanics teaching for anything on the required list; FightClub/Ludwig/etc. only ever supply the "how many ways can we drill this" layer.</div>
+
+<h2>8. Open Coach Decisions</h2>
+<p style="font-size:13.5px;color:#555;">Only decisions that would materially change this syllabus if answered differently.</p>
+<div class="open-item"><strong>1. Does capped-power live technical sparring belong in Week 8 Night 3?</strong><br>As written it's a constrained decision-drill, not open sparring. If a true live technical round is acceptable, the terminal drill's format changes; if not, no change is needed.</div>
+<div class="open-item"><strong>2. Does the 8-week cycle repeat back-to-back, or is there a break between cycles?</strong><br>Affects whether Week 8 is a true "graduation" or a rolling loop back to Week 1.</div>
+<div class="open-item"><strong>3. Week 1 has no dedicated arc yet.</strong><br>Arc 1's approved plans bundle stance/guard/balance with the rear kick as a single entry-point arc. Under hands-first, Week 1 needs its own stance/guard/movement content, and no arc currently covers that in isolation -- building or assigning one is needed before Week 1 can be generated as approved class content.</div>
+<div class="open-item"><strong>4. Arc 1's approved plans don't yet match Week 5's framing.</strong><br>Arc 1 was approved as an entry-point arc ("Review skills: none"); Week 5 now assumes stance, hands, and teep are already taught by the time students reach it. Whether Arc 1 needs a revision-review pass before being trusted as Week 5 content, or whether the mismatch is fine as coach improvisation in the meantime, is open -- flagged for the next generation-mapping session.</div>
+
+<h2>9. Warm-Up, Burnout &amp; Conditioning Menus</h2>
+<p style="font-size:13.5px;color:#555;">Reusable menus, not new week content -- every night pulls from these for the Warm Up and Burnout blocks in the standing class shape, and optionally for post-class stretching. They apply identically across all 8 weeks; rotate through a subset each night rather than running the full list every time.</p>
+
+<h3>9.1 Active Warm-Up Mobility</h3>
+<p class="field-value">Used inside the 8-minute Warm Up block.</p>
+<ul>
+  <li>Leg swings</li>
+  <li>Trunk rotation</li>
+  <li>Hip-flexor, calf, ankle and groin mobility</li>
+  <li>Deep squat holds</li>
+  <li>Cat stretch or cat-cow</li>
+</ul>
+
+<h3>9.2 Core Conditioning</h3>
+<p class="field-value">Draw from this menu for Burnout or as Warm Up supplementation.</p>
+<ul>
+  <li>Lying leg raises</li>
+  <li>Six-inch holds</li>
+  <li>Lower-and-raise leg sequences</li>
+  <li>Bicycle variations</li>
+  <li>Flutter kicks</li>
+  <li>Scissor kicks</li>
+  <li>Crunch and sit-up variations</li>
+  <li>Planks</li>
+</ul>
+
+<h3>9.3 Bodyweight Conditioning</h3>
+<ul>
+  <li>Pushups</li>
+  <li>Diamond pushups</li>
+  <li>Squats</li>
+  <li>Jump squats</li>
+  <li>Lunges</li>
+  <li>Burpees</li>
+  <li>Sprawls</li>
+  <li>Mountain climbers</li>
+  <li>Line hops</li>
+</ul>
+
+<h3>9.4 Five-Minute High-Intensity Burnout</h3>
+<p class="field-value">Used inside the 5-minute Burnout block that closes every class. Pull 2-4 items from Core Conditioning and Bodyweight Conditioning above, run as short high-intensity rounds or a circuit -- capped power, no new technique.</p>
+
+<h3>9.5 Optional Post-Class Static Stretching</h3>
+<p class="field-value">Optional, after Burnout, once students are already warm.</p>
+<ul>
+  <li>Seated frog stretch</li>
+  <li>Butterfly</li>
+  <li>Seated straddle</li>
+  <li>Standing hamstring and side-leg stretches</li>
+</ul>
+
+<h3>9.6 Optional Partner Stretching</h3>
+<p class="field-value">Optional, after students are warm, never a substitute for solo stretching.</p>
+<ul>
+  <li>Partner-assisted seated splits</li>
+  <li>Standing partner hamstring and side-leg stretches</li>
+</ul>
+<div class="note-banner"><strong>Safety:</strong> partner stretching must be controlled, gradual, communicated, never bounced, and released immediately when the person signals discomfort.</div>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Fundamentals Extraction Discrepancy Report</title>
+<style>
+    body { font-family: system-ui, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.5; color: #222; }
+    h1 { font-size: 21px; } h2 { font-size: 17px; border-top: 2px solid #333; padding-top: 12px; margin-top: 26px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 16px 0; font-size: 12.5px; }
+    th { background: #e6ede5; text-align: left; padding: 5px 8px; } td { border: 1px solid #ddd; padding: 5px 8px; }
+    .ok { color: #2a7; font-weight: bold; } .badge { display:inline-block;border-radius:8px;padding:1px 8px;font-size:11px;color:#fff;background:#2a7;margin-left:8px; }
+    </style></head><body>
+<h1>Fundamentals Extraction Discrepancy Report <span class="badge">2026-07-14</span></h1>
+<p>Compares the transcript-based evidence refresh against what bulk extraction put into
+sources/techniques (what the generator can now actually select). Lightweight check
+against 5 named failure modes -- not a coverage-matrix rebuild.</p>
+
+<p><b>Extraction totals:</b> 102/103 processed, 318
+technique rows added, 1 transcript flagged/skipped,
+5 individual thin entries filtered.</p>
+
+<h2>Result: 1 finding(s)</h2>
+
+<h2>(1) Covered competency with no real matching row</h2>
+<p class="ok">0 findings.</p>
+
+<h2>(2) Arc lacking generator-eligible rows for claimed support</h2>
+<p class="ok">0 findings.</p>
+
+<h2>(3) Coaching depth lost in extraction</h2>
+<p class="ok">0 findings.</p>
+
+<h2>(4) Source classified at the wrong tier</h2>
+<p class="ok">0 findings.</p>
+
+<h2>(5) Flagged transcript with possible evidence</h2>
+<table><tr><th>Filename</th><th>Competency cited for</th><th>Flag reason</th></tr><tr><td>Teep Feints# Mid Range Option.mp4</td><td>Feints</td><td>JSON parse failed -- Unterminated string starting at: line 55 column 7 (char 1982)</td></tr></table><p>Non-blocking: 2 of the 3 Fundamentals clips cited for Feints extracted cleanly; this one was also the thinnest on direct transcript read during the evidence refresh. Feints stays partially_covered (unchanged) -- no coverage status was affected.</p>
+
+<h2>Canonical CSVs</h2>
+<p>Not touched -- the one finding above does not change any competency's coverage status.</p>
+
+</body></html>

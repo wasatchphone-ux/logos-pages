@@ -1,0 +1,609 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Teep Foundation -- Coach View (DRAFT, pending Arc 2 review)</title>
+<style>
+
+body { font-family: system-ui, sans-serif; max-width: 980px; margin: 0 auto; padding: 20px; line-height: 1.45; color: #222; }
+h2 { font-size: 20px; border-top: 3px solid #333; padding-top: 16px; margin-top: 40px; }
+h3 { font-size: 15px; margin: 16px 0 6px 0; }
+.block-min { font-size: 13px; font-weight: normal; color: #666; }
+.folder-note { background: #f4f4f4; border-radius: 6px; padding: 8px 14px; margin: 10px 0; font-size: 13px; }
+.folder-note pre { white-space: pre-wrap; font-size: 12px; }
+#night-nav { margin: 14px 0; }
+#night-nav a { margin-right: 14px; }
+.menu-note { font-size: 12.5px; color: #666; font-style: italic; margin: 2px 0 8px 0; }
+
+.coach-block { border-left: 4px solid #444; padding-left: 14px; margin: 14px 0 20px 0; }
+.coach-item { border: 1px solid #ddd; border-radius: 6px; padding: 8px 12px; margin-bottom: 8px; background: #fafafa; }
+.coach-item-head { font-weight: bold; font-size: 14.5px; }
+.coach-min { display: inline-block; min-width: 48px; color: #555; }
+.cues { margin: 6px 0 4px 20px; font-size: 13.5px; }
+.meta-line { font-size: 13px; margin: 2px 0; }
+.safety-note { font-size: 13px; color: #a33; background: #fdf0f0; border-radius: 4px; padding: 4px 8px; margin-top: 4px; }
+video { max-width: 300px; display: block; margin: 6px 0; background: #000; }
+.logistics { background: #eef2fa; border-radius: 6px; padding: 8px 14px; margin-bottom: 14px; font-size: 13.5px; }
+.logi-row { margin: 2px 0; }
+.safety-list { margin: 2px 0 2px 18px; }
+#view-switch { position: sticky; top: 0; background: #fff; padding: 8px 0; border-bottom: 2px solid #333; z-index: 5; }
+.draft-banner { background: #fdf0d5; border: 1px solid #e0b050; border-radius: 6px; padding: 8px 14px; margin: 10px 0; font-size: 13px; }
+</style>
+</head>
+<body>
+<div id="view-switch">
+  <b>Teep Foundation -- Coach View (DRAFT)</b> &nbsp;|&nbsp; <a href="arc3-audit-view.html">Switch to Audit View</a> &nbsp;|&nbsp; <a href="arc3-review.html">Generation Review</a> &nbsp;|&nbsp; <a href="arc2-coach-view.html">Arc 2 Coach View</a>
+</div>
+<div class="draft-banner"><b>DRAFT -- PENDING ARC 2 REVIEW.</b> This arc has not been approved. It depends on Arc 2 content (the jab-cross combination) which is itself still pending review. Do not use this arc as a basis for generating Arc 4.</div>
+<details class="folder-note"><summary>Video folder requirement (click to expand)</summary><pre>T4/
+  review/
+    coach-view.html
+    audit-view.html
+  media/
+    source/
+      video-file.mp4
+
+These HTML pages and the media/source video directory must keep this relative
+folder relationship (review/ and media/ are siblings under T4/) -- moving one
+without the other breaks every embedded video link. Video paths are local and
+relative in this phase; nothing is hosted. The relative base is a single
+configured constant (t4_paths.VIDEO_SRC_BASE), not scattered strings.</pre></details>
+<nav id="night-nav"><a href="#coach-arc-teep-foundation-a8c4be4d3ee6-night1">Night 1 -- Lead Teep Foundation</a><a href="#coach-arc-teep-foundation-a8c4be4d3ee6-night2">Night 2 -- Rear Teep and Alternating Rhythm</a><a href="#coach-arc-teep-foundation-a8c4be4d3ee6-night3">Night 3 -- Jab-Cross-Teep Integration</a></nav>
+
+    <section class="night" id="coach-arc-teep-foundation-a8c4be4d3ee6-night1">
+      <h2>Night 1 -- Lead Teep Foundation</h2>
+      <div class="logistics"><div class="logi-row"><b>Level:</b> Beginner</div><div class="logi-row"><b>Objective:</b> Throw a clean, balanced lead teep with a controlled return to stance.</div><div class="logi-row"><b>Equipment checklist:</b> 10 kicking shields</div><div class="logi-row"><b>Format:</b> Partner pairs required</div><div class="logi-row"><b>Space:</b> Open floor. 4 rows of 5 for Warm Up and the New and Exciting balance-target relay. 10 partner pairs spread across the floor for the shield terminal drill.</div><div class="logi-row"><b>Safety:</b><ul class="safety-list"><li><b>Lead teep mechanics:</b> Use only the lead-teep mechanics from this source -- the feint and combination-setup content later in this same video is taught in a later night/arc.</li></ul></div></div>
+      
+    <div class="coach-block">
+      <h3>Warm Up <span class="block-min">8 min</span></h3>
+      <p class="menu-note">Warm-up menu: run all items or adjust, combine and skip based on the room.</p>
+      
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">1.0 min</span>
+        <span class="coach-name">Jumping jacks</span>
+      </div>
+      
+      <ul class="cues"><li>Raise heart rate with a fully generic movement.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 45 seconds continuous<br><b>Sides:</b> symmetric, no side distinction</div>
+      
+      
+      
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">1.0 min</span>
+        <span class="coach-name">High knees in place</span>
+      </div>
+      
+      <ul class="cues"><li>Drive the knees up at a quick cadence, in place.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 45 seconds continuous<br><b>Sides:</b> alternating, symmetric</div>
+      
+      
+      
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">1.0 min</span>
+        <span class="coach-name">Fast feet</span>
+      </div>
+      
+      <ul class="cues"><li>Quick, light footwork in place.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 45 seconds continuous<br><b>Sides:</b> symmetric</div>
+      
+      
+      
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">1.0 min</span>
+        <span class="coach-name">Single-leg balance hold</span>
+      </div>
+      
+      <ul class="cues"><li>Quick alternating single-leg balance holds.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 8 quick alternating holds, 2 seconds each<br><b>Sides:</b> both legs</div>
+      
+      
+      
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">1.0 min</span>
+        <span class="coach-name">Bodyweight squats</span>
+      </div>
+      
+      <ul class="cues"><li>Full bodyweight squats at a steady energetic pace.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 12 reps<br><b>Sides:</b> symmetric</div>
+      
+      
+      
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">1.0 min</span>
+        <span class="coach-name">Athletic base and guard recap</span>
+      </div>
+      
+      <ul class="cues"><li>Find the athletic base and high guard, hold briefly.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 3 holds, 5 seconds each<br><b>Sides:</b> symmetric</div>
+      
+      
+      
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">1.0 min</span>
+        <span class="coach-name">Single-leg weight-shift priming</span>
+      </div>
+      
+      <ul class="cues"><li>Shift weight fully onto the rear foot until the lead foot is light, hold, return.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 6 slow reps<br><b>Sides:</b> both legs practiced</div>
+      
+      
+      
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">1.0 min</span>
+        <span class="coach-name">Knee-chamber priming (no extension)</span>
+      </div>
+      
+      <ul class="cues"><li>Lift the lead knee toward the chest and hold, no kick thrown.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 6 reps, 2-second holds<br><b>Sides:</b> lead leg; whichever is the student&#x27;s natural lead</div>
+      
+      
+      
+    </div>
+    </div>
+    <div class="coach-block">
+      <h3>New and Exciting <span class="block-min">12 min</span></h3>
+      
+      
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">12 min</span>
+        <span class="coach-name">Balance-hold target relay</span>
+      </div>
+      
+      <ul class="cues"><li>Light, constrained knee-chamber-and-touch reps into a partner-held kicking shield, counted for a friendly competitive total.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>A:</b> Does light, constrained knee-lift-and-touch reps into the kicking shield Partner B holds -- a tap/touch, not a full-power strike -- for a timed 30-second round, counting reps out loud.<br><b>B:</b> Holds a kicking shield at body height, braced, calling out the running count with Partner A.<br><b>Reps:</b> 3 rounds of 30 seconds per role<br><b>Switch:</b> After each 30-second round, partners switch immediately: holder becomes toucher, toucher becomes holder.<br><b>Reset:</b> Reset to athletic base between individual touches; full reset to starting position at the top of each new round.</div>
+      <div class="meta-line"><b>Equipment:</b> kicking shield</div>
+      
+      <div class="safety-note">Touch/tap contact only -- shield holder must brace before each round begins; no full-power strikes.</div>
+    </div>
+    </div>
+    <div class="coach-block">
+      <h3>Muay Thai Curriculum <span class="block-min">35 min</span></h3>
+      
+      
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">12 min</span>
+        <span class="coach-name">Lead teep mechanics</span>
+      </div>
+      
+      <ul class="cues"><li>Shift weight to rear foot so it is directly under hip</li><li>Bring lead knee up towards chest, getting it nice and high</li><li>Drive hips forward with hinging motion to generate power</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 5 sets of 6 teeps, reset to stance between every teep<br><b>Sides:</b> lead leg teeps only; whichever stance is the student&#x27;s natural one (orthodox or southpaw) -- no switching mid-arc</div>
+      
+      
+      <div class="safety-note">Use only the lead-teep mechanics from this source -- the feint and combination-setup content later in this same video is taught in a later night/arc.</div>
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">8 min</span>
+        <span class="coach-name">Teep as a range tool -- the foot jab comparison</span>
+      </div>
+      
+      <ul class="cues"><li>Compare the teep to a jab -- a &#x27;foot jab&#x27; for distance and disruption</li><li>Opposite hand stays tight while teeping</li><li>Counter-balance with the same side arm</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 4 sets of 6 teeps, focused on range/timing rather than power<br><b>Sides:</b> lead leg</div>
+      
+      
+      
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">15 min</span>
+        <span class="coach-name">Terminal shield drill -- lead teep on kicking shields, 10 pairs</span>
+      </div>
+      
+      <ul class="cues"><li>Same four-part mechanics as the solo reps, now on the shield</li><li>Reset to stance after every rep</li><li>50% power -- technical focus, not power focus</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>A:</b> Strikes first. Throws a lead teep into the kicking shield Partner B holds. Resets to full stance after every single teep before throwing the next.<br><b>B:</b> Holds one kicking shield at body height with both hands, braced on the back leg. Calls &#x27;ready&#x27; before each rep.<br><b>Reps:</b> 2 rounds of 8 teeps per student (16 teeps per student total)<br><b>Switch:</b> After Partner A completes round 1 (8 teeps), partners switch immediately: B becomes striker, A becomes holder, for B&#x27;s round 1. Repeat for round 2.<br><b>Reset:</b> Striker resets to full stance after every individual teep; pair resets to neutral facing position before each new round.</div>
+      <div class="meta-line"><b>Equipment:</b> 1 kicking shield per pair (10 shields total for a class of 20)</div>
+      
+      <div class="safety-note">50% power cap; shield holder must call &#x27;ready&#x27; before each rep so the striker never teeps a target that isn&#x27;t set.</div>
+    </div>
+    </div>
+    <div class="coach-block">
+      <h3>Burnout <span class="block-min">5 min</span></h3>
+      
+      
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">5 min</span>
+        <span class="coach-name">Teep-volume shield burst</span>
+      </div>
+      
+      <ul class="cues"><li>Hard-effort lead-teep-volume finisher on the kicking shields already in use tonight.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>A:</b> Teeps the kicking shield Partner B holds for 30 seconds of maximum controlled volume each round.<br><b>B:</b> Holds the shield braced for Partner A&#x27;s 30-second work interval, then the roles switch.<br><b>Reps:</b> 4 rounds x 30s work per role<br><b>Switch:</b> Every 30 seconds, immediate switch (7-8 second transition).<br><b>Reset:</b> n/a -- continuous work within each round, full stop only at the end of the 5 minutes.</div>
+      <div class="meta-line"><b>Equipment:</b> 1 kicking shield per pair (the same shields used in tonight&#x27;s New and Exciting drill).</div>
+      <div class="meta-line"><b>Format:</b> 4 rounds of 75 seconds, exactly 5 minutes. Each round: Partner A teeps the shield for 30s max controlled volume, quick 7-second switch, Partner B teeps the shield for 30s max controlled volume, quick 8-second switch/reset, next round begins immediately.<br><b>Coach calls:</b> Coach runs a repeating 75-second timer, calls &#x27;SWITCH&#x27; at each interval, counts down the last 10 seconds of the final round.<br><b>Scaling:</b> Scale from full-speed teeps to a slower, fully-controlled balance-focused pace for students whose balance fatigues early.</div>
+      <div class="safety-note">Teeps stay technically controlled even at speed -- no wild, off-balance kicks. Shield holder must brace fully every rep.</div>
+    </div>
+    </div>
+    </section>
+    <section class="night" id="coach-arc-teep-foundation-a8c4be4d3ee6-night2">
+      <h2>Night 2 -- Rear Teep and Alternating Rhythm</h2>
+      <div class="logistics"><div class="logi-row"><b>Level:</b> Beginner</div><div class="logi-row"><b>Objective:</b> Add the rear teep and combine it with the lead teep into an alternating rhythm.</div><div class="logi-row"><b>Equipment checklist:</b> 10 kicking shields</div><div class="logi-row"><b>Format:</b> Partner pairs required</div><div class="logi-row"><b>Space:</b> Open floor. 4 rows of 5 for Warm Up. 10 partner pairs with kicking shields for New and Exciting, the compressed review, and all Curriculum rungs.</div><div class="logi-row"><b>Safety:</b><ul class="safety-list"><li><b>Compressed review: lead teep mechanics:</b> None -- this is a full re-teach, not a reminder-only review.</li></ul></div></div>
+      
+    <div class="coach-block">
+      <h3>Warm Up <span class="block-min">8 min</span></h3>
+      <p class="menu-note">Warm-up menu: run all items or adjust, combine and skip based on the room.</p>
+      
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">1.0 min</span>
+        <span class="coach-name">Jumping jacks</span>
+      </div>
+      
+      <ul class="cues"><li>Raise heart rate with a fully generic movement.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 45 seconds continuous<br><b>Sides:</b> symmetric, no side distinction</div>
+      
+      
+      
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">1.0 min</span>
+        <span class="coach-name">Lateral shuffles</span>
+      </div>
+      
+      <ul class="cues"><li>Shuffle side to side, low and athletic.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 45 seconds continuous<br><b>Sides:</b> symmetric, both directions</div>
+      
+      
+      
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">1.0 min</span>
+        <span class="coach-name">Mountain climbers</span>
+      </div>
+      
+      <ul class="cues"><li>Alternating knee drives from a plank position.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 45 seconds continuous<br><b>Sides:</b> alternating, symmetric</div>
+      
+      
+      
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">1.0 min</span>
+        <span class="coach-name">Fast feet</span>
+      </div>
+      
+      <ul class="cues"><li>Quick, light footwork in place.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 45 seconds continuous<br><b>Sides:</b> symmetric</div>
+      
+      
+      
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">1.0 min</span>
+        <span class="coach-name">Line touches</span>
+      </div>
+      
+      <ul class="cues"><li>Jog or shuffle forward to a floor line, touch it, return.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 4 out-and-backs<br><b>Sides:</b> symmetric</div>
+      
+      
+      
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">1.0 min</span>
+        <span class="coach-name">Lead teep recap (no target)</span>
+      </div>
+      
+      <ul class="cues"><li>Throw a lead teep in place, no target.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 6 slow reps<br><b>Sides:</b> lead leg</div>
+      
+      
+      
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">1.0 min</span>
+        <span class="coach-name">Rear-leg weight-shift priming</span>
+      </div>
+      
+      <ul class="cues"><li>Lean weight forward onto the lead leg until the rear foot is light, hold, return.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 6 slow reps<br><b>Sides:</b> symmetric</div>
+      
+      
+      
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">1.0 min</span>
+        <span class="coach-name">Alternating knee-chamber rhythm (no extension)</span>
+      </div>
+      
+      <ul class="cues"><li>Alternate lifting each knee toward the chest at a steady rhythm, no kick thrown.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 10 alternating lifts<br><b>Sides:</b> both legs, alternating</div>
+      
+      
+      
+    </div>
+    </div>
+    <div class="coach-block">
+      <h3>New and Exciting <span class="block-min">12 min</span></h3>
+      
+      
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">12 min</span>
+        <span class="coach-name">Alternating teep rhythm relay</span>
+      </div>
+      
+      <ul class="cues"><li>Light, constrained alternating teep touches into a partner-held kicking shield, counted for a friendly competitive total.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>A:</b> Does light, constrained alternating-leg touches into the kicking shield Partner B holds, counting reps out loud.<br><b>B:</b> Holds a kicking shield at body height, braced, calling out the running count with Partner A.<br><b>Reps:</b> 3 rounds of 30 seconds per role<br><b>Switch:</b> After each 30-second round, partners switch immediately: holder becomes toucher, toucher becomes holder.<br><b>Reset:</b> Reset to athletic base between individual touches; full reset to starting position at the top of each new round.</div>
+      <div class="meta-line"><b>Equipment:</b> kicking shield</div>
+      
+      <div class="safety-note">Touch/tap contact only -- shield holder must brace before each round begins.</div>
+    </div>
+    </div>
+    <div class="coach-block">
+      <h3>Muay Thai Curriculum <span class="block-min">35 min</span></h3>
+      
+      
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">5 min</span>
+        <span class="coach-name">Compressed review: lead teep mechanics</span>
+      </div>
+      
+      <ul class="cues"><li>Same four-part mechanics as Night 1: up, out, in, down</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 2 sets of 6 teeps<br><b>Sides:</b> lead leg</div>
+      
+      
+      <div class="safety-note">None -- this is a full re-teach, not a reminder-only review.</div>
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">8 min</span>
+        <span class="coach-name">Rear teep (push kick) mechanics</span>
+      </div>
+      
+      <ul class="cues"><li>Pull foot almost straight up from chambered position</li><li>Lean weight slightly forward onto lead leg to unweight rear leg</li><li>Step back out of range before executing push kick</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 5 sets of 6 rear teeps, reset to stance between every rep<br><b>Sides:</b> rear leg teeps only; whichever stance is the student&#x27;s natural one</div>
+      
+      
+      
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">8 min</span>
+        <span class="coach-name">Alternating teep footwork and rhythm</span>
+      </div>
+      
+      <ul class="cues"><li>Keep feet close together in a square stance</li><li>Set the teep down lightly between repetitions</li><li>Pull the leg back quickly after each teep</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 4 sets of 8 alternating teeps (lead-rear-lead-rear)<br><b>Sides:</b> both legs, alternating</div>
+      
+      
+      
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">14 min</span>
+        <span class="coach-name">Terminal shield drill -- alternating lead and rear teep, 10 pairs</span>
+      </div>
+      
+      <ul class="cues"><li>Same mechanics as the solo reps, now on the shield</li><li>Keep the rhythm light and consistent</li><li>Reset to stance after every rep</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>A:</b> Strikes first. Alternates lead and rear teeps into the kicking shield Partner B holds. Resets to full stance after every teep.<br><b>B:</b> Holds one kicking shield at body height with both hands, braced. Calls &#x27;ready&#x27; before each rep.<br><b>Reps:</b> 2 rounds of 8 alternating teeps per student (16 total)<br><b>Switch:</b> After Partner A completes round 1 (8 teeps), partners switch immediately. Repeat for round 2.<br><b>Reset:</b> Striker resets to full stance after every teep; pair resets to neutral facing position before each new round.</div>
+      <div class="meta-line"><b>Equipment:</b> 1 kicking shield per pair (10 shields total for a class of 20)</div>
+      
+      <div class="safety-note">50% power cap; shield holder must call &#x27;ready&#x27; before each rep.</div>
+    </div>
+    </div>
+    <div class="coach-block">
+      <h3>Burnout <span class="block-min">5 min</span></h3>
+      
+      
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">5 min</span>
+        <span class="coach-name">Single-leg balance squat + high-knee interval</span>
+      </div>
+      
+      <ul class="cues"><li>Hard-effort solo interval finisher, no equipment, no partner, with a balance component that stays on-theme for a teep arc.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 5 rounds x 40s work (self-paced effort each interval)<br><b>Sides:</b> high-knee rounds alternate legs symmetrically, no side distinction</div>
+      
+      <div class="meta-line"><b>Format:</b> 5 rounds of 40 seconds work / 20 seconds rest, exactly 5 minutes. Rounds 1, 3, 5: bodyweight squats. Rounds 2, 4: alternating high knees at maximum controlled cadence.<br><b>Coach calls:</b> Coach runs a visible 40/20 interval timer, calls &#x27;GO&#x27; at the start of each work interval and &#x27;REST&#x27; at each rest interval, counts down the last 5 seconds of the final round.<br><b>Scaling:</b> Squats scale down to a shallower range of motion for students with knee sensitivity; high knees scale down to a slower marching cadence for students whose balance fatigues early.</div>
+      <div class="safety-note">Land softly with soft knees; self-pace intensity; stop and reset balance if wobbling rather than forcing through it.</div>
+    </div>
+    </div>
+    </section>
+    <section class="night" id="coach-arc-teep-foundation-a8c4be4d3ee6-night3">
+      <h2>Night 3 -- Jab-Cross-Teep Integration</h2>
+      <div class="logistics"><div class="logi-row"><b>Level:</b> Beginner</div><div class="logi-row"><b>Objective:</b> Chain a jab-cross into a teep, on shields, with clean distance control.</div><div class="logi-row"><b>Equipment checklist:</b> 10 focus mitts, 10 kicking shields, Boxing gloves (required for the striking partner in this night&#x27;s jab-cross portions)</div><div class="logi-row"><b>Format:</b> Partner pairs required</div><div class="logi-row"><b>Space:</b> Open floor. 4 rows of 5 for Warm Up. 10 partner pairs with mitts and kicking shields for New and Exciting and all Curriculum rungs.</div><div class="logi-row"><b>Safety:</b><ul class="safety-list"><li><b>Teep as a combination finisher:</b> Use only the jab-teep combination-practice guidance from this source -- its other content (rear teep mechanics, alternating rhythm) was already taught in Nights 1-2.</li><li><b>Terminal shield drill -- jab-cross-teep, on shields, 10 pairs:</b> Constructed terminal drill -- no single source contains this complete sequence; component sources are cited above and only their beginner-appropriate portions are used.</li></ul></div></div>
+      
+    <div class="coach-block">
+      <h3>Warm Up <span class="block-min">8 min</span></h3>
+      <p class="menu-note">Warm-up menu: run all items or adjust, combine and skip based on the room.</p>
+      
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">1.0 min</span>
+        <span class="coach-name">Jumping jacks</span>
+      </div>
+      
+      <ul class="cues"><li>Raise heart rate with a fully generic movement.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 45 seconds continuous<br><b>Sides:</b> symmetric, no side distinction</div>
+      
+      
+      
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">1.0 min</span>
+        <span class="coach-name">High knees in place</span>
+      </div>
+      
+      <ul class="cues"><li>Drive the knees up at a quick cadence, in place.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 45 seconds continuous<br><b>Sides:</b> alternating, symmetric</div>
+      
+      
+      
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">1.0 min</span>
+        <span class="coach-name">Reverse lunges</span>
+      </div>
+      
+      <ul class="cues"><li>Step back into a reverse lunge, alternating legs.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 10 total, alternating legs<br><b>Sides:</b> both legs, alternating</div>
+      
+      
+      
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">1.0 min</span>
+        <span class="coach-name">Fast feet</span>
+      </div>
+      
+      <ul class="cues"><li>Quick, light footwork in place.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 45 seconds continuous<br><b>Sides:</b> symmetric</div>
+      
+      
+      
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">1.0 min</span>
+        <span class="coach-name">Coach-call reaction game</span>
+      </div>
+      
+      <ul class="cues"><li>React quickly to the coach&#x27;s call, then reset.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 8-10 calls<br><b>Sides:</b> symmetric</div>
+      
+      
+      
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">1.0 min</span>
+        <span class="coach-name">Jab-cross recap (no target)</span>
+      </div>
+      
+      <ul class="cues"><li>Throw a jab-cross combination in place, no target.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 6 slow combinations<br><b>Sides:</b> jab lead hand, cross rear hand</div>
+      
+      
+      
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">1.0 min</span>
+        <span class="coach-name">Teep recap (no target)</span>
+      </div>
+      
+      <ul class="cues"><li>Throw a lead teep in place, no target.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 6 slow reps<br><b>Sides:</b> lead leg</div>
+      
+      
+      
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">1.0 min</span>
+        <span class="coach-name">Single-leg balance check</span>
+      </div>
+      
+      <ul class="cues"><li>Balance on one leg briefly, both legs practiced.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 2 holds each leg, 3 seconds each<br><b>Sides:</b> both legs practiced</div>
+      
+      
+      
+    </div>
+    </div>
+    <div class="coach-block">
+      <h3>New and Exciting <span class="block-min">12 min</span></h3>
+      
+      
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">12 min</span>
+        <span class="coach-name">Combination-call reaction relay</span>
+      </div>
+      
+      <ul class="cues"><li>React to a partner&#x27;s unpredictable &#x27;hands&#x27; or &#x27;teep&#x27; call by throwing the correct light touch into the matching target.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>A:</b> Reacts. Listens for the call (&#x27;hands&#x27; or &#x27;teep&#x27;, unpredictable order) and throws the correct light touch into the matching target.<br><b>B:</b> Keeps a focus mitt on one hand and a kicking shield propped ready at their feet, calling &#x27;hands&#x27; or &#x27;teep&#x27; at an unpredictable cadence -- raises the mitt for a &#x27;hands&#x27; call, or drops the mitt hand and scoops the shield up with both hands, bracing it, for a &#x27;teep&#x27; call.<br><b>Reps:</b> 3 rounds of 30 seconds per role<br><b>Switch:</b> After each 30-second round, partners switch roles: caller becomes the reactor.<br><b>Reset:</b> Reset to guard/stance after every reaction before the next call.</div>
+      <div class="meta-line"><b>Equipment:</b> focus mitt and kicking shield</div>
+      
+      <div class="safety-note">Touch/tap contact only; holder must be set and stable before calling the next target.</div>
+    </div>
+    </div>
+    <div class="coach-block">
+      <h3>Muay Thai Curriculum <span class="block-min">35 min</span></h3>
+      
+      
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">6 min</span>
+        <span class="coach-name">Compressed review: jab-cross combination</span>
+      </div>
+      
+      <ul class="cues"><li>Same combination as Arc 2: jab, then cross, return to stance</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>A:</b> Throws 6 jab-cross combinations into the mitt Partner B holds, returning to stance after each.<br><b>B:</b> Holds one focus mitt, calls &#x27;ready&#x27; before each rep.<br><b>Reps:</b> 6 combinations per student (A throws 6, switch, B throws 6).<br><b>Switch:</b> After A&#x27;s 6 combos, partners switch immediately for B&#x27;s 6.<br><b>Reset:</b> Striker returns to stance after every combination.</div>
+      <div class="meta-line"><b>Equipment:</b> 1 focus mitt per pair.</div>
+      
+      <div class="safety-note">50% power cap; mitt holder calls &#x27;ready&#x27; before each rep.</div>
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">10 min</span>
+        <span class="coach-name">Teep as a combination finisher</span>
+      </div>
+      
+      <ul class="cues"><li>Use jab and teep combinations to practice together</li><li>Practice lead teep and push kick setup combinations</li><li>Retraction and reset is the most critical part -- don&#x27;t skip it under combination speed</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>Reps:</b> 5 sets of 6 jab-cross-teep combinations<br><b>Sides:</b> jab lead hand, cross rear hand, teep lead leg, whichever is the student&#x27;s natural stance</div>
+      
+      
+      <div class="safety-note">Use only the jab-teep combination-practice guidance from this source -- its other content (rear teep mechanics, alternating rhythm) was already taught in Nights 1-2.</div>
+    </div>
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">19 min</span>
+        <span class="coach-name">Terminal shield drill -- jab-cross-teep, on shields, 10 pairs</span>
+      </div>
+      
+      <ul class="cues"><li>Jab-cross into the mitt, no pause</li><li>Chain the teep immediately after, don&#x27;t reset in between</li><li>Control the distance -- the teep should land clean, not crowded or overreached</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>A:</b> Throws a jab-cross combination into the mitt, then immediately chains a lead teep into the kicking shield Partner B presents right after, then recovers to a full, balanced stance.<br><b>B:</b> Holds a focus mitt for the jab-cross, with a kicking shield propped ready at their feet, then sets the mitt aside and scoops the shield up with both hands, bracing it, for the teep the instant the cross lands, calling &#x27;ready&#x27; before each full sequence.<br><b>Reps:</b> 2 rounds of 6 complete sequences per student as the striker (12 sequences total; 12 more as the target holder).<br><b>Switch:</b> After Partner A completes 6 full sequences, partners switch roles for B&#x27;s 6 sequences. Repeat for round 2.<br><b>Reset:</b> Both partners reset to a full, balanced stance after each complete sequence before the next.</div>
+      <div class="meta-line"><b>Equipment:</b> 1 focus mitt and 1 kicking shield per pair.</div>
+      
+      <div class="safety-note">50% power cap into both targets; target holder must be stable and set before each sequence; no speed escalation beyond clean beginner timing.</div>
+    </div>
+    </div>
+    <div class="coach-block">
+      <h3>Burnout <span class="block-min">5 min</span></h3>
+      
+      
+    <div class="coach-item">
+      <div class="coach-item-head">
+        <span class="coach-min">5 min</span>
+        <span class="coach-name">Jab-cross-teep volume burst</span>
+      </div>
+      
+      <ul class="cues"><li>Hard-effort jab-cross-teep volume finisher on the shields already in use tonight.</li></ul>
+      <div class="meta-line"><b>Setup:</b><br><b>A:</b> Jab-crosses the mitt Partner B holds for 15 seconds, then teeps the kicking shield Partner B braces for the next 15 seconds, for 30 seconds total of maximum controlled volume each round.<br><b>B:</b> Holds the mitt for Partner A&#x27;s first 15 seconds, then sets the mitt down and braces the kicking shield with both hands for the next 15 seconds, then the roles switch.<br><b>Reps:</b> 4 rounds x 30s work per role<br><b>Switch:</b> Every 30 seconds, immediate switch (7-8 second transition).<br><b>Reset:</b> n/a -- continuous work within each round, full stop only at the end of the 5 minutes.</div>
+      <div class="meta-line"><b>Equipment:</b> 1 focus mitt and 1 kicking shield per pair (the same targets used throughout tonight&#x27;s Curriculum).</div>
+      <div class="meta-line"><b>Format:</b> 4 rounds of 75 seconds, exactly 5 minutes. Each round is split into two 15-second phases so the target holder never has to hold the mitt and the kicking shield at once: Partner A jab-crosses the mitt for 15s max controlled volume, Partner B sets the mitt down and braces the shield with both hands, Partner A teeps the shield for 15s max controlled volume, quick 7-second switch, Partner B repeats both phases for 30s, quick 8-second switch/reset, next round begins immediately.<br><b>Coach calls:</b> Coach runs a repeating 75-second timer with a mid-round 15-second call for the mitt-to-shield transition, calls &#x27;SWITCH&#x27; at each partner interval, counts down the last 10 seconds of the final round.<br><b>Scaling:</b> Scale from full-speed combinations to a slower, fully-controlled pace for students whose balance or shoulders fatigue early.</div>
+      <div class="safety-note">Combinations stay technically controlled even at speed -- no wild, off-balance strikes. Target holder must brace fully every rep, and must have the shield fully braced with both hands before any teep is thrown at it.</div>
+    </div>
+    </div>
+    </section>
+</body>
+</html>

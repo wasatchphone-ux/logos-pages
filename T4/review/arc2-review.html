@@ -1,0 +1,803 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Arc 2 -- Jab-Cross Foundation -- Generation Review (DRAFT)</title>
+<style>
+body { font-family: system-ui, sans-serif; max-width: 1040px; margin: 0 auto; padding: 20px; line-height: 1.45; color: #222; }
+h1 { font-size: 22px; }
+h2 { font-size: 20px; border-top: 3px solid #333; padding-top: 16px; margin-top: 40px; }
+h3 { font-size: 15px; margin: 18px 0 6px 0; }
+#top-nav { position: sticky; top: 0; background: #fff; padding: 10px 0; border-bottom: 2px solid #333; z-index: 5; margin-bottom: 10px; }
+#top-nav a { margin-right: 14px; font-size: 13.5px; }
+.data-table { border-collapse: collapse; width: 100%; margin: 8px 0 16px 0; font-size: 13px; }
+.data-table th { background: #e6ede5; text-align: left; padding: 5px 8px; }
+.data-table td { border: 1px solid #ddd; padding: 5px 8px; vertical-align: top; }
+table.kv { border-collapse: collapse; width: 100%; margin: 6px 0; font-size: 13px; }
+table.kv td { border: 1px solid #ddd; padding: 4px 8px; vertical-align: top; }
+table.kv td:first-child { font-weight: bold; width: 180px; background: #f7f7f7; }
+.wu-item { border: 1px solid #ddd; border-radius: 6px; padding: 8px 12px; margin-bottom: 8px; background: #fafafa; }
+.wu-head { font-weight: bold; margin-bottom: 4px; }
+.rung-card { border: 1px solid #ccc; border-radius: 6px; padding: 10px 14px; margin-bottom: 12px; background: #fafcf9; }
+.rung-badge { background: #333; color: #fff; border-radius: 8px; padding: 1px 8px; font-size: 12px; margin-right: 8px; }
+.constructed-flag { background: #fff6e0; border-radius: 4px; padding: 4px 8px; font-size: 12.5px; margin: 6px 0; }
+.safety-line { font-size: 13px; color: #a33; }
+.mono { font-family: monospace; font-size: 12px; word-break: break-all; }
+.old-hash { color: #a33; text-decoration: line-through; }
+.new-hash { color: #2a7; font-weight: bold; }
+.hash-table td:first-child { width: 160px; }
+.verdict-badge { background: #d99; border-radius: 8px; padding: 1px 8px; font-size: 12px; }
+.revision-notes-block { background: #eef2fa; border-radius: 6px; padding: 10px 16px; margin-top: 14px; }
+.totals-line { font-size: 13px; color: #444; }
+.objective-line { font-size: 13.5px; }
+details summary { cursor: pointer; font-size: 12.5px; color: #555; }
+.energy-badge { display: inline-block; border-radius: 8px; padding: 1px 8px; font-size: 11px; color: #fff; margin-right: 4px; }
+.energy-energetic { background: #c93; }
+.energy-technical { background: #369; }
+.cat-tag { font-size: 11px; color: #888; font-weight: normal; }
+
+.draft-banner { background: #fdf0d5; border: 1px solid #e0b050; border-radius: 6px; padding: 8px 14px; margin: 10px 0; font-size: 13px; }
+</style>
+</head>
+<body>
+<h1>Arc 2 -- Jab-Cross Foundation -- Generation Review</h1>
+<nav id="top-nav">
+  <a href="#summary">Summary</a><a href="#night1">Night 1</a><a href="#night2">Night 2</a><a href="#night3">Night 3</a>
+  <a href="#ranking-summary">Ranking Summary</a><a href="#validation">Validation</a><a href="#arc1-regression">Arc 1 Regression</a>
+  &nbsp;|&nbsp; <a href="arc2-coach-view.html">Coach View</a><a href="arc2-audit-view.html">Audit View</a>
+</nav>
+
+    <section id="summary">
+      <h2>Summary</h2>
+      <div class="draft-banner"><b>DRAFT -- PENDING BEN REVIEW.</b> Arc 2 has not been approved. No
+      <code>plan_reviews</code> rows exist for these hashes yet.</div>
+      <p>First-generation arc, built against the complete source catalog (Easton Kickboxing + Easton Fundamentals +
+      FightClub + combo_drill) now that Fundamentals extraction is complete. arc_id and every plan_id are newly
+      minted for this arc; Arc 1's approved plans and hashes are unaffected -- see the regression check below.</p>
+      <table class="data-table">
+        <tr><th>Night</th><th>Title</th><th>plan_hash</th></tr>
+        <tr><td>1</td><td>Night 1 -- Jab Foundation</td><td class='mono'>9439bc25b2edfe2a...</td></tr><tr><td>2</td><td>Night 2 -- Cross and Jab-Cross</td><td class='mono'>c85084a172be423c...</td></tr><tr><td>3</td><td>Night 3 -- Movement, Distance and Reaction</td><td class='mono'>389eb6713655d672...</td></tr>
+      </table>
+      <p>Full detail: <a href="#night1">Night 1</a>, <a href="#night2">Night 2</a>, <a href="#night3">Night 3</a>,
+      <a href="#ranking-summary">Source-Ranking Summary</a>, <a href="#validation">Validation</a>,
+      <a href="#arc1-regression">Arc 1 Regression Check</a>.</p>
+      <p>Related pages: <a href="arc2-coach-view.html">Coach View</a> &middot; <a href="arc2-audit-view.html">Audit View</a>
+      &middot; <a href="coach-view.html">Arc 1 Coach View</a> &middot; <a href="audit-view.html">Arc 1 Audit View</a></p>
+    </section>
+
+    <section id="night1">
+      <h2>Night 1: Jab Foundation</h2>
+      <p class="objective-line"><b>Class objective:</b> Throw a clean, balanced jab with a fast return to guard.</p>
+      <table class="kv hash-table">
+        <tr><td>plan_id (stable)</td><td class="mono">arc-jab-cross-foundation-f53e0f7097a8-night1</td></tr>
+        <tr><td>plan_hash</td><td class="mono new-hash">9439bc25b2edfe2a892ba0cc07235b0fbf805d4ec1b0595669e4040374f2144f</td></tr>
+        <tr><td>Status</td><td><b>DRAFT -- PENDING BEN REVIEW</b> (no plan_reviews verdict recorded yet)</td></tr>
+      </table>
+
+      <h3>Exact 60-minute timeline</h3>
+      
+    <table class="data-table">
+      <tr><th>Block</th><th>Minutes</th><th>Drill</th><th>What students are doing</th></tr>
+      <tr><td>Warm Up</td><td>1.0</td><td>Jumping jacks</td><td>Raise heart rate with a fully generic movement.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>High knees in place</td><td>Drive the knees up at a quick cadence, in place.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Fast feet</td><td>Quick, light footwork in place.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Arm swings and shoulder rolls</td><td>Big, loose arm swings and shoulder rolls, both directions.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Bodyweight squats</td><td>Full bodyweight squats at a steady energetic pace.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Athletic base and guard recap</td><td>Find the athletic base and high guard, hold briefly.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Jab motion priming (no target)</td><td>Extend the lead hand straight out and retract it back to guard, slow and controlled.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Hip-pop weight transfer drill</td><td>Small forward hip pop from the athletic base, no step, no punch.</td></tr><tr><td>New and Exciting</td><td>12</td><td>Mitt-target jab-count relay</td><td>Light, constrained jab touches into a partner-held focus mitt, counted for a friendly competitive total.</td></tr><tr><td>Muay Thai Curriculum</td><td>10</td><td>Jab mechanics</td><td>Pop the hip forward, hand leads from the face, retract violently back to guard, exhale with every strike.</td></tr><tr><td>Muay Thai Curriculum</td><td>10</td><td>Jab footwork -- moving forward and angling</td><td>Drive off the back leg to close distance with a double jab, then angle the same double jab 45 degrees to the lead side.</td></tr><tr><td>Muay Thai Curriculum</td><td>15</td><td>Terminal mitt drill -- jab on focus mitts, 10 pairs</td><td>Repeated jabs into a held focus mitt, holding the mechanics just taught, with a real feedback loop.</td></tr><tr><td>Burnout</td><td>5</td><td>Jab-volume mitt burst</td><td>Hard-effort jab-volume finisher on the mitts already in use tonight.</td></tr>
+    </table>
+    <p class="totals-line">Warm Up 8 + New and Exciting 12 +
+    Curriculum 35 + Burnout 5 = <b>60/60 min</b></p>
+
+      <h3>Warm-up structure</h3>
+      <p class="totals-line">Energetic: 5.0 min &middot; Technical: 3.0 min (of 8 min total -- endorphin-sandwich open)</p>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Jumping jacks</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Raise heart rate with a fully generic movement.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>45 seconds continuous</td></tr>
+          <tr><td>Sides</td><td>symmetric, no side distinction</td></tr>
+          <tr><td>Reset position</td><td>n/a, continuous movement</td></tr>
+          <tr><td>Speed/power</td><td>steady energetic pace</td></tr>
+          <tr><td>Coach watches</td><td>everyone moving, energy in the room</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>High knees in place</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Drive the knees up at a quick cadence, in place.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>45 seconds continuous</td></tr>
+          <tr><td>Sides</td><td>alternating, symmetric</td></tr>
+          <tr><td>Reset position</td><td>n/a, continuous</td></tr>
+          <tr><td>Speed/power</td><td>quick cadence</td></tr>
+          <tr><td>Coach watches</td><td>knees driving up</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Fast feet</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Quick, light footwork in place.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>45 seconds continuous</td></tr>
+          <tr><td>Sides</td><td>symmetric</td></tr>
+          <tr><td>Reset position</td><td>n/a, continuous</td></tr>
+          <tr><td>Speed/power</td><td>quick, light</td></tr>
+          <tr><td>Coach watches</td><td>staying on the balls of the feet</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Arm swings and shoulder rolls</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Big, loose arm swings and shoulder rolls, both directions.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>20 seconds each direction</td></tr>
+          <tr><td>Sides</td><td>symmetric, both arms</td></tr>
+          <tr><td>Reset position</td><td>n/a, continuous</td></tr>
+          <tr><td>Speed/power</td><td>loose, energetic</td></tr>
+          <tr><td>Coach watches</td><td>full range of motion, not stiff or guarded</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Bodyweight squats</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Full bodyweight squats at a steady energetic pace.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>12 reps</td></tr>
+          <tr><td>Sides</td><td>symmetric</td></tr>
+          <tr><td>Reset position</td><td>standing between reps</td></tr>
+          <tr><td>Speed/power</td><td>controlled but energetic</td></tr>
+          <tr><td>Coach watches</td><td>knees tracking over toes, chest up</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-technical">technical</span> 1.0 min — <b>Athletic base and guard recap</b> <span class="cat-tag">[technical]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Find the athletic base and high guard, hold briefly.</td></tr>
+          <tr><td>Skills used</td><td>athletic_base, guard_position</td></tr>
+          <tr><td>Skills taught here</td><td>athletic_base, guard_position</td></tr>
+          <tr><td>Reps</td><td>3 holds, 5 seconds each</td></tr>
+          <tr><td>Sides</td><td>symmetric</td></tr>
+          <tr><td>Reset position</td><td>relaxed between holds</td></tr>
+          <tr><td>Speed/power</td><td>static hold</td></tr>
+          <tr><td>Coach watches</td><td>hands at eyebrow height, soft knees</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-technical">technical</span> 1.0 min — <b>Jab motion priming (no target)</b> <span class="cat-tag">[technical]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Extend the lead hand straight out and retract it back to guard, slow and controlled.</td></tr>
+          <tr><td>Skills used</td><td>athletic_base, jab_motion_priming</td></tr>
+          <tr><td>Skills taught here</td><td>jab_motion_priming</td></tr>
+          <tr><td>Reps</td><td>8 slow reps</td></tr>
+          <tr><td>Sides</td><td>lead hand only; whichever is the student&#x27;s natural lead</td></tr>
+          <tr><td>Reset position</td><td>guard between reps</td></tr>
+          <tr><td>Speed/power</td><td>slow, controlled, no strike</td></tr>
+          <tr><td>Coach watches</td><td>hand returns fully to guard each time</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-technical">technical</span> 1.0 min — <b>Hip-pop weight transfer drill</b> <span class="cat-tag">[technical]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Small forward hip pop from the athletic base, no step, no punch.</td></tr>
+          <tr><td>Skills used</td><td>athletic_base, hip_pop_transfer</td></tr>
+          <tr><td>Skills taught here</td><td>hip_pop_transfer</td></tr>
+          <tr><td>Reps</td><td>8 reps</td></tr>
+          <tr><td>Sides</td><td>symmetric</td></tr>
+          <tr><td>Reset position</td><td>athletic base between reps</td></tr>
+          <tr><td>Speed/power</td><td>slow, controlled</td></tr>
+          <tr><td>Coach watches</td><td>hip pops forward without a big foot turn or step</td></tr></table>
+        </div>
+
+      <h3>New and Exciting structure</h3>
+      <div class="wu-item"><div class="wu-head">12 min — <b>Mitt-target jab-count relay</b></div>
+      <table class="kv"><tr><td>Objective</td><td>Light, constrained jab touches into a partner-held focus mitt, counted for a friendly competitive total.</td></tr>
+      <tr><td>Why it fits tonight</td><td>Turns the jab-extension pathway into a live partner game with real target feedback and a competitive count, so it feels different from the technical Warm Up and doesn&#x27;t front-run Curriculum&#x27;s full mechanics teaching.</td></tr>
+      <tr><td>Engagement features</td><td>partner_interaction, equipment, timing, competition, target_work, immediate_feedback</td></tr>
+      <tr><td>Station formation</td><td>10 pairs, spaced across the open floor, all working simultaneously</td></tr>
+      <tr><td>Throughput justification</td><td>Every pair works simultaneously with its own mitt; no shared equipment, no line to wait in.</td></tr>
+      <tr><td>Conflicts with Curriculum?</td><td>none</td></tr></table><table class="kv"><tr><td>Partner a</td><td>Does light, constrained jab touches into the mitt Partner B holds -- a tap/touch, not a full-power strike -- for a timed 30-second round, counting reps out loud.</td></tr><tr><td>Partner b</td><td>Holds a focus mitt at face height, braced, calling out the running count with Partner A.</td></tr><tr><td>Equipment</td><td>1 focus mitt per pair (10 mitts for a class of 20).</td></tr><tr><td>Contact level</td><td>Light touch/tap only, constrained movement -- full-power technique is taught later in Curriculum.</td></tr><tr><td>Reps</td><td>3 rounds of 30 seconds per role (touches counted each round)</td></tr><tr><td>Rounds</td><td>3</td></tr><tr><td>Switch point</td><td>After each 30-second round, partners switch immediately: holder becomes toucher, toucher becomes holder.</td></tr><tr><td>Reset condition</td><td>Reset to guard between individual touches; full reset to starting position at the top of each new round.</td></tr><tr><td>Coaching pace</td><td>Coach starts/stops each 30-second round on a visible clock and calls out the switch.</td></tr><tr><td>Safety limits</td><td>Touch/tap contact only -- mitt holder must brace before each round begins; no full-power strikes.</td></tr></table></div>
+
+      <h3>Curriculum ladder</h3>
+      
+        <div class="rung-card">
+          <div class="rung-head"><span class="rung-badge">Rung</span>
+          10 min — <b>Jab mechanics</b></div>
+          
+          <p><b>Objective:</b> Pop the hip forward, hand leads from the face, retract violently back to guard, exhale with every strike.</p>
+          <p><b>Time breakdown:</b> demo=2m, setup=1m, working=7m (sums to 10 min)</p>
+          <p><b>Reps:</b> 5 sets of 8 jabs, reset to guard between every jab</p>
+          <table class="kv"><tr><td>Reps</td><td>5 sets of 8 jabs, reset to guard between every jab</td></tr><tr><td>Sides</td><td>jab is thrown with the lead hand only; whichever stance is the student&#x27;s natural one (orthodox or southpaw) -- no switching mid-arc</td></tr><tr><td>Reset position</td><td>full guard reset after each jab</td></tr><tr><td>Speed power</td><td>controlled, technical focus, coach corrects between sets</td></tr><tr><td>Coach watches</td><td>hip-pop timing, hand-return speed, exhale</td></tr></table>
+          <p class="safety-line"><b>Prerequisites/safety:</b> Use only the jab-specific mechanics from this source (hand leads from face, hip pop, violent retraction, exhale) -- the cross/hook/uppercut portions of this same video are taught in later nights and arcs.</p>
+          <details><summary>Source evidence</summary>
+          <table class="kv">
+            <tr><td>source_type</td><td>easton_kickboxing</td></tr>
+            <tr><td>technique_ids</td><td>[1781]</td></tr>
+            <tr><td>source_title</td><td>Easton Kickboxing -- Punches</td></tr>
+            <tr><td>tags</td><td>punch, offense</td></tr>
+            <tr><td>Why it belongs</td><td>Chunk A -- the arc&#x27;s first and most important technique, taught from the only tier-1 source with a full jab-specific mechanical breakdown and documented common errors.</td></tr>
+          </table></details>
+        </div>
+        <div class="rung-card">
+          <div class="rung-head"><span class="rung-badge">Rung</span>
+          10 min — <b>Jab footwork -- moving forward and angling</b></div>
+          
+          <p><b>Objective:</b> Drive off the back leg to close distance with a double jab, then angle the same double jab 45 degrees to the lead side.</p>
+          <p><b>Time breakdown:</b> demo=2m, setup=1m, working=7m (sums to 10 min)</p>
+          <p><b>Reps:</b> 4 blocks of 6 forward double-jab-and-step reps, then 4 blocks of 6 angling double-jab reps to the lead side</p>
+          <table class="kv"><tr><td>Reps</td><td>4 blocks of 6 forward double-jab-and-step reps, then 4 blocks of 6 angling double-jab reps to the lead side</td></tr><tr><td>Sides</td><td>jab thrown with the lead hand; stepping/angling direction tied to the student&#x27;s natural lead side</td></tr><tr><td>Reset position</td><td>return to original distance/stance after each rep</td></tr><tr><td>Speed power</td><td>controlled</td></tr><tr><td>Coach watches</td><td>back foot recovering with the step, rear hand staying tight to the chin</td></tr></table>
+          
+          <details><summary>Source evidence</summary>
+          <table class="kv">
+            <tr><td>source_type</td><td>easton_fundamentals</td></tr>
+            <tr><td>technique_ids</td><td>[3211, 3212]</td></tr>
+            <tr><td>source_title</td><td>Easton Fundamentals -- Double Jab</td></tr>
+            <tr><td>tags</td><td>punch, footwork, setup</td></tr>
+            <tr><td>Why it belongs</td><td>Chunk B -- connects the jab just taught to footwork immediately, owning this arc&#x27;s &#x27;Distance management&#x27; required competency.</td></tr>
+          </table></details>
+        </div>
+        <div class="rung-card">
+          <div class="rung-head"><span class="rung-badge">Terminal</span>
+          15 min — <b>Terminal mitt drill -- jab on focus mitts, 10 pairs</b></div>
+          <div class="constructed-flag">Arc-constructed drill — no single source contains this. Component technique_ids: 1781.</div>
+          <p><b>Objective:</b> Repeated jabs into a held focus mitt, holding the mechanics just taught, with a real feedback loop.</p>
+          <p><b>Time breakdown:</b> demo=1.5m, setup=1m, working=11m, switch=1.5m (sums to 15 min)</p>
+          <p><b>Reps:</b> 2 rounds of 10 jabs per student (20 jabs per student total)</p>
+          <table class="kv"><tr><td>Partner a</td><td>Strikes first. Throws a jab into the focus mitt Partner B holds. Resets to full guard after every single jab before throwing the next.</td></tr><tr><td>Partner b</td><td>Holds one focus mitt at face height with both hands, elbows in. Calls &#x27;ready&#x27; before each rep. Resets mitt position between reps.</td></tr><tr><td>Equipment</td><td>1 focus mitt per pair (10 mitts total for a class of 20)</td></tr><tr><td>Contact level</td><td>50% power, controlled, technical focus</td></tr><tr><td>Reps</td><td>2 rounds of 10 jabs per student (20 jabs per student total)</td></tr><tr><td>Rounds</td><td>2</td></tr><tr><td>Switch point</td><td>After Partner A completes round 1 (10 jabs), partners switch immediately: B becomes striker, A becomes holder, for B&#x27;s round 1. Repeat for round 2.</td></tr><tr><td>Reset condition</td><td>Striker resets to full guard after every individual jab; pair resets to neutral facing position before each new round.</td></tr><tr><td>Coaching pace</td><td>Coach calls out round start/stop and circulates correcting mechanics between reps.</td></tr><tr><td>Safety limits</td><td>50% power cap; mitt holder must call &#x27;ready&#x27; before each rep so the striker never jabs a target that isn&#x27;t set.</td></tr></table>
+          <p class="safety-line"><b>Prerequisites/safety:</b> Requires the jab mechanics and footwork taught earlier tonight.</p>
+          <details><summary>Source evidence</summary>
+          <table class="kv">
+            <tr><td>source_type</td><td>arc_constructed</td></tr>
+            <tr><td>technique_ids</td><td>[1781]</td></tr>
+            <tr><td>source_title</td><td>Arc-constructed drill -- mitt application of tonight&#x27;s jab mechanics (Easton Kickboxing Punches, jab portion). No single catalog source contains a complete mitt-holding structure for the plain jab alone.</td></tr>
+            <tr><td>tags</td><td>punch, offense</td></tr>
+            <tr><td>Why it belongs</td><td>The assembled application of tonight&#x27;s ladder -- a plain jab on mitts, no combination, matching the night&#x27;s single-technique scope.</td></tr>
+          </table></details>
+        </div>
+
+      <h3>Expected repetitions per student</h3>
+      <table class="data-table">
+      <tr><th>Rung</th><th>Ladder role</th><th>Minutes</th><th>Expected reps per student</th></tr>
+      <tr><td>Jab mechanics</td><td>Rung</td><td>10</td><td>5 sets of 8 jabs, reset to guard between every jab</td></tr><tr><td>Jab footwork -- moving forward and angling</td><td>Rung</td><td>10</td><td>4 blocks of 6 forward double-jab-and-step reps, then 4 blocks of 6 angling double-jab reps to the lead side</td></tr><tr><td>Terminal mitt drill -- jab on focus mitts, 10 pairs</td><td>Terminal</td><td>15</td><td>2 rounds of 10 jabs per student (20 jabs per student total)</td></tr>
+    </table>
+
+      <h3>Partner and equipment logistics for 20 students</h3>
+      <table class="kv">
+      <tr><td>Class level</td><td>Beginner</td></tr>
+      <tr><td>Primary objective</td><td>Throw a clean, balanced jab with a fast return to guard.</td></tr>
+      <tr><td>Equipment checklist</td><td>10 focus mitts, Boxing gloves (required for the striking partner in every partner punching drill tonight)</td></tr>
+      <tr><td>Format</td><td>Partner pairs required</td></tr>
+      <tr><td>Pairs assumed</td><td>10 pairs (class of 20)</td></tr>
+      <tr><td>Space</td><td>Open floor. 4 rows of 5 for Warm Up and the New and Exciting mitt-touch relay. 10 partner pairs spread across the floor for the mitt terminal drill.</td></tr>
+      <tr><td>Safety requirements</td><td><ul><li><b>Jab mechanics:</b> Use only the jab-specific mechanics from this source (hand leads from face, hip pop, violent retraction, exhale) -- the cross/hook/uppercut portions of this same video are taught in later nights and arcs.</li></ul></td></tr>
+    </table>
+
+      <h3>Burnout (final 5 minutes)</h3>
+      
+        <div class="rung-card">
+          <div class="rung-head">5 min — <b>Jab-volume mitt burst</b>
+          <span class="rung-badge">partner</span></div>
+          <table class="kv">
+            <tr><td>Why (this class)</td><td>A hand-speed-and-endurance finisher using tonight&#x27;s exact technique (jab) at maximum volume, closing the class at high effort.</td></tr>
+            <tr><td>Exact format</td><td>4 rounds of 75 seconds, exactly 5 minutes. Each round: Partner A jabs the mitt for 30s max controlled volume, quick 7-second switch, Partner B jabs the mitt for 30s max controlled volume, quick 8-second switch/reset, next round begins immediately.</td></tr>
+            <tr><td>Coach call structure</td><td>Coach runs a repeating 75-second timer, calls &#x27;SWITCH&#x27; at each interval, counts down the last 10 seconds of the final round.</td></tr>
+            <tr><td>Scaling option</td><td>Scale from full-speed jabs to a slower, fully-extended controlled pace for students whose shoulders fatigue early.</td></tr>
+            <tr><td>Safety limit</td><td>Jabs stay technically controlled even at speed -- no wild, off-balance strikes. Mitt holder must brace fully every rep; coach can call any student to slow down if form degrades.</td></tr>
+            <tr><td>Equal work / switching</td><td>yes -- Both partners get exactly 30 seconds of jabbing work in every round -- work is equal by construction.</td></tr>
+            <tr><td>block_role</td><td>burnout</td></tr>
+            <tr><td>Genuinely low intensity?</td><td>no (hard effort, as required)</td></tr>
+          </table>
+          <table class="kv"><tr><td>Partner a</td><td>Jabs the mitt Partner B holds for 30 seconds of maximum controlled volume each round.</td></tr><tr><td>Partner b</td><td>Holds the mitt braced for Partner A&#x27;s 30-second work interval, then the roles switch.</td></tr><tr><td>Equipment</td><td>1 focus mitt per pair (the same mitts used in tonight&#x27;s New and Exciting drill).</td></tr><tr><td>Contact level</td><td>Full controlled power -- this is the effort finisher, unlike the light-touch work earlier tonight.</td></tr><tr><td>Reps</td><td>4 rounds x 30s work per role (2 minutes of jabbing work per student total)</td></tr><tr><td>Rounds</td><td>4</td></tr><tr><td>Switch point</td><td>Every 30 seconds, immediate switch (7-8 second transition).</td></tr><tr><td>Reset condition</td><td>n/a -- continuous work within each round, full stop only at the end of the 5 minutes.</td></tr><tr><td>Equal work note</td><td>Both partners get exactly 30 seconds of jabbing work in every round -- work is equal by construction.</td></tr><tr><td>Coaching pace</td><td>Coach runs the interval timer and calls switches.</td></tr><tr><td>Safety limits</td><td>Controlled technical jabs even under fatigue; mitt holder braces every rep.</td></tr></table>
+        </div>
+    </section>
+    <section id="night2">
+      <h2>Night 2: Cross and Jab-Cross</h2>
+      <p class="objective-line"><b>Class objective:</b> Add the cross and combine it with the jab into a clean two-punch combination.</p>
+      <table class="kv hash-table">
+        <tr><td>plan_id (stable)</td><td class="mono">arc-jab-cross-foundation-f53e0f7097a8-night2</td></tr>
+        <tr><td>plan_hash</td><td class="mono new-hash">c85084a172be423c978c1d1d5536e976cf297ae9c29e602ff4ab43a0e4d8406b</td></tr>
+        <tr><td>Status</td><td><b>DRAFT -- PENDING BEN REVIEW</b> (no plan_reviews verdict recorded yet)</td></tr>
+      </table>
+
+      <h3>Exact 60-minute timeline</h3>
+      
+    <table class="data-table">
+      <tr><th>Block</th><th>Minutes</th><th>Drill</th><th>What students are doing</th></tr>
+      <tr><td>Warm Up</td><td>1.0</td><td>Jumping jacks</td><td>Raise heart rate with a fully generic movement.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Lateral shuffles</td><td>Shuffle side to side, low and athletic.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Mountain climbers</td><td>Alternating knee drives from a plank position.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Fast feet</td><td>Quick, light footwork in place.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Line touches</td><td>Jog or shuffle forward to a floor line, touch it, return.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Jab recap (no target)</td><td>Extend the lead hand out and retract to guard.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Cross motion priming (no target)</td><td>Turn the rear heel and rotate the hip through as the rear hand extends and retracts, slow and controlled.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Hip-pop weight transfer recap</td><td>Small forward hip pop from the athletic base, no step, no punch.</td></tr><tr><td>New and Exciting</td><td>12</td><td>Reactive target-call jab-cross relay</td><td>React to a partner&#x27;s unpredictable &#x27;jab&#x27; or &#x27;cross&#x27; call by throwing the correct punch into the held mitt.</td></tr><tr><td>Muay Thai Curriculum</td><td>5</td><td>Compressed review: jab mechanics</td><td>Re-establish the jab: hip pop, hand leads from the face, violent retraction, exhale.</td></tr><tr><td>Muay Thai Curriculum</td><td>8</td><td>Cross mechanics</td><td>Step into the punch, drive through to the head/face, keep the throwing-side shoulder up and the guard hand up.</td></tr><tr><td>Muay Thai Curriculum</td><td>8</td><td>Jab-cross combination mechanics</td><td>Throw the jab to occupy the guard, then follow immediately with the cross to the head.</td></tr><tr><td>Muay Thai Curriculum</td><td>14</td><td>Terminal pad drill -- jab-cross combination, 10 pairs</td><td>Throw a clean jab-cross combination into the mitts, both punches to the head as this arc&#x27;s default, then jab-to-head/cross-to-body as an explicit target-variety variation, returning to stance after every combo.</td></tr><tr><td>Burnout</td><td>5</td><td>Squat-jump + punch-out interval</td><td>Hard-effort solo interval finisher, no equipment, no partner.</td></tr>
+    </table>
+    <p class="totals-line">Warm Up 8 + New and Exciting 12 +
+    Curriculum 35 + Burnout 5 = <b>60/60 min</b></p>
+
+      <h3>Warm-up structure</h3>
+      <p class="totals-line">Energetic: 5.0 min &middot; Technical: 3.0 min (of 8 min total -- endorphin-sandwich open)</p>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Jumping jacks</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Raise heart rate with a fully generic movement.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>45 seconds continuous</td></tr>
+          <tr><td>Sides</td><td>symmetric, no side distinction</td></tr>
+          <tr><td>Reset position</td><td>n/a, continuous movement</td></tr>
+          <tr><td>Speed/power</td><td>steady energetic pace</td></tr>
+          <tr><td>Coach watches</td><td>everyone moving, energy in the room</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Lateral shuffles</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Shuffle side to side, low and athletic.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>45 seconds continuous</td></tr>
+          <tr><td>Sides</td><td>symmetric, both directions</td></tr>
+          <tr><td>Reset position</td><td>n/a, continuous</td></tr>
+          <tr><td>Speed/power</td><td>quick, athletic</td></tr>
+          <tr><td>Coach watches</td><td>staying low, not crossing feet</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Mountain climbers</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Alternating knee drives from a plank position.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>45 seconds continuous</td></tr>
+          <tr><td>Sides</td><td>alternating, symmetric</td></tr>
+          <tr><td>Reset position</td><td>n/a, continuous</td></tr>
+          <tr><td>Speed/power</td><td>quick, controlled</td></tr>
+          <tr><td>Coach watches</td><td>hips staying level, hands under shoulders</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Fast feet</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Quick, light footwork in place.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>45 seconds continuous</td></tr>
+          <tr><td>Sides</td><td>symmetric</td></tr>
+          <tr><td>Reset position</td><td>n/a, continuous</td></tr>
+          <tr><td>Speed/power</td><td>quick, light</td></tr>
+          <tr><td>Coach watches</td><td>staying on the balls of the feet</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Line touches</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Jog or shuffle forward to a floor line, touch it, return.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>4 out-and-backs</td></tr>
+          <tr><td>Sides</td><td>symmetric</td></tr>
+          <tr><td>Reset position</td><td>start line</td></tr>
+          <tr><td>Speed/power</td><td>energetic jog/shuffle</td></tr>
+          <tr><td>Coach watches</td><td>full effort each rep</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-technical">technical</span> 1.0 min — <b>Jab recap (no target)</b> <span class="cat-tag">[technical]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Extend the lead hand out and retract to guard.</td></tr>
+          <tr><td>Skills used</td><td>athletic_base, jab_motion_priming</td></tr>
+          <tr><td>Skills taught here</td><td>jab_motion_priming</td></tr>
+          <tr><td>Reps</td><td>6 slow reps</td></tr>
+          <tr><td>Sides</td><td>lead hand only</td></tr>
+          <tr><td>Reset position</td><td>guard between reps</td></tr>
+          <tr><td>Speed/power</td><td>slow, controlled</td></tr>
+          <tr><td>Coach watches</td><td>hand returns fully to guard</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-technical">technical</span> 1.0 min — <b>Cross motion priming (no target)</b> <span class="cat-tag">[technical]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Turn the rear heel and rotate the hip through as the rear hand extends and retracts, slow and controlled.</td></tr>
+          <tr><td>Skills used</td><td>athletic_base, cross_motion_priming</td></tr>
+          <tr><td>Skills taught here</td><td>cross_motion_priming</td></tr>
+          <tr><td>Reps</td><td>8 slow reps</td></tr>
+          <tr><td>Sides</td><td>rear hand only</td></tr>
+          <tr><td>Reset position</td><td>guard between reps</td></tr>
+          <tr><td>Speed/power</td><td>slow, controlled, no strike</td></tr>
+          <tr><td>Coach watches</td><td>heel turns, hip rotates through</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-technical">technical</span> 1.0 min — <b>Hip-pop weight transfer recap</b> <span class="cat-tag">[technical]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Small forward hip pop from the athletic base, no step, no punch.</td></tr>
+          <tr><td>Skills used</td><td>athletic_base, hip_pop_transfer</td></tr>
+          <tr><td>Skills taught here</td><td>(reused from earlier in this warm-up)</td></tr>
+          <tr><td>Reps</td><td>6 reps</td></tr>
+          <tr><td>Sides</td><td>symmetric</td></tr>
+          <tr><td>Reset position</td><td>athletic base between reps</td></tr>
+          <tr><td>Speed/power</td><td>slow, controlled</td></tr>
+          <tr><td>Coach watches</td><td>hip pops forward without a big foot turn or step</td></tr></table>
+        </div>
+
+      <h3>New and Exciting structure</h3>
+      <div class="wu-item"><div class="wu-head">12 min — <b>Reactive target-call jab-cross relay</b></div>
+      <table class="kv"><tr><td>Objective</td><td>React to a partner&#x27;s unpredictable &#x27;jab&#x27; or &#x27;cross&#x27; call by throwing the correct punch into the held mitt.</td></tr>
+      <tr><td>Why it fits tonight</td><td>Turns jab-vs-cross recognition into a live reactive game with a partner and a real target -- the call is unpredictable, so students react instead of rehearsing a fixed pattern, and it doesn&#x27;t front-run Curriculum&#x27;s full mechanics teaching.</td></tr>
+      <tr><td>Engagement features</td><td>partner_interaction, reaction, equipment, timing, target_work, immediate_feedback</td></tr>
+      <tr><td>Station formation</td><td>10 pairs, spaced across the open floor, all working simultaneously</td></tr>
+      <tr><td>Throughput justification</td><td>Every pair works simultaneously with its own mitt; no shared equipment, no line to wait in.</td></tr>
+      <tr><td>Conflicts with Curriculum?</td><td>none</td></tr></table><table class="kv"><tr><td>Partner a</td><td>Reacts. Listens for the coach-style call from Partner B (&#x27;jab&#x27; or &#x27;cross&#x27;, unpredictable order) and throws the correct light touch into the mitt.</td></tr><tr><td>Partner b</td><td>Holds a focus mitt and calls &#x27;jab&#x27; or &#x27;cross&#x27; at an unpredictable cadence, presenting the mitt for whichever punch is called.</td></tr><tr><td>Equipment</td><td>1 focus mitt per pair (10 mitts for a class of 20).</td></tr><tr><td>Contact level</td><td>Light touch/tap only, constrained movement -- full-power technique is taught on mitts in Curriculum.</td></tr><tr><td>Reps</td><td>3 rounds of 30 seconds per role</td></tr><tr><td>Rounds</td><td>3</td></tr><tr><td>Switch point</td><td>After each 30-second round, partners switch roles: caller becomes the reactor.</td></tr><tr><td>Reset condition</td><td>Reset to guard after every reaction before the next call.</td></tr><tr><td>Coaching pace</td><td>Coach keeps time on a visible clock; callers set their own unpredictable rhythm within each round.</td></tr><tr><td>Safety limits</td><td>Touch/tap contact only; mitt holder must be set and stable before calling the next punch.</td></tr></table></div>
+
+      <h3>Curriculum ladder</h3>
+      
+        <div class="rung-card">
+          <div class="rung-head"><span class="rung-badge">Compressed review</span>
+          5 min — <b>Compressed review: jab mechanics</b></div>
+          
+          <p><b>Objective:</b> Re-establish the jab: hip pop, hand leads from the face, violent retraction, exhale.</p>
+          <p><b>Time breakdown:</b> demo=1.5m, setup=0.5m, working=3m (sums to 5 min)</p>
+          <p><b>Reps:</b> 2 sets of 8 jabs</p>
+          <table class="kv"><tr><td>Reps</td><td>2 sets of 8 jabs</td></tr><tr><td>Sides</td><td>lead hand only</td></tr><tr><td>Reset position</td><td>guard between reps</td></tr><tr><td>Speed power</td><td>controlled</td></tr><tr><td>Coach watches</td><td>hip-pop timing, hand-return speed</td></tr></table>
+          <p class="safety-line"><b>Prerequisites/safety:</b> None -- this is a full re-teach, not a reminder-only review.</p>
+          <details><summary>Source evidence</summary>
+          <table class="kv">
+            <tr><td>source_type</td><td>easton_kickboxing</td></tr>
+            <tr><td>technique_ids</td><td>[1781]</td></tr>
+            <tr><td>source_title</td><td>Easton Kickboxing -- Punches</td></tr>
+            <tr><td>tags</td><td>punch, offense</td></tr>
+            <tr><td>Why it belongs</td><td>Required from Night 2 onward -- a full re-teach (not just a reminder) of the jab mechanics, so a student attending for the first time tonight can still follow.</td></tr>
+          </table></details>
+        </div>
+        <div class="rung-card">
+          <div class="rung-head"><span class="rung-badge">Rung</span>
+          8 min — <b>Cross mechanics</b></div>
+          
+          <p><b>Objective:</b> Step into the punch, drive through to the head/face, keep the throwing-side shoulder up and the guard hand up.</p>
+          <p><b>Time breakdown:</b> demo=1.5m, setup=0.5m, working=6m (sums to 8 min)</p>
+          <p><b>Reps:</b> 5 sets of 6 crosses, reset to guard between every cross</p>
+          <table class="kv"><tr><td>Reps</td><td>5 sets of 6 crosses, reset to guard between every cross</td></tr><tr><td>Sides</td><td>cross is thrown with the rear hand only; whichever stance is the student&#x27;s natural one</td></tr><tr><td>Reset position</td><td>full guard reset after each cross</td></tr><tr><td>Speed power</td><td>controlled, technical focus</td></tr><tr><td>Coach watches</td><td>shoulder stays high, guard hand stays up, punch drives through</td></tr></table>
+          
+          <details><summary>Source evidence</summary>
+          <table class="kv">
+            <tr><td>source_type</td><td>easton_fundamentals</td></tr>
+            <tr><td>technique_ids</td><td>[3143]</td></tr>
+            <tr><td>source_title</td><td>Easton Fundamentals -- Body Cross</td></tr>
+            <tr><td>tags</td><td>punch, offense</td></tr>
+            <tr><td>Why it belongs</td><td>Chunk B -- the arc&#x27;s second technique, taught from the only source with a dedicated, plain (non-slip) cross breakdown. Target changed from the source&#x27;s literal body aim point to head-level per the standing coach decision (head-level cross is the beginner default) -- the source&#x27;s step-in/shoulder-discipline/guard-hand mechanics are target-agnostic and unaffected; the source&#x27;s own body-level target is preserved as the terminal drill&#x27;s target-variety element instead of the default.</td></tr>
+          </table></details>
+        </div>
+        <div class="rung-card">
+          <div class="rung-head"><span class="rung-badge">Rung</span>
+          8 min — <b>Jab-cross combination mechanics</b></div>
+          
+          <p><b>Objective:</b> Throw the jab to occupy the guard, then follow immediately with the cross to the head.</p>
+          <p><b>Time breakdown:</b> demo=1.5m, setup=0.5m, working=6m (sums to 8 min)</p>
+          <p><b>Reps:</b> 5 sets of 6 jab-cross combinations</p>
+          <table class="kv"><tr><td>Reps</td><td>5 sets of 6 jab-cross combinations</td></tr><tr><td>Sides</td><td>jab lead hand, cross rear hand, whichever is the student&#x27;s natural stance</td></tr><tr><td>Reset position</td><td>full guard reset after each combination</td></tr><tr><td>Speed power</td><td>controlled</td></tr><tr><td>Coach watches</td><td>no pause between jab and cross, clean return to stance</td></tr></table>
+          <p class="safety-line"><b>Prerequisites/safety:</b> Use only the jab-then-cross portion of this source. It also demonstrates hook and uppercut setups to the same cross -- those are optional-exposure/deferred material, not this arc&#x27;s required combination.</p>
+          <details><summary>Source evidence</summary>
+          <table class="kv">
+            <tr><td>source_type</td><td>easton_fundamentals</td></tr>
+            <tr><td>technique_ids</td><td>[3145]</td></tr>
+            <tr><td>source_title</td><td>Easton Fundamentals -- Body Cross Drill</td></tr>
+            <tr><td>tags</td><td>punch, setup</td></tr>
+            <tr><td>Why it belongs</td><td>Chunk A+B combined -- pairs tonight&#x27;s two techniques into the jab-cross combination itself, before the pad terminal. Target updated to head-level for the cross, consistent with the standing head-level-cross default applied to the Cross Mechanics rung above.</td></tr>
+          </table></details>
+        </div>
+        <div class="rung-card">
+          <div class="rung-head"><span class="rung-badge">Terminal</span>
+          14 min — <b>Terminal pad drill -- jab-cross combination, 10 pairs</b></div>
+          
+          <p><b>Objective:</b> Throw a clean jab-cross combination into the mitts, both punches to the head as this arc&#x27;s default, then jab-to-head/cross-to-body as an explicit target-variety variation, returning to stance after every combo.</p>
+          <p><b>Time breakdown:</b> demo=2m, setup=1m, working=9.5m, switch=1.5m (sums to 14 min)</p>
+          <p><b>Reps:</b> 2 rounds of 8 combinations per student (16 combinations per student total)</p>
+          <table class="kv"><tr><td>Partner a</td><td>Strikes first. Throws jab-cross combinations into the mitts Partner B holds -- first a head-level pair (this arc&#x27;s default), then jab-to-head/cross-to-body as a target-variety variation. Returns to stance after every combo.</td></tr><tr><td>Partner b</td><td>Holds two focus mitts (one head height, one body height), braced, calling &#x27;ready&#x27; before each rep.</td></tr><tr><td>Equipment</td><td>2 focus mitts per pair, 20 mitts total for a class of 20 pairs.</td></tr><tr><td>Contact level</td><td>50% power, controlled, technical focus</td></tr><tr><td>Reps</td><td>2 rounds of 8 combinations per student (16 combinations per student total)</td></tr><tr><td>Rounds</td><td>2</td></tr><tr><td>Switch point</td><td>After Partner A completes round 1 (8 combos), partners switch immediately: B becomes striker, A becomes holder, for B&#x27;s round 1. Repeat for round 2.</td></tr><tr><td>Reset condition</td><td>Striker returns to full stance after every combination; pair resets to neutral facing position before each new round.</td></tr><tr><td>Coaching pace</td><td>Coach calls out round start/stop and circulates correcting mechanics between reps.</td></tr><tr><td>Safety limits</td><td>50% power cap; mitt holder must call &#x27;ready&#x27; before each rep.</td></tr></table>
+          <p class="safety-line"><b>Prerequisites/safety:</b> Requires the jab mechanics, cross mechanics, and jab-cross setup taught earlier tonight.</p>
+          <details><summary>Source evidence</summary>
+          <table class="kv">
+            <tr><td>source_type</td><td>easton_fundamentals</td></tr>
+            <tr><td>technique_ids</td><td>[3147, 3148]</td></tr>
+            <tr><td>source_title</td><td>Easton Fundamentals -- Body Cross Pad Round</td></tr>
+            <tr><td>tags</td><td>punch, offense</td></tr>
+            <tr><td>Why it belongs</td><td>Chunk A+B assembled and applied -- the complete jab-cross combination, on focus mitts, with target-level variation.</td></tr>
+          </table></details>
+        </div>
+
+      <h3>Expected repetitions per student</h3>
+      <table class="data-table">
+      <tr><th>Rung</th><th>Ladder role</th><th>Minutes</th><th>Expected reps per student</th></tr>
+      <tr><td>Compressed review: jab mechanics</td><td>Compressed review</td><td>5</td><td>2 sets of 8 jabs</td></tr><tr><td>Cross mechanics</td><td>Rung</td><td>8</td><td>5 sets of 6 crosses, reset to guard between every cross</td></tr><tr><td>Jab-cross combination mechanics</td><td>Rung</td><td>8</td><td>5 sets of 6 jab-cross combinations</td></tr><tr><td>Terminal pad drill -- jab-cross combination, 10 pairs</td><td>Terminal</td><td>14</td><td>2 rounds of 8 combinations per student (16 combinations per student total)</td></tr>
+    </table>
+
+      <h3>Partner and equipment logistics for 20 students</h3>
+      <table class="kv">
+      <tr><td>Class level</td><td>Beginner</td></tr>
+      <tr><td>Primary objective</td><td>Add the cross and combine it with the jab into a clean two-punch combination.</td></tr>
+      <tr><td>Equipment checklist</td><td>10 focus mitts, 10 additional focus mitts for the two-target terminal drill, Boxing gloves (required for the striking partner in every partner punching drill tonight)</td></tr>
+      <tr><td>Format</td><td>Partner pairs required</td></tr>
+      <tr><td>Pairs assumed</td><td>10 pairs (class of 20)</td></tr>
+      <tr><td>Space</td><td>Open floor. 4 rows of 5 for Warm Up. 10 partner pairs with mitts for New and Exciting, the compressed review, and all Curriculum rungs.</td></tr>
+      <tr><td>Safety requirements</td><td><ul><li><b>Compressed review: jab mechanics:</b> None -- this is a full re-teach, not a reminder-only review.</li><li><b>Jab-cross combination mechanics:</b> Use only the jab-then-cross portion of this source. It also demonstrates hook and uppercut setups to the same cross -- those are optional-exposure/deferred material, not this arc&#x27;s required combination.</li></ul></td></tr>
+    </table>
+
+      <h3>Burnout (final 5 minutes)</h3>
+      
+        <div class="rung-card">
+          <div class="rung-head">5 min — <b>Squat-jump + punch-out interval</b>
+          <span class="rung-badge">solo</span></div>
+          <table class="kv">
+            <tr><td>Why (this class)</td><td>Deliberately a different format from Night 1 and Night 3&#x27;s mitt-burst finishers, per the standing decision that Burnout formats do not repeat on consecutive nights -- a solo bodyweight interval closes the class at high effort without needing the mitts at all.</td></tr>
+            <tr><td>Exact format</td><td>5 rounds of 40 seconds work / 20 seconds rest, exactly 5 minutes. Rounds 1, 3, 5: squat jumps. Rounds 2, 4: alternating shadow jab-cross punch-outs at maximum controlled speed.</td></tr>
+            <tr><td>Coach call structure</td><td>Coach runs a visible 40/20 interval timer, calls &#x27;GO&#x27; at the start of each work interval and &#x27;REST&#x27; at each rest interval, counts down the last 5 seconds of the final round.</td></tr>
+            <tr><td>Scaling option</td><td>Squat jumps scale down to bodyweight squats (no jump) for lower-impact students; punch-outs scale down to a slower, fully-extended controlled pace for students whose shoulders fatigue early.</td></tr>
+            <tr><td>Safety limit</td><td>Land softly with soft knees on every jump; self-pace intensity; punches stay technically controlled even at speed -- no wild, off-balance strikes.</td></tr>
+            <tr><td>Equal work / switching</td><td>n/a (solo)</td></tr>
+            <tr><td>block_role</td><td>burnout</td></tr>
+            <tr><td>Genuinely low intensity?</td><td>no (hard effort, as required)</td></tr>
+          </table>
+          <table class="kv"><tr><td>Reps</td><td>5 rounds x 40s work (self-paced effort each interval)</td></tr><tr><td>Sides</td><td>punch-out rounds alternate jab-cross symmetrically, no side distinction</td></tr><tr><td>Reset position</td><td>standing between rounds</td></tr><tr><td>Speed power</td><td>maximum controlled effort during work intervals</td></tr><tr><td>Coach watches</td><td>landing mechanics on jumps, punch form holding up under fatigue</td></tr></table>
+        </div>
+    </section>
+    <section id="night3">
+      <h2>Night 3: Movement, Distance and Reaction</h2>
+      <p class="objective-line"><b>Class objective:</b> Throw a clean jab-cross combination while moving into appropriate distance, on pads, and recover to a balanced stance.</p>
+      <table class="kv hash-table">
+        <tr><td>plan_id (stable)</td><td class="mono">arc-jab-cross-foundation-f53e0f7097a8-night3</td></tr>
+        <tr><td>plan_hash</td><td class="mono new-hash">389eb6713655d672084eda0ba2bc97803471672222b239810867c41387008381</td></tr>
+        <tr><td>Status</td><td><b>DRAFT -- PENDING BEN REVIEW</b> (no plan_reviews verdict recorded yet)</td></tr>
+      </table>
+
+      <h3>Exact 60-minute timeline</h3>
+      
+    <table class="data-table">
+      <tr><th>Block</th><th>Minutes</th><th>Drill</th><th>What students are doing</th></tr>
+      <tr><td>Warm Up</td><td>1.0</td><td>Jumping jacks</td><td>Raise heart rate with a fully generic movement.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>High knees in place</td><td>Drive the knees up at a quick cadence, in place.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Reverse lunges</td><td>Step back into a reverse lunge, alternating legs.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Fast feet</td><td>Quick, light footwork in place.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Coach-call reaction game</td><td>React quickly to the coach&#x27;s call, then reset.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Jab-cross recap (no target)</td><td>Throw a jab-cross combination in place, no target, no step.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Footwork priming -- step shape only</td><td>Step the lead foot out and pivot slightly, no punch thrown.</td></tr><tr><td>Warm Up</td><td>1.0</td><td>Single-leg balance check</td><td>Balance on one leg briefly, both legs practiced.</td></tr><tr><td>New and Exciting</td><td>12</td><td>Distance-call jab-cross entry game</td><td>React to a partner stepping the mitt back by closing the new distance with a step, then throwing a light jab-cross touch.</td></tr><tr><td>Muay Thai Curriculum</td><td>5</td><td>Compressed review: jab-cross combination</td><td>Re-establish the jab-cross combination on mitts.</td></tr><tr><td>Muay Thai Curriculum</td><td>8</td><td>Footwork with punches -- L-Step and Pivot Step</td><td>Use the L-step to close range at zone 2.5-3 before committing, and the pivot step to get the head off the center line before attacking.</td></tr><tr><td>Muay Thai Curriculum</td><td>8</td><td>Reactive jab-cross -- constrained give-and-take</td><td>Throw jab-cross onto a partner&#x27;s live guard while the partner blocks; then switch roles.</td></tr><tr><td>Muay Thai Curriculum</td><td>14</td><td>Terminal assembled drill -- step in, jab-cross, on pads, recover to stance</td><td>1) Partner A closes the distance to the mitt Partner B holds, using an L-step or pivot step. 2) Partner A throws a jab-cross combination into the mitt. 3) Partner A recovers to a balanced stance. 4) Partner B calls &#x27;go&#x27; at an unpredictable moment and steps the mitt to a new distance, restarting the sequence.</td></tr><tr><td>Burnout</td><td>5</td><td>Step-in jab-cross burst</td><td>Hard-effort step-in jab-cross volume finisher on the mitts already in use tonight.</td></tr>
+    </table>
+    <p class="totals-line">Warm Up 8 + New and Exciting 12 +
+    Curriculum 35 + Burnout 5 = <b>60/60 min</b></p>
+
+      <h3>Warm-up structure</h3>
+      <p class="totals-line">Energetic: 5.0 min &middot; Technical: 3.0 min (of 8 min total -- endorphin-sandwich open)</p>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Jumping jacks</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Raise heart rate with a fully generic movement.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>45 seconds continuous</td></tr>
+          <tr><td>Sides</td><td>symmetric, no side distinction</td></tr>
+          <tr><td>Reset position</td><td>n/a, continuous movement</td></tr>
+          <tr><td>Speed/power</td><td>steady energetic pace</td></tr>
+          <tr><td>Coach watches</td><td>everyone moving, energy in the room</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>High knees in place</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Drive the knees up at a quick cadence, in place.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>45 seconds continuous</td></tr>
+          <tr><td>Sides</td><td>alternating, symmetric</td></tr>
+          <tr><td>Reset position</td><td>n/a, continuous</td></tr>
+          <tr><td>Speed/power</td><td>quick cadence</td></tr>
+          <tr><td>Coach watches</td><td>knees driving up</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Reverse lunges</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Step back into a reverse lunge, alternating legs.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>10 total, alternating legs</td></tr>
+          <tr><td>Sides</td><td>both legs, alternating</td></tr>
+          <tr><td>Reset position</td><td>standing between reps</td></tr>
+          <tr><td>Speed/power</td><td>controlled but energetic</td></tr>
+          <tr><td>Coach watches</td><td>front knee tracking over toes</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Fast feet</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Quick, light footwork in place.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>45 seconds continuous</td></tr>
+          <tr><td>Sides</td><td>symmetric</td></tr>
+          <tr><td>Reset position</td><td>n/a, continuous</td></tr>
+          <tr><td>Speed/power</td><td>quick, light</td></tr>
+          <tr><td>Coach watches</td><td>staying on the balls of the feet</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-energetic">energetic</span> 1.0 min — <b>Coach-call reaction game</b> <span class="cat-tag">[energy]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>React quickly to the coach&#x27;s call, then reset.</td></tr>
+          <tr><td>Skills used</td><td>general_fitness</td></tr>
+          <tr><td>Skills taught here</td><td>general_fitness</td></tr>
+          <tr><td>Reps</td><td>8-10 calls</td></tr>
+          <tr><td>Sides</td><td>symmetric</td></tr>
+          <tr><td>Reset position</td><td>athletic stance between calls</td></tr>
+          <tr><td>Speed/power</td><td>quick reaction each call</td></tr>
+          <tr><td>Coach watches</td><td>genuine quick reactions, not anticipating the call</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-technical">technical</span> 1.0 min — <b>Jab-cross recap (no target)</b> <span class="cat-tag">[technical]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Throw a jab-cross combination in place, no target, no step.</td></tr>
+          <tr><td>Skills used</td><td>athletic_base, jab_mechanics, cross_motion_priming</td></tr>
+          <tr><td>Skills taught here</td><td>(reused from earlier in this warm-up)</td></tr>
+          <tr><td>Reps</td><td>6 slow combinations</td></tr>
+          <tr><td>Sides</td><td>jab lead hand, cross rear hand</td></tr>
+          <tr><td>Reset position</td><td>guard between reps</td></tr>
+          <tr><td>Speed/power</td><td>slow, controlled</td></tr>
+          <tr><td>Coach watches</td><td>no pause between jab and cross</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-technical">technical</span> 1.0 min — <b>Footwork priming -- step shape only</b> <span class="cat-tag">[technical]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Step the lead foot out and pivot slightly, no punch thrown.</td></tr>
+          <tr><td>Skills used</td><td>athletic_base, step_shape_priming</td></tr>
+          <tr><td>Skills taught here</td><td>step_shape_priming</td></tr>
+          <tr><td>Reps</td><td>6 reps</td></tr>
+          <tr><td>Sides</td><td>lead foot steps; whichever is the student&#x27;s natural lead</td></tr>
+          <tr><td>Reset position</td><td>athletic base between reps</td></tr>
+          <tr><td>Speed/power</td><td>slow, walked pace, no strike</td></tr>
+          <tr><td>Coach watches</td><td>subtle angle, not an exaggerated 90-degree turn</td></tr></table>
+        </div>
+        <div class="wu-item">
+          <div class="wu-head"><span class="energy-badge energy-technical">technical</span> 1.0 min — <b>Single-leg balance check</b> <span class="cat-tag">[mobility]</span></div>
+          <table class="kv"><tr><td>Objective</td><td>Balance on one leg briefly, both legs practiced.</td></tr>
+          <tr><td>Skills used</td><td>athletic_base</td></tr>
+          <tr><td>Skills taught here</td><td>(reused from earlier in this warm-up)</td></tr>
+          <tr><td>Reps</td><td>2 holds each leg, 3 seconds each</td></tr>
+          <tr><td>Sides</td><td>both legs practiced</td></tr>
+          <tr><td>Reset position</td><td>athletic base between holds</td></tr>
+          <tr><td>Speed/power</td><td>static hold, no movement</td></tr>
+          <tr><td>Coach watches</td><td>standing knee stays soft</td></tr></table>
+        </div>
+
+      <h3>New and Exciting structure</h3>
+      <div class="wu-item"><div class="wu-head">12 min — <b>Distance-call jab-cross entry game</b></div>
+      <table class="kv"><tr><td>Objective</td><td>React to a partner stepping the mitt back by closing the new distance with a step, then throwing a light jab-cross touch.</td></tr>
+      <tr><td>Why it fits tonight</td><td>Turns movement-into-distance into a live reactive game -- the target moves, so students must actually close the gap and react, exactly tonight&#x27;s theme, with real feedback instead of solo rehearsal.</td></tr>
+      <tr><td>Engagement features</td><td>partner_interaction, reaction, equipment, timing, target_work, immediate_feedback</td></tr>
+      <tr><td>Station formation</td><td>10 pairs, spaced across the open floor, all working simultaneously</td></tr>
+      <tr><td>Throughput justification</td><td>Every pair works simultaneously with its own mitt; no shared equipment, no line to wait in.</td></tr>
+      <tr><td>Conflicts with Curriculum?</td><td>none</td></tr></table><table class="kv"><tr><td>Partner a</td><td>Reacts. On the coach&#x27;s call, steps to close the new distance the mitt just opened, then lightly touches a jab-cross into it.</td></tr><tr><td>Partner b</td><td>Holds a focus mitt and, on the coach&#x27;s call, takes one step back to open the distance, then holds still for Partner A&#x27;s reaction.</td></tr><tr><td>Equipment</td><td>1 focus mitt per pair (10 mitts for a class of 20).</td></tr><tr><td>Contact level</td><td>Light touch/tap only, constrained movement -- full-power technique is taught on pads in Curriculum.</td></tr><tr><td>Reps</td><td>3 rounds of 8 reactions per role</td></tr><tr><td>Rounds</td><td>3</td></tr><tr><td>Switch point</td><td>After 8 reactions, partners switch roles: holder becomes the reactor, reactor becomes the holder.</td></tr><tr><td>Reset condition</td><td>Full reset to starting distance after each reaction before the next call.</td></tr><tr><td>Coaching pace</td><td>Coach calls &#x27;ready... STEP&#x27; at an unpredictable cadence to keep the reaction genuine.</td></tr><tr><td>Safety limits</td><td>Touch/tap contact only; mitt holder must be set and stable before calling for the next rep.</td></tr></table></div>
+
+      <h3>Curriculum ladder</h3>
+      
+        <div class="rung-card">
+          <div class="rung-head"><span class="rung-badge">Compressed review</span>
+          5 min — <b>Compressed review: jab-cross combination</b></div>
+          
+          <p><b>Objective:</b> Re-establish the jab-cross combination on mitts.</p>
+          <p><b>Time breakdown:</b> demo=1.5m, setup=0.5m, working=3m (sums to 5 min)</p>
+          <p><b>Reps:</b> 6 combinations per student (A throws 6, switch, B throws 6).</p>
+          <table class="kv"><tr><td>Partner a</td><td>Throws 6 jab-cross combinations into the mitt Partner B holds, returning to stance after each.</td></tr><tr><td>Partner b</td><td>Holds one focus mitt, calls &#x27;ready&#x27; before each rep.</td></tr><tr><td>Equipment</td><td>1 focus mitt per pair.</td></tr><tr><td>Contact level</td><td>50% power, controlled.</td></tr><tr><td>Reps</td><td>6 combinations per student (A throws 6, switch, B throws 6).</td></tr><tr><td>Rounds</td><td>1</td></tr><tr><td>Switch point</td><td>After A&#x27;s 6 combos, partners switch immediately for B&#x27;s 6.</td></tr><tr><td>Reset condition</td><td>Striker returns to stance after every combination.</td></tr><tr><td>Coaching pace</td><td>Coach re-teaches the mechanics during the demo, then circulates correcting during the reps.</td></tr><tr><td>Safety limits</td><td>50% power cap; mitt holder calls &#x27;ready&#x27; before each rep.</td></tr></table>
+          <p class="safety-line"><b>Prerequisites/safety:</b> None -- this is a full re-teach, not a reminder-only review.</p>
+          <details><summary>Source evidence</summary>
+          <table class="kv">
+            <tr><td>source_type</td><td>easton_fundamentals</td></tr>
+            <tr><td>technique_ids</td><td>[3147, 3148]</td></tr>
+            <tr><td>source_title</td><td>Easton Fundamentals -- Body Cross Pad Round</td></tr>
+            <tr><td>tags</td><td>punch, offense</td></tr>
+            <tr><td>Why it belongs</td><td>Required from Night 2 onward -- a full re-teach of Night 2&#x27;s terminal drill so a student who missed Night 2 can still participate.</td></tr>
+          </table></details>
+        </div>
+        <div class="rung-card">
+          <div class="rung-head"><span class="rung-badge">Rung</span>
+          8 min — <b>Footwork with punches -- L-Step and Pivot Step</b></div>
+          
+          <p><b>Objective:</b> Use the L-step to close range at zone 2.5-3 before committing, and the pivot step to get the head off the center line before attacking.</p>
+          <p><b>Time breakdown:</b> demo=2m, setup=1m, working=5m (sums to 8 min)</p>
+          <p><b>Reps:</b> 4 blocks of 6 L-step reps, then 4 blocks of 6 pivot-step reps</p>
+          <table class="kv"><tr><td>Reps</td><td>4 blocks of 6 L-step reps, then 4 blocks of 6 pivot-step reps</td></tr><tr><td>Sides</td><td>whichever is the student&#x27;s natural lead</td></tr><tr><td>Reset position</td><td>athletic base between reps</td></tr><tr><td>Speed power</td><td>slow to moderate, controlled</td></tr><tr><td>Coach watches</td><td>circulates the room correcting the L-shape and the subtlety of the pivot angle</td></tr></table>
+          
+          <details><summary>Source evidence</summary>
+          <table class="kv">
+            <tr><td>source_type</td><td>easton_kickboxing</td></tr>
+            <tr><td>technique_ids</td><td>[1767, 1779]</td></tr>
+            <tr><td>source_title</td><td>Easton Kickboxing -- L-Step and Pivot Step</td></tr>
+            <tr><td>tags</td><td>footwork, distance, offense</td></tr>
+            <tr><td>Why it belongs</td><td>Chunk C -- pure entry/angle footwork, taught alone before it&#x27;s combined with the jab-cross, matching this arc&#x27;s own catalog-cited Easton sources.</td></tr>
+          </table></details>
+        </div>
+        <div class="rung-card">
+          <div class="rung-head"><span class="rung-badge">Rung</span>
+          8 min — <b>Reactive jab-cross -- constrained give-and-take</b></div>
+          
+          <p><b>Objective:</b> Throw jab-cross onto a partner&#x27;s live guard while the partner blocks; then switch roles.</p>
+          <p><b>Time breakdown:</b> demo=1.5m, setup=1m, working=5.5m (sums to 8 min)</p>
+          <p><b>Reps:</b> 10 jab-cross reps per student (A throws 10, switch, B throws 10).</p>
+          <table class="kv"><tr><td>Partner a</td><td>Throws jab, then cross, onto Partner B&#x27;s guard at controlled pace, placing shots down the middle of the guard.</td></tr><tr><td>Partner b</td><td>Blocks: hand in front of the face for the jab, turns and covers for the cross, staying comfortable with contact coming at the guard.</td></tr><tr><td>Equipment</td><td>None.</td></tr><tr><td>Contact level</td><td>Controlled, guard-only contact, no head contact.</td></tr><tr><td>Reps</td><td>10 jab-cross reps per student (A throws 10, switch, B throws 10).</td></tr><tr><td>Rounds</td><td>1</td></tr><tr><td>Switch point</td><td>After A&#x27;s 10 reps, partners switch immediately for B&#x27;s 10.</td></tr><tr><td>Reset condition</td><td>Both partners reset to guard after every rep.</td></tr><tr><td>Coaching pace</td><td>Coach circulates checking placement accuracy and blocking comfort.</td></tr><tr><td>Safety limits</td><td>Guard contact only, controlled pace, no full-power strikes to the guard.</td></tr></table>
+          <p class="safety-line"><b>Prerequisites/safety:</b> Use only the jab-cross opening portion of this drill&#x27;s progressive build (start with one punch at a time, then jab-cross) -- the hook-hook extension used later in this same source is optional-exposure/deferred material for a future arc.</p>
+          <details><summary>Source evidence</summary>
+          <table class="kv">
+            <tr><td>source_type</td><td>easton_fundamentals</td></tr>
+            <tr><td>technique_ids</td><td>[3236, 3237]</td></tr>
+            <tr><td>source_title</td><td>Easton Fundamentals -- Give &amp; Take Drill</td></tr>
+            <tr><td>tags</td><td>punch, timing</td></tr>
+            <tr><td>Why it belongs</td><td>Chunk D -- the arc&#x27;s first LIVE reaction rung: a partner now actually receives the jab-cross on the guard and reacts, building the reaction half of tonight&#x27;s &#x27;movement, distance, reaction&#x27; progression.</td></tr>
+          </table></details>
+        </div>
+        <div class="rung-card">
+          <div class="rung-head"><span class="rung-badge">Terminal</span>
+          14 min — <b>Terminal assembled drill -- step in, jab-cross, on pads, recover to stance</b></div>
+          <div class="constructed-flag">Arc-constructed drill — no single source contains this. Component technique_ids: 1767, 1779, 3147, 3148, 3236, 3365.</div>
+          <p><b>Objective:</b> 1) Partner A closes the distance to the mitt Partner B holds, using an L-step or pivot step. 2) Partner A throws a jab-cross combination into the mitt. 3) Partner A recovers to a balanced stance. 4) Partner B calls &#x27;go&#x27; at an unpredictable moment and steps the mitt to a new distance, restarting the sequence.</p>
+          <p><b>Time breakdown:</b> demo=2.5m, setup=1m, working=9m, switch=1.5m (sums to 14 min)</p>
+          <p><b>Reps:</b> 2 rounds of 6 complete sequences per student as the striker (12 sequences total; 12 more as the mitt holder).</p>
+          <table class="kv"><tr><td>Partner a</td><td>Reacts to Partner B&#x27;s &#x27;go&#x27; call: closes the new distance with an L-step or pivot step, throws a jab-cross combination into the mitt the instant they arrive, then recovers to a full, balanced stance.</td></tr><tr><td>Partner b</td><td>Holds the focus mitt, calls &#x27;go&#x27; at an unpredictable moment, and steps to open a new distance before each call so Partner A must genuinely close the gap rather than punch from a fixed spot.</td></tr><tr><td>Equipment</td><td>1 focus mitt per pair (already in hand from the compressed review -- no new equipment needed).</td></tr><tr><td>Contact level</td><td>50% power into the mitt.</td></tr><tr><td>Return target</td><td>The focus mitt Partner B holds and repositions before each &#x27;go&#x27; call -- never partner-to-partner for the jab-cross.</td></tr><tr><td>Reps</td><td>2 rounds of 6 complete sequences per student as the striker (12 sequences total; 12 more as the mitt holder).</td></tr><tr><td>Rounds</td><td>2</td></tr><tr><td>Switch point</td><td>After Partner A completes 6 full sequences, partners switch roles for B&#x27;s 6 sequences. Repeat for round 2.</td></tr><tr><td>Reset condition</td><td>Both partners reset to a starting distance and stance after each complete sequence before the next call.</td></tr><tr><td>Coaching pace</td><td>Coach demonstrates the full sequence slowly at least twice before pairs begin, then lets pairs run at their own pace.</td></tr><tr><td>Safety limits</td><td>50% power cap into the mitt; mitt holder must be stable before calling &#x27;go&#x27;; no speed escalation beyond clean beginner timing.</td></tr></table>
+          <p class="safety-line"><b>Prerequisites/safety:</b> Constructed terminal drill -- no single source contains this complete sequence; component sources are cited above and only their beginner-appropriate portions are used (Give &amp; Take Drill&#x27;s jab-cross opening only, not its hook-hook extension).</p>
+          <details><summary>Source evidence</summary>
+          <table class="kv">
+            <tr><td>source_type</td><td>arc_constructed</td></tr>
+            <tr><td>technique_ids</td><td>[1767, 1779, 3147, 3148, 3236, 3365]</td></tr>
+            <tr><td>source_title</td><td>Arc-constructed terminal drill -- no single source contains this complete sequence. Assembled from the entry footwork (Easton Kickboxing L-Step/Pivot Step), the jab-cross combination (Easton Fundamentals Body Cross Pad Round), the reactive-timing model (Easton Fundamentals Give &amp; Take Drill, jab-cross portion only), and the recovery-to-stance cue (Easton Fundamentals, Split Jab &amp; Split Cross Pad Round -- citing only the general &#x27;return to balanced stance&#x27; cue, not that source&#x27;s slip-variant punches).</td></tr>
+            <tr><td>tags</td><td>punch, footwork, distance</td></tr>
+            <tr><td>Why it belongs</td><td>The arc&#x27;s terminal goal, assembled from tonight&#x27;s and prior nights&#x27; rungs into the exact sequence: close distance, throw jab-cross, recover to a balanced stance, ready to react again.</td></tr>
+          </table></details>
+        </div>
+
+      <h3>Expected repetitions per student</h3>
+      <table class="data-table">
+      <tr><th>Rung</th><th>Ladder role</th><th>Minutes</th><th>Expected reps per student</th></tr>
+      <tr><td>Compressed review: jab-cross combination</td><td>Compressed review</td><td>5</td><td>6 combinations per student (A throws 6, switch, B throws 6).</td></tr><tr><td>Footwork with punches -- L-Step and Pivot Step</td><td>Rung</td><td>8</td><td>4 blocks of 6 L-step reps, then 4 blocks of 6 pivot-step reps</td></tr><tr><td>Reactive jab-cross -- constrained give-and-take</td><td>Rung</td><td>8</td><td>10 jab-cross reps per student (A throws 10, switch, B throws 10).</td></tr><tr><td>Terminal assembled drill -- step in, jab-cross, on pads, recover to stance</td><td>Terminal</td><td>14</td><td>2 rounds of 6 complete sequences per student as the striker (12 sequences total; 12 more as the mitt holder).</td></tr>
+    </table>
+
+      <h3>Partner and equipment logistics for 20 students</h3>
+      <table class="kv">
+      <tr><td>Class level</td><td>Beginner</td></tr>
+      <tr><td>Primary objective</td><td>Throw a clean jab-cross combination while moving into appropriate distance, on pads, and recover to a balanced stance.</td></tr>
+      <tr><td>Equipment checklist</td><td>10 focus mitts, Boxing gloves (required for the striking partner in every partner punching drill tonight)</td></tr>
+      <tr><td>Format</td><td>Partner pairs required</td></tr>
+      <tr><td>Pairs assumed</td><td>10 pairs (class of 20)</td></tr>
+      <tr><td>Space</td><td>Open floor. 4 rows of 5 for Warm Up. 10 partner pairs with mitts for New and Exciting and all Curriculum rungs. Personal floor lines for the solo footwork rung.</td></tr>
+      <tr><td>Safety requirements</td><td><ul><li><b>Reactive jab-cross -- constrained give-and-take:</b> Use only the jab-cross opening portion of this drill&#x27;s progressive build (start with one punch at a time, then jab-cross) -- the hook-hook extension used later in this same source is optional-exposure/deferred material for a future arc.</li><li><b>Terminal assembled drill -- step in, jab-cross, on pads, recover to stance:</b> Constructed terminal drill -- no single source contains this complete sequence; component sources are cited above and only their beginner-appropriate portions are used (Give &amp; Take Drill&#x27;s jab-cross opening only, not its hook-hook extension).</li></ul></td></tr>
+    </table>
+
+      <h3>Burnout (final 5 minutes)</h3>
+      
+        <div class="rung-card">
+          <div class="rung-head">5 min — <b>Step-in jab-cross burst</b>
+          <span class="rung-badge">partner</span></div>
+          <table class="kv">
+            <tr><td>Why (this class)</td><td>A distance-and-hand-speed finisher combining tonight&#x27;s footwork and jab-cross at maximum volume, closing the class at high effort.</td></tr>
+            <tr><td>Exact format</td><td>4 rounds of 75 seconds, exactly 5 minutes. Each round: Partner A steps in and throws jab-cross combinations into the mitt for 30s max controlled volume, quick 7-second switch, Partner B does the same for 30s, quick 8-second switch/reset, next round begins immediately.</td></tr>
+            <tr><td>Coach call structure</td><td>Coach runs a repeating 75-second timer, calls &#x27;SWITCH&#x27; at each interval, counts down the last 10 seconds of the final round.</td></tr>
+            <tr><td>Scaling option</td><td>Scale from full-speed step-in combinations to a stationary jab-cross (no step) for students whose legs fatigue early.</td></tr>
+            <tr><td>Safety limit</td><td>Combinations and footwork stay technically controlled even at speed. Mitt holder must brace fully every rep.</td></tr>
+            <tr><td>Equal work / switching</td><td>yes -- Both partners get exactly 30 seconds of work in every round -- work is equal by construction.</td></tr>
+            <tr><td>block_role</td><td>burnout</td></tr>
+            <tr><td>Genuinely low intensity?</td><td>no (hard effort, as required)</td></tr>
+          </table>
+          <table class="kv"><tr><td>Partner a</td><td>Steps in and throws jab-cross combinations into the mitt Partner B holds for 30 seconds of maximum controlled volume each round.</td></tr><tr><td>Partner b</td><td>Holds the mitt braced for Partner A&#x27;s 30-second work interval, then the roles switch.</td></tr><tr><td>Equipment</td><td>1 focus mitt per pair (the same mitts used throughout tonight&#x27;s Curriculum).</td></tr><tr><td>Contact level</td><td>Full controlled power -- this is the effort finisher, unlike the light-touch work earlier tonight.</td></tr><tr><td>Reps</td><td>4 rounds x 30s work per role</td></tr><tr><td>Rounds</td><td>4</td></tr><tr><td>Switch point</td><td>Every 30 seconds, immediate switch (7-8 second transition).</td></tr><tr><td>Reset condition</td><td>n/a -- continuous work within each round, full stop only at the end of the 5 minutes.</td></tr><tr><td>Equal work note</td><td>Both partners get exactly 30 seconds of work in every round -- work is equal by construction.</td></tr><tr><td>Coaching pace</td><td>Coach runs the interval timer and calls switches.</td></tr><tr><td>Safety limits</td><td>Controlled technical combinations even under fatigue; mitt holder braces every rep.</td></tr></table>
+        </div>
+    </section>
+
+    <section id="ranking-summary">
+      <h2>Source-Ranking Summary</h2>
+      <p>This is the first arc generated against the complete source catalog (Easton Kickboxing, Easton Fundamentals,
+      FightClub, combo_drill) using <code>source_ranking.py</code>'s tier+evidence scorer -- the same function scores
+      every source_type identically, with no manual preference for any pool including Fundamentals.</p>
+      <table class="kv">
+        <tr><td>Curriculum rungs with a scored ranking</td><td>7</td></tr>
+        <tr><td>Rungs where a Fundamentals candidate was in the pool</td><td>6</td></tr>
+        <tr><td>Rungs where a Fundamentals candidate won</td><td>5</td></tr>
+        <tr><td>Rungs where the selected source was NOT the top score (weaker beat stronger)</td><td>0</td></tr>
+        <tr><td><b>Did Fundamentals surface naturally?</b></td><td><b>mixed -- Fundamentals won 5 of 7 ranked rungs, in-pool for 6</b></td></tr>
+      </table>
+      <h3>Per-rung ranking results</h3>
+      <table class="data-table">
+        <tr><th>Night</th><th>Rung</th><th>Selected source type</th><th>Tier</th><th>Evidence strength</th>
+        <th>Fundamentals in pool?</th><th>Fundamentals selected?</th><th>Weaker beat stronger?</th></tr>
+        <tr><td>1</td><td>Jab mechanics</td><td>easton_kickboxing</td><td>1</td><td>high</td><td>no</td><td>no</td><td>no</td></tr><tr><td>1</td><td>Jab footwork -- moving forward and angling</td><td>easton_fundamentals</td><td>1</td><td>high</td><td>yes</td><td>yes</td><td>no</td></tr><tr><td>2</td><td>Cross mechanics</td><td>easton_fundamentals</td><td>1</td><td>high</td><td>yes</td><td>yes</td><td>no</td></tr><tr><td>2</td><td>Jab-cross combination mechanics</td><td>easton_fundamentals</td><td>1</td><td>high</td><td>yes</td><td>yes</td><td>no</td></tr><tr><td>2</td><td>Terminal pad drill -- jab-cross combination, 10 pairs</td><td>easton_fundamentals</td><td>1</td><td>high</td><td>yes</td><td>yes</td><td>no</td></tr><tr><td>3</td><td>Footwork with punches -- L-Step and Pivot Step</td><td>easton_kickboxing</td><td>1</td><td>high</td><td>yes</td><td>no</td><td>no</td></tr><tr><td>3</td><td>Reactive jab-cross -- constrained give-and-take</td><td>easton_fundamentals</td><td>1</td><td>high</td><td>yes</td><td>yes</td><td>no</td></tr>
+      </table>
+      <h3>Weaker-beat-stronger cases</h3>
+      <ul><li>none</li></ul>
+    </section>
+
+    <section id="validation">
+      <h2>Validation</h2>
+      <table class="data-table">
+        <tr><th>Night</th><th>Class total</th><th>Curriculum total</th><th>Items</th><th>Branches</th>
+        <th>Review rung</th><th>URL check</th><th>Video check</th><th>Burnout role check</th><th>plan_id</th><th>plan_hash (short)</th></tr>
+        <tr>
+          <td>1</td><td>60/60</td><td>35/35</td><td>3/4</td>
+          <td>0/1</td><td>n/a (Night 1)</td>
+          <td>pass</td><td>pass</td><td>pass</td>
+          <td class="mono">arc-jab-cross-foundation-f53e0f7097a8-night1</td>
+          <td class="mono">9439bc25b2edfe2a...</td>
+        </tr><tr>
+          <td>2</td><td>60/60</td><td>35/35</td><td>4/4</td>
+          <td>0/1</td><td>yes</td>
+          <td>pass</td><td>pass</td><td>pass</td>
+          <td class="mono">arc-jab-cross-foundation-f53e0f7097a8-night2</td>
+          <td class="mono">c85084a172be423c...</td>
+        </tr><tr>
+          <td>3</td><td>60/60</td><td>35/35</td><td>4/4</td>
+          <td>0/1</td><td>yes</td>
+          <td>pass</td><td>pass</td><td>pass</td>
+          <td class="mono">arc-jab-cross-foundation-f53e0f7097a8-night3</td>
+          <td class="mono">389eb6713655d672...</td>
+        </tr>
+      </table>
+      <h3>Warnings (non-blocking)</h3>
+      <ul><li>Night 2: Curriculum uses a 4th item (at the beginner cap).</li><li>Night 3: Curriculum uses a 4th item (at the beginner cap).</li></ul>
+      <p>All hard-fail rules passed for all 3 nights (same rule set validated against Arc 1: 60-minute totals,
+      35-minute Curriculum, 4-item cap, 1-branch cap, ladder_role completeness, Night 2/3 compressed-review presence,
+      no malformed URLs/video paths, Burnout named and exactly 5 minutes with full format/scaling/safety/coach-call
+      detail, warm-up energy ratio, New-and-Exciting engagement features, partner-drill structural completeness,
+      per-rung time-breakdown sums, equipment-checklist consistency, and the FFT/competency-standard source
+      exclusion check (<code>arc_lib.check_no_restricted_sources_in_output</code>) -- zero restricted sources
+      appear anywhere in this arc.</p>
+    </section>
+
+    <section id="arc1-regression">
+      <h2>Arc 1 Regression Check</h2>
+      <p>Confirms Arc 1's approved plans and hashes are unchanged after this session's arc_lib.py fix
+      (generalizing the Night-3 terminal-target check from kick-specific to technique-agnostic) and the new
+      ranking-block rendering added to render_views.py.</p>
+      <table class="data-table"><tr><th>Night</th><th>plan_hash</th><th>Matches approved hash?</th></tr><tr><td>1</td><td class='mono'>fd695674e38358be...</td><td>yes</td></tr><tr><td>2</td><td class='mono'>fd76a59d9838d9e9...</td><td>yes</td></tr><tr><td>3</td><td class='mono'>b171f0ce33787316...</td><td>yes</td></tr></table>
+      <p><b>Arc 1 validation:</b> pass, 2 non-blocking warning(s). <b>FFT exclusion check:</b> pass.
+      <b>Overall regression status:</b> <b>PASS -- all 3 hashes unchanged</b></p>
+    </section>
+</body>
+</html>
