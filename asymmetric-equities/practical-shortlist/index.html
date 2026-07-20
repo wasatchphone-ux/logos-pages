@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A concise research shortlist drawn from the asymmetric-equities 39-company opportunity bench.">
+  <title>Asymmetric Equities | Practical Opportunity Shortlist</title>
+  <style>
+    :root {
+      --ink: #17212b;
+      --muted: #61707e;
+      --paper: #f5f3ee;
+      --surface: #fffdf9;
+      --line: #ddd8cf;
+      --a: #087f72;
+      --a-soft: #e5f4f1;
+      --b: #a85f09;
+      --b-soft: #fff0d9;
+      --c: #5c5f91;
+      --c-soft: #eeedf8;
+      --danger: #a13d32;
+      --shadow: 0 12px 34px rgba(30, 42, 50, 0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 88% 2%, rgba(8, 127, 114, 0.08), transparent 28rem),
+        var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+
+    a { color: inherit; }
+    .shell { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+    .masthead { padding: 56px 0 30px; }
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--a);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; letter-spacing: -0.025em; }
+    h1 { max-width: 850px; margin: 0; font-size: clamp(2.5rem, 6vw, 5rem); line-height: 0.98; }
+    .deck { max-width: 760px; margin: 22px 0 0; color: var(--muted); font-size: 1.08rem; }
+    .as-of { margin-top: 20px; color: var(--muted); font-size: 0.84rem; }
+
+    .notice {
+      margin: 0 0 26px;
+      padding: 14px 18px;
+      border: 1px solid #e2c8a4;
+      border-radius: 12px;
+      background: #fff8ec;
+      color: #65441c;
+      font-size: 0.9rem;
+    }
+
+    .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 34px; }
+    .summary-card {
+      min-height: 142px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 253, 249, 0.88);
+      box-shadow: var(--shadow);
+    }
+    .summary-card strong { display: block; margin-bottom: 7px; font-family: Georgia, serif; font-size: 1.9rem; }
+    .summary-card span { color: var(--muted); font-size: 0.88rem; }
+    .summary-card.a strong { color: var(--a); }
+    .summary-card.b strong { color: var(--b); }
+    .summary-card.c strong { color: var(--c); }
+
+    .jump-nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(245, 243, 238, 0.94);
+      backdrop-filter: blur(12px);
+    }
+    .jump-nav .shell { display: flex; gap: 8px; overflow-x: auto; padding-top: 10px; padding-bottom: 10px; }
+    .jump-nav a {
+      flex: 0 0 auto;
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 750;
+      text-decoration: none;
+    }
+    .jump-nav a:hover, .jump-nav a:focus-visible { background: var(--surface); color: var(--ink); outline: none; }
+
+    main { padding: 26px 0 64px; }
+    .section { scroll-margin-top: 70px; margin-top: 42px; }
+    .section-head { display: grid; grid-template-columns: 1fr minmax(260px, 0.65fr); gap: 28px; align-items: end; margin-bottom: 18px; }
+    .section h2 { margin: 0; font-size: clamp(2rem, 4vw, 3rem); }
+    .section-intro { margin: 0; color: var(--muted); font-size: 0.92rem; }
+    .tier-mark { display: inline-flex; align-items: center; gap: 7px; margin-bottom: 8px; font-size: 0.76rem; font-weight: 850; letter-spacing: 0.12em; text-transform: uppercase; }
+    .tier-mark::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: currentColor; }
+    .tier-mark.a { color: var(--a); }
+    .tier-mark.b { color: var(--b); }
+    .tier-mark.c { color: var(--c); }
+
+    .company-list { display: grid; gap: 14px; }
+    .company {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .company-bar { display: grid; grid-template-columns: 165px 1fr auto; gap: 20px; align-items: center; padding: 20px 22px; }
+    .ticker-wrap { display: flex; align-items: center; gap: 12px; }
+    .ticker {
+      display: grid;
+      width: 54px;
+      height: 54px;
+      place-items: center;
+      border-radius: 14px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+    .tier-a .ticker { color: var(--a); background: var(--a-soft); }
+    .tier-b .ticker { color: var(--b); background: var(--b-soft); }
+    .tier-c .ticker { color: var(--c); background: var(--c-soft); }
+    .company-name { font-size: 0.78rem; color: var(--muted); }
+    .thesis { margin: 0; font-size: 1rem; }
+    .badges { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+    .badge { padding: 5px 9px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: #fff; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+    .badge.incomplete { color: var(--danger); border-color: #e4b3ad; background: #fff1ef; }
+
+    .company-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
+    .fact { min-height: 125px; padding: 17px 20px; border-right: 1px solid var(--line); }
+    .fact:last-child { border-right: 0; }
+    .fact h3 { margin: 0 0 7px; color: var(--muted); font-family: inherit; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .fact p { margin: 0; font-size: 0.86rem; }
+    .upside { color: #08695f; font-weight: 680; }
+    .risk { color: #7d362e; }
+
+    .research-note {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .note-card { padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .note-card h2 { margin: 0 0 9px; font-size: 1.5rem; }
+    .note-card p, .note-card li { color: var(--muted); font-size: 0.9rem; }
+    .note-card ol, .note-card ul { margin-bottom: 0; padding-left: 1.2rem; }
+
+    footer { padding: 26px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.82rem; }
+    footer strong { color: var(--ink); }
+
+    @media (max-width: 900px) {
+      .summary-grid { grid-template-columns: 1fr 1fr; }
+      .section-head { grid-template-columns: 1fr; gap: 8px; }
+      .company-bar { grid-template-columns: 150px 1fr; }
+      .badges { grid-column: 1 / -1; justify-content: flex-start; }
+      .company-grid { grid-template-columns: 1fr 1fr; }
+      .fact:nth-child(2) { border-right: 0; }
+      .fact:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+    }
+
+    @media (max-width: 620px) {
+      .shell { width: min(100% - 22px, 1180px); }
+      .masthead { padding-top: 38px; }
+      .summary-grid, .research-note { grid-template-columns: 1fr; }
+      .summary-card { min-height: auto; }
+      .company-bar { grid-template-columns: 1fr; gap: 12px; padding: 17px; }
+      .company-grid { grid-template-columns: 1fr; }
+      .fact { min-height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+      .fact:last-child { border-bottom: 0; }
+      .fact:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+    }
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <div class="shell">
+      <p class="eyebrow">Asymmetric Equities Research</p>
+      <h1>Practical opportunity shortlist</h1>
+      <p class="deck">A focused view of the companies currently worth attention, organized by portfolio role and evidence level. The page summarizes existing repository research; it does not add new company analysis.</p>
+      <p class="as-of">Repository evidence reviewed July 19, 2026 · Reference prices were verified July 16-18, 2026 and are not live quotes.</p>
+    </div>
+  </header>
+
+  <div class="shell">
+    <div class="notice"><strong>Research only.</strong> This page is not financial advice, an investment recommendation, or a solicitation. Scenario ranges are analytical outputs, not price forecasts. Preliminary and incomplete work is labeled.</div>
+    <section class="summary-grid" aria-label="Shortlist summary">
+      <div class="summary-card a"><strong>5</strong><span>A-tier names, including two incomplete or follow-up candidates.</span></div>
+      <div class="summary-card b"><strong>7</strong><span>Tier 2 opportunities spanning turnarounds, compounders and cyclical recovery.</span></div>
+      <div class="summary-card c"><strong>5</strong><span>Setups and watchlist names needing a better entry or decisive evidence.</span></div>
+      <div class="summary-card"><strong>3 next</strong><span>INOD, WK and PATH are the proposed deeper-research priorities.</span></div>
+    </section>
+  </div>
+
+  <nav class="jump-nav" aria-label="Page sections">
+    <div class="shell">
+      <a href="#asymmetric">A · Asymmetric</a>
+      <a href="#tier-two">B · Tier 2</a>
+      <a href="#watchlist">C · Setups</a>
+      <a href="#next">Next research</a>
+      <a href="#method">Method</a>
+    </div>
+  </nav>
+
+  <main class="shell">
+    <section class="section" id="asymmetric">
+      <div class="section-head">
+        <div><span class="tier-mark a">Tier A</span><h2>Possible asymmetric opportunities</h2></div>
+        <p class="section-intro">Rare candidates where operating change can create unusually wide outcomes. A-tier status identifies research priority, not certainty.</p>
+      </div>
+      <div class="company-list">
+        <article class="company tier-a">
+          <div class="company-bar"><div class="ticker-wrap"><div class="ticker">OPEN</div><div class="company-name">Opendoor Technologies<br>A1 benchmark</div></div><p class="thesis">Housing and execution risk remain heavily discounted, while a genuine operating repair could restore substantial revenue and margin leverage.</p><div class="badges"><span class="badge">Acceptable entry</span><span class="badge">Benchmark research</span></div></div>
+          <div class="company-grid"><div class="fact"><h3>Main upside case</h3><p class="upside">Repository scenarios: $5.52-$16.83 versus $4.58, approximately 21%-268% upside.</p></div><div class="fact"><h3>Major risk</h3><p class="risk">Bear case $2.56, about 44% downside. Housing, inventory economics and dilution remain material.</p></div><div class="fact"><h3>Research status</h3><p>A1 benchmark with completed scenarios and listed evidence gaps.</p></div><div class="fact"><h3>Next evidence</h3><p>Revenue stabilization, durable positive margins and controlled diluted shares.</p></div></div>
+        </article>
+
+        <article class="company tier-a">
+          <div class="company-bar"><div class="ticker-wrap"><div class="ticker">INOD</div><div class="company-name">Innodata<br>A2 active research</div></div><p class="thesis">A legacy outsourcing reputation may lag its transformation into a rapidly growing provider of AI training, evaluation and data-engineering services.</p><div class="badges"><span class="badge">Acceptable entry</span><span class="badge">High confidence signal</span></div></div>
+          <div class="company-grid"><div class="fact"><h3>Main upside case</h3><p class="upside">$65-$85 versus $60.81; strong execution case $120. The longer 3x bridge still needs proof.</p></div><div class="fact"><h3>Major risk</h3><p class="risk">Customer concentration or project delays could reverse growth quickly; current valuation already expects execution.</p></div><div class="fact"><h3>Research status</h3><p>A2. Q1 revenue grew 54% and adjusted EBITDA about 96%.</p></div><div class="fact"><h3>Next evidence</h3><p>Customer diversification, program conversion and a credible per-share path beyond $120.</p></div></div>
+        </article>
+
+        <article class="company tier-a">
+          <div class="company-bar"><div class="ticker-wrap"><div class="ticker">WK</div><div class="company-name">Workiva<br>A2 active research</div></div><p class="thesis">Recurring growth, large-customer expansion and a sharp move into GAAP profitability may not yet be fully reflected.</p><div class="badges"><span class="badge">Acceptable entry</span><span class="badge">Medium confidence</span></div></div>
+          <div class="company-grid"><div class="fact"><h3>Main upside case</h3><p class="upside">$64.21-$152.21 versus $57.18, about 12%-166%; 3x requires roughly $171.54.</p></div><div class="fact"><h3>Major risk</h3><p class="risk">SBC exceeded quarterly FCF, convertibles are large, and diluted shares rose despite repurchases.</p></div><div class="fact"><h3>Research status</h3><p>A2. Revenue grew 20%, subscription revenue 21%, and GAAP margin reached 6.2%.</p></div><div class="fact"><h3>Next evidence</h3><p>Sustain growth and retention while FCF grows faster than SBC and dilution.</p></div></div>
+        </article>
+
+        <article class="company tier-a">
+          <div class="company-bar"><div class="ticker-wrap"><div class="ticker">PATH</div><div class="company-name">UiPath<br>A2 active research</div></div><p class="thesis">Revenue acceleration and first-quarter GAAP profitability create an interesting automation recovery, but agentic-product revenue remains unquantified.</p><div class="badges"><span class="badge">Acceptable entry</span><span class="badge">Follow-up priority</span></div></div>
+          <div class="company-grid"><div class="fact"><h3>Main upside case</h3><p class="upside">$16.10-$38.17 versus $12.15, approximately 33%-214% upside.</p></div><div class="fact"><h3>Major risk</h3><p class="risk">ARR growth remains low double digits; AI claims may not translate into measurable revenue, and SBC remains meaningful.</p></div><div class="fact"><h3>Research status</h3><p>A2. Revenue grew 17%, ARR 12%, GAAP operating income reached $28 million.</p></div><div class="fact"><h3>Next evidence</h3><p>ARR reacceleration, disclosed agentic revenue and per-share reduction after SBC.</p></div></div>
+        </article>
+
+        <article class="company tier-a">
+          <div class="company-bar"><div class="ticker-wrap"><div class="ticker">FIVN</div><div class="company-name">Five9<br>A2 incomplete</div></div><p class="thesis">The verified Q1 signal is encouraging, but later Claude-created revenue, valuation and return conclusions failed validation and are not controlling.</p><div class="badges"><span class="badge incomplete">Full research incomplete</span><span class="badge">Preliminary</span></div></div>
+          <div class="company-grid"><div class="fact"><h3>Main upside case</h3><p class="upside">No controlling full-research range. The verified quick pass classifies a 3x route as demanding.</p></div><div class="fact"><h3>Major risk</h3><p class="risk">AI could reduce seat revenue; SBC, retention, debt and diluted-share effects remain incompletely validated.</p></div><div class="fact"><h3>Research status</h3><p><strong>A2 / FULL_RESEARCH_INCOMPLETE.</strong> Not a completed dossier or final conclusion.</p></div><div class="fact"><h3>Next evidence</h3><p>Two official quarters plus a clean debt, convertible, SBC and diluted-share bridge.</p></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="tier-two">
+      <div class="section-head"><div><span class="tier-mark b">Tier B</span><h2>Attractive Tier 2 opportunities</h2></div><p class="section-intro">Potential 40%-100% opportunities or sound recoveries. A credible 3x route is not required.</p></div>
+      <div class="company-list">
+        <article class="company tier-b"><div class="company-bar"><div class="ticker-wrap"><div class="ticker">KMX</div><div class="company-name">CarMax<br>B2 turnaround</div></div><p class="thesis">A used-auto and finance recovery may be obscured by affordability and credit fears, though retail unit economics remain weak.</p><div class="badges"><span class="badge">Confirmation needed</span><span class="badge">Medium confidence</span></div></div><div class="company-grid"><div class="fact"><h3>Main upside case</h3><p class="upside">$68.35-$107.91 versus $57.33, approximately 19%-88%.</p></div><div class="fact"><h3>Major risk</h3><p class="risk">Credit losses, funding costs and weak retail economics; modeled bear loss about 18%.</p></div><div class="fact"><h3>Research status</h3><p>B2 active Tier 2. New CEO has one reported quarter.</p></div><div class="fact"><h3>Next evidence</h3><p>Positive comparable units, stable gross profit per unit and lower provisions.</p></div></div></article>
+
+        <article class="company tier-b"><div class="company-bar"><div class="ticker-wrap"><div class="ticker">CHWY</div><div class="company-name">Chewy<br>B3 compounder</div></div><p class="thesis">Customer growth, spending, Autoship and margins improved together while the shares remained well below prior levels.</p><div class="badges"><span class="badge">Attractive entry</span><span class="badge">High confidence</span></div></div><div class="company-grid"><div class="fact"><h3>Main upside case</h3><p class="upside">$27-$36 versus $20.93, approximately 29%-72%.</p></div><div class="fact"><h3>Major risk</h3><p class="risk">SBC and related taxes exceeded reported quarterly FCF; bear case about 28% lower.</p></div><div class="fact"><h3>Research status</h3><p>B3 active Tier 2 with a verified operating inflection.</p></div><div class="fact"><h3>Next evidence</h3><p>Several quarters of customer and margin growth with cash generation after SBC.</p></div></div></article>
+
+        <article class="company tier-b"><div class="company-bar"><div class="ticker-wrap"><div class="ticker">ARW</div><div class="company-name">Arrow Electronics<br>B4 cyclical</div></div><p class="thesis">A broad electronics-cycle recovery is verified, but the market may still value Arrow as a low-growth distributor near a cyclical peak.</p><div class="badges"><span class="badge">Confirmation needed</span><span class="badge">Medium confidence</span></div></div><div class="company-grid"><div class="fact"><h3>Main upside case</h3><p class="upside">$239.58-$333.33 versus $206.61, approximately 16%-61%.</p></div><div class="fact"><h3>Major risk</h3><p class="risk">$2.35 billion debt, working-capital reversal and explicitly cyclical demand.</p></div><div class="fact"><h3>Research status</h3><p>B4 active Tier 2; Q1 revenue rose 39%, but the CEO is interim.</p></div><div class="fact"><h3>Next evidence</h3><p>Book-to-bill above one, gross-margin expansion and a permanent CEO.</p></div></div></article>
+
+        <article class="company tier-b"><div class="company-bar"><div class="ticker-wrap"><div class="ticker">GTLB</div><div class="company-name">GitLab<br>B3 compounder</div></div><p class="thesis">Improving GAAP profitability and cash generation may be underappreciated after growth-stock multiple compression.</p><div class="badges"><span class="badge">Acceptable entry</span><span class="badge">High confidence</span></div></div><div class="company-grid"><div class="fact"><h3>Main upside case</h3><p class="upside">$38-$50 versus $32.72, approximately 16%-53%.</p></div><div class="fact"><h3>Major risk</h3><p class="risk">Growth could slow while SBC prevents per-share progress; bear case about 27% lower.</p></div><div class="fact"><h3>Research status</h3><p>B3 active Tier 2; 3x was not credible in the broad screen.</p></div><div class="fact"><h3>Next evidence</h3><p>Low-20s growth, measurable Duo adoption and per-share cash conversion.</p></div></div></article>
+
+        <article class="company tier-b"><div class="company-bar"><div class="ticker-wrap"><div class="ticker">OLLI</div><div class="company-name">Ollie's Bargain Outlet<br>B1 quality</div></div><p class="thesis">The stock reset sharply even as sales, comparable sales, store count and adjusted EBITDA improved together.</p><div class="badges"><span class="badge">Attractive entry</span><span class="badge">High confidence</span></div></div><div class="company-grid"><div class="fact"><h3>Main upside case</h3><p class="upside">$78-$100 versus $66.51, approximately 17%-50%.</p></div><div class="fact"><h3>Major risk</h3><p class="risk">New-store cohorts could disappoint; modeled bear loss about 22%.</p></div><div class="fact"><h3>Research status</h3><p>B1 high-quality Tier 2; no credible current 3x path.</p></div><div class="fact"><h3>Next evidence</h3><p>Planned openings, positive comps and preserved store economics.</p></div></div></article>
+
+        <article class="company tier-b"><div class="company-bar"><div class="ticker-wrap"><div class="ticker">REAL</div><div class="company-name">The RealReal<br>B2 turnaround</div></div><p class="thesis">Buyer, GMV, revenue and margin improvement show a genuine luxury-resale operating inflection under current management.</p><div class="badges"><span class="badge">Acceptable entry</span><span class="badge">Dilution risk</span></div></div><div class="company-grid"><div class="fact"><h3>Main upside case</h3><p class="upside">$10.70-$25.37 versus $11.21; the upper case is meaningful but dilution-sensitive.</p></div><div class="fact"><h3>Major risk</h3><p class="risk">Convertible notes and a modeled future share count far above current diluted shares.</p></div><div class="fact"><h3>Research status</h3><p>B2 active Tier 2 after the event-led pass.</p></div><div class="fact"><h3>Next evidence</h3><p>Sustain buyer and consignment growth while reducing note and warrant dilution.</p></div></div></article>
+
+        <article class="company tier-b"><div class="company-bar"><div class="ticker-wrap"><div class="ticker">CTRN</div><div class="company-name">Citi Trends<br>B5 breakout watch</div></div><p class="thesis">A momentum-supported off-price retail turnaround is producing better revenue and margins, but the price reflects substantial progress.</p><div class="badges"><span class="badge">Breakout confirmation</span><span class="badge">Not Tier A</span></div></div><div class="company-grid"><div class="fact"><h3>Main upside case</h3><p class="upside">Practical role is approximately 25%-75% potential, not an established 3x thesis.</p></div><div class="fact"><h3>Major risk</h3><p class="risk">Breakout fails or earnings do not support the rerating; current valuation evidence remains incomplete.</p></div><div class="fact"><h3>Research status</h3><p>B5 breakout or momentum-supported turnaround monitoring.</p></div><div class="fact"><h3>Next evidence</h3><p>Earnings support, breakout confirmation, pullback quality and clear invalidation.</p></div></div></article>
+      </div>
+    </section>
+
+    <section class="section" id="watchlist">
+      <div class="section-head"><div><span class="tier-mark c">Tier C</span><h2>Setups and watchlist</h2></div><p class="section-intro">Viable ideas held back by entry quality, leverage, acquisition risk, overlap or incomplete evidence. C is not a rejection tier.</p></div>
+      <div class="company-list">
+        <article class="company tier-c"><div class="company-bar"><div class="ticker-wrap"><div class="ticker">EYE</div><div class="company-name">National Vision<br>C1 setup</div></div><p class="thesis">A real optical-retail recovery remains visible, but the easy rerating has occurred and current downside-adjusted asymmetry is weak.</p><div class="badges"><span class="badge">Fair value</span><span class="badge">Completed watchlist research</span></div></div><div class="company-grid"><div class="fact"><h3>Main upside case</h3><p class="upside">$21.58-$29.54 versus $20.73, approximately 4%-43%.</p></div><div class="fact"><h3>Major risk</h3><p class="risk">Completed bear case $5.13. The setup was materially stronger at $15-$17.</p></div><div class="fact"><h3>Research status</h3><p>C1, LOWER_UPSIDE_COMPLEMENT and WATCHLIST_SECOND_TIER.</p></div><div class="fact"><h3>Next evidence</h3><p>Better entry or two more quarters of comps and underlying margin expansion.</p></div></div></article>
+
+        <article class="company tier-c"><div class="company-bar"><div class="ticker-wrap"><div class="ticker">ATNI</div><div class="company-name">ATN International<br>C1 setup</div></div><p class="thesis">A tower sale could reduce debt and simplify an improving but leveraged rural and island telecom business.</p><div class="badges"><span class="badge">Acceptable entry</span><span class="badge">Medium confidence</span></div></div><div class="company-grid"><div class="fact"><h3>Main upside case</h3><p class="upside">$35.03-$57.32 versus $23.17, approximately 51%-147%.</p></div><div class="fact"><h3>Major risk</h3><p class="risk">Roughly $570 million debt makes tower proceeds and refinancing decisive.</p></div><div class="fact"><h3>Research status</h3><p>C1 monitoring; new CEO has not earned execution credit yet.</p></div><div class="fact"><h3>Next evidence</h3><p>Tower proceeds reduce debt while subscriber growth and margins persist.</p></div></div></article>
+
+        <article class="company tier-c"><div class="company-bar"><div class="ticker-wrap"><div class="ticker">SANM</div><div class="company-name">Sanmina<br>C1 setup</div></div><p class="thesis">AI-hardware exposure and an acquisition create growth interest, but most headline improvement was acquisition-driven.</p><div class="badges"><span class="badge">Acceptable entry</span><span class="badge">Medium confidence</span></div></div><div class="company-grid"><div class="fact"><h3>Main upside case</h3><p class="upside">$220-$280 versus $197.24, approximately 12%-42%.</p></div><div class="fact"><h3>Major risk</h3><p class="risk">Acquisition integration, customer concentration and about 29% modeled downside.</p></div><div class="fact"><h3>Research status</h3><p>C1 monitoring; core Sanmina growth was 7.3%.</p></div><div class="fact"><h3>Next evidence</h3><p>Clean pro forma growth, customer diversification and acquisition-debt reduction.</p></div></div></article>
+
+        <article class="company tier-c"><div class="company-bar"><div class="ticker-wrap"><div class="ticker">ZG</div><div class="company-name">Zillow Group<br>C2 entry watch</div></div><p class="thesis">The asset-light housing-super-app model may be stronger than Zillow's failed home-flipping narrative suggests.</p><div class="badges"><span class="badge">Watch for entry</span><span class="badge">OPEN overlap</span></div></div><div class="company-grid"><div class="fact"><h3>Main upside case</h3><p class="upside">Preliminary $39.79-$94.32 versus $33.71; the upper end needs a full diluted-share bridge.</p></div><div class="fact"><h3>Major risk</h3><p class="risk">Housing exposure overlaps OPEN and valuation/capital evidence remains incomplete.</p></div><div class="fact"><h3>Research status</h3><p>C2 watch for entry. The thesis is not rejected.</p></div><div class="fact"><h3>Next evidence</h3><p>Two official quarters, diluted shares, valuation and portfolio-overlap decision.</p></div></div></article>
+
+        <article class="company tier-c"><div class="company-bar"><div class="ticker-wrap"><div class="ticker">PENG</div><div class="company-name">Penguin Solutions<br>C1 watch</div></div><p class="thesis">AI and memory growth accelerated, but a major rerating and unresolved convertible dilution reduce the remaining asymmetry.</p><div class="badges"><span class="badge">Wait for pullback</span><span class="badge">Medium confidence</span></div></div><div class="company-grid"><div class="fact"><h3>Main upside case</h3><p class="upside">$65-$78 versus $60.41, approximately 8%-29%.</p></div><div class="fact"><h3>Major risk</h3><p class="risk">Bear case $38, about 37% lower; refinancing, dilution and memory-cycle reversal dominate.</p></div><div class="fact"><h3>Research status</h3><p>C1 monitoring after rejection from Tier 2 for dilution and rerating risk.</p></div><div class="fact"><h3>Next evidence</h3><p>Better price plus clarity on convertibles, integration and cash conversion.</p></div></div></article>
+      </div>
+    </section>
+
+    <section class="research-note" id="next">
+      <div class="note-card"><h2>Next research priorities</h2><ol><li><strong>INOD:</strong> customer concentration, new-program conversion and a current 3x bridge.</li><li><strong>WK:</strong> reconcile FCF, SBC, convertibles and diluted-share growth.</li><li><strong>PATH:</strong> quantify agentic revenue, ARR reacceleration and repurchase effectiveness.</li></ol></div>
+      <div class="note-card"><h2>What is not active priority</h2><p>FVRR, PAYO, BILL, MSM and PTON should not consume active research time. PENG remains visible only for entry and capital clarity. CTRN remains B5 breakout monitoring rather than an asymmetric centerpiece.</p></div>
+    </section>
+
+    <section class="research-note" id="method">
+      <div class="note-card"><h2>How to read the tiers</h2><ul><li><strong>A:</strong> possible asymmetry with unusually wide outcomes.</li><li><strong>B:</strong> attractive conventional return potential; 3x not required.</li><li><strong>C:</strong> viable setup or watch, not a rejection list.</li></ul></div>
+      <div class="note-card"><h2>Evidence discipline</h2><p>Primary-source operating evidence drives advancement. Technical structure only refines entry quality. Historical highs are not treated as intrinsic value. Missing or contradictory evidence is stated rather than filled with assumptions.</p></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell"><strong>Asymmetric Equities Research</strong><br>Built from the existing practical shortlist and authoritative A/B/C bench. Research only; not financial advice.</div>
+  </footer>
+</body>
+</html>
