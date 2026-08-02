@@ -148,12 +148,19 @@
                 grid-template-columns: 1fr;
             }
         }
+            .review-logo { width: min(320px, 80vw); height: 90px; object-fit: contain; margin-bottom: 16px; }
+        .mockup-preview { background-size: cover; background-position: center; position: relative; }
+        .mockup-preview::after { content: "Open concept"; color: #fff; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; background: rgba(0,0,0,.58); padding: 10px 14px; border: 1px solid rgba(255,255,255,.5); }
+        .mockup-card:nth-child(1) .mockup-preview { background-image: linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.4)), url('assets/gym-training-01.jpg'); }
+        .mockup-card:nth-child(2) .mockup-preview { background-image: linear-gradient(rgba(255,255,255,.1),rgba(255,255,255,.25)), url('assets/gym-training-03.jpg'); }
+        .mockup-card:nth-child(3) .mockup-preview { background-image: linear-gradient(rgba(255,245,240,.08),rgba(255,245,240,.2)), url('assets/gym-training-05.jpg'); }
+        .mockup-card:nth-child(4) .mockup-preview { background-image: linear-gradient(rgba(0,0,0,.08),rgba(0,0,0,.25)), url('assets/gym-training-04.jpg'); }
     </style>
 </head>
 <body>
     <header>
-        <h1>Wasatch Combat Sports</h1>
-        <p>Homepage Redesign Concepts</p>
+        <img class="review-logo" src="assets/wcs-logo-white.png" alt="Wasatch Combat Sports"><h1>Homepage Redesign Concepts</h1>
+        <p>Four visual directions using real Wasatch Combat Sports imagery.</p>
     </header>
 
     <div class="container">

@@ -616,11 +616,20 @@
                 grid-template-columns: 1fr;
             }
         }
+            .logo img { width: 190px; height: 44px; object-fit: contain; object-position: left center; display: block; }
+        .hero { background: linear-gradient(90deg, rgba(255,250,248,.98) 0%, rgba(255,250,248,.86) 50%, rgba(255,250,248,.18) 100%), url('assets/gym-training-05.jpg') center 38% / cover no-repeat; text-align: left; }
+        .hero-content { max-width: 1100px; }
+        .hero-content h1, .hero-content p { max-width: 650px; }
+        .program-card { padding-top: 170px; background-position: center top; background-size: 100% 140px; background-repeat: no-repeat; }
+        .program-card:nth-child(1) { background-image: url('assets/gym-training-01.jpg'); }
+        .program-card:nth-child(2) { background-image: url('assets/gym-training-02.jpg'); }
+        .program-card:nth-child(3) { background-image: url('assets/gym-training-03.jpg'); }
+        .program-card:nth-child(4) { background-image: url('assets/gym-training-04.jpg'); }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">❤ Wasatch Combat</div>
+        <a class="logo" href="index.html"><img src="assets/wcs-logo-dark.png" alt="Wasatch Combat Sports"></a>
         <nav>
             <a href="#programs">Programs</a>
             <a href="#why">Why Us</a>
@@ -706,7 +715,7 @@
                     <li>Train at your own pace. The person next to you isn't your competition—you're training together.</li>
                     <li>Community is real. Experienced members genuinely help newcomers. You'll make friends fast.</li>
                     <li>See progress quickly. Better fitness, clearer mind, real confidence—usually within 3-4 weeks.</li>
-                    <li>Your first class is free. No pressure. Just come and see if Wasatch feels right for you.</li>
+                    <li>Tell us what interests you. We will answer questions and share current program details.</li>
                 </ul>
             </div>
         </section>
@@ -861,7 +870,7 @@
 
     <div class="final-cta">
         <h2>Your Community is Waiting</h2>
-        <p>Your first class is free. Come meet us. See if Wasatch is the place where you belong.</p>
+        <p>Contact us, meet the team and find the program that fits your goals.</p>
         <a href="#" class="final-cta-btn">Schedule Your First Class</a>
     </div>
 

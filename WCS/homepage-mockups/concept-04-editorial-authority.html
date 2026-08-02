@@ -134,7 +134,7 @@
 
         .featured-image {
             aspect-ratio: 4/3;
-            background: linear-gradient(135deg, #e63946 0%, #d62828 100%);
+            background: url('assets/gym-training-02.jpg') center 35% / cover no-repeat;
             border-left: 4px solid #1d1d1d;
         }
 
@@ -630,11 +630,19 @@
                 grid-template-columns: 1fr;
             }
         }
+            .logo img { width: 190px; height: 44px; object-fit: contain; object-position: left center; display: block; }
+        .hero { background: linear-gradient(90deg, rgba(255,255,255,.99) 0%, rgba(255,255,255,.9) 50%, rgba(255,255,255,.14) 100%), url('assets/gym-training-04.jpg') center 32% / cover no-repeat; text-align: left; }
+        .hero-content { max-width: 1100px; }
+        .hero-content h1, .hero-content p { max-width: 700px; }
+        .program-card { padding-top: 165px; background-position: center top; background-size: 100% 135px; background-repeat: no-repeat; }
+        .program-card:nth-child(1) { background-image: url('assets/gym-training-01.jpg'); }
+        .program-card:nth-child(2) { background-image: url('assets/gym-training-02.jpg'); }
+        .program-card:nth-child(3) { background-image: url('assets/gym-training-03.jpg'); }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">Wasatch Combat Authority</div>
+        <a class="logo" href="index.html"><img src="assets/wcs-logo-dark.png" alt="Wasatch Combat Sports"></a>
         <nav>
             <a href="#programs">Programs</a>
             <a href="#guides">Guides</a>
@@ -841,7 +849,7 @@
         <section id="signup">
             <h2 class="section-title">Get Started With Us</h2>
             <div class="lead-form">
-                <p><strong>Tell us about yourself.</strong> We'll reach out with more information and help you schedule your first free class. No commitment—just a conversation about your goals.</p>
+                <p><strong>Tell us about yourself.</strong> We will reach out with current program information and answer your questions.</p>
                 <form>
                     <div class="form-grid">
                         <input type="text" placeholder="Your Name" required>
@@ -865,7 +873,7 @@
 
     <div class="final-cta">
         <h2>Ready to Transform Your Training?</h2>
-        <p>Your first class is free. Learn from experienced coaches. Join our community of dedicated athletes.</p>
+        <p>Learn from experienced coaches and join a committed training community.</p>
         <a href="#" class="final-cta-btn">Schedule Your First Class Today</a>
     </div>
 
