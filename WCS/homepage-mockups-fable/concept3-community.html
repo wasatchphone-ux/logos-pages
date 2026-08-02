@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wasatch Combat Sports — Orem's Neighborhood Combat Gym | Muay Thai, Jiu Jitsu, Boxing</title>
+<meta name="description" content="The neighborhood combat gym Orem shows up to. Muay Thai, Boxing, Jiu Jitsu, MMA, Women's Combat, kids' classes and Strength & Conditioning — Utah County's highest Google-rated gym.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ExerciseGym",
+  "name": "Wasatch Combat Sports",
+  "description": "Orem's neighborhood combat gym. Muay Thai, Boxing, Jiu Jitsu, MMA, Women's Combat, Youth Programs and Strength & Conditioning — Utah County's highest Google-rated gym.",
+  "url": "https://wasatchcombatsports.com",
+  "telephone": "(801) 857-0611",
+  "address": {"@type": "PostalAddress","streetAddress": "972 N 1430 W","addressLocality": "Orem","addressRegion": "UT","postalCode": "84057","addressCountry": "US"},
+  "aggregateRating": {"@type": "AggregateRating","ratingValue": "5.0","reviewCount": "338"},
+  "openingHoursSpecification": [
+    {"@type": "OpeningHoursSpecification","dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens": "06:00","closes": "21:00"},
+    {"@type": "OpeningHoursSpecification","dayOfWeek": "Saturday","opens": "09:00","closes": "11:00"}
+  ],
+  "sameAs": ["https://www.instagram.com/wasatchcombatsports/"]
+}
+</script>
+<style>
+:root{
+  --cream:#f8f3e9;
+  --card:#fffdf8;
+  --ink:#2b2622;
+  --soft:#6f675e;
+  --red:#d92b2b;
+  --gold:#c8921a;
+  --serif:'Fraunces',serif;
+  --sans:'DM Sans',sans-serif;
+  --hand:'Caveat',cursive;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:16.5px;line-height:1.65;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+::selection{background:var(--gold);color:#fff;}
+.wrap{max-width:1200px;margin:0 auto;padding:0 28px;}
+
+/* header */
+header{position:sticky;top:0;z-index:100;background:rgba(248,243,233,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(43,38,34,.1);}
+.h-in{max-width:1200px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.logo{display:flex;align-items:center;gap:12px;}
+.logo img{height:44px;}
+.logo .lt{font-family:var(--serif);font-weight:600;font-size:1.05rem;line-height:1.15;}
+.logo .lt small{display:block;font-family:var(--sans);font-weight:500;font-size:.68rem;color:var(--soft);letter-spacing:.04em;}
+nav{display:flex;gap:24px;align-items:center;}
+nav a{font-weight:500;font-size:.92rem;color:var(--soft);transition:color .2s;}
+nav a:hover{color:var(--red);}
+.nav-cta{background:var(--red);color:#fff !important;padding:11px 22px;border-radius:999px;font-weight:700;box-shadow:0 3px 0 rgba(43,38,34,.25);transition:transform .15s !important;}
+.nav-cta:hover{transform:translateY(-2px);}
+.burger{display:none;background:none;border:0;font-size:1.6rem;cursor:pointer;color:var(--ink);}
+
+/* hero */
+.hero{padding:72px 0 40px;position:relative;}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;}
+.eyebrow{font-weight:700;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(2.6rem,5.2vw,4.3rem);line-height:1.06;letter-spacing:-.015em;}
+.hero h1 em{font-style:italic;color:var(--red);}
+.hero-note{font-family:var(--hand);font-size:1.5rem;color:var(--soft);transform:rotate(-2deg);display:inline-block;margin:18px 0 6px;}
+.hero p.lead{font-size:1.1rem;color:var(--soft);max-width:48ch;margin-bottom:30px;}
+.hero-actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+.btn{display:inline-block;font-weight:700;font-size:.95rem;padding:15px 30px;border-radius:999px;transition:transform .15s,box-shadow .15s;}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 4px 0 rgba(43,38,34,.25);}
+.btn-red:hover{transform:translateY(-2px);}
+.btn-plain{color:var(--ink);border:2px solid rgba(43,38,34,.25);}
+.btn-plain:hover{border-color:var(--gold);color:var(--gold);}
+.gsticker{position:relative;display:inline-block;margin-top:34px;padding:16px 22px;background:var(--card);border:1.5px solid rgba(43,38,34,.15);border-radius:14px;box-shadow:3px 4px 0 rgba(43,38,34,.12);transform:rotate(-1.2deg);}
+.gsticker .row1{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.05rem;}
+.gsticker .stars{color:var(--gold);letter-spacing:.05em;}
+.gsticker .row2{font-size:.85rem;color:var(--soft);}
+.gsticker .hand{font-family:var(--hand);font-size:1.25rem;color:var(--red);position:absolute;right:-14px;top:-22px;transform:rotate(4deg);}
+/* polaroid cluster */
+.cluster{position:relative;height:560px;}
+.pol{position:absolute;background:#fff;padding:12px 12px 44px;box-shadow:0 14px 34px rgba(43,38,34,.18);transition:transform .3s ease;}
+.pol img{width:100%;height:100%;object-fit:cover;}
+.pol figcaption{font-family:var(--hand);font-size:1.2rem;color:var(--soft);position:absolute;bottom:8px;left:0;right:0;text-align:center;}
+.pol.p1{width:62%;top:0;left:0;transform:rotate(-3.5deg);z-index:2;}
+.pol.p1 .ph{height:300px;}
+.pol.p2{width:46%;top:170px;right:0;transform:rotate(2.8deg);z-index:3;}
+.pol.p2 .ph{height:230px;}
+.pol.p3{width:44%;bottom:0;left:8%;transform:rotate(1.6deg);z-index:1;}
+.pol.p3 .ph{height:180px;}
+.pol:hover{transform:rotate(0) scale(1.02);z-index:9;}
+.tape{position:absolute;top:-12px;left:50%;transform:translateX(-50%) rotate(-2deg);width:96px;height:26px;background:rgba(200,146,26,.35);border-left:1px dashed rgba(255,255,255,.5);border-right:1px dashed rgba(255,255,255,.5);}
+
+/* section scaffolding */
+section{padding:84px 0;}
+.sec-eyebrow{font-family:var(--hand);font-size:1.6rem;color:var(--red);display:block;margin-bottom:6px;transform:rotate(-1deg);width:max-content;}
+h2.sec-title{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,4vw,3rem);line-height:1.1;letter-spacing:-.01em;margin-bottom:16px;}
+.sec-sub{color:var(--soft);max-width:60ch;margin-bottom:44px;}
+
+/* paths */
+.paths{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:start;}
+.path{background:var(--card);border:1.5px solid rgba(43,38,34,.12);border-radius:20px;padding:30px 28px;box-shadow:0 6px 0 rgba(43,38,34,.07);position:relative;}
+.path.tilt1{transform:rotate(-.7deg);}
+.path.tilt2{transform:rotate(.5deg);margin-top:26px;}
+.path.tilt3{transform:rotate(-.4deg);margin-top:8px;}
+.path .ph{border-radius:12px;overflow:hidden;margin-bottom:20px;height:170px;}
+.path .ph img{width:100%;height:100%;object-fit:cover;}
+.path h3{font-family:var(--serif);font-weight:600;font-size:1.5rem;margin-bottom:6px;}
+.path .who{font-family:var(--hand);font-size:1.25rem;color:var(--gold);margin-bottom:14px;}
+.path ul{list-style:none;margin-bottom:18px;}
+.path li{padding:9px 0;border-bottom:1px dashed rgba(43,38,34,.15);font-size:.95rem;display:flex;justify-content:space-between;gap:10px;}
+.path li:last-child{border-bottom:0;}
+.path li b{font-weight:700;}
+.path li span{color:var(--soft);font-size:.82rem;white-space:nowrap;}
+.path .go{font-weight:700;color:var(--red);font-size:.92rem;}
+.path .go:hover{text-decoration:underline;}
+
+/* story */
+.story{background:var(--card);border-top:1.5px solid rgba(43,38,34,.1);border-bottom:1.5px solid rgba(43,38,34,.1);}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.story-photo{position:relative;}
+.story-photo .main{border-radius:22px;overflow:hidden;box-shadow:0 18px 44px rgba(43,38,34,.16);transform:rotate(-1deg);}
+.story-photo .main img{width:100%;height:430px;object-fit:cover;}
+.story-photo .hand-arrow{font-family:var(--hand);font-size:1.4rem;color:var(--red);position:absolute;bottom:-34px;right:10px;transform:rotate(-3deg);}
+.story-copy p{margin-bottom:18px;color:#4a443d;}
+.story-copy p strong{color:var(--ink);}
+.story-stats{display:flex;gap:34px;margin-top:30px;flex-wrap:wrap;}
+.sstat .v{font-family:var(--serif);font-weight:600;font-size:2.3rem;color:var(--red);}
+.sstat .k{font-size:.8rem;color:var(--soft);}
+
+/* first week note */
+.notecard{max-width:820px;margin:0 auto;background:#fdf9ee;border:1.5px solid rgba(200,146,26,.4);border-radius:6px;padding:44px 50px;box-shadow:4px 6px 0 rgba(43,38,34,.1);position:relative;transform:rotate(.4deg);}
+.notecard::before{content:"";position:absolute;top:-14px;left:50%;transform:translateX(-50%) rotate(1.5deg);width:120px;height:30px;background:rgba(217,43,43,.25);}
+.notecard h3{font-family:var(--hand);font-size:2.1rem;color:var(--ink);margin-bottom:20px;}
+.notecard ol{list-style:none;counter-reset:n;}
+.notecard li{counter-increment:n;padding:14px 0 14px 52px;position:relative;border-bottom:1px dashed rgba(43,38,34,.18);font-size:1.02rem;}
+.notecard li:last-child{border-bottom:0;}
+.notecard li::before{content:counter(n);position:absolute;left:0;top:12px;width:34px;height:34px;border-radius:50%;background:var(--red);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:1rem;transform:rotate(-4deg);}
+.notecard li b{font-weight:700;}
+.notecard .ps{font-family:var(--hand);font-size:1.35rem;color:var(--red);margin-top:20px;display:block;transform:rotate(-1deg);}
+
+/* coaches */
+.coach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+.ccard{background:var(--card);border:1.5px solid rgba(43,38,34,.12);border-radius:18px;padding:28px;box-shadow:0 5px 0 rgba(43,38,34,.07);}
+.ccard:nth-child(2){transform:rotate(.5deg);}
+.ccard:nth-child(4){transform:rotate(-.5deg);}
+.ccard h3{font-family:var(--serif);font-weight:600;font-size:1.35rem;}
+.ccard .d{font-family:var(--hand);font-size:1.2rem;color:var(--red);margin:2px 0 12px;}
+.ccard p{font-size:.92rem;color:#4a443d;}
+.ccard .cred{margin-top:14px;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);}
+
+/* day peek */
+.peek{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+.slot-card{background:var(--card);border:1.5px solid rgba(43,38,34,.12);border-radius:18px;overflow:hidden;box-shadow:0 5px 0 rgba(43,38,34,.07);}
+.slot-card .head{padding:18px 24px;font-family:var(--serif);font-weight:600;font-size:1.2rem;background:rgba(200,146,26,.14);border-bottom:1.5px solid rgba(43,38,34,.1);display:flex;justify-content:space-between;align-items:baseline;}
+.slot-card .head small{font-family:var(--sans);font-weight:500;color:var(--soft);font-size:.78rem;}
+.slot-card ul{list-style:none;padding:14px 24px 20px;}
+.slot-card li{padding:9px 0;border-bottom:1px dashed rgba(43,38,34,.14);display:flex;justify-content:space-between;font-size:.93rem;}
+.slot-card li:last-child{border-bottom:0;}
+.slot-card li span{color:var(--soft);font-size:.82rem;}
+.sched-link{text-align:center;margin-top:34px;}
+.sched-link a{font-weight:700;color:var(--red);border-bottom:2px solid var(--red);padding-bottom:2px;}
+
+/* reviews */
+.rev{background:var(--card);border-top:1.5px solid rgba(43,38,34,.1);border-bottom:1.5px solid rgba(43,38,34,.1);}
+.rev-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:26px;align-items:start;}
+.bubble{background:var(--cream);border:1.5px solid rgba(43,38,34,.14);border-radius:18px;padding:26px;position:relative;font-size:.98rem;color:#4a443d;}
+.bubble::after{content:"";position:absolute;bottom:-12px;left:36px;width:22px;height:22px;background:var(--cream);border-right:1.5px solid rgba(43,38,34,.14);border-bottom:1.5px solid rgba(43,38,34,.14);transform:rotate(45deg);}
+.bubble .st{color:var(--gold);letter-spacing:.12em;margin-bottom:10px;display:block;}
+.bubble .who{display:block;margin-top:26px;font-weight:700;font-size:.85rem;color:var(--ink);}
+.bubble:nth-child(2){transform:rotate(.6deg);}
+.bubble:nth-child(3){transform:rotate(-.5deg);}
+.rev-lockup{margin:54px auto 0;max-width:520px;text-align:center;background:var(--cream);border:1.5px solid rgba(43,38,34,.14);border-radius:20px;padding:30px;box-shadow:4px 5px 0 rgba(43,38,34,.1);transform:rotate(-.6deg);}
+.rev-lockup .n{font-family:var(--serif);font-weight:600;font-size:3.2rem;color:var(--red);line-height:1;}
+.rev-lockup .s{color:var(--gold);font-size:1.3rem;letter-spacing:.16em;margin:6px 0;}
+.rev-lockup p{font-size:.9rem;color:var(--soft);}
+.rev-lockup .hand{font-family:var(--hand);font-size:1.4rem;color:var(--ink);display:block;margin-top:10px;transform:rotate(-1deg);}
+
+/* faq */
+.faq-wrap{max-width:860px;margin:0 auto;}
+details{background:var(--card);border:1.5px solid rgba(43,38,34,.12);border-radius:16px;margin-bottom:14px;overflow:hidden;}
+summary{cursor:pointer;list-style:none;padding:20px 26px;font-weight:700;font-size:1.02rem;display:flex;justify-content:space-between;align-items:center;gap:14px;}
+summary::-webkit-details-marker{display:none;}
+summary::after{content:"+";font-family:var(--serif);font-size:1.5rem;color:var(--red);transition:transform .25s;}
+details[open] summary::after{transform:rotate(45deg);}
+details .a{padding:0 26px 22px;color:#4a443d;font-size:.96rem;}
+
+/* blog */
+.blog-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;}
+.bcard{background:var(--card);border:1.5px solid rgba(43,38,34,.12);border-radius:18px;padding:28px;box-shadow:0 5px 0 rgba(43,38,34,.07);transition:transform .2s;display:block;}
+.bcard:hover{transform:translateY(-4px) rotate(-.4deg);}
+.bcard .k{font-family:var(--hand);font-size:1.15rem;color:var(--gold);display:block;margin-bottom:8px;}
+.bcard h3{font-family:var(--serif);font-weight:600;font-size:1.3rem;line-height:1.3;margin-bottom:10px;}
+.bcard p{font-size:.9rem;color:var(--soft);}
+.bcard .rm{margin-top:14px;font-weight:700;color:var(--red);font-size:.88rem;display:inline-block;}
+
+/* visit / form */
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start;}
+.visit-card{background:var(--card);border:1.5px solid rgba(43,38,34,.12);border-radius:20px;overflow:hidden;box-shadow:0 6px 0 rgba(43,38,34,.07);}
+.visit-card .pad{padding:32px;}
+.visit-card h3{font-family:var(--serif);font-weight:600;font-size:1.5rem;margin-bottom:10px;}
+.visit-card p{color:#4a443d;margin-bottom:8px;}
+.visit-card .ph{font-family:var(--serif);font-size:1.5rem;color:var(--red);font-weight:600;display:inline-block;margin:10px 0;}
+.mapr{border-top:1.5px solid rgba(43,38,34,.1);}
+.mapr iframe{width:100%;height:280px;border:0;display:block;filter:sepia(18%) saturate(.85);}
+.form-card{background:var(--card);border:1.5px solid rgba(43,38,34,.12);border-radius:20px;padding:36px;box-shadow:5px 7px 0 rgba(200,146,26,.25);transform:rotate(.4deg);}
+.form-card h3{font-family:var(--serif);font-weight:600;font-size:1.6rem;margin-bottom:6px;}
+.form-card .hand{font-family:var(--hand);font-size:1.3rem;color:var(--red);display:block;margin-bottom:22px;transform:rotate(-1deg);}
+.field{margin-bottom:18px;}
+.field label{display:block;font-weight:700;font-size:.8rem;margin-bottom:7px;letter-spacing:.04em;}
+.field input,.field select{width:100%;background:var(--cream);border:1.5px solid rgba(43,38,34,.2);border-radius:12px;padding:13px 15px;font-family:var(--sans);font-size:.98rem;color:var(--ink);transition:border-color .2s;}
+.field input:focus,.field select:focus{outline:none;border-color:var(--gold);}
+.form-msg{display:none;font-family:var(--hand);font-size:1.3rem;color:var(--red);margin-top:14px;}
+
+/* footer */
+.bigfoot{background:var(--ink);color:#e8e2d8;text-align:center;padding:90px 28px 0;}
+.bigfoot h2{font-family:var(--serif);font-weight:500;font-size:clamp(2.2rem,5vw,3.6rem);}
+.bigfoot h2 em{font-style:italic;color:var(--gold);}
+.bigfoot p{color:#b5ada1;max-width:52ch;margin:16px auto 32px;}
+.bigfoot .btn-red{box-shadow:0 4px 0 rgba(0,0,0,.4);}
+.foot-in{max-width:1200px;margin:70px auto 0;padding:26px 0;border-top:1px solid rgba(232,226,216,.15);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-size:.82rem;color:#8f877b;}
+.foot-in img{height:34px;}
+
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;}
+.rv.in{opacity:1;transform:none;}
+html.flat .rv{opacity:1;transform:none;transition:none;}
+
+@media(max-width:1000px){
+  .hero-grid{grid-template-columns:1fr;}
+  .cluster{height:520px;max-width:560px;}
+  .paths{grid-template-columns:1fr;max-width:520px;margin:0 auto;}
+  .path.tilt2,.path.tilt3{margin-top:0;}
+  .story-grid{grid-template-columns:1fr;}
+  .coach-grid{grid-template-columns:1fr 1fr;}
+  .peek{grid-template-columns:1fr;max-width:520px;margin:0 auto;}
+  .rev-grid{grid-template-columns:1fr;max-width:560px;margin:0 auto;}
+  .blog-grid{grid-template-columns:1fr;max-width:560px;margin:0 auto;}
+  .visit-grid{grid-template-columns:1fr;}
+}
+@media(max-width:760px){
+  nav{position:fixed;inset:0;background:var(--cream);flex-direction:column;justify-content:center;gap:30px;transform:translateX(100%);transition:transform .3s;z-index:105;}
+  nav.open{transform:none;}
+  nav a{font-size:1.2rem;}
+  .burger{display:block;position:relative;z-index:110;}
+  section{padding:60px 0;}
+  .cluster{height:430px;}
+  .pol.p1 .ph{height:210px;}
+  .pol.p2 .ph{height:160px;}
+  .pol.p3 .ph{height:130px;}
+  .coach-grid{grid-template-columns:1fr;}
+  .notecard{padding:32px 24px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-in">
+    <a class="logo" href="#top">
+      <img src="assets/wcs-logo-dark.png" alt="Wasatch Combat Sports logo">
+      <span class="lt">Wasatch Combat Sports<small>Orem, Utah — est. neighborhood gym</small></span>
+    </a>
+    <button class="burger" id="burger" aria-label="Menu">☰</button>
+    <nav id="nav">
+      <a href="#paths">Programs</a>
+      <a href="#coaches">Coaches</a>
+      <a href="#day">Schedule</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#faq">FAQ</a>
+      <a href="#visit" class="nav-cta">Come say hi</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Muay Thai · Boxing · Jiu Jitsu · MMA — Orem, UT</div>
+      <h1>The gym where <em>Orem</em> shows up.</h1>
+      <span class="hero-note">— at 6 a.m. and after school, every single day</span>
+      <p class="lead">Wasatch Combat Sports is Utah County's premier combat studio — but around here it works more like a neighborhood: kids on the mats at four o'clock, moms and first-timers in the morning, fighters at night. Come meet the new you.</p>
+      <div class="hero-actions">
+        <a class="btn btn-red" href="#visit">Plan your first visit</a>
+        <a class="btn btn-plain" href="#paths">Find your path</a>
+      </div>
+      <div class="gsticker">
+        <span class="hand">Utah County's highest-rated gym!</span>
+        <div class="row1"><span class="stars">★★★★★</span> 5.0 on Google</div>
+        <div class="row2">338 five-star reviews from Orem &amp; Provo neighbors</div>
+      </div>
+    </div>
+    <div class="cluster" aria-hidden="false">
+      <figure class="pol p1"><span class="tape"></span><div class="ph"><img src="assets/photo-training-wide.jpg" alt="Evening kickboxing class at Wasatch Combat Sports"></div><figcaption>Tuesday night kickboxing</figcaption></figure>
+      <figure class="pol p2"><span class="tape"></span><div class="ph"><img src="assets/photo-team-square.jpg" alt="Wasatch member celebrating with her medal after competition"></div><figcaption>first medal!! ❤</figcaption></figure>
+      <figure class="pol p3"><span class="tape"></span><div class="ph"><img src="assets/photo-community.jpg" alt="Kids class warming up on the mats"></div><figcaption>the 4 o'clock crew</figcaption></figure>
+    </div>
+  </div>
+</div>
+
+<section id="paths">
+  <div class="wrap">
+    <span class="sec-eyebrow rv">seven programs, three front doors</span>
+    <h2 class="sec-title rv">Pick your path in.</h2>
+    <p class="sec-sub rv">Everyone at Wasatch started somewhere — usually right here, slightly nervous. Whatever door you come through, there's a coach and a class waiting.</p>
+    <div class="paths">
+      <div class="path tilt1 rv">
+        <div class="ph"><img src="assets/photo-fighter-portrait.jpg" alt="Adults doing mitt work in the evening class"></div>
+        <h3>For adults</h3>
+        <div class="who">total beginners welcome — really</div>
+        <ul>
+          <li><b>Muay Thai</b><span>daily + 101 track</span></li>
+          <li><b>Boxing</b><span>4 nights + Saturday</span></li>
+          <li><b>Jiu Jitsu</b><span>gi &amp; no-gi + 101</span></li>
+          <li><b>MMA</b><span>no-gi, Mon &amp; Wed</span></li>
+          <li><b>Strength &amp; Conditioning</b><span>weekday afternoons</span></li>
+        </ul>
+        <a class="go" href="#visit">Start with a 101 class →</a>
+      </div>
+      <div class="path tilt2 rv">
+        <div class="ph"><img src="assets/photo-team-square.jpg" alt="Women's Combat member after her first competition"></div>
+        <h3>For women</h3>
+        <div class="who">your crew trains at 9:30 a.m.</div>
+        <ul>
+          <li><b>Women's Combat</b><span>Mon–Fri 9:30 AM</span></li>
+          <li><b>Mon</b> — strength day<span></span></li>
+          <li><b>Tue / Thu</b> — Muay Thai<span></span></li>
+          <li><b>Wed / Fri</b> — jiu jitsu<span></span></li>
+          <li><b>Plus</b> every adult class, always<span></span></li>
+        </ul>
+        <a class="go" href="#visit">Join the morning crew →</a>
+      </div>
+      <div class="path tilt3 rv">
+        <div class="ph"><img src="assets/photo-action.jpg" alt="Two kids sparring safely in full protective gear"></div>
+        <h3>For kids &amp; teens</h3>
+        <div class="who">from age 4 — split by age, on purpose</div>
+        <ul>
+          <li><b>Youth Juniors</b><span>4:00 PM · younger kids</span></li>
+          <li><b>Youth Seniors</b><span>4:45 PM · older kids</span></li>
+          <li><b>Mon / Wed</b> — Muay Thai<span></span></li>
+          <li><b>Tue / Thu</b> — jiu jitsu<span></span></li>
+          <li><b>Fri</b> — no-gi grappling<span></span></li>
+        </ul>
+        <a class="go" href="#visit">Bring them to watch first →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="why">
+  <div class="wrap story-grid">
+    <div class="story-photo rv">
+      <div class="main"><img src="assets/photo-coach-pads.jpg" alt="Jiu jitsu training on the mats at Wasatch Combat Sports"></div>
+      <span class="hand-arrow">↑ an ordinary Wednesday on the mats</span>
+    </div>
+    <div class="story-copy">
+      <span class="sec-eyebrow rv">why folks stay</span>
+      <h2 class="sec-title rv">Not your typical gym. On purpose.</h2>
+      <p class="rv">Wasatch Combat Sports is <strong>one gym, one location</strong> — 972 N 1430 W in Orem. No franchises, no rotating staff. The same coaches who hold pads for pro fighters kneel down to fix a six-year-old's stance an hour later.</p>
+      <p class="rv">That's the whole secret behind the rating: <strong>fitness, martial arts and personal growth in one room</strong>, with people who know your name by week two. It's why our Google reviews say "family" more often than "gym."</p>
+      <div class="story-stats rv">
+        <div class="sstat"><div class="v">5.0★</div><div class="k">Google rating — highest in Utah County</div></div>
+        <div class="sstat"><div class="v">338</div><div class="k">five-star reviews</div></div>
+        <div class="sstat"><div class="v">4+</div><div class="k">youngest students' age</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="firstweek">
+  <div class="wrap">
+    <span class="sec-eyebrow rv" style="margin:0 auto 6px;text-align:center;">taped to the front desk</span>
+    <h2 class="sec-title rv" style="text-align:center;">Your first week, honestly.</h2>
+    <p class="sec-sub rv" style="text-align:center;margin-left:auto;margin-right:auto;">No secret handshake. Here's exactly how it goes.</p>
+    <div class="notecard rv">
+      <h3>What actually happens:</h3>
+      <ol>
+        <li><b>Show up 15 minutes early</b> in gym clothes. Bring water. That's the whole packing list — no gloves or gi needed yet.</li>
+        <li><b>Start in a 101 class.</b> Muay Thai 101 and Jiu-Jitsu 101 run every week — real classes on the real schedule, full of other beginners.</li>
+        <li><b>Learn stance, footwork and your first techniques</b> with partners at your level while a coach walks the room.</li>
+        <li><b>Nobody makes you spar.</b> Sparring is opt-in, gear-checked and supervised — most folks wait weeks, and that's exactly right.</li>
+      </ol>
+      <span class="ps">p.s. — the hardest part is walking in the door. After that, we've got you.</span>
+    </div>
+  </div>
+</section>
+
+<section id="coaches">
+  <div class="wrap">
+    <span class="sec-eyebrow rv">the people your kids will quote at dinner</span>
+    <h2 class="sec-title rv">Coaches worth driving across the county for.</h2>
+    <p class="sec-sub rv">Real lineage, real records, zero hype. Here's who's actually on the mat.</p>
+    <div class="coach-grid">
+      <div class="ccard rv">
+        <h3>Rad Martinez</h3><div class="d">MMA</div>
+        <p>NCAA Division I All-American wrestler — 5th in the nation at 133 lbs for Clarion University, 98–27 career — and a 15–3 pro MMA fighter who reached a Bellator featherweight tournament final.</p>
+        <div class="cred">D-I All-American · 15–3 Pro</div>
+      </div>
+      <div class="ccard rv">
+        <h3>Roberto Salomao</h3><div class="d">Jiu Jitsu &amp; MMA</div>
+        <p>Brazilian jiu-jitsu black belt who leads our gi and no-gi program and MMA grappling — decorated, competition-active, and still rolling with his students every week.</p>
+        <div class="cred">BJJ Black Belt</div>
+      </div>
+      <div class="ccard rv">
+        <h3>Kani Correa</h3><div class="d">Muay Thai · Boxing · MMA · Kids</div>
+        <p>Coaches striking across three arts and anchors the youth program. If you ask parents at pickup who their kid talks about — it's Kani.</p>
+        <div class="cred">Head of striking &amp; youth</div>
+      </div>
+      <div class="ccard rv">
+        <h3>Master Piboon Soumphol</h3><div class="d">Muay Thai · Kids</div>
+        <p>Teaches Muay Thai the traditional Thai way. Everyone here calls him Master Pi — his Tuesday and Thursday kickboxing classes carry his name on the schedule.</p>
+        <div class="cred">Traditional Muay Thai</div>
+      </div>
+      <div class="ccard rv">
+        <h3>Jeff</h3><div class="d">Kickboxing · Kids</div>
+        <p>Structure, patience and the knack for making week one feel like week fifty. Splits his time between kickboxing and the kids' mats.</p>
+        <div class="cred">Kickboxing &amp; youth</div>
+      </div>
+      <div class="ccard rv">
+        <h3>Cheryl</h3><div class="d">Strength &amp; Conditioning</div>
+        <p>Runs the daily strength and conditioning classes that keep our fighters durable — and give non-fighters the best hour of their afternoon.</p>
+        <div class="cred">Daily S&amp;C program</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="day">
+  <div class="wrap">
+    <span class="sec-eyebrow rv">6 a.m. to 9 p.m., Monday–Friday + Saturday mornings</span>
+    <h2 class="sec-title rv">There's a class whenever you're free.</h2>
+    <p class="sec-sub rv">A peek at the real weekly rhythm — pulled straight from the schedule.</p>
+    <div class="peek">
+      <div class="slot-card rv">
+        <div class="head">Mornings <small>6:00 – 10:30 AM</small></div>
+        <ul>
+          <li>Muay Thai <span>6:00 AM daily</span></li>
+          <li>Jiu Jitsu <span>7:00 AM daily</span></li>
+          <li>Muay Thai <span>8:00 AM daily</span></li>
+          <li>Women's Combat <span>9:30 AM Mon–Fri</span></li>
+          <li>Saturday Boxing <span>9:00 AM</span></li>
+        </ul>
+      </div>
+      <div class="slot-card rv">
+        <div class="head">After school <small>4:00 – 5:30 PM</small></div>
+        <ul>
+          <li>Youth Juniors <span>4:00 PM Mon–Fri</span></li>
+          <li>Strength &amp; Cond. <span>4:30 PM Mon–Fri</span></li>
+          <li>Youth Seniors <span>4:45 PM Mon–Fri</span></li>
+          <li>Youth No-Gi <span>Fridays</span></li>
+        </ul>
+      </div>
+      <div class="slot-card rv">
+        <div class="head">Evenings <small>5:30 – 9:00 PM</small></div>
+        <ul>
+          <li>MMA / JJ 101 / Sparring <span>5:30 PM</span></li>
+          <li>Muay Thai + MT 101 <span>6:30 PM</span></li>
+          <li>Kickboxing w/ Master Pi <span>Tue &amp; Thu</span></li>
+          <li>Boxing &amp; Jiu Jitsu <span>7:30 PM</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="sched-link rv"><a href="https://wasatchcombatsports.com/the-schedule" target="_blank" rel="noopener">See the full weekly schedule</a></div>
+  </div>
+</section>
+
+<section class="rev" id="reviews">
+  <div class="wrap">
+    <span class="sec-eyebrow rv">in our neighbors' words</span>
+    <h2 class="sec-title rv">338 five-star reviews. Zero paid ads.</h2>
+    <p class="sec-sub rv">Straight from Google — the kind of things people say at school pickup.</p>
+    <div class="rev-grid">
+      <div class="bubble rv"><span class="st">★★★★★</span>"My kids, 8 and 6, started the kids Muay Thai class and love it. Both have become more confident."<span class="who">— Parent, Youth Program</span></div>
+      <div class="bubble rv"><span class="st">★★★★★</span>"Started Muay Thai as a total beginner — had a ton of fun and learned a lot. Great for every skill level."<span class="who">— Adult member, Muay Thai</span></div>
+      <div class="bubble rv"><span class="st">★★★★★</span>"Much more than just a gym — it's a family. The coaches genuinely care about your progress."<span class="who">— Member, Google review</span></div>
+    </div>
+    <div class="rev-lockup rv">
+      <div class="n">5.0</div>
+      <div class="s">★★★★★</div>
+      <p>338 five-star Google reviews</p>
+      <span class="hand">the highest-rated gym in Utah County — thanks, Orem!</span>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap faq-wrap">
+    <span class="sec-eyebrow rv">things people actually google</span>
+    <h2 class="sec-title rv">Fair questions, honest answers.</h2>
+    <p class="sec-sub rv" style="margin-bottom:34px;">The five we hear most at the front desk.</p>
+    <details class="rv"><summary>Do I need experience to start Muay Thai in Orem?</summary><div class="a">Nope. Muay Thai 101 and Jiu-Jitsu 101 run every single week — real beginner classes full of other first-timers. Most of our members started with zero experience.</div></details>
+    <details class="rv"><summary>What should I bring to my first class?</summary><div class="a">Gym clothes and a water bottle. No gloves, no gi, no gear on day one — we'll help you figure out equipment once you know you love it.</div></details>
+    <details class="rv"><summary>What age can my child start?</summary><div class="a">As young as four. Kids split into Juniors (4:00 PM) and Seniors (4:45 PM) so they train with kids their own age and size — come watch a class first, most parents do.</div></details>
+    <details class="rv"><summary>Will I have to spar?</summary><div class="a">Never on day one, and never without asking for it. Sparring is opt-in, gear-checked and coach-supervised. Technique comes first, always.</div></details>
+    <details class="rv"><summary>Where exactly are you in Orem?</summary><div class="a">972 N 1430 W, Orem, UT 84057 — just off I-15, an easy drive from Provo, Lindon, Vineyard and anywhere in Utah County.</div></details>
+  </div>
+</section>
+
+<section id="blog">
+  <div class="wrap">
+    <span class="sec-eyebrow rv">from our notebook</span>
+    <h2 class="sec-title rv">Things worth reading before you start.</h2>
+    <p class="sec-sub rv">Written by the coaches, for the curious and the slightly nervous.</p>
+    <div class="blog-grid">
+      <a class="bcard rv" href="#visit"><span class="k">the 2026 guide</span><h3>Best Muay Thai Classes in Orem, UT — the 2026 Guide</h3><p>Every option in town, honestly compared — including where we think we fit.</p><span class="rm">Read it →</span></a>
+      <a class="bcard rv" href="#visit"><span class="k">sweat math</span><h3>How Many Calories Does a Muay Thai Class Actually Burn?</h3><p>What an hour on the pads really does, from warm-up to final bell.</p><span class="rm">Read it →</span></a>
+      <a class="bcard rv" href="#visit"><span class="k">for parents</span><h3>Is Jiu Jitsu Safe for Kids? What Utah County Parents Should Know</h3><p>Injury data, mat culture, and what a good kids' program looks like up close.</p><span class="rm">Read it →</span></a>
+      <a class="bcard rv" href="#visit"><span class="k">choosing a lane</span><h3>Boxing vs. Kickboxing: Which Should You Start With?</h3><p>Two great doors into striking — here's how to pick your first one.</p><span class="rm">Read it →</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="visit">
+  <div class="wrap">
+    <span class="sec-eyebrow rv">come say hi</span>
+    <h2 class="sec-title rv">Find us. We're easy to spot.</h2>
+    <p class="sec-sub rv">One location, plenty of parking, flags on the ceiling. You'll know it when you see it.</p>
+    <div class="visit-grid">
+      <div class="visit-card rv">
+        <div class="pad">
+          <h3>Wasatch Combat Sports</h3>
+          <p>972 N 1430 W<br>Orem, UT 84057</p>
+          <a class="ph" href="tel:+18018570611">(801) 857-0611</a>
+          <p>Classes about 6 AM – 9 PM weekdays,<br>plus Saturday mornings.<br>Serving Orem, Provo &amp; all of Utah County.</p>
+          <p style="margin-top:10px;">Instagram — @wasatchcombatsports</p>
+        </div>
+        <div class="mapr"><iframe title="Map to Wasatch Combat Sports in Orem, Utah" src="https://www.google.com/maps?q=972+N+1430+W,+Orem,+UT+84057&output=embed" loading="lazy"></iframe></div>
+      </div>
+      <form class="form-card rv" id="leadForm">
+        <h3>Say hello first.</h3>
+        <span class="hand">tell us a little about you — a real coach reads these</span>
+        <div class="field"><label for="f-name">Your name</label><input id="f-name" type="text" required autocomplete="name"></div>
+        <div class="field"><label for="f-email">Email</label><input id="f-email" type="email" required autocomplete="email"></div>
+        <div class="field"><label for="f-phone">Phone</label><input id="f-phone" type="tel" required autocomplete="tel"></div>
+        <div class="field"><label for="f-prog">What sounds fun?</label>
+          <select id="f-prog">
+            <option>Honestly, not sure yet</option>
+            <option>Muay Thai</option>
+            <option>Boxing</option>
+            <option>Jiu Jitsu</option>
+            <option>MMA</option>
+            <option>Women's Combat</option>
+            <option>Kids — Youth Juniors</option>
+            <option>Kids — Youth Seniors</option>
+            <option>Strength &amp; Conditioning</option>
+          </select>
+        </div>
+        <button class="btn btn-red" type="submit" style="width:100%;border:0;cursor:pointer;font-family:var(--sans);">Introduce yourself</button>
+        <span class="form-msg" id="formMsg">got it! a coach will text you soon — see you on the mats</span>
+      </form>
+    </div>
+  </div>
+</section>
+
+<div class="bigfoot">
+  <h2 class="rv">Come meet <em>the new you.</em></h2>
+  <p class="rv">It starts with one slightly nervous walk through our door — same as it did for everyone else here.</p>
+  <a class="btn btn-red rv" href="#visit">Plan your first visit</a>
+  <div class="foot-in">
+    <img src="assets/wcs-logo-white.png" alt="Wasatch Combat Sports">
+    <span>© 2026 Wasatch Combat Sports · 972 N 1430 W, Orem, UT 84057 · (801) 857-0611</span>
+  </div>
+</div>
+
+<script>
+if(location.search.includes('flat'))document.documentElement.classList.add('flat');
+const burger=document.getElementById('burger'),navEl=document.getElementById('nav');
+burger.addEventListener('click',()=>navEl.classList.toggle('open'));
+navEl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navEl.classList.remove('open')));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+document.getElementById('leadForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  document.getElementById('formMsg').style.display='block';
+  e.target.querySelector('button').textContent='Sent! ✓';
+});
+</script>
+</body>
+</html>
