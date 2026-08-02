@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wasatch Combat - Classes & Training</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #d92b2b;
+            --dark-red: #b82020;
+            --white: #ffffff;
+            --cream: #fffaf8;
+            --light-tan: #f5f0ee;
+            --ink: #1d1d1d;
+            --text: #3a3a3a;
+            --muted: #767676;
+            --border: #e8dcd8;
+        }
+
+        body {
+            font-family: 'Sora', sans-serif;
+            color: var(--text);
+            background: var(--white);
+            line-height: 1.7;
+        }
+
+        a {
+            color: var(--red);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--dark-red);
+        }
+
+        header {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 25px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--red);
+        }
+
+        nav {
+            display: flex;
+            gap: 35px;
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--red);
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--light-tan) 100%);
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--ink);
+        }
+
+        .hero-section p {
+            font-size: 1.1rem;
+            color: var(--text);
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* CLASS GRID HERO */
+        .classes-hero {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px auto;
+            max-width: 1200px;
+            padding: 0 40px;
+        }
+
+        .class-tile {
+            position: relative;
+            height: 350px;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .class-tile:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .class-tile-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.6s ease;
+        }
+
+        .class-tile:hover .class-tile-bg {
+            transform: scale(1.08);
+        }
+
+        .class-tile-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+            color: var(--white);
+        }
+
+        .class-tile-overlay h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .class-tile-overlay p {
+            font-size: 0.95rem;
+            opacity: 0.95;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        section h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            text-align: center;
+            color: var(--ink);
+        }
+
+        section h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--red);
+            margin: 20px auto 0;
+        }
+
+        .section-intro {
+            text-align: center;
+            font-size: 1.05rem;
+            color: var(--text);
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        /* Card grids for other sections */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--light-tan) 100%);
+            padding: 40px;
+            border-radius: 12px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid var(--red);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--ink);
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .card-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--red) 0%, var(--dark-red) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        .card-centered {
+            text-align: center;
+        }
+
+        .card .title {
+            font-size: 0.85rem;
+            color: var(--red);
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        /* Reviews */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .review-card {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--light-tan) 100%);
+            padding: 35px;
+            border-radius: 12px;
+            border-left: 4px solid var(--red);
+        }
+
+        .review-stars {
+            color: var(--red);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+
+        .review-text {
+            font-size: 0.95rem;
+            color: var(--text);
+            margin-bottom: 15px;
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        .review-author {
+            font-size: 0.85rem;
+            color: var(--muted);
+            font-weight: 700;
+        }
+
+        /* Contact form */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 60px;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            font-size: 0.95rem;
+            color: var(--text);
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        input, textarea, select {
+            background: var(--white);
+            color: var(--ink);
+            border: 1px solid var(--border);
+            padding: 12px 15px;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--red);
+            box-shadow: 0 0 0 3px rgba(217, 43, 43, 0.1);
+        }
+
+        textarea {
+            grid-column: 1 / -1;
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            grid-column: 1 / -1;
+            background: var(--red);
+            color: var(--white);
+            padding: 14px 30px;
+            font-weight: 700;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: var(--dark-red);
+        }
+
+        .cta-final {
+            background: linear-gradient(135deg, var(--red) 0%, var(--dark-red) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 40px;
+        }
+
+        .cta-final h2 {
+            color: var(--white);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-final h2::after {
+            background: var(--white);
+        }
+
+        .cta-final p {
+            font-size: 1.1rem;
+            margin-bottom: 35px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--white);
+            color: var(--red);
+            padding: 16px 50px;
+            font-weight: 700;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background: var(--white);
+            border-top: 1px solid var(--border);
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav {
+                gap: 20px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-section {
+                padding: 60px 20px;
+            }
+
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+
+            .classes-hero, .container {
+                padding: 0 20px;
+            }
+
+            section {
+                padding: 50px 0;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-2, .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Wasatch Combat</div>
+        <nav>
+            <a href="#classes">Classes</a>
+            <a href="#coaches">Coaches</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="hero-section">
+        <h1>Choose Your Path</h1>
+        <p>Master combat sports with experienced coaches. Learn technique. Build fitness. Join the community.</p>
+
+        <div id="classes" class="classes-hero">
+            <div class="class-tile">
+                <div class="class-tile-bg" style="background-image: url('https://images.unsplash.com/photo-1526480122352-f5e63e6f3d3f?w=600&auto=format&fit=crop&q=60');"></div>
+                <div class="class-tile-overlay">
+                    <h3>Muay Thai</h3>
+                    <p>The art of eight limbs. Power, technique, and endurance.</p>
+                </div>
+            </div>
+
+            <div class="class-tile">
+                <div class="class-tile-bg" style="background-image: url('https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=600&auto=format&fit=crop&q=60');"></div>
+                <div class="class-tile-overlay">
+                    <h3>Boxing</h3>
+                    <p>Footwork, speed, and precision striking.</p>
+                </div>
+            </div>
+
+            <div class="class-tile">
+                <div class="class-tile-bg" style="background-image: url('https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=600&auto=format&fit=crop&q=60');"></div>
+                <div class="class-tile-overlay">
+                    <h3>Kickboxing</h3>
+                    <p>High-energy fusion of punches and kicks.</p>
+                </div>
+            </div>
+
+            <div class="class-tile">
+                <div class="class-tile-bg" style="background-image: url('https://images.unsplash.com/photo-1530549387789-4c1017266635?w=600&auto=format&fit=crop&q=60');"></div>
+                <div class="class-tile-overlay">
+                    <h3>Kids Classes</h3>
+                    <p>Self-defense, discipline, and confidence building.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <section>
+            <h2>Why Wasatch</h2>
+            <div class="grid-2">
+                <div class="card card-centered">
+                    <div style="font-size: 2.5rem; margin-bottom: 15px;">🎯</div>
+                    <h3>Proven Results</h3>
+                    <p>Beginners see changes in weeks. Competitors get ready for fights. Everyone transforms.</p>
+                </div>
+                <div class="card card-centered">
+                    <div style="font-size: 2.5rem; margin-bottom: 15px;">👨‍🏫</div>
+                    <h3>Expert Coaches</h3>
+                    <p>Fighters with real competition experience. Passionate about teaching. Personal attention.</p>
+                </div>
+                <div class="card card-centered">
+                    <div style="font-size: 2.5rem; margin-bottom: 15px;">🤝</div>
+                    <h3>Community</h3>
+                    <p>Train alongside dedicated athletes. Build friendships. Everyone supports each other's progress.</p>
+                </div>
+                <div class="card card-centered">
+                    <div style="font-size: 2.5rem; margin-bottom: 15px;">📈</div>
+                    <h3>Structured Path</h3>
+                    <p>Know exactly what you're learning at each stage. Progress with confidence and clarity.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="coaches">
+            <h2>Meet Your Coaches</h2>
+            <p class="section-intro">Experienced fighters committed to your success. Real credentials. Real passion. Real results.</p>
+            <div class="grid-2">
+                <div class="card card-centered">
+                    <div class="card-avatar">M</div>
+                    <h3>Marcus Chen</h3>
+                    <div class="title">Head Coach — Muay Thai</div>
+                    <p>12 years competitive (47-8 record). Former regional champion. Specializes in technical progression and competition preparation.</p>
+                </div>
+                <div class="card card-centered">
+                    <div class="card-avatar">S</div>
+                    <h3>Sarah Rodriguez</h3>
+                    <div class="title">Boxing Coach</div>
+                    <p>Amateur boxing champion. Specializes in footwork and hand speed. Expert at helping beginners build solid fundamentals.</p>
+                </div>
+                <div class="card card-centered">
+                    <div class="card-avatar">T</div>
+                    <h3>Tommy Lee</h3>
+                    <div class="title">Conditioning Coach</div>
+                    <p>Designs personalized conditioning programs. Believes proper fitness is the foundation for all combat skills.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="reviews">
+            <h2>Member Reviews</h2>
+            <p class="section-intro">Real people sharing their real experiences at Wasatch.</p>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <div class="review-text">"Zero experience to first amateur fight in six months. The coaches believed in me when I didn't believe in myself."</div>
+                    <div class="review-author">James P. — Competitor</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <div class="review-text">"Found my community here. Training partners became best friends. The discipline changed how I approach everything."</div>
+                    <div class="review-author">Alex M. — Boxing Focus</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <div class="review-text">"Better fitness, clearer mind, genuine belonging. This is way more than a gym—it's where you transform."</div>
+                    <div class="review-author">Jordan K. — 8 Months</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Get Started Free</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Wasatch Combat Sports</h3>
+                    <p><strong>1234 South Main Street</strong><br>Orem, UT 84057</p>
+                    <p><strong>Phone:</strong><br><a href="tel:+18015551234">(801) 555-1234</a></p>
+                    <p><strong>Email:</strong><br><a href="mailto:info@wasatchcombatsports.com">info@wasatchcombatsports.com</a></p>
+                    <p style="margin-top: 30px;"><strong>Hours</strong><br>Mon–Fri: 3pm–9pm<br>Sat: 10am–4pm<br>Sun: Closed</p>
+                </div>
+                <form class="form-grid">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                    <input type="tel" placeholder="Phone Number">
+                    <select required>
+                        <option value="">Program Interested In:</option>
+                        <option value="muay-thai">Muay Thai</option>
+                        <option value="boxing">Boxing</option>
+                        <option value="kickboxing">Kickboxing</option>
+                        <option value="kids">Kids Classes</option>
+                        <option value="not-sure">Not Sure Yet</option>
+                    </select>
+                    <textarea placeholder="Tell us about yourself—goals, experience level, anything we should know."></textarea>
+                    <button type="submit" class="submit-btn">Schedule Free Class</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <div class="cta-final">
+        <h2>Your First Class Is Free</h2>
+        <p>No commitment. No contracts. Just show up, meet the coaches, and experience what Wasatch is about.</p>
+        <a href="#contact" class="cta-btn">Reserve Your Spot</a>
+    </div>
+
+    <footer>
+        <p>Wasatch Combat Sports © 2024 • Concept 3: Grid-Based Hero Layout</p>
+    </footer>
+</body>
+</html>

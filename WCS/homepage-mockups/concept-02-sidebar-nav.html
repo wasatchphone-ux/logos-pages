@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wasatch Combat Academy - Browse Classes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #d92b2b;
+            --white: #ffffff;
+            --off-white: #f8f7f6;
+            --ink: #1a1a1a;
+            --text: #3a3a3a;
+            --muted: #767676;
+            --border: #e8e8e8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: var(--white);
+            line-height: 1.7;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+
+        /* Fixed Sidebar */
+        aside {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: var(--ink);
+            color: var(--white);
+            padding: 40px 20px;
+            overflow-y: auto;
+            z-index: 100;
+            border-right: 2px solid var(--red);
+        }
+
+        .sidebar-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav {
+            list-style: none;
+        }
+
+        nav li {
+            margin-bottom: 12px;
+        }
+
+        nav a {
+            display: block;
+            padding: 12px 15px;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            border-left: 3px solid transparent;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--white);
+            background: rgba(217, 43, 43, 0.1);
+            border-left-color: var(--red);
+        }
+
+        nav .active {
+            color: var(--red);
+            font-weight: 600;
+        }
+
+        .sidebar-cta {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar-cta a {
+            display: block;
+            background: var(--red);
+            color: var(--white);
+            padding: 12px 15px;
+            text-align: center;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .sidebar-cta a:hover {
+            background: #b82020;
+        }
+
+        .sidebar-hours {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.8rem;
+        }
+
+        .sidebar-hours p {
+            margin-bottom: 8px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .sidebar-hours strong {
+            display: block;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+
+        /* Main Content */
+        main {
+            grid-column: 2;
+            padding: 60px 80px;
+        }
+
+        header {
+            margin-bottom: 60px;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--ink);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: var(--muted);
+            max-width: 600px;
+        }
+
+        .hero-mini {
+            background: linear-gradient(135deg, var(--off-white) 0%, var(--white) 100%);
+            padding: 50px 40px;
+            border-radius: 8px;
+            margin-bottom: 60px;
+            border-left: 4px solid var(--red);
+        }
+
+        .hero-mini h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .hero-mini p {
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .hero-mini-cta {
+            display: inline-block;
+            background: var(--red);
+            color: var(--white);
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .hero-mini-cta:hover {
+            background: #b82020;
+        }
+
+        /* Section titles */
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 60px 0 30px;
+            color: var(--ink);
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        /* Program/Class List */
+        .program-list {
+            display: grid;
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .program-item {
+            display: grid;
+            grid-template-columns: 150px 1fr 150px;
+            gap: 30px;
+            align-items: center;
+            padding: 25px;
+            background: var(--off-white);
+            border-radius: 6px;
+            transition: box-shadow 0.3s;
+            cursor: pointer;
+            border-left: 4px solid transparent;
+        }
+
+        .program-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-left-color: var(--red);
+        }
+
+        .program-thumb {
+            width: 150px;
+            height: 100px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 4px;
+        }
+
+        .program-details h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--ink);
+        }
+
+        .program-details p {
+            font-size: 0.9rem;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .program-level {
+            text-align: right;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--red);
+            text-transform: uppercase;
+        }
+
+        /* Coaches */
+        .coaches-compact {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .coach-compact {
+            padding: 30px;
+            background: var(--off-white);
+            border-radius: 6px;
+            border-top: 3px solid var(--red);
+        }
+
+        .coach-compact h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        .coach-compact .title {
+            font-size: 0.8rem;
+            color: var(--red);
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .coach-compact p {
+            font-size: 0.9rem;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Testimonials - vertical list */
+        .testimonials-list {
+            display: grid;
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .testimonial-item {
+            padding: 25px;
+            background: var(--off-white);
+            border-left: 4px solid var(--red);
+            border-radius: 4px;
+        }
+
+        .testimonial-item .stars {
+            color: var(--red);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-item p {
+            font-size: 0.95rem;
+            color: var(--text);
+            font-style: italic;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-size: 0.85rem;
+            color: var(--muted);
+            font-weight: 600;
+        }
+
+        /* Contact form */
+        .contact-form {
+            background: var(--off-white);
+            padding: 40px;
+            border-radius: 6px;
+            border-left: 4px solid var(--red);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        input, textarea, select {
+            background: var(--white);
+            color: var(--ink);
+            border: 1px solid var(--border);
+            padding: 12px 15px;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--red);
+            box-shadow: 0 0 0 3px rgba(217,43,43,0.1);
+        }
+
+        textarea {
+            grid-column: 1 / -1;
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            grid-column: 1 / -1;
+            background: var(--red);
+            color: var(--white);
+            padding: 12px 30px;
+            font-weight: 600;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #b82020;
+        }
+
+        footer {
+            grid-column: 2;
+            padding: 40px 80px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        @media (max-width: 1024px) {
+            body {
+                grid-template-columns: 250px 1fr;
+            }
+
+            main {
+                padding: 40px 40px;
+            }
+
+            footer {
+                padding: 40px;
+            }
+
+            .program-item {
+                grid-template-columns: 1fr;
+            }
+
+            .program-thumb {
+                width: 100%;
+                height: 200px;
+            }
+
+            .program-level {
+                text-align: left;
+            }
+
+            .coaches-compact {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                grid-template-columns: 1fr;
+            }
+
+            aside {
+                position: fixed;
+                left: -280px;
+                transition: left 0.3s;
+                z-index: 1000;
+            }
+
+            aside.active {
+                left: 0;
+            }
+
+            main {
+                grid-column: 1;
+                padding: 20px;
+            }
+
+            footer {
+                grid-column: 1;
+                padding: 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside>
+        <div class="sidebar-logo">Wasatch Academy</div>
+        <nav>
+            <li><a href="#hero" class="active">Overview</a></li>
+            <li><a href="#programs">Programs</a></li>
+            <li><a href="#coaches">Coaches</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </nav>
+        <div class="sidebar-cta">
+            <a href="#contact">Get Started Free</a>
+        </div>
+        <div class="sidebar-hours">
+            <strong>Hours</strong>
+            <p>Mon–Fri: 3pm–9pm</p>
+            <p>Sat: 10am–4pm</p>
+            <p>Sun: Closed</p>
+        </div>
+    </aside>
+
+    <main>
+        <header id="hero">
+            <h1>Master Your Craft</h1>
+            <p>Structured training in Muay Thai, boxing, and kickboxing. Learn from experienced coaches. Progress at your pace.</p>
+        </header>
+
+        <div class="hero-mini">
+            <h2>Why Wasatch?</h2>
+            <p>Proven curriculum. Expert coaches. Real community. Your first class is free—no commitment.</p>
+            <a href="#contact" class="hero-mini-cta">Schedule Free Class</a>
+        </div>
+
+        <h2 id="programs">Programs</h2>
+        <div class="program-list">
+            <div class="program-item">
+                <div class="program-thumb" style="background-image: url('https://images.unsplash.com/photo-1526480122352-f5e63e6f3d3f?w=200&auto=format&fit=crop&q=60');"></div>
+                <div class="program-details">
+                    <h3>Muay Thai</h3>
+                    <p>The complete striking system. Progressive technique from basics to advanced combinations. Build power and endurance.</p>
+                </div>
+                <div class="program-level">ALL LEVELS</div>
+            </div>
+
+            <div class="program-item">
+                <div class="program-thumb" style="background-image: url('https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=200&auto=format&fit=crop&q=60');"></div>
+                <div class="program-details">
+                    <h3>Boxing</h3>
+                    <p>Footwork, hand speed, and tactical thinking. Build athletic foundation and competitive mindset.</p>
+                </div>
+                <div class="program-level">ALL LEVELS</div>
+            </div>
+
+            <div class="program-item">
+                <div class="program-thumb" style="background-image: url('https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=200&auto=format&fit=crop&q=60');"></div>
+                <div class="program-details">
+                    <h3>Kickboxing</h3>
+                    <p>High-intensity fusion of punching and kicking. Amazing cardio and measurable fitness improvements.</p>
+                </div>
+                <div class="program-level">ALL LEVELS</div>
+            </div>
+
+            <div class="program-item">
+                <div class="program-thumb" style="background-image: url('https://images.unsplash.com/photo-1530549387789-4c1017266635?w=200&auto=format&fit=crop&q=60');"></div>
+                <div class="program-details">
+                    <h3>Kids Classes</h3>
+                    <p>Age-appropriate instruction in self-defense, discipline, and fitness. Safe, structured environment.</p>
+                </div>
+                <div class="program-level">AGES 7-16</div>
+            </div>
+        </div>
+
+        <h2 id="coaches">Our Coaches</h2>
+        <div class="coaches-compact">
+            <div class="coach-compact">
+                <h3>Marcus Chen</h3>
+                <div class="title">Head Coach — Muay Thai</div>
+                <p>12 years competitive (47-8 record). Former regional champion. Specializes in technical progression and conditioning.</p>
+            </div>
+            <div class="coach-compact">
+                <h3>Sarah Rodriguez</h3>
+                <div class="title">Boxing Coach</div>
+                <p>Amateur boxing champion. Specializes in footwork and hand speed. Expert with beginners starting their journey.</p>
+            </div>
+            <div class="coach-compact">
+                <h3>Tommy Lee</h3>
+                <div class="title">Conditioning Coach</div>
+                <p>Designs personalized conditioning programs. Believes proper conditioning is the foundation for all combat skills.</p>
+            </div>
+        </div>
+
+        <h2 id="testimonials">What Members Say</h2>
+        <div class="testimonials-list">
+            <div class="testimonial-item">
+                <div class="stars">★★★★★</div>
+                <p>"I had zero experience. Six months later, I competed in my first amateur fight. The coaches believed in me before I did."</p>
+                <div class="testimonial-author">James P. — Muay Thai</div>
+            </div>
+            <div class="testimonial-item">
+                <div class="stars">★★★★★</div>
+                <p>"The curriculum is real. You know exactly what you're learning at each stage. Every coach teaches proper technique."</p>
+                <div class="testimonial-author">Alex M. — Boxing</div>
+            </div>
+            <div class="testimonial-item">
+                <div class="stars">★★★★★</div>
+                <p>"Better fitness, clearer mind, genuine community. This isn't just a gym—it's where I found my people."</p>
+                <div class="testimonial-author">Jordan K. — 6 Months In</div>
+            </div>
+        </div>
+
+        <h2 id="faq">FAQ</h2>
+        <div class="testimonials-list">
+            <div class="testimonial-item" style="border-left-color: var(--muted);">
+                <strong style="color: var(--ink);">Do I need prior experience?</strong>
+                <p style="margin: 10px 0 0 0; font-style: normal;">No. Beginner classes teach fundamentals from the ground up. Everyone starts at the beginning.</p>
+            </div>
+            <div class="testimonial-item" style="border-left-color: var(--muted);">
+                <strong style="color: var(--ink);">What should I bring?</strong>
+                <p style="margin: 10px 0 0 0; font-style: normal;">Workout clothes, water, towel. We provide hand wraps and gloves. Bring your own if you prefer.</p>
+            </div>
+            <div class="testimonial-item" style="border-left-color: var(--muted);">
+                <strong style="color: var(--ink);">How often should I train?</strong>
+                <p style="margin: 10px 0 0 0; font-style: normal;">Beginners see results 2-3x per week. Competitors train 5-6 days. Find what works for you.</p>
+            </div>
+            <div class="testimonial-item" style="border-left-color: var(--muted);">
+                <strong style="color: var(--ink);">Can I drop in?</strong>
+                <p style="margin: 10px 0 0 0; font-style: normal;">Yes. Full access to all classes with your membership. No booking required—just show up.</p>
+            </div>
+        </div>
+
+        <h2 id="contact">Get Started</h2>
+        <div class="contact-form">
+            <form>
+                <div class="form-grid">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                    <input type="tel" placeholder="Phone Number">
+                    <select required>
+                        <option value="">Program Interested In:</option>
+                        <option value="muay-thai">Muay Thai</option>
+                        <option value="boxing">Boxing</option>
+                        <option value="kickboxing">Kickboxing</option>
+                        <option value="kids">Kids Classes</option>
+                        <option value="not-sure">Not Sure Yet</option>
+                    </select>
+                    <textarea placeholder="Tell us about yourself—goals, experience level, anything we should know."></textarea>
+                    <button type="submit" class="submit-btn">Schedule Free Class</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>Wasatch Combat Academy © 2024 • Concept 2: Sidebar Navigation Layout</p>
+    </footer>
+</body>
+</html>

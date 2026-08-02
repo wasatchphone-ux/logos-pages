@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wasatch Combat Sports - Free First Class</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #d92b2b;
+            --black: #111111;
+            --ink: #1e1e1e;
+            --text: #3a3a3a;
+            --muted: #767676;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--ink);
+            background: var(--white);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--red);
+            text-decoration: none;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(17, 17, 17, 0.98);
+            color: var(--white);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 200;
+            border-bottom: 2px solid var(--red);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--red);
+        }
+
+        /* MASSIVE HERO - 70% of viewport */
+        .hero {
+            min-height: 70vh;
+            padding-top: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=1600&auto=format&fit=crop&q=80') center 30% / cover no-repeat;
+            opacity: 0.2;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(100deg, rgba(0,0,0,0.95) 35%, rgba(0,0,0,0.7) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            padding: 60px 40px;
+            color: var(--white);
+            max-width: 650px;
+        }
+
+        .hero-content h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .hero-tagline {
+            font-size: 1.4rem;
+            color: var(--red);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .hero-content p {
+            font-size: 1.05rem;
+            color: #ddd;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--red);
+            color: var(--white);
+            padding: 18px 50px;
+            font-weight: 700;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: 2px solid var(--red);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--red);
+        }
+
+        .hero-benefits {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .benefit {
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+
+        .benefit-icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        /* FORM SECTION - Right side of hero or below */
+        .hero-form {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            padding: 40px;
+            background: rgba(217, 43, 43, 0.95);
+            color: var(--white);
+            border-radius: 8px;
+            margin: 60px 40px 60px 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .hero-form h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .hero-form p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 25px;
+        }
+
+        .form-fields {
+            display: grid;
+            gap: 12px;
+        }
+
+        input, textarea, select {
+            background: rgba(255,255,255,0.95);
+            color: var(--ink);
+            border: none;
+            padding: 12px 15px;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.3);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-submit {
+            background: var(--black);
+            color: var(--red);
+            padding: 14px 30px;
+            font-weight: 700;
+            font-family: 'Oswald', sans-serif;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .form-submit:hover {
+            background: var(--red);
+            color: var(--black);
+        }
+
+        .form-note {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.7);
+            margin-top: 15px;
+        }
+
+        /* Secondary content - minimal, supplementary */
+        .secondary {
+            padding: 60px 40px;
+            background: var(--white);
+        }
+
+        .section-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 80px;
+            text-align: center;
+        }
+
+        .why-item {
+            padding: 30px 20px;
+        }
+
+        .why-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .why-item h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--ink);
+            text-transform: uppercase;
+        }
+
+        .why-item p {
+            font-size: 0.85rem;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .coaches {
+            padding: 60px 40px;
+            background: #f7f7f7;
+        }
+
+        .coaches-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .coach {
+            text-align: center;
+            padding: 25px;
+            background: var(--white);
+            border-top: 3px solid var(--red);
+            border-radius: 4px;
+        }
+
+        .coach-avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--red);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 2rem;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+        }
+
+        .coach h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        .coach .title {
+            font-size: 0.75rem;
+            color: var(--red);
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .coach p {
+            font-size: 0.85rem;
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        .reviews {
+            padding: 60px 40px;
+            background: var(--white);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .review {
+            padding: 25px;
+            background: #f7f7f7;
+            border-left: 3px solid var(--red);
+            border-radius: 4px;
+        }
+
+        .review-stars {
+            color: var(--red);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .review p {
+            font-size: 0.85rem;
+            color: var(--text);
+            font-style: italic;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .review-author {
+            font-size: 0.8rem;
+            color: var(--muted);
+            font-weight: 700;
+        }
+
+        footer {
+            background: var(--black);
+            color: var(--muted);
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 1024px) {
+            .hero {
+                flex-direction: column;
+                min-height: auto;
+                padding: 80px 40px 40px;
+            }
+
+            .hero-content {
+                max-width: 100%;
+                padding: 0;
+                margin-bottom: 40px;
+            }
+
+            .hero-form {
+                margin: 0;
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .coaches-grid, .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-content {
+                padding: 0 20px;
+            }
+
+            .hero-form {
+                padding: 30px 20px;
+            }
+
+            .secondary, .coaches, .reviews {
+                padding: 40px 20px;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">⬥ Wasatch</div>
+        <nav class="nav-links">
+            <a href="#why">Why Us</a>
+            <a href="#coaches">Coaches</a>
+            <a href="#reviews">Reviews</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-tagline">FREE FIRST CLASS</div>
+            <h1>Fight Strong</h1>
+            <p>Combat training for everyone. Learn from experienced coaches. Build confidence and fitness fast.</p>
+
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="document.querySelector('.hero-form').scrollIntoView({behavior: 'smooth'})">Reserve Your Spot</button>
+            </div>
+
+            <div class="hero-benefits">
+                <div class="benefit">
+                    <div class="benefit-icon">✓</div>
+                    <strong>No Commitment</strong>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">✓</div>
+                    <strong>Beginner Friendly</strong>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">✓</div>
+                    <strong>Results Fast</strong>
+                </div>
+            </div>
+        </div>
+
+        <form class="hero-form">
+            <h2>Get Your Free Class</h2>
+            <p>Schedule your first session today. No strings attached.</p>
+
+            <div class="form-fields">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="tel" placeholder="Phone Number" required>
+                <select required>
+                    <option value="">Select a Program</option>
+                    <option value="muay-thai">Muay Thai</option>
+                    <option value="boxing">Boxing</option>
+                    <option value="kickboxing">Kickboxing</option>
+                    <option value="kids">Kids Classes</option>
+                    <option value="not-sure">Not Sure—Recommend One</option>
+                </select>
+                <button type="submit" class="form-submit">Schedule Free Class</button>
+                <div class="form-note">We'll call/text you within 2 hours to confirm.</div>
+            </div>
+        </form>
+    </section>
+
+    <section id="why" class="secondary">
+        <h2 class="section-title">Why Wasatch?</h2>
+        <div class="why-grid">
+            <div class="why-item">
+                <div class="why-icon">🎯</div>
+                <h3>Proven Results</h3>
+                <p>Beginners see changes in weeks. Competitors get ready for fights.</p>
+            </div>
+            <div class="why-item">
+                <div class="why-icon">👨‍🏫</div>
+                <h3>Expert Coaches</h3>
+                <p>Real fighters. Competition experience. Passionate teachers.</p>
+            </div>
+            <div class="why-item">
+                <div class="why-icon">🤝</div>
+                <h3>Community</h3>
+                <p>Train with dedicated athletes. Build lasting friendships.</p>
+            </div>
+            <div class="why-item">
+                <div class="why-icon">📈</div>
+                <h3>Structured Path</h3>
+                <p>Know what you're learning. Progress with confidence.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="coaches" class="coaches">
+        <h2 class="section-title">Your Coaches</h2>
+        <div class="coaches-grid">
+            <div class="coach">
+                <div class="coach-avatar">M</div>
+                <h3>Marcus Chen</h3>
+                <div class="title">Head Coach — Muay Thai</div>
+                <p>12 years competitive. 47-8 record. Former regional champion teaching next generation.</p>
+            </div>
+            <div class="coach">
+                <div class="coach-avatar">S</div>
+                <h3>Sarah Rodriguez</h3>
+                <div class="title">Boxing Coach</div>
+                <p>Amateur boxing champion. Specializes in footwork and beginner fundamentals.</p>
+            </div>
+            <div class="coach">
+                <div class="coach-avatar">T</div>
+                <h3>Tommy Lee</h3>
+                <div class="title">Conditioning Coach</div>
+                <p>Designs personalized programs. Believes your body is stronger than you think.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="reviews">
+        <h2 class="section-title">Member Stories</h2>
+        <div class="reviews-grid">
+            <div class="review">
+                <div class="review-stars">★★★★★</div>
+                <p>"Zero experience to first fight in 6 months. Coaches believed in me before I did."</p>
+                <div class="review-author">James P.</div>
+            </div>
+            <div class="review">
+                <div class="review-stars">★★★★★</div>
+                <p>"Found my community. Training partners became best friends. Changed my life."</p>
+                <div class="review-author">Alex M.</div>
+            </div>
+            <div class="review">
+                <div class="review-stars">★★★★★</div>
+                <p>"Better fitness, clearer mind, real confidence. This is where I belong."</p>
+                <div class="review-author">Jordan K.</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Wasatch Combat Sports © 2024 • Concept 4: Aggressive Landing Page</p>
+        <p>1234 South Main Street, Orem UT | (801) 555-1234 | Mon–Fri 3pm–9pm, Sat 10am–4pm</p>
+    </footer>
+</body>
+</html>

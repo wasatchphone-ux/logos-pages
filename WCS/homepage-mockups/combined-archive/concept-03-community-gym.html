@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wasatch Combat Sports - Your Community Gym</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #2c2c2c;
+            background: #ffffff;
+            line-height: 1.7;
+        }
+
+        a {
+            color: #e63946;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #d62828;
+        }
+
+        header {
+            background: white;
+            border-bottom: 2px solid #f0e8e8;
+            padding: 25px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #e63946;
+        }
+
+        nav {
+            display: flex;
+            gap: 35px;
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            color: #2c2c2c;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #e63946;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #fffaf8 0%, #f5f0ee 100%);
+            padding: 90px 40px;
+            text-align: center;
+            border-bottom: 1px solid #f0e8e8;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 500;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            color: #1d1d1d;
+        }
+
+        .hero-subline {
+            font-size: 1.2rem;
+            color: #e63946;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: #e63946;
+            color: white;
+            padding: 16px 42px;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.2);
+        }
+
+        .hero-cta:hover {
+            background: #d62828;
+            box-shadow: 0 6px 20px rgba(230, 57, 70, 0.3);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        section {
+            padding: 70px 0;
+            border-bottom: 1px solid #f0e8e8;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 45px;
+            text-align: center;
+            color: #1d1d1d;
+        }
+
+        .programs-intro {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 1.05rem;
+            color: #666;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .program-card {
+            background: linear-gradient(135deg, #fffaf8 0%, #f5f0ee 100%);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #f0e8e8;
+        }
+
+        .program-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .program-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .program-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1d1d1d;
+        }
+
+        .program-card p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .why-section {
+            background: linear-gradient(135deg, #fffaf8 0%, #f5f0ee 100%);
+            padding: 60px;
+            border-radius: 12px;
+            margin-top: 50px;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 40px;
+        }
+
+        .why-card {
+            text-align: center;
+        }
+
+        .why-icon {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+
+        .why-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1d1d1d;
+        }
+
+        .why-card p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .beginners-box {
+            background: linear-gradient(135deg, #fffaf8 0%, #f5f0ee 100%);
+            padding: 50px;
+            border-radius: 12px;
+            margin-top: 40px;
+            border-left: 4px solid #e63946;
+        }
+
+        .beginners-box h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: #1d1d1d;
+        }
+
+        .beginners-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .beginners-list li {
+            padding-left: 35px;
+            position: relative;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .beginners-list li::before {
+            content: '❤';
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+        .coaches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            margin-top: 40px;
+        }
+
+        .coach-card {
+            background: linear-gradient(135deg, #fffaf8 0%, #f5f0ee 100%);
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            border-top: 4px solid #e63946;
+        }
+
+        .coach-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #e63946 0%, #d62828 100%);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.8rem;
+            font-weight: 300;
+        }
+
+        .coach-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #1d1d1d;
+        }
+
+        .coach-title {
+            font-size: 0.85rem;
+            color: #e63946;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .coach-bio {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .reviews-section {
+            margin-top: 40px;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .review-card {
+            background: linear-gradient(135deg, #fffaf8 0%, #f5f0ee 100%);
+            padding: 35px;
+            border-radius: 12px;
+            border-left: 4px solid #e63946;
+        }
+
+        .review-stars {
+            color: #e63946;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+
+        .review-text {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        .review-author {
+            font-size: 0.9rem;
+            color: #999;
+            font-weight: 600;
+        }
+
+        .faq-section {
+            margin-top: 40px;
+            background: linear-gradient(135deg, #fffaf8 0%, #f5f0ee 100%);
+            padding: 50px;
+            border-radius: 12px;
+        }
+
+        .faq-item {
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #f0e8e8;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-q {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: #1d1d1d;
+            margin-bottom: 12px;
+        }
+
+        .faq-a {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .resource-card {
+            background: linear-gradient(135deg, #fffaf8 0%, #f5f0ee 100%);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #f0e8e8;
+        }
+
+        .resource-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .resource-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1d1d1d;
+        }
+
+        .resource-card p {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .resource-card a {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 40px;
+            align-items: start;
+        }
+
+        .location-info {
+            background: linear-gradient(135deg, #fffaf8 0%, #f5f0ee 100%);
+            padding: 40px;
+            border-radius: 12px;
+        }
+
+        .location-info h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #1d1d1d;
+        }
+
+        .location-info p {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 18px;
+            line-height: 1.7;
+        }
+
+        .location-hours {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #f0e8e8;
+        }
+
+        .location-hours h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1d1d1d;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .location-hours p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .location-map {
+            background: linear-gradient(135deg, #fffaf8 0%, #f5f0ee 100%);
+            height: 300px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            border: 1px solid #f0e8e8;
+        }
+
+        .lead-form {
+            background: linear-gradient(135deg, #fffaf8 0%, #f5f0ee 100%);
+            padding: 50px;
+            border-radius: 12px;
+            margin-top: 40px;
+            border-left: 4px solid #e63946;
+        }
+
+        .lead-form h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1d1d1d;
+        }
+
+        .lead-form p {
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px;
+        }
+
+        input, textarea, select {
+            background: white;
+            color: #2c2c2c;
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #e63946;
+            box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.1);
+        }
+
+        textarea {
+            grid-column: 1 / -1;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            grid-column: 1 / -1;
+            background: #e63946;
+            color: white;
+            padding: 14px 36px;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #d62828;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
+        }
+
+        .final-cta {
+            background: linear-gradient(135deg, #e63946 0%, #d62828 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 40px;
+        }
+
+        .final-cta h2 {
+            color: white;
+            font-size: 2.3rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .final-cta p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .final-cta-btn {
+            display: inline-block;
+            background: white;
+            color: #e63946;
+            padding: 16px 50px;
+            font-weight: 600;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .final-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background: white;
+            border-top: 1px solid #f0e8e8;
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav {
+                gap: 20px;
+            }
+
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            section {
+                padding: 50px 0;
+            }
+
+            .location-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .programs-grid, .why-grid, .coaches-grid, .reviews-grid, .resources-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+            .logo img { width: 190px; height: 44px; object-fit: contain; object-position: left center; display: block; }
+        .hero { background: linear-gradient(90deg, rgba(255,250,248,.98) 0%, rgba(255,250,248,.86) 50%, rgba(255,250,248,.18) 100%), url('assets/gym-training-05.jpg') center 38% / cover no-repeat; text-align: left; }
+        .hero-content { max-width: 1100px; }
+        .hero-content h1, .hero-content p { max-width: 650px; }
+        .program-card { padding-top: 170px; background-position: center top; background-size: 100% 140px; background-repeat: no-repeat; }
+        .program-card:nth-child(1) { background-image: url('assets/gym-training-01.jpg'); }
+        .program-card:nth-child(2) { background-image: url('assets/gym-training-02.jpg'); }
+        .program-card:nth-child(3) { background-image: url('assets/gym-training-03.jpg'); }
+        .program-card:nth-child(4) { background-image: url('assets/gym-training-04.jpg'); }
+    </style>
+</head>
+<body>
+    <header>
+        <a class="logo" href="index.html"><img src="assets/wcs-logo-dark.png" alt="Wasatch Combat Sports"></a>
+        <nav>
+            <a href="#programs">Programs</a>
+            <a href="#why">Why Us</a>
+            <a href="#coaches">Coaches</a>
+            <a href="#stories">Stories</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-subline">Welcome Home</div>
+            <h1>Where Fighters Become Community</h1>
+            <p>Learn combat sports in a place where everyone belongs. Train hard, build friendships, transform your life.</p>
+            <a href="#signup" class="hero-cta">Start Your Journey Today</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <section id="programs">
+            <h2>What We Teach</h2>
+            <p class="programs-intro">Whether you're curious about combat sports or chasing competitive dreams, we have a place for you.</p>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-emoji">🥊</div>
+                    <h3>Boxing</h3>
+                    <p>Classic striking art. Learn footwork, speed, and heart. Perfect for all ages and fitness levels.</p>
+                </div>
+                <div class="program-card">
+                    <div class="program-emoji">🦵</div>
+                    <h3>Muay Thai</h3>
+                    <p>The complete striking system. Build power and endurance while learning ancient technique.</p>
+                </div>
+                <div class="program-card">
+                    <div class="program-emoji">⚡</div>
+                    <h3>Kickboxing</h3>
+                    <p>High-energy fusion of punching and kicking. Amazing cardio and real results fast.</p>
+                </div>
+                <div class="program-card">
+                    <div class="program-emoji">🎯</div>
+                    <h3>Kids Classes</h3>
+                    <p>Safe, fun, structured. Kids learn discipline, self-defense, and confidence.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="why">
+            <h2>Why Choose Wasatch</h2>
+            <div class="why-section">
+                <div class="why-grid">
+                    <div class="why-card">
+                        <div class="why-icon">🤝</div>
+                        <h3>Real Community</h3>
+                        <p>You're joining a family, not just a gym. Members support each other every single day.</p>
+                    </div>
+                    <div class="why-card">
+                        <div class="why-icon">👨‍🏫</div>
+                        <h3>Expert Coaches</h3>
+                        <p>Fighters who've been in the ring and truly love teaching. Personal attention for every level.</p>
+                    </div>
+                    <div class="why-card">
+                        <div class="why-icon">📈</div>
+                        <h3>Proven Results</h3>
+                        <p>Beginners see changes in weeks. Competitors get ready for fights. Everyone transforms.</p>
+                    </div>
+                    <div class="why-card">
+                        <div class="why-icon">💪</div>
+                        <h3>You Belong Here</h3>
+                        <p>No judgment. Everyone's welcome—from curious newcomers to serious athletes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Your First Steps</h2>
+            <div class="beginners-box">
+                <h3>What to Expect as a Beginner</h3>
+                <ul class="beginners-list">
+                    <li>First class: We teach you proper stance and fundamentals. No complicated combos—just the essentials to get started.</li>
+                    <li>You'll be sore. That's normal and a sign you worked hard. Most people feel amazing after a few days.</li>
+                    <li>Bring athletic clothes and water. We provide hand wraps and gloves (bring your own if you prefer).</li>
+                    <li>Train at your own pace. The person next to you isn't your competition—you're training together.</li>
+                    <li>Community is real. Experienced members genuinely help newcomers. You'll make friends fast.</li>
+                    <li>See progress quickly. Better fitness, clearer mind, real confidence—usually within 3-4 weeks.</li>
+                    <li>Tell us what interests you. We will answer questions and share current program details.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="coaches">
+            <h2>Meet Your Coaches</h2>
+            <div class="coaches-grid">
+                <div class="coach-card">
+                    <div class="coach-avatar">M</div>
+                    <div class="coach-name">Marcus Chen</div>
+                    <div class="coach-title">Head Coach — Muay Thai</div>
+                    <div class="coach-bio">Former regional champion with 47-8 competitive record. Passionate about teaching. Known for believing in his students before they believe in themselves.</div>
+                </div>
+                <div class="coach-card">
+                    <div class="coach-avatar">S</div>
+                    <div class="coach-name">Sarah Rodriguez</div>
+                    <div class="coach-title">Boxing Coach</div>
+                    <div class="coach-bio">Amateur boxing champion who specializes in working with beginners. Patient, encouraging, and focused on building real fundamentals.</div>
+                </div>
+                <div class="coach-card">
+                    <div class="coach-avatar">T</div>
+                    <div class="coach-name">Tommy Lee</div>
+                    <div class="coach-title">Conditioning Coach</div>
+                    <div class="coach-bio">Designs personalized fitness plans. Believes everyone's stronger than they think. Creates conditioning programs that deliver real transformation.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="stories">
+            <h2>Member Stories</h2>
+            <div class="reviews-section">
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <div class="review-stars">★ ★ ★ ★ ★</div>
+                        <div class="review-text">"I showed up nervous and intimidated. Six months later, I competed in my first amateur fight. My gym family believed in me the whole way."</div>
+                        <div class="review-author">— James P.</div>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-stars">★ ★ ★ ★ ★</div>
+                        <div class="review-text">"Came for the fitness, stayed for the people. Best friends I've made came from training here. It's genuinely a community."</div>
+                        <div class="review-author">— Alex M.</div>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-stars">★ ★ ★ ★ ★</div>
+                        <div class="review-text">"Never thought I'd be athletic. Now I train 4 days a week and feel stronger—physically and mentally. This place changed my life."</div>
+                        <div class="review-author">— Jordan K.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Questions? We Have Answers</h2>
+            <div class="faq-section">
+                <div class="faq-item">
+                    <div class="faq-q">Do I need to have trained before?</div>
+                    <div class="faq-a">Not at all. Everyone starts as a beginner. Our classes are structured so you learn fundamentals first. Most people with zero experience feel comfortable from day one.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">What should I bring to class?</div>
+                    <div class="faq-a">Workout clothes, water bottle, and a towel. We provide hand wraps and gloves, but you can bring your own if you prefer. Just show up ready to work.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">How often should I come?</div>
+                    <div class="faq-a">That's totally up to you. Beginners see great results with 2-3 classes per week. Serious people train more. Find a rhythm that works for your life.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Are classes always full?</div>
+                    <div class="faq-a">Nope. Drop in whenever you can. Your membership gives you unlimited access to all classes—no booking required. Just show up.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Is it intimidating for new people?</div>
+                    <div class="faq-a">Some new students feel nervous at first, but Wasatch is genuinely welcoming. Our coaches and members actively help beginners. You'll feel at home quickly.</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Resources to Help You Grow</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">📚</div>
+                    <h3>Technique Guide</h3>
+                    <p>Reference for proper form and safety in all our programs.</p>
+                    <a href="#">Download</a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">📝</div>
+                    <h3>Training Journal</h3>
+                    <p>Track your progress and goals. Celebrate the wins along the way.</p>
+                    <a href="#">Get Template</a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">🥗</div>
+                    <h3>Nutrition Guide</h3>
+                    <p>Fuel your body right. Designed for combat athletes.</p>
+                    <a href="#">Learn More</a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">📅</div>
+                    <h3>Full Schedule</h3>
+                    <p>All classes, times, and levels. Drop in anytime.</p>
+                    <a href="#">View Schedule</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Find Us</h2>
+            <div class="location-grid">
+                <div class="location-info">
+                    <h3>Wasatch Combat Sports</h3>
+                    <p>972 N 1430 W<br>Orem, UT 84057</p>
+                    <p><a href="tel:+18018570611">(801) 857-0611</a></p>
+                    <p><a href="mailto:info@wasatchcombatsports.com">info@wasatchcombatsports.com</a></p>
+                    <div class="location-hours">
+                        <h4>Hours</h4>
+                        <p>Monday–Friday: 3pm–9pm</p>
+                        <p>Saturday: 10am–4pm</p>
+                        <p>Sunday: Closed</p>
+                    </div>
+                </div>
+                <div class="location-map">[Map goes here]</div>
+            </div>
+        </section>
+
+        <section id="signup">
+            <h2>Let's Get Started</h2>
+            <div class="lead-form">
+                <h3>Tell us about yourself</h3>
+                <p>We will reach out with current program information and answer your questions.</p>
+                <form>
+                    <div class="form-grid">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Email Address" required>
+                        <input type="tel" placeholder="Phone Number">
+                        <select required>
+                            <option value="">Which program interests you?</option>
+                            <option value="boxing">Boxing</option>
+                            <option value="muay-thai">Muay Thai</option>
+                            <option value="kickboxing">Kickboxing</option>
+                            <option value="kids">Kids Classes</option>
+                            <option value="not-sure">Not Sure Yet</option>
+                        </select>
+                        <textarea placeholder="Tell us about yourself—your goals, experience level, fitness history, anything we should know."></textarea>
+                        <button type="submit" class="submit-btn">Send It Over</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <div class="final-cta">
+        <h2>Your Community is Waiting</h2>
+        <p>Contact us, meet the team and find the program that fits your goals.</p>
+        <a href="#" class="final-cta-btn">Contact Wasatch</a>
+    </div>
+
+    <footer>
+        <p>Wasatch Combat Sports © 2024 • Concept 3: Welcoming Community Gym</p>
+    </footer>
+</body>
+</html>

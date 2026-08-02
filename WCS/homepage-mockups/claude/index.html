@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wasatch Combat Sports - Homepage Mockups</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1d1d1d;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            background: #1d1d1d;
+            color: #fff;
+            padding: 40px 20px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .mockups-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .mockup-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .mockup-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+
+        .mockup-preview {
+            aspect-ratio: 16/10;
+            background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .mockup-card h3 {
+            padding: 20px 20px 10px;
+            font-size: 1.3rem;
+            color: #1d1d1d;
+        }
+
+        .mockup-card p {
+            padding: 0 20px 20px;
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .mockup-links {
+            padding: 0 20px 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .link-btn {
+            display: inline-block;
+            padding: 10px 18px;
+            background: #e63946;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .link-btn:hover {
+            background: #d62828;
+        }
+
+        .link-btn.secondary {
+            background: #666;
+        }
+
+        .link-btn.secondary:hover {
+            background: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            border-top: 1px solid #ddd;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        .note {
+            background: #fff9e6;
+            border-left: 4px solid #ffa500;
+            padding: 15px;
+            margin: 30px 0;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .mockups-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+            .review-logo { width: min(320px, 80vw); height: 90px; object-fit: contain; margin-bottom: 16px; }
+        .mockup-preview { background-size: cover; background-position: center; position: relative; }
+        .mockup-preview::after { content: "Open concept"; color: #fff; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; background: rgba(0,0,0,.58); padding: 10px 14px; border: 1px solid rgba(255,255,255,.5); }
+        .mockup-card:nth-child(1) .mockup-preview { background-image: linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.4)), url('assets/gym-training-01.jpg'); }
+        .mockup-card:nth-child(2) .mockup-preview { background-image: linear-gradient(rgba(255,255,255,.1),rgba(255,255,255,.25)), url('assets/gym-training-03.jpg'); }
+        .mockup-card:nth-child(3) .mockup-preview { background-image: linear-gradient(rgba(255,245,240,.08),rgba(255,245,240,.2)), url('assets/gym-training-05.jpg'); }
+        .mockup-card:nth-child(4) .mockup-preview { background-image: linear-gradient(rgba(0,0,0,.08),rgba(0,0,0,.25)), url('assets/gym-training-04.jpg'); }
+    </style>
+</head>
+<body>
+    <header>
+        <img class="review-logo" src="assets/wcs-logo-white.png" alt="Wasatch Combat Sports"><h1>Homepage Redesign Concepts</h1>
+        <p>Four visual directions using real Wasatch Combat Sports imagery.</p>
+    </header>
+
+    <div class="container">
+        <div class="note">
+            <strong>Design Direction:</strong> Four concepts showing different brand positioning — bold fight-gym, clean academy, welcoming community, and editorial authority. Each includes core elements: hero, programs, why Wasatch, beginner info, coaches/reviews, FAQs, resources, location, lead capture, and CTA.
+        </div>
+
+        <div class="mockups-grid">
+            <div class="mockup-card">
+                <div class="mockup-preview">Screen size: 1200px × 750px</div>
+                <h3>1. Bold Fight Gym</h3>
+                <p>High-energy, aggressive visual. Stark black/red contrast, intense typography, action imagery. Targets serious fighters and competitors who want to feel the intensity immediately.</p>
+                <div class="mockup-links">
+                    <a href="concept-01-bold-fightgym.html" class="link-btn">Preview</a>
+                    <a href="concept-01-bold-fightgym.html" class="link-btn secondary" target="_blank">Open Full</a>
+                </div>
+            </div>
+
+            <div class="mockup-card">
+                <div class="mockup-preview">Screen size: 1200px × 750px</div>
+                <h3>2. Clean Modern Academy</h3>
+                <p>Minimalist, professional aesthetic. Emphasis on education, technique, progression. Clean typography, plenty of whitespace. Appeals to serious students and those wanting structured learning.</p>
+                <div class="mockup-links">
+                    <a href="concept-02-clean-academy.html" class="link-btn">Preview</a>
+                    <a href="concept-02-clean-academy.html" class="link-btn secondary" target="_blank">Open Full</a>
+                </div>
+            </div>
+
+            <div class="mockup-card">
+                <div class="mockup-preview">Screen size: 1200px × 750px</div>
+                <h3>3. Welcoming Community Gym</h3>
+                <p>Warm, inclusive, people-focused. Emphasizes community, belonging, transformation. Friendly typography, people imagery, testimonials front-and-center. Targets everyone from curious beginners to experienced members.</p>
+                <div class="mockup-links">
+                    <a href="concept-03-community-gym.html" class="link-btn">Preview</a>
+                    <a href="concept-03-community-gym.html" class="link-btn secondary" target="_blank">Open Full</a>
+                </div>
+            </div>
+
+            <div class="mockup-card">
+                <div class="mockup-preview">Screen size: 1200px × 750px</div>
+                <h3>4. Editorial Authority</h3>
+                <p>Content-rich, informative, SEO-optimized. Blog-like layout with featured articles, guides, coach expertise. Positions Wasatch as thought leader. Strong for organic discovery and building authority.</p>
+                <div class="mockup-links">
+                    <a href="concept-04-editorial-authority.html" class="link-btn">Preview</a>
+                    <a href="concept-04-editorial-authority.html" class="link-btn secondary" target="_blank">Open Full</a>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>Wasatch Combat Sports Redesign Concepts</strong></p>
+            <p>Design specifications: Responsive HTML/CSS, minimal JavaScript, no frameworks. Uses Wasatch red (#e63946), black, and white branding.</p>
+            <p>Each concept includes: header, hero, programs, why Wasatch, beginner expectations, coaches/reviews, FAQs, resources, location/contact, lead-capture form, final CTA.</p>
+        </footer>
+    </div>
+</body>
+</html>
