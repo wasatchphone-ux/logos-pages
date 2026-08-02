@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Start Martial Arts Training in Orem, UT | Wasatch Combat Sports</title>
+  <meta name="description" content="Tell Wasatch Combat Sports what you want from training and get matched with Muay Thai, MMA, Jiu Jitsu, boxing, women's, youth, or strength classes in Orem.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ExerciseGym",
+    "name": "Wasatch Combat Sports",
+    "url": "https://wasatchcombatsports.com/",
+    "telephone": "+1-801-857-0611",
+    "slogan": "Come Meet the New You.",
+    "description": "Utah County's premier combat studio, located in Orem, Utah.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "972 N 1430 W",
+      "addressLocality": "Orem",
+      "addressRegion": "UT",
+      "postalCode": "84057",
+      "addressCountry": "US"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "329"
+    },
+    "areaServed": ["Orem", "Provo", "Utah County"]
+  }
+  </script>
+  <style>
+    @font-face {
+      font-family: "Oswald Local";
+      src: url("assets/fonts/oswald-700.ttf") format("truetype");
+      font-weight: 700;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "DM Sans Local";
+      src: url("assets/fonts/dm-sans-400.ttf") format("truetype");
+      font-weight: 400;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "DM Sans Local";
+      src: url("assets/fonts/dm-sans-600.ttf") format("truetype");
+      font-weight: 600;
+      font-display: swap;
+    }
+
+    :root {
+      --red: #d92b2b;
+      --gold: #c8921a;
+      --black: #111;
+      --charcoal: #1a1b1d;
+      --slate: #2b2d31;
+      --ivory: #f6f2e9;
+      --white: #fff;
+      --muted: #a9a8a4;
+      --display: "Oswald Local", "Arial Narrow", sans-serif;
+      --body: "DM Sans Local", "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: clip; }
+    body {
+      margin: 0;
+      overflow-x: clip;
+      color: var(--black);
+      background: var(--ivory);
+      font-family: var(--body);
+      line-height: 1.5;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+    button, input, select { font: inherit; }
+    h1, h2, h3 { margin-top: 0; font-family: var(--display); line-height: .95; text-transform: uppercase; }
+    .skip { position: fixed; z-index: 100; top: -5rem; left: 1rem; padding: .8rem 1rem; background: var(--gold); }
+    .skip:focus { top: 1rem; }
+
+    .site-header {
+      display: grid;
+      grid-template-columns: 185px 1fr auto;
+      align-items: center;
+      gap: 2rem;
+      min-height: 82px;
+      padding: .8rem clamp(1rem, 4vw, 4rem);
+      background: var(--charcoal);
+      color: var(--white);
+      border-bottom: 1px solid #393a3e;
+    }
+    .brand img { width: auto; height: 58px; }
+    nav { display: flex; justify-content: center; gap: clamp(1rem, 2.5vw, 2.5rem); }
+    nav a, .header-link { font-size: .74rem; font-weight: 600; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
+    nav a:hover { color: var(--gold); }
+    .header-link { padding: .7rem 1rem; border: 1px solid #777; border-radius: 6px; }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 15% 85%, rgba(217,43,43,.25), transparent 28%),
+        radial-gradient(circle at 70% 15%, rgba(200,146,26,.13), transparent 24%),
+        var(--charcoal);
+      color: var(--white);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .16;
+      background-image:
+        linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: linear-gradient(to right, #000, transparent 78%);
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap: clamp(2rem, 5vw, 6rem);
+      max-width: 1500px;
+      min-height: 860px;
+      margin: 0 auto;
+      padding: clamp(4rem, 8vw, 8rem) clamp(1rem, 4vw, 4rem);
+      align-items: center;
+    }
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: .7rem;
+      margin-bottom: 1.4rem;
+      padding: .45rem .7rem;
+      border: 1px solid #484a4e;
+      border-radius: 999px;
+      color: #d5d2ca;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .status::before { content: ""; width: 8px; aspect-ratio: 1; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 5px rgba(217,43,43,.15); }
+    h1 { max-width: 800px; margin-bottom: 1.4rem; font-size: clamp(5rem, 9vw, 10.5rem); letter-spacing: -.045em; }
+    h1 span { display: block; color: var(--red); }
+    .hero-copy > p { max-width: 640px; color: #c6c4bd; font-size: 1.08rem; }
+    .micro-proof { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+    .micro-proof span { display: flex; align-items: center; gap: .5rem; color: #e5e0d7; font-size: .78rem; }
+    .micro-proof span::before { content: "✓"; color: var(--gold); }
+
+    .lead-card {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(1.5rem, 3vw, 2.6rem);
+      border-radius: 16px;
+      background: var(--ivory);
+      color: var(--black);
+      box-shadow: 0 30px 80px rgba(0,0,0,.35);
+    }
+    .card-step { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; font-size: .7rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+    .card-step span:last-child { color: #777; }
+    .progress { height: 4px; margin-bottom: 1.8rem; overflow: hidden; border-radius: 999px; background: #d8d3ca; }
+    .progress::after { content: ""; display: block; width: 38%; height: 100%; background: var(--red); }
+    .lead-card h2 { margin-bottom: .7rem; font-size: clamp(2.7rem, 4vw, 4.5rem); }
+    .lead-card > p { margin-top: 0; color: #615e58; font-size: .9rem; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+    label { display: grid; gap: .35rem; font-size: .7rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; }
+    input, select {
+      width: 100%;
+      min-height: 50px;
+      border: 1px solid #bab4aa;
+      border-radius: 7px;
+      background: var(--white);
+      padding: .75rem;
+      color: var(--black);
+    }
+    input:focus, select:focus { outline: 3px solid rgba(217,43,43,.18); border-color: var(--red); }
+    .full { grid-column: 1 / -1; }
+    .submit {
+      min-height: 55px;
+      border: 0;
+      border-radius: 7px;
+      background: var(--red);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform .2s, background .2s;
+    }
+    .submit:hover, .submit:focus-visible { background: #b92121; transform: translateY(-2px); }
+    .form-note { min-height: 1.4em; margin: .7rem 0 0; font-size: .78rem; }
+    .form-trust {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
+      align-items: center;
+      margin: 1.4rem -2.6rem -2.6rem;
+      padding: 1.2rem 2.6rem;
+      background: #e8e0d1;
+    }
+    .form-trust strong { color: var(--red); font-family: var(--display); font-size: 2.8rem; }
+    .form-trust span { font-size: .76rem; font-weight: 600; }
+    .form-trust span b { display: block; color: var(--gold); letter-spacing: .08em; }
+
+    .photo-rail {
+      display: grid;
+      grid-template-columns: 1.2fr .75fr .8fr 1.1fr;
+      gap: 4px;
+      height: 330px;
+      padding: 4px;
+      background: var(--black);
+    }
+    .photo-rail img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-rail img:nth-child(2) { object-position: center 40%; }
+
+    .section { padding: clamp(5rem, 9vw, 9rem) clamp(1rem, 5vw, 6rem); }
+    .section-dark { background: var(--charcoal); color: #fff; }
+    .section-inner { max-width: 1370px; margin: 0 auto; }
+    .section-head {
+      display: grid;
+      grid-template-columns: .7fr 1.3fr;
+      gap: 2rem;
+      margin-bottom: clamp(3rem, 6vw, 5.5rem);
+      align-items: end;
+    }
+    .label { margin: 0; color: var(--red); font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+    .section-head h2 { margin: 0; font-size: clamp(4rem, 7vw, 8rem); letter-spacing: -.04em; }
+    .section-head h2 span { color: var(--red); }
+
+    .match-flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .match-step { min-height: 290px; padding: 1.5rem; border: 1px solid #c9c2b8; border-radius: 12px; background: #fff; }
+    .match-step .num { display: grid; width: 46px; aspect-ratio: 1; place-items: center; border-radius: 50%; background: var(--red); color: #fff; font-family: var(--display); font-size: 1.2rem; }
+    .match-step h3 { margin: 4rem 0 .8rem; font-size: 2.2rem; }
+    .match-step p { margin: 0; color: #65615b; }
+    .match-step:nth-child(2) { background: var(--gold); }
+
+    .program-console { display: grid; grid-template-columns: 300px 1fr; border: 1px solid #4a4c50; border-radius: 14px; overflow: hidden; background: var(--slate); }
+    .console-intro { padding: 1.6rem; border-right: 1px solid #4a4c50; background: var(--black); }
+    .console-intro h3 { font-size: 2.8rem; }
+    .console-intro p { color: #aaa8a2; font-size: .86rem; }
+    .console-list { display: grid; grid-template-columns: 1fr 1fr; }
+    .console-program { min-height: 190px; padding: 1.3rem; border-right: 1px solid #4a4c50; border-bottom: 1px solid #4a4c50; }
+    .console-program:nth-child(even) { border-right: 0; }
+    .console-program h3 { margin: 2rem 0 .6rem; font-size: 2rem; }
+    .console-program p { margin: 0; color: #aaa8a2; font-size: .8rem; }
+    .console-program small { color: var(--gold); font-weight: 600; }
+    .console-program:hover { background: var(--red); }
+    .console-program:hover p, .console-program:hover small { color: #fff; }
+
+    .audience-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 1rem;
+      border: 1px solid #4a4c50;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .audience-bar article { padding: 1.3rem; border-right: 1px solid #4a4c50; }
+    .audience-bar article:last-child { border: 0; }
+    .audience-bar small { color: var(--gold); font-size: .7rem; font-weight: 600; text-transform: uppercase; }
+    .audience-bar h3 { margin: .6rem 0; font-size: 1.8rem; }
+    .audience-bar p { margin: 0; color: #aaa8a2; font-size: .8rem; }
+
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 7rem); align-items: center; }
+    .why-copy h2 { font-size: clamp(4rem, 8vw, 9rem); letter-spacing: -.04em; }
+    .why-copy h2 span { color: var(--red); }
+    .feature-stack { margin-top: 2rem; border-top: 1px solid #bcb5aa; }
+    .feature { display: grid; grid-template-columns: 72px 1fr; gap: 1rem; padding: 1.2rem 0; border-bottom: 1px solid #bcb5aa; }
+    .feature strong { color: var(--red); font-family: var(--display); font-size: 1.8rem; }
+    .feature h3 { margin: 0 0 .35rem; font-size: 1.45rem; }
+    .feature p { margin: 0; color: #66615a; }
+    .why-media { position: relative; }
+    .why-media img { width: 100%; height: min(72vw, 760px); object-fit: cover; border-radius: 14px; }
+    .why-media .overlay-stat { position: absolute; right: -1rem; bottom: 2rem; width: 210px; padding: 1.2rem; border-radius: 10px; background: var(--charcoal); color: #fff; }
+    .overlay-stat strong { display: block; color: var(--gold); font-family: var(--display); font-size: 3.4rem; }
+    .overlay-stat span { font-size: .76rem; }
+
+    .beginner-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(2rem, 7vw, 8rem); align-items: start; }
+    .beginner-layout h2 { position: sticky; top: 2rem; font-size: clamp(4rem, 8vw, 9rem); }
+    .expect-list { border-top: 1px solid #4b4d50; }
+    .expect { display: grid; grid-template-columns: 56px 1fr auto; gap: 1rem; padding: 1.4rem 0; border-bottom: 1px solid #4b4d50; align-items: start; }
+    .expect .check { display: grid; width: 38px; aspect-ratio: 1; place-items: center; border-radius: 50%; background: var(--red); }
+    .expect h3 { margin: 0 0 .4rem; font-size: 1.8rem; }
+    .expect p { max-width: 55ch; margin: 0; color: #aaa8a2; }
+    .expect small { color: var(--gold); font-size: .65rem; font-weight: 600; text-transform: uppercase; }
+    .schedule-chipset { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 2rem; }
+    .schedule-chipset span { padding: .6rem .8rem; border: 1px solid #4b4d50; border-radius: 999px; color: #ccc9c2; font-size: .72rem; }
+
+    .coach-specs { display: grid; grid-template-columns: 1.1fr .9fr; border: 1px solid #c9c2b8; border-radius: 14px; overflow: hidden; background: #fff; }
+    .coach-table { padding: 0 1.5rem; }
+    .coach-row { display: grid; grid-template-columns: 1fr 1.5fr; gap: 1rem; padding: 1.25rem 0; border-bottom: 1px solid #d5cfc4; }
+    .coach-row:last-child { border: 0; }
+    .coach-row h3, .coach-row p { margin: 0; }
+    .coach-row h3 { font-size: 1.55rem; }
+    .coach-row p { color: #66615a; font-size: .84rem; }
+    .coach-image { position: relative; min-height: 680px; }
+    .coach-image img { width: 100%; height: 100%; object-fit: cover; }
+    .coach-image::after { content: "COACHING RANGE / 6"; position: absolute; right: 1rem; bottom: 1rem; padding: .7rem .9rem; border-radius: 6px; background: var(--red); color: #fff; font-size: .68rem; font-weight: 600; }
+
+    .review-system { display: grid; grid-template-columns: .75fr 1.25fr; gap: clamp(2rem, 6vw, 7rem); align-items: center; }
+    .rating-card { padding: 2rem; border: 1px solid #4b4d50; border-radius: 16px; background: var(--slate); }
+    .rating-card strong { display: block; color: var(--red); font-family: var(--display); font-size: clamp(8rem, 16vw, 18rem); line-height: .78; }
+    .rating-card .stars { color: var(--gold); font-size: 1.5rem; letter-spacing: .15em; }
+    .rating-card p { color: #c8c5be; }
+    .review-copy h2 { font-size: clamp(4rem, 8vw, 9rem); }
+    .review-copy h2 span { color: var(--red); }
+    .signal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; margin-top: 2rem; }
+    .signal-grid span { padding: 1rem; border: 1px solid #4b4d50; border-radius: 8px; color: #cfccc5; font-size: .78rem; }
+
+    .resource-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .resource {
+      display: flex;
+      min-height: 340px;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1.3rem;
+      border: 1px solid #c9c2b8;
+      border-radius: 12px;
+      background: #fff;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .resource:first-child { grid-column: span 2; background: var(--gold); }
+    .resource:hover, .resource:focus-visible { transform: translateY(-5px); box-shadow: 0 18px 35px rgba(51,44,34,.12); }
+    .resource small { color: #6f5011; font-size: .68rem; font-weight: 600; text-transform: uppercase; }
+    .resource h3 { margin: 2rem 0 0; font-size: clamp(2rem, 3.6vw, 4rem); }
+
+    .faq-layout { display: grid; grid-template-columns: .7fr 1.3fr; gap: clamp(2rem, 7vw, 8rem); }
+    .faq-layout h2 { font-size: clamp(4rem, 8vw, 9rem); }
+    details { border-top: 1px solid #4b4d50; }
+    details:last-child { border-bottom: 1px solid #4b4d50; }
+    summary { cursor: pointer; padding: 1.3rem 2rem 1.3rem 0; font-family: var(--display); font-size: 1.45rem; list-style: none; text-transform: uppercase; }
+    summary::-webkit-details-marker { display: none; }
+    details p { max-width: 65ch; margin: 0 0 1.4rem; color: #aaa8a2; }
+
+    .visit-grid { display: grid; grid-template-columns: 1fr 1fr; max-width: none; background: #fff; }
+    .map iframe { width: 100%; height: 100%; min-height: 690px; border: 0; filter: grayscale(.8) contrast(1.1); }
+    .visit-copy { padding: clamp(4rem, 8vw, 8rem); }
+    .visit-copy h2 { font-size: clamp(4rem, 8vw, 9rem); }
+    .nap { margin: 2rem 0; padding: 1.2rem 0; border-block: 1px solid #c9c2b8; }
+    .nap strong { display: block; font-family: var(--display); font-size: 1.8rem; text-transform: uppercase; }
+    .contact-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .contact-options a { padding: 1rem; border: 1px solid #c9c2b8; border-radius: 8px; text-decoration: none; }
+    .contact-options a:first-child { background: var(--red); color: #fff; border-color: var(--red); }
+
+    .final-cta {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 2rem;
+      padding: clamp(4rem, 8vw, 8rem);
+      background: var(--red);
+      color: #fff;
+    }
+    .final-cta h2 { margin: 0; font-size: clamp(4rem, 9vw, 10rem); }
+    .final-cta a { padding: 1rem 1.3rem; border: 1px solid #fff; border-radius: 7px; font-weight: 600; text-decoration: none; }
+    .final-cta a:hover { background: #fff; color: var(--red); }
+
+    footer { display: flex; justify-content: space-between; gap: 1rem; padding: 1.2rem clamp(1rem, 5vw, 6rem); background: var(--black); color: #aaa8a2; font-size: .72rem; }
+
+    [data-guide] { opacity: 0; transform: translateY(20px); transition: opacity .55s, transform .55s; }
+    [data-guide].ready { opacity: 1; transform: none; }
+
+    @media (max-width: 1000px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .lead-card { max-width: 720px; }
+      .match-flow { grid-template-columns: 1fr 1fr; }
+      .match-step:last-child { grid-column: 1 / -1; }
+      .why-grid, .beginner-layout, .coach-specs, .review-system, .faq-layout, .visit-grid { grid-template-columns: 1fr; }
+      .beginner-layout h2 { position: relative; top: auto; }
+      .coach-image { min-height: 520px; }
+      .resource-grid { grid-template-columns: 1fr 1fr; }
+      .map iframe { min-height: 500px; }
+    }
+
+    @media (max-width: 700px) {
+      .site-header { grid-template-columns: 1fr auto; }
+      .brand img { height: 48px; }
+      nav { display: none; }
+      .header-link { font-size: .62rem; padding: .55rem .7rem; }
+      .hero-inner { min-height: auto; padding-top: 4rem; }
+      h1 { font-size: 4.8rem; }
+      .form-grid, .match-flow, .console-list, .audience-bar, .resource-grid, .contact-options, .signal-grid { grid-template-columns: 1fr; }
+      .full, .match-step:last-child, .resource:first-child { grid-column: auto; }
+      .form-trust { margin-inline: -1.5rem; margin-bottom: -1.5rem; padding: 1rem 1.5rem; }
+      .photo-rail { grid-template-columns: 1fr 1fr; height: 440px; }
+      .program-console { grid-template-columns: 1fr; }
+      .console-intro { border-right: 0; border-bottom: 1px solid #4a4c50; }
+      .console-program, .console-program:nth-child(even) { border-right: 0; }
+      .audience-bar article { border-right: 0; border-bottom: 1px solid #4a4c50; }
+      .audience-bar article:last-child { border-bottom: 0; }
+      .expect { grid-template-columns: 46px 1fr; }
+      .expect small { display: none; }
+      .coach-row { grid-template-columns: 1fr; gap: .3rem; }
+      .coach-image { min-height: 470px; }
+      .final-cta { grid-template-columns: 1fr; }
+      footer { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+      [data-guide] { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body
+  data-concept="conversion-landing"
+  data-layout="form-first-product"
+  data-motion="guided-progress"
+  data-type-system="condensed-modern"
+  data-color-mode="charcoal-ivory-red">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand" href="#main" aria-label="Wasatch Combat Sports home">
+      <img src="assets/wcs-logo-white.png" alt="Wasatch Combat Sports">
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#programs">Programs</a>
+      <a href="#beginner">First class</a>
+      <a href="#coaches">Coaches</a>
+      <a href="#visit">Orem location</a>
+    </nav>
+    <a class="header-link" href="tel:8018570611">801-857-0611</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <span class="status">Orem, UT · Utah County</span>
+          <h1 id="hero-title">Start training. <span>Find your fit.</span></h1>
+          <p>Come Meet the New You. Tell Wasatch what you want from training, and the Orem team can help match you with the right program and schedule.</p>
+          <div class="micro-proof">
+            <span>7 programs in one gym</span>
+            <span>Classes roughly 6 a.m.–9 p.m.</span>
+            <span>No experience required to ask</span>
+          </div>
+        </div>
+
+        <form class="lead-card" id="lead-form">
+          <div class="card-step"><span>Tell us where you're starting</span><span>Step 1 of 3</span></div>
+          <div class="progress" aria-hidden="true"></div>
+          <h2>What do you want to train?</h2>
+          <p>Share the essentials. Wasatch can follow up with the current next step for your goal.</p>
+          <div class="form-grid">
+            <label>Name<input name="name" autocomplete="name" required></label>
+            <label>Email<input type="email" name="email" autocomplete="email" required></label>
+            <label>Phone<input type="tel" name="phone" autocomplete="tel" required></label>
+            <label>Program interest
+              <select name="program" required>
+                <option value="">Choose a program</option>
+                <option>Muay Thai</option><option>MMA</option><option>Jiu Jitsu</option><option>Boxing</option>
+                <option>Women's Combat</option><option>Youth Program</option><option>Strength &amp; Conditioning</option>
+              </select>
+            </label>
+            <button class="submit full" type="submit">Match me with a starting point</button>
+          </div>
+          <p class="form-note" aria-live="polite"></p>
+          <div class="form-trust">
+            <strong>329</strong>
+            <span><b>★★★★★ · 4.9 Google rating</b>Highest Google-rated gym in Utah County</span>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="photo-rail" aria-label="Inside Wasatch Combat Sports">
+      <img src="assets/wcs-4300.jpg" alt="A boxer working with a partner at Wasatch Combat Sports">
+      <img src="assets/wcs-4939.jpg" alt="Jiu Jitsu students training at Wasatch Combat Sports">
+      <img src="assets/wcs-5007.jpg" alt="A coach holding pads for a youth student">
+      <img src="assets/wcs-4869.jpg" alt="Women practicing boxing in a busy Wasatch class">
+    </section>
+
+    <section class="section" aria-labelledby="match-title">
+      <div class="section-inner">
+        <header class="section-head" data-guide>
+          <p class="label">What happens next</p>
+          <h2 id="match-title">A better first step than <span>guessing.</span></h2>
+        </header>
+        <div class="match-flow">
+          <article class="match-step"><span class="num">1</span><h3>Share the goal</h3><p>Fitness, confidence, self-defense and competition are different destinations.</p></article>
+          <article class="match-step"><span class="num">2</span><h3>Get a useful reply</h3><p>The Wasatch team can connect your interest to the current program and class time.</p></article>
+          <article class="match-step"><span class="num">3</span><h3>Meet the room</h3><p>Arrive knowing which coach, discipline and part of the schedule you are exploring.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="programs">
+      <div class="section-inner">
+        <header class="section-head" data-guide>
+          <p class="label">Program selector</p>
+          <h2>Seven disciplines. <span>One Orem gym.</span></h2>
+        </header>
+        <div class="program-console">
+          <aside class="console-intro">
+            <p class="label">Choose by movement</p>
+            <h3>What sounds like you?</h3>
+            <p>Striking, grappling, mixed training, a women-specific room, age-based youth paths or strength support.</p>
+          </aside>
+          <div class="console-list">
+            <article class="console-program"><small>01 / STRIKE</small><h3>Muay Thai</h3><p>Hands, kicks, knees, defense and conditioning.</p></article>
+            <article class="console-program"><small>02 / COMPLETE</small><h3>MMA</h3><p>Striking, wrestling and grappling connected.</p></article>
+            <article class="console-program"><small>03 / GRAPPLE</small><h3>Jiu Jitsu</h3><p>Leverage, control and live problem solving.</p></article>
+            <article class="console-program"><small>04 / HANDS</small><h3>Boxing</h3><p>Footwork, timing, defense and clean combinations.</p></article>
+            <article class="console-program"><small>05 / WOMEN</small><h3>Women's Combat</h3><p>Dedicated skill, strength and confidence building.</p></article>
+            <article class="console-program"><small>06 / YOUTH</small><h3>Youth Program</h3><p>Separate Junior and Senior developmental paths.</p></article>
+            <article class="console-program"><small>07 / BUILD</small><h3>Strength &amp; Conditioning</h3><p>Purposeful strength for combat and daily life.</p></article>
+          </div>
+        </div>
+        <div class="audience-bar">
+          <article><small>Ages 4–7</small><h3>Youth Juniors</h3><p>Forty-five minute foundation classes built for younger students.</p></article>
+          <article><small>Ages 8–14</small><h3>Youth Seniors</h3><p>Progressive technique and controlled live training for older youth.</p></article>
+          <article><small>Adults</small><h3>Adult programs</h3><p>Multiple disciplines for fitness, skill, self-defense or competition.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="why-wasatch">
+      <div class="section-inner why-grid">
+        <div class="why-copy" data-guide>
+          <p class="label">Why Wasatch</p>
+          <h2>Evidence first. <span>Then energy.</span></h2>
+          <p>A premium training decision should not depend on a dramatic slogan alone. Wasatch gives Orem and Utah County real reasons to look closer.</p>
+          <div class="feature-stack">
+            <article class="feature"><strong>4.9</strong><div><h3>Public reputation</h3><p>329 Google reviews support the highest Google-rated gym in Utah County claim.</p></div></article>
+            <article class="feature"><strong>07</strong><div><h3>Program range</h3><p>Striking, grappling, youth and strength training live under one roof.</p></div></article>
+            <article class="feature"><strong>15</strong><div><h3>Hours of schedule range</h3><p>Classes run roughly from 6 a.m. to 9 p.m. on the weekly calendar.</p></div></article>
+            <article class="feature"><strong>01</strong><div><h3>Orem location</h3><p>One gym, one coaching culture and one local reputation to maintain.</p></div></article>
+          </div>
+        </div>
+        <div class="why-media" data-guide>
+          <img src="assets/wcs-4573.jpg" alt="Two Wasatch training partners smiling between boxing rounds">
+          <div class="overlay-stat"><strong>329</strong><span>Local Google reviews are a better trust anchor than anonymous marketing copy.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="beginner">
+      <div class="section-inner beginner-layout">
+        <div><p class="label">Beginner expectations</p><h2>Your first class is not an audition.</h2></div>
+        <div>
+          <div class="expect-list">
+            <article class="expect"><span class="check">✓</span><div><h3>Arrive as you are</h3><p>You do not need to be fit enough, flexible enough or experienced enough before you begin.</p></div><small>Mindset</small></article>
+            <article class="expect"><span class="check">✓</span><div><h3>Tell the coach you are new</h3><p>That gives the coach the context to explain the room and control the progression.</p></div><small>Context</small></article>
+            <article class="expect"><span class="check">✓</span><div><h3>Learn stance and movement</h3><p>Fundamentals come before speed, power or live work.</p></div><small>Skill</small></article>
+            <article class="expect"><span class="check">✓</span><div><h3>Ask what comes next</h3><p>Leave with a program and time that can fit your actual week.</p></div><small>Plan</small></article>
+          </div>
+          <div class="schedule-chipset" aria-label="Current class time preview">
+            <span>6:00 am · Muay Thai</span><span>7:00 am · Jiu Jitsu</span><span>9:30 am · Women's Combat</span>
+            <span>4:00 pm · Youth Juniors</span><span>4:45 pm · Youth Seniors</span><span>7:30 pm · Boxing / Jiu Jitsu</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="coaches">
+      <div class="section-inner">
+        <header class="section-head" data-guide>
+          <p class="label">Coach specifications</p>
+          <h2>Who is behind the program?</h2>
+        </header>
+        <div class="coach-specs">
+          <div class="coach-table">
+            <article class="coach-row"><h3>Rad Martinez</h3><p>MMA · NCAA Division I All-American wrestler · Former Bellator featherweight.</p></article>
+            <article class="coach-row"><h3>Roberto Salomao</h3><p>BJJ and MMA · Black belt in Jiu Jitsu and Luta Livre · Training since age 15.</p></article>
+            <article class="coach-row"><h3>Kani Correa</h3><p>Muay Thai, boxing, kids programs and MMA.</p></article>
+            <article class="coach-row"><h3>Master Piboon Soumphol</h3><p>Muay Thai and kids program instruction.</p></article>
+            <article class="coach-row"><h3>Jeff</h3><p>Kickboxing and kids program instruction.</p></article>
+            <article class="coach-row"><h3>Cheryl</h3><p>Strength &amp; Conditioning.</p></article>
+          </div>
+          <div class="coach-image">
+            <img src="assets/wcs-5007.jpg" alt="A Wasatch coach guiding a young student through pad work">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="reviews">
+      <div class="section-inner review-system">
+        <div class="rating-card" data-guide>
+          <strong>4.9</strong>
+          <div class="stars" aria-label="4.9 out of 5 stars">★★★★★</div>
+          <p>Across 329 Google reviews.</p>
+        </div>
+        <div class="review-copy" data-guide>
+          <p class="label">Reputation system</p>
+          <h2>Trust the <span>pattern,</span> not one quote.</h2>
+          <p>Wasatch is the highest Google-rated gym in Utah County. A 329-review record gives prospective students and skeptical parents enough public material to identify recurring themes.</p>
+          <div class="signal-grid"><span>Knowledgeable coaching</span><span>Welcoming community</span><span>Support for beginners</span><span>Serious, organized training</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="resources">
+      <div class="section-inner">
+        <header class="section-head" data-guide>
+          <p class="label">Resource library</p>
+          <h2>Make the decision with better information.</h2>
+        </header>
+        <div class="resource-grid">
+          <a class="resource" href="#lead-form"><small>Complete 2026 guide</small><h3>Best Combat Sports Gyms in Orem, UT: A Beginner's Comparison Checklist</h3></a>
+          <a class="resource" href="#lead-form"><small>Common question</small><h3>How Long Does It Take to Get Comfortable in Muay Thai?</h3></a>
+          <a class="resource" href="#lead-form"><small>Parent research</small><h3>What Should Parents Look for in a Youth Jiu Jitsu Coach?</h3></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="faq">
+      <div class="section-inner faq-layout">
+        <div><p class="label">Decision FAQ</p><h2>Questions before contact.</h2></div>
+        <div>
+          <details><summary>Which combat sport should a beginner choose?</summary><p>Choose by the movement and goal that interest you. Muay Thai and boxing focus on striking, Jiu Jitsu focuses on grappling, MMA connects ranges, and Strength &amp; Conditioning builds the athletic base. Wasatch can help you narrow the fit.</p></details>
+          <details><summary>Does Wasatch have separate youth age groups?</summary><p>Yes. Youth Juniors and Youth Seniors are distinct paths, with forty-five minute weekday time blocks designed for different stages.</p></details>
+          <details><summary>When can working adults train in Orem?</summary><p>The schedule includes early morning and evening classes, with current times ranging from around 6 a.m. through 9 p.m. depending on the day and program.</p></details>
+          <details><summary>How do I contact Wasatch Combat Sports?</summary><p>Use the interest form above or call 801-857-0611. The Orem gym is at 972 N 1430 W, Orem, UT 84057.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="visit-grid" id="visit">
+      <div class="map">
+        <iframe
+          title="Map showing Wasatch Combat Sports at 972 N 1430 W in Orem, Utah"
+          loading="lazy"
+          src="https://maps.google.com/maps?t=m&amp;output=embed&amp;iwloc=near&amp;z=15&amp;q=972+N+1430+W%2C+Orem%2C+UT+84057"></iframe>
+      </div>
+      <div class="visit-copy">
+        <p class="label">One Orem location</p>
+        <h2>See where the work happens.</h2>
+        <div class="nap">
+          <strong>Wasatch Combat Sports</strong>
+          972 N 1430 W, Orem, UT 84057<br>
+          <a href="tel:8018570611">801-857-0611</a>
+        </div>
+        <p>Wasatch serves Orem, Provo and communities across Utah County from one established training floor.</p>
+        <div class="contact-options">
+          <a href="#lead-form">Send program interest</a>
+          <a href="tel:8018570611">Call the gym</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta" id="final-cta">
+      <h2>Come Meet the New You.</h2>
+      <a href="#lead-form">Return to the form ↑</a>
+    </section>
+  </main>
+
+  <footer>
+    <span>Wasatch Combat Sports · 972 N 1430 W, Orem, UT 84057</span>
+    <span>Concept 04 · Conversion landing</span>
+  </footer>
+
+  <script>
+    const guided = document.querySelectorAll("[data-guide]");
+    if ("IntersectionObserver" in window) {
+      const guideObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("ready");
+            guideObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.14 });
+      guided.forEach((item) => guideObserver.observe(item));
+    } else {
+      guided.forEach((item) => item.classList.add("ready"));
+    }
+
+    document.querySelector("#lead-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      event.currentTarget.querySelector(".form-note").textContent =
+        "Match request captured in this static concept. The form is ready for Wasatch's lead connection.";
+    });
+  </script>
+</body>
+</html>
